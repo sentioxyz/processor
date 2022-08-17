@@ -1,6 +1,6 @@
 import { O11yResult } from './gen/processor/protos/processor'
 import { SolanaContext } from './context'
-import { Connection } from '@solana/web3.js'
+import { Connection, ParsedInstruction } from '@solana/web3.js'
 import Long from 'long'
 import { Instruction } from '@project-serum/anchor'
 
@@ -34,6 +34,10 @@ export class SolanaBaseProcessor {
 
   public decodeInstruction(rawInstruction: string): Instruction | null {
     throw new Error('decodeInstruction is not implemented.')
+  }
+
+  public fromParsedInstruction(instruction: ParsedInstruction): Instruction | null {
+    throw new Error('fromParsedInstruction is not implemented.')
   }
 
   public onInstruction(instructionName: string, handler: (instruction: Instruction, ctx: SolanaContext) => void) {
