@@ -15,9 +15,10 @@ export class SolanaBaseProcessor {
   endpoint: string
   connection: Connection
   contractName: string
+  processInnerInstruction: boolean
   config: IndexConfigure = { startSlot: new Long(0) }
 
-  constructor(contractName: string, address: string, endpoint: string) {
+  constructor(contractName: string, address: string, endpoint: string, processInnerInstruction: boolean = false) {
     this.endpoint = endpoint
     this.address = address
     if (!globalThis.SolanaProcessors) {
@@ -26,6 +27,7 @@ export class SolanaBaseProcessor {
     globalThis.SolanaProcessors.push(this)
     this.connection = new Connection(endpoint, 'confirmed')
     this.contractName = contractName
+    this.processInnerInstruction = processInnerInstruction
   }
 
   bind(address: string) {
