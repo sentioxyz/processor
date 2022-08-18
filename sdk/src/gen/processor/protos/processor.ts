@@ -118,7 +118,7 @@ export interface Instruction {
   instructionData: string;
   slot: Long;
   programAccountId: string;
-  parsed: Uint8Array;
+  parsed?: Uint8Array | undefined;
 }
 
 export interface Block {
@@ -1809,7 +1809,7 @@ function createBaseInstruction(): Instruction {
     instructionData: "",
     slot: Long.UZERO,
     programAccountId: "",
-    parsed: new Uint8Array(),
+    parsed: undefined,
   };
 }
 
@@ -1827,7 +1827,7 @@ export const Instruction = {
     if (message.programAccountId !== "") {
       writer.uint32(26).string(message.programAccountId);
     }
-    if (message.parsed.length !== 0) {
+    if (message.parsed !== undefined) {
       writer.uint32(34).bytes(message.parsed);
     }
     return writer;
@@ -1869,9 +1869,7 @@ export const Instruction = {
       programAccountId: isSet(object.programAccountId)
         ? String(object.programAccountId)
         : "",
-      parsed: isSet(object.parsed)
-        ? bytesFromBase64(object.parsed)
-        : new Uint8Array(),
+      parsed: isSet(object.parsed) ? bytesFromBase64(object.parsed) : undefined,
     };
   },
 
@@ -1884,9 +1882,10 @@ export const Instruction = {
     message.programAccountId !== undefined &&
       (obj.programAccountId = message.programAccountId);
     message.parsed !== undefined &&
-      (obj.parsed = base64FromBytes(
-        message.parsed !== undefined ? message.parsed : new Uint8Array()
-      ));
+      (obj.parsed =
+        message.parsed !== undefined
+          ? base64FromBytes(message.parsed)
+          : undefined);
     return obj;
   },
 
@@ -1898,7 +1897,7 @@ export const Instruction = {
         ? Long.fromValue(object.slot)
         : Long.UZERO;
     message.programAccountId = object.programAccountId ?? "";
-    message.parsed = object.parsed ?? new Uint8Array();
+    message.parsed = object.parsed ?? undefined;
     return message;
   },
 };
