@@ -2,18 +2,11 @@
 
 import { expect } from 'chai'
 
-import {
-  LogBinding,
-  ProcessBlockRequest,
-  ProcessLogRequest,
-  ProcessorServiceImpl,
-  setProvider,
-} from '..'
+import { LogBinding, ProcessBlockRequest, ProcessLogRequest, ProcessorServiceImpl, setProvider } from '..'
 
 import { CallContext } from 'nice-grpc-common/src/server/CallContext'
 import * as path from 'path'
 import * as fs from 'fs-extra'
-import Long from 'long'
 import { cleanTest } from './clean-test'
 
 describe('Test Server with Example', () => {
