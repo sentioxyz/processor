@@ -137,7 +137,7 @@ message Instruction {
   string instruction_data = 1;
   uint64 slot = 2;
   string program_account_id = 3;
-  bytes parsed = 4;
+  optional bytes parsed = 4;
 }
 
 message Block {
