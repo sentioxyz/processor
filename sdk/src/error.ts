@@ -4,16 +4,16 @@ import { errors } from 'ethers'
 
 export function transformEtherError(e: Error, ctx: Context<any, any>): Error {
   let msg = ''
-  // @ts-ignore
+  // @ts-ignore expected error fields
   if (e.code === errors.CALL_EXCEPTION) {
-    // @ts-ignore
+    // @ts-ignore expected error fields
     if (e.data === '0x') {
       msg += [
-        // @ts-ignore
+        // @ts-ignore expected error fields
         "jsonrpc eth_call return '0x' (likely contract not existed): " + e.method + '(' + e.args.join(',') + ')',
         'address: ' + ctx.contract.contract.address + ' at chain: ' + ctx.chainId,
         'block: ' + ctx.blockNumber,
-        // @ts-ignore
+        // @ts-ignore expected error fields
         'data: ' + e.transaction.data,
       ].join('\n')
     }
