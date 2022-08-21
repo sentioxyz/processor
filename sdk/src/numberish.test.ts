@@ -47,7 +47,9 @@ describe('Basic Testing', () => {
 
     console.log(timer1, timer2)
     expect(timer1).to.lessThan(timer2 * 3)
-  }).timeout(100000)
+  })
+    .timeout(100000)
+    .retries(3)
 })
 
 // Performance very bad
