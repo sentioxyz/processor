@@ -21,11 +21,8 @@ export abstract class BaseProcessorTemplate<
   }[] = []
 
   constructor() {
-    if (!globalThis.Templates) {
-      globalThis.Templates = []
-    }
-    this.id = globalThis.Templates.length
-    globalThis.Templates.push(this)
+    this.id = global.PROCESSOR_STATE.Templates.length
+    global.PROCESSOR_STATE.Templates.push(this)
   }
 
   public bind(options: BindOptions) {
@@ -42,10 +39,6 @@ export abstract class BaseProcessorTemplate<
     }
     for (const bh of this.blockHandlers) {
       processor.onBlock(bh)
-    }
-
-    if (!globalThis.TemplatesInstances) {
-      globalThis.TemplatesInstances = []
     }
 
     const instance: TemplateInstance = {
@@ -73,7 +66,7 @@ export abstract class BaseProcessorTemplate<
         instance.endBlock = options.endBlock
       }
     }
-    globalThis.TemplatesInstances.push(instance)
+    global.PROCESSOR_STATE.TemplatesInstances.push(instance)
 
     return processor
   }

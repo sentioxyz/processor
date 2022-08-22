@@ -61,15 +61,15 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
     this.blockHandlers.clear()
     this.contractConfigs = []
 
-    if (globalThis.TemplatesInstances) {
-      this.templateInstances = [...globalThis.TemplatesInstances]
+    if (global.PROCESSOR_STATE.TemplatesInstances) {
+      this.templateInstances = [...global.PROCESSOR_STATE.TemplatesInstances]
     }
 
-    if (globalThis.Processors) {
-      for (const processor of globalThis.Processors) {
+    if (global.PROCESSOR_STATE.Processors) {
+      for (const processor of global.PROCESSOR_STATE.Processors) {
         // If server favor incremental update this need to change
         // Start basic config for contract
-        const chainId = await processor.getChainId()
+        const chainId = processor.getChainId()
         const contractConfig: ContractConfig = {
           contract: {
             name: processor.config.name,
@@ -135,8 +135,8 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
       }
     }
 
-    if (globalThis.SolanaProcessors) {
-      for (const solanaProcessor of globalThis.SolanaProcessors) {
+    if (global.PROCESSOR_STATE.SolanaProcessors) {
+      for (const solanaProcessor of global.PROCESSOR_STATE.SolanaProcessors) {
         const contractConfig: ContractConfig = {
           contract: {
             name: solanaProcessor.contractName,
@@ -164,7 +164,7 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
       return {}
     }
     for (const instance of request.templateInstances) {
-      const template = globalThis.Templates[instance.templateId]
+      const template = global.PROCESSOR_STATE.Templates[instance.templateId]
       if (!template) {
         throw new ServerError(Status.INVALID_ARGUMENT, 'Invalid template contract:' + instance)
       }
@@ -220,7 +220,10 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
     }
 
     let updated = false
-    if (global.TemplatesInstances && this.templateInstances.length != global.TemplatesInstances.length) {
+    if (
+      global.PROCESSOR_STATE.TemplatesInstances &&
+      this.templateInstances.length != global.PROCESSOR_STATE.TemplatesInstances.length
+    ) {
       await this.configure()
       updated = true
     }
@@ -255,13 +258,13 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
     }
 
     // Only have instruction handlers for solana processors
-    if (globalThis.SolanaProcessors) {
+    if (global.PROCESSOR_STATE.SolanaProcessors) {
       for (const instruction of request.instructions) {
         if (!instruction) {
           throw new ServerError(Status.INVALID_ARGUMENT, 'instruction cannot be null')
         }
 
-        for (const processor of globalThis.SolanaProcessors) {
+        for (const processor of global.PROCESSOR_STATE.SolanaProcessors) {
           if (processor.address === instruction.programAccountId) {
             let res: O11yResult | null
             if (instruction.parsed) {
@@ -331,7 +334,7 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
     }
 
     const promises: Promise<O11yResult[]>[] = []
-    for (const processor of globalThis.Processors) {
+    for (const processor of global.PROCESSOR_STATE.Processors) {
       if (Long.fromNumber(block.number) < processor.config.startBlock) {
         continue
       }

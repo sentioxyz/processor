@@ -9,5 +9,6 @@ export { ContractNamer } from './contract-namer'
 export { getChainName } from './chainmap'
 export { BindOptions } from './bind-options'
 export { transformEtherError } from './error'
+export { ProcessorState } from './processor-state'
 
 export * from './gen/processor/protos/processor'

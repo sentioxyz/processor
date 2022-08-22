@@ -56,10 +56,7 @@ export class BaseProcessor<TContract extends BaseContract, TContractWrapper exte
     }
 
     this.contract = contract
-    if (!globalThis.Processors) {
-      globalThis.Processors = []
-    }
-    globalThis.Processors.push(this)
+    global.PROCESSOR_STATE.Processors.push(this)
   }
 
   // constructor(address: string, name: string, network: Networkish = 1) {
