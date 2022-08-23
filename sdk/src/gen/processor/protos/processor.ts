@@ -4,6 +4,51 @@ import Long from "long";
 import { Empty } from "../../google/protobuf/empty";
 import _m0 from "protobufjs/minimal";
 
+export enum HandlerType {
+  LOG = 0,
+  BLOCK = 1,
+  TRANSACTION = 2,
+  INSTRUCTION = 3,
+  UNRECOGNIZED = -1,
+}
+
+export function handlerTypeFromJSON(object: any): HandlerType {
+  switch (object) {
+    case 0:
+    case "LOG":
+      return HandlerType.LOG;
+    case 1:
+    case "BLOCK":
+      return HandlerType.BLOCK;
+    case 2:
+    case "TRANSACTION":
+      return HandlerType.TRANSACTION;
+    case 3:
+    case "INSTRUCTION":
+      return HandlerType.INSTRUCTION;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return HandlerType.UNRECOGNIZED;
+  }
+}
+
+export function handlerTypeToJSON(object: HandlerType): string {
+  switch (object) {
+    case HandlerType.LOG:
+      return "LOG";
+    case HandlerType.BLOCK:
+      return "BLOCK";
+    case HandlerType.TRANSACTION:
+      return "TRANSACTION";
+    case HandlerType.INSTRUCTION:
+      return "INSTRUCTION";
+    case HandlerType.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+
 export interface ProjectConfig {
   name: string;
   version: string;
@@ -169,12 +214,14 @@ export interface BigInteger {
 export interface GaugeResult {
   metadata: RecordMetaData | undefined;
   metricValue: MetricValue | undefined;
+  from: HandlerType;
 }
 
 export interface CounterResult {
   metadata: RecordMetaData | undefined;
   metricValue: MetricValue | undefined;
   add: boolean;
+  from: HandlerType;
 }
 
 function createBaseProjectConfig(): ProjectConfig {
@@ -2581,7 +2628,7 @@ export const BigInteger = {
 };
 
 function createBaseGaugeResult(): GaugeResult {
-  return { metadata: undefined, metricValue: undefined };
+  return { metadata: undefined, metricValue: undefined, from: 0 };
 }
 
 export const GaugeResult = {
@@ -2601,6 +2648,9 @@ export const GaugeResult = {
         writer.uint32(18).fork()
       ).ldelim();
     }
+    if (message.from !== 0) {
+      writer.uint32(24).int32(message.from);
+    }
     return writer;
   },
 
@@ -2616,6 +2666,9 @@ export const GaugeResult = {
           break;
         case 2:
           message.metricValue = MetricValue.decode(reader, reader.uint32());
+          break;
+        case 3:
+          message.from = reader.int32() as any;
           break;
         default:
           reader.skipType(tag & 7);
@@ -2633,6 +2686,7 @@ export const GaugeResult = {
       metricValue: isSet(object.metricValue)
         ? MetricValue.fromJSON(object.metricValue)
         : undefined,
+      from: isSet(object.from) ? handlerTypeFromJSON(object.from) : 0,
     };
   },
 
@@ -2646,6 +2700,7 @@ export const GaugeResult = {
       (obj.metricValue = message.metricValue
         ? MetricValue.toJSON(message.metricValue)
         : undefined);
+    message.from !== undefined && (obj.from = handlerTypeToJSON(message.from));
     return obj;
   },
 
@@ -2659,12 +2714,13 @@ export const GaugeResult = {
       object.metricValue !== undefined && object.metricValue !== null
         ? MetricValue.fromPartial(object.metricValue)
         : undefined;
+    message.from = object.from ?? 0;
     return message;
   },
 };
 
 function createBaseCounterResult(): CounterResult {
-  return { metadata: undefined, metricValue: undefined, add: false };
+  return { metadata: undefined, metricValue: undefined, add: false, from: 0 };
 }
 
 export const CounterResult = {
@@ -2687,6 +2743,9 @@ export const CounterResult = {
     if (message.add === true) {
       writer.uint32(24).bool(message.add);
     }
+    if (message.from !== 0) {
+      writer.uint32(32).int32(message.from);
+    }
     return writer;
   },
 
@@ -2706,6 +2765,9 @@ export const CounterResult = {
         case 3:
           message.add = reader.bool();
           break;
+        case 4:
+          message.from = reader.int32() as any;
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -2723,6 +2785,7 @@ export const CounterResult = {
         ? MetricValue.fromJSON(object.metricValue)
         : undefined,
       add: isSet(object.add) ? Boolean(object.add) : false,
+      from: isSet(object.from) ? handlerTypeFromJSON(object.from) : 0,
     };
   },
 
@@ -2737,6 +2800,7 @@ export const CounterResult = {
         ? MetricValue.toJSON(message.metricValue)
         : undefined);
     message.add !== undefined && (obj.add = message.add);
+    message.from !== undefined && (obj.from = handlerTypeToJSON(message.from));
     return obj;
   },
 
@@ -2751,6 +2815,7 @@ export const CounterResult = {
         ? MetricValue.fromPartial(object.metricValue)
         : undefined;
     message.add = object.add ?? false;
+    message.from = object.from ?? 0;
     return message;
   },
 };

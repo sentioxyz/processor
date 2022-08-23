@@ -4,6 +4,7 @@ import { CallContext, ServerError, Status } from 'nice-grpc'
 import {
   ContractConfig,
   HandlerCondition,
+  HandlerType,
   LogHandlerConfig,
   O11yResult,
   ProcessBlockRequest,
@@ -26,12 +27,17 @@ import {
 import { DeepPartial } from './gen/builtin'
 import { Empty } from './gen/google/protobuf/empty'
 import Long from 'long'
+import { BaseProcessor } from './base-processor'
+import { BaseContract } from 'ethers'
+import { ContractWrapper } from './context'
 
-const MAX_BLOCK = new Long(0)
+const DEFAULT_MAX_BLOCK = Long.ZERO
 
 export class ProcessorServiceImpl implements ProcessorServiceImplementation {
   private eventHandlers: ((event: Log) => Promise<O11yResult>)[] = []
-  private blockHandlers = new Map<string, ((block: Block) => Promise<O11yResult>)[]>()
+  // map from chain id to list of processors
+  // private blockHandlers = new Map<string, ((block: Block) => Promise<O11yResult>)[]>()
+  private processorsByChainId = new Map<string, BaseProcessor<BaseContract, ContractWrapper<BaseContract>>>()
 
   private started = false
   private contractConfigs: ContractConfig[]
@@ -57,8 +63,7 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
   async configure() {
     this.eventHandlers = []
     this.templateInstances = []
-    // copy without reference array
-    this.blockHandlers.clear()
+    this.processorsByChainId.clear()
     this.contractConfigs = []
 
     if (global.PROCESSOR_STATE.templatesInstances) {
@@ -70,6 +75,8 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
         // If server favor incremental update this need to change
         // Start basic config for contract
         const chainId = processor.getChainId()
+        this.processorsByChainId.set(chainId, processor)
+
         const contractConfig: ContractConfig = {
           contract: {
             name: processor.config.name,
@@ -82,7 +89,7 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
           },
           logConfigs: [],
           startBlock: processor.config.startBlock,
-          endBlock: MAX_BLOCK,
+          endBlock: DEFAULT_MAX_BLOCK,
           instructionConfig: undefined,
         }
         if (processor.config.endBlock) {
@@ -120,16 +127,6 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
           contractConfig.logConfigs.push(logConfig)
         }
 
-        // Prepare all the block handlers
-        let handlersForChain = this.blockHandlers.get(chainId)
-        if (handlersForChain === undefined) {
-          handlersForChain = []
-          this.blockHandlers.set(chainId, handlersForChain)
-        }
-        for (const blockHandler of processor.blockHandlers) {
-          handlersForChain.push(blockHandler)
-        }
-
         // Finish up a contract
         this.contractConfigs.push(contractConfig)
       }
@@ -147,7 +144,7 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
           blockConfig: undefined,
           logConfigs: [],
           startBlock: solanaProcessor.config.startSlot,
-          endBlock: MAX_BLOCK,
+          endBlock: DEFAULT_MAX_BLOCK,
           instructionConfig: {
             innerInstruction: solanaProcessor.processInnerInstruction,
             parsedInstruction: solanaProcessor.fromParsedInstruction != null ? true : false,
@@ -227,6 +224,9 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
       await this.configure()
       updated = true
     }
+
+    resp.gauges?.forEach((e) => (e.from = HandlerType.LOG))
+    resp.counters?.forEach((e) => (e.from = HandlerType.LOG))
     return {
       result: resp,
       configUpdated: updated,
@@ -274,11 +274,11 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
             }
             if (res) {
               try {
-                res.gauges.forEach((h) => {
-                  if (h.metadata) {
-                    h.metadata.blockNumber = instruction.slot
+                res.gauges.forEach((g) => {
+                  if (g.metadata) {
+                    g.metadata.blockNumber = instruction.slot
                   }
-                  result.gauges.push(h)
+                  result.gauges.push(g)
                 })
                 res.counters.forEach((c) => {
                   if (c.metadata) {
@@ -299,6 +299,8 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
       }
     }
 
+    result.gauges?.forEach((e) => (e.from = HandlerType.INSTRUCTION))
+    result.counters?.forEach((e) => (e.from = HandlerType.INSTRUCTION))
     return {
       result,
     }
@@ -369,6 +371,8 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
       throw new ServerError(Status.INTERNAL, e.stack.toString())
     }
 
+    resp.gauges?.forEach((e) => (e.from = HandlerType.BLOCK))
+    resp.counters?.forEach((e) => (e.from = HandlerType.BLOCK))
     return {
       result: resp,
     }
