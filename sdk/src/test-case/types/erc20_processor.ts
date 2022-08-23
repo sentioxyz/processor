@@ -15,8 +15,8 @@ import {
   BaseProcessorTemplate,
   Context,
   ContractWrapper,
-  ContractNamer,
   DummyProvider,
+  getContractName,
 } from "@sentio/sdk";
 import { PromiseOrValue } from "./common";
 import { Erc20, Erc20__factory } from "./index";
@@ -26,7 +26,6 @@ import {
   TransferEvent,
   TransferEventFilter,
 } from "./Erc20";
-const namer = new ContractNamer("Erc20");
 const templateContract = Erc20__factory.connect("", DummyProvider);
 
 class Erc20ContractWrapper extends ContractWrapper<Erc20> {
@@ -102,9 +101,12 @@ export class Erc20ProcessorTemplate extends BaseProcessorTemplate<
     if (!processor) {
       const wrapper = getErc20Contract(options.address, options.network);
       const finalOptions = Object.assign({}, options);
-      if (!finalOptions.name) {
-        finalOptions.name = namer.nextName();
-      }
+      finalOptions.name = getContractName(
+        "Erc20",
+        options.name,
+        options.address,
+        options.network
+      );
       processor = new Erc20Processor(finalOptions, wrapper);
       addProcessor("Erc20", options, processor);
     }
@@ -177,9 +179,12 @@ export class Erc20Processor extends BaseProcessor<Erc20, Erc20ContractWrapper> {
       const wrapper = getErc20Contract(options.address, options.network);
 
       const finalOptions = Object.assign({}, options);
-      if (!finalOptions.name) {
-        finalOptions.name = namer.nextName();
-      }
+      finalOptions.name = getContractName(
+        "Erc20",
+        options.name,
+        options.address,
+        options.network
+      );
       processor = new Erc20Processor(finalOptions, wrapper);
       addProcessor("Erc20", options, processor);
     }

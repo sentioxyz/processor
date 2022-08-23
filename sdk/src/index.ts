@@ -10,7 +10,6 @@ export { BindOptions } from './bind-options'
 export { transformEtherError } from './error'
 export { ProcessorState } from './processor-state'
 
-export { getProcessor, addProcessor } from './binds'
-export { getContractByABI, addContractByABI } from './contracts'
+export { getProcessor, addProcessor, getContractByABI, addContractByABI, getContractName } from './binds'
 
 export * from './gen/processor/protos/processor'

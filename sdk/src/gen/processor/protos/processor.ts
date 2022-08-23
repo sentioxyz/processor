@@ -5,25 +5,29 @@ import { Empty } from "../../google/protobuf/empty";
 import _m0 from "protobufjs/minimal";
 
 export enum HandlerType {
-  LOG = 0,
-  BLOCK = 1,
-  TRANSACTION = 2,
-  INSTRUCTION = 3,
+  UNKNOWN = 0,
+  LOG = 1,
+  BLOCK = 2,
+  TRANSACTION = 3,
+  INSTRUCTION = 4,
   UNRECOGNIZED = -1,
 }
 
 export function handlerTypeFromJSON(object: any): HandlerType {
   switch (object) {
     case 0:
+    case "UNKNOWN":
+      return HandlerType.UNKNOWN;
+    case 1:
     case "LOG":
       return HandlerType.LOG;
-    case 1:
+    case 2:
     case "BLOCK":
       return HandlerType.BLOCK;
-    case 2:
+    case 3:
     case "TRANSACTION":
       return HandlerType.TRANSACTION;
-    case 3:
+    case 4:
     case "INSTRUCTION":
       return HandlerType.INSTRUCTION;
     case -1:
@@ -35,6 +39,8 @@ export function handlerTypeFromJSON(object: any): HandlerType {
 
 export function handlerTypeToJSON(object: HandlerType): string {
   switch (object) {
+    case HandlerType.UNKNOWN:
+      return "UNKNOWN";
     case HandlerType.LOG:
       return "LOG";
     case HandlerType.BLOCK:

@@ -191,10 +191,11 @@ message BigInteger {
 }
 
 enum HandlerType {
-  LOG = 0;
-  BLOCK = 1;
-  TRANSACTION = 2;
-  INSTRUCTION = 3;
+  UNKNOWN = 0;
+  LOG = 1;
+  BLOCK = 2;
+  TRANSACTION = 3;
+  INSTRUCTION = 4;
 }
 
 message GaugeResult {

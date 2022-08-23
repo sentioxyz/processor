@@ -12,7 +12,6 @@ import { getFullSignatureForEvent } from 'typechain/dist/utils/signatures'
 
 export function codeGenSentioFile(contract: Contract): string {
   const source = `
-  const namer = new ContractNamer("${contract.name}")
   const templateContract = ${contract.name}__factory.connect("", DummyProvider)
 
   class ${contract.name}ContractWrapper extends ContractWrapper<${contract.name}> {
@@ -37,9 +36,7 @@ export function codeGenSentioFile(contract: Contract): string {
       if (!processor) {
         const wrapper = get${contract.name}Contract(options.address, options.network)
         const finalOptions = Object.assign({}, options)
-        if (!finalOptions.name) {
-          finalOptions.name = namer.nextName()
-        }
+        finalOptions.name = getContractName("${contract.name}", options.name, options.address, options.network)
         processor = new ${contract.name}Processor(finalOptions, wrapper)
         addProcessor("${contract.name}", options, processor)
       }
@@ -76,9 +73,7 @@ export function codeGenSentioFile(contract: Contract): string {
         const wrapper = get${contract.name}Contract(options.address, options.network)
   
         const finalOptions = Object.assign({}, options)
-        if (!finalOptions.name) {
-          finalOptions.name = namer.nextName()
-        }
+        finalOptions.name = getContractName("${contract.name}", options.name, options.address, options.network)
         processor = new ${contract.name}Processor(finalOptions, wrapper)
         addProcessor("${contract.name}", options, processor)
       }
@@ -117,8 +112,8 @@ export function codeGenSentioFile(contract: Contract): string {
         'BaseProcessorTemplate',
         'Context',
         'ContractWrapper',
-        'ContractNamer',
         'DummyProvider',
+        'getContractName',
       ],
       './common': ['PromiseOrValue'],
       './index': [`${contract.name}`, `${contract.name}__factory`],
