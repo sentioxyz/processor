@@ -65,8 +65,8 @@ tryRequire(options.target)
 
 console.log('Start Server', options)
 
-console.log(global.PROCESSOR_STATE.Processors.length, ' processors loaded')
-console.log(global.PROCESSOR_STATE.SolanaProcessors.length, ' solana processors loaded')
+console.log(global.PROCESSOR_STATE.processors.length, ' processors loaded')
+console.log(global.PROCESSOR_STATE.solanaProcessors.length, ' solana processors loaded')
 
 const processor = createServer()
 

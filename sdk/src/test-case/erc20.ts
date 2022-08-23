@@ -34,6 +34,8 @@ Erc20Processor.bind({ address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', net
 // .startBlock(14201940)
 
 Erc20Processor.bind({ address: 'xxxx', network: 56 })
+
+Erc20Processor.bind({ address: 'yyyy', network: 1 })
 Erc20Processor.bind({ address: 'yyyy', network: 1 })
 
 // const template = Erc20Processor.template
