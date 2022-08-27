@@ -12,6 +12,6 @@
     "@sentio/sdk": "file:../../sdk"
   },
   "devDependencies": {
-    "typescript": "^4.7.2"
+    "typescript": "^4.8.2"
   }
 }
