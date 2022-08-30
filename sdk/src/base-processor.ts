@@ -1,10 +1,10 @@
 import { Event } from '@ethersproject/contracts'
 import { BytesLike } from '@ethersproject/bytes'
 import { Block, Log, getNetwork } from '@ethersproject/providers'
-import { BaseContract, EventFilter } from 'ethers'
+import { BaseContract, EventFilter } from '@ethersproject/contracts'
 import Long from 'long'
 
-import { BoundContractView, Context, ContractView, EthContext } from './context'
+import { BoundContractView, Context, ContractView } from './context'
 import { O11yResult } from './gen/processor/protos/processor'
 import { BindInternalOptions, BindOptions } from './bind-options'
 
@@ -112,5 +112,17 @@ export abstract class BaseProcessor<
       }
     })
     return this
+  }
+
+  public onAllEvents(handler: (event: Log, ctx: Context<TContract, TBoundContractView>) => void) {
+    const _filters: EventFilter[] = []
+    const tmpContract = this.CreateBoundContractView()
+
+    for (const key in tmpContract.filters) {
+      _filters.push(tmpContract.filters[key]())
+    }
+    this.onEvent(function (log, ctx) {
+      return handler(log, ctx)
+    }, _filters)
   }
 }

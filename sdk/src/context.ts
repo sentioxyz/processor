@@ -73,6 +73,10 @@ export class BoundContractView<TContract extends BaseContract, TContractView ext
   get provider() {
     return this.view.provider
   }
+
+  get filters() {
+    return this.view.filters
+  }
 }
 
 export class SolanaContext {
