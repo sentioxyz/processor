@@ -35,13 +35,13 @@ describe('Test Generic Processor', () => {
     await service.start({ templateInstances: [] }, testContext)
   })
 
-  it('check configuration', async () => {
+  test('check configuration', async () => {
     const config = await service.getConfig({}, testContext)
     expect(config.contractConfigs).length(1)
     expect(config.contractConfigs?.[0].contract?.name).equals('Generic')
   })
 
-  it('Check log dispatch', async () => {
+  test('Check log dispatch', async () => {
     const raw = toRaw(logData)
     const request: ProcessLogsRequest = {
       logBindings: [],

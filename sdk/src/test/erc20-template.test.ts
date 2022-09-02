@@ -40,7 +40,7 @@ describe('Test Template', () => {
     await service.start(request, testContext)
   })
 
-  it('Check template instantiate', async () => {
+  test('Check template instantiate', async () => {
     const config = await service.getConfig({}, testContext)
     expect(config.contractConfigs).length(2)
     expect(config.contractConfigs?.[1].contract?.name).equals('dynamic2')

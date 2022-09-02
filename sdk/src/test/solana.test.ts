@@ -22,12 +22,12 @@ describe('Test Solana Example', () => {
     await service.start({ templateInstances: [] }, testContext)
   })
 
-  it('check configuration ', async () => {
+  test('check configuration ', async () => {
     const config = await service.getConfig({}, testContext)
     expect(config.contractConfigs).length(3)
   })
 
-  it('Check mirrorworld instruction dispatch', async () => {
+  test('Check mirrorworld instruction dispatch', async () => {
     const request: ProcessInstructionsRequest = {
       instructions: [
         {
@@ -43,7 +43,7 @@ describe('Test Solana Example', () => {
     expect(MetricValueToNumber(res.result?.counters[0].metricValue)).equal(5000000000n)
   })
 
-  it('Check wormhole token bridge instruction dispatch', async () => {
+  test('Check wormhole token bridge instruction dispatch', async () => {
     const request: ProcessInstructionsRequest = {
       instructions: [
         {
@@ -66,7 +66,7 @@ describe('Test Solana Example', () => {
     expect(res.result?.counters[0].runtimeInfo?.from).equals(HandlerType.INSTRUCTION)
   })
 
-  it('Check SPLToken parsed instruction dispatch', async () => {
+  test('Check SPLToken parsed instruction dispatch', async () => {
     const parsedIns = {
       info: {
         account: '2SDN4vEJdCdW3pGyhx2km9gB3LeHzMGLrG2j4uVNZfrx',

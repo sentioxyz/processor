@@ -43,7 +43,7 @@ describe('Test Basic Examples', () => {
     expect(config.contractConfigs?.[4].contract?.name).equals('Erc20_1')
   })
 
-  it('Check block dispatch', async () => {
+  test('Check block dispatch', async () => {
     const raw = toRaw(blockData)
 
     const request: ProcessBlocksRequest = {
@@ -86,7 +86,7 @@ describe('Test Basic Examples', () => {
     expect(MetricValueToNumber(o11yRes2?.gauges?.[0].metricValue)).equals(20n)
   })
 
-  it('Check log dispatch', async () => {
+  test('Check log dispatch', async () => {
     const raw = toRaw(logData)
     const request: ProcessLogsRequest = {
       logBindings: [],
