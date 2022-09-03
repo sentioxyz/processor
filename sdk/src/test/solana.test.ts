@@ -2,28 +2,23 @@
 
 import { expect } from 'chai'
 
-import { HandlerType, ProcessInstructionsRequest, ProcessorServiceImpl } from '..'
+import { HandlerType, ProcessInstructionsRequest } from '..'
 
-import { CallContext } from 'nice-grpc-common/src/server/CallContext'
 import Long from 'long'
-import { cleanTest } from './clean-test'
 import { MetricValueToNumber } from '../numberish'
 import { TextEncoder } from 'util'
+import { TestProcessorServer } from './test-processor-server'
 
 describe('Test Solana Example', () => {
-  const service = new ProcessorServiceImpl(undefined)
-  const testContext: CallContext = <CallContext>{}
+  const service = new TestProcessorServer()
 
   beforeAll(async () => {
-    cleanTest()
-
-    require('./mirrorworld')
-    require('./wormhole-token-bridge')
-    await service.start({ templateInstances: [] }, testContext)
+    service.setup(['./mirrorworld', './wormhole-token-bridge'])
+    await service.start({ templateInstances: [] })
   })
 
   test('check configuration ', async () => {
-    const config = await service.getConfig({}, testContext)
+    const config = await service.getConfig({})
     expect(config.contractConfigs).length(3)
   })
 
@@ -37,7 +32,7 @@ describe('Test Solana Example', () => {
         },
       ],
     }
-    const res = await service.processInstructions(request, testContext)
+    const res = await service.processInstructions(request)
     expect(res.result?.counters).length(3)
     expect(res.result?.gauges).length(0)
     expect(MetricValueToNumber(res.result?.counters[0].metricValue)).equal(5000000000n)
@@ -58,7 +53,7 @@ describe('Test Solana Example', () => {
         },
       ],
     }
-    const res = await service.processInstructions(request, testContext)
+    const res = await service.processInstructions(request)
     expect(res.result?.counters).length(2)
     expect(res.result?.gauges).length(0)
     expect(res.result?.counters[0].metadata?.blockNumber.toInt()).equal(0)
@@ -86,7 +81,7 @@ describe('Test Solana Example', () => {
         },
       ],
     }
-    const res = await service.processInstructions(request, testContext)
+    const res = await service.processInstructions(request)
     expect(res.result?.counters).length(1)
     expect(res.result?.gauges).length(0)
     expect(res.result?.counters[0].metadata?.blockNumber.toInt()).equal(0)
