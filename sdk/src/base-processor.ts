@@ -149,6 +149,13 @@ export abstract class BaseProcessor<
       handler: async function (trace: Trace) {
         const contractInterface = contractView.rawContract.interface
         const fragment = contractInterface.getFunction(signature)
+        if (!trace.action.input) {
+          return {
+            gauges: [],
+            counters: [],
+            logs: [],
+          }
+        }
         trace.args = contractInterface._abiCoder.decode(fragment.inputs, utils.hexDataSlice(trace.action.input, 4))
 
         const ctx = new Context<TContract, TBoundContractView>(contractView, chainId, undefined, undefined, trace)
