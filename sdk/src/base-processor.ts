@@ -9,7 +9,6 @@ import { ProcessResult } from './gen/processor/protos/processor'
 import { BindInternalOptions, BindOptions } from './bind-options'
 import { PromiseOrVoid } from './promise-or-void'
 import { Trace } from './trace'
-import { utils } from 'ethers'
 
 export class EventsHandler {
   filters: EventFilter[]
@@ -137,7 +136,7 @@ export abstract class BaseProcessor<
     }, _filters)
   }
 
-  public onTrace(
+  protected onTrace(
     signature: string,
     handler: (trace: Trace, ctx: Context<TContract, TBoundContractView>) => PromiseOrVoid
   ) {
@@ -156,7 +155,8 @@ export abstract class BaseProcessor<
             logs: [],
           }
         }
-        trace.args = contractInterface._abiCoder.decode(fragment.inputs, utils.hexDataSlice(trace.action.input, 4))
+        const traceData = '0x' + trace.action.input.slice(10)
+        trace.args = contractInterface._abiCoder.decode(fragment.inputs, traceData)
 
         const ctx = new Context<TContract, TBoundContractView>(contractView, chainId, undefined, undefined, trace)
         await handler(trace, ctx)

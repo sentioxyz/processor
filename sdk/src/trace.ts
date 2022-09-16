@@ -1,7 +1,7 @@
 // https://github.com/openethereum/parity-ethereum/blob/55c90d4016505317034e3e98f699af07f5404b63/rpc/src/v1/types/trace.rs#L482
 import { Result } from '@ethersproject/abi'
 
-export interface TypedTrace<TArgsArray extends Array<any> = any, TArgsObject = any> extends Trace {
+export interface TypedCallTrace<TArgsArray extends Array<any> = any, TArgsObject = any> extends Trace {
   args: TArgsArray & TArgsObject
 }
 

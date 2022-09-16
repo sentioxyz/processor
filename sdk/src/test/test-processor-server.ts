@@ -119,7 +119,7 @@ export class TestProcessorServer implements ProcessorServiceImplementation {
     if (trace.type !== 'call' || !trace.action.input) {
       throw Error('Invalid test trace: ' + JSON.stringify(trace))
     }
-    const signature = trace.action.input.slice(0, 4)
+    const signature = trace.action.input.slice(0, 10)
 
     for (const contract of this.contractConfig) {
       if (contract.contract?.chainId !== getNetwork(network).chainId.toString()) {
