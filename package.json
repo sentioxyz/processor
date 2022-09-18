@@ -20,5 +20,8 @@
     "format": "prettier --write .",
     "lint": "ls-lint && eslint .",
     "postinstall": "git config --local include.path ../.github/.gitconfig && git config core.hooksPath .github/.githooks"
+  },
+  "dependencies": {
+    "@sentio/sdk": "/Users/poytr1/workspace/sentio/sentio-sdk/sdk"
   }
 }
