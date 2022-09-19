@@ -11,8 +11,8 @@ class TicTacToeProcessor extends SuiBaseProcessor {
 }
 
 TicTacToeProcessor.bind({
-  startBlock: 0,
-  address: '',
+  startBlock: 159647,
+  address: '0xb8252513f0b9efaa3e260842c4b84d8ff933522d',
 }).onTransaction((txn, ctx) => {
   if (txn.certificate.data.transactions && txn.certificate.data.transactions.length > 0) {
     if (
