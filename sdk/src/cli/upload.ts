@@ -2,6 +2,7 @@ import { execSync } from 'child_process'
 import { createHash } from 'crypto'
 import FormData from 'form-data'
 import fs from 'fs'
+import readline from 'readline'
 import { SentioProjectConfig } from './config'
 import { ReadKey } from './key'
 import path from 'path'
@@ -10,12 +11,23 @@ import { buildProcessor } from './build'
 import fetch from 'node-fetch'
 import { getCliVersion } from './utils'
 
+async function createProject(options: SentioProjectConfig, apiKey: string) {
+  const url = new URL('/api/v1/projects', options.host)
+  return fetch(url, {
+    method: 'POST',
+    headers: {
+      'api-key': apiKey,
+    },
+    body: JSON.stringify({ slug: options.project, visibility: 'PRIVATE' }),
+  })
+}
+
 export async function uploadFile(options: SentioProjectConfig, apiKeyOverride: string) {
   if (options.build) {
     await buildProcessor(false, options.targets)
   }
 
-  console.log(chalk.blue('Uploading'))
+  console.log(chalk.blue('Prepare to upload'))
 
   const PROCESSOR_FILE = path.join(process.cwd(), 'dist/lib.js')
 
@@ -45,7 +57,7 @@ export async function uploadFile(options: SentioProjectConfig, apiKeyOverride: s
   data.append('attachment', fs.createReadStream(PROCESSOR_FILE))
   data.append('sha256', digest)
 
-  let commitSha
+  let commitSha: string
   try {
     commitSha = execSync('git rev-parse HEAD').toString().trim()
     data.append('commitSha', commitSha)
@@ -61,26 +73,54 @@ export async function uploadFile(options: SentioProjectConfig, apiKeyOverride: s
 
   url.pathname = '/api/v1/processors'
 
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'api-key': apiKey,
-      project: options.project,
-      version: getCliVersion(),
-    },
-    body: data,
-  })
+  const upload = async () => {
+    console.log(chalk.blue('Uploading'))
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'api-key': apiKey,
+        project: options.project,
+        version: getCliVersion(),
+      },
+      body: data,
+    })
 
-  if (res.ok) {
-    console.log(chalk.green('Upload success: '))
-    console.log('\t', chalk.blue('sha256:'), digest)
-    if (commitSha) {
-      console.log('\t', chalk.blue('Git commit SHA:'), commitSha)
+    if (res.ok) {
+      console.log(chalk.green('Upload success: '))
+      console.log('\t', chalk.blue('sha256:'), digest)
+      if (commitSha) {
+        console.log('\t', chalk.blue('Git commit SHA:'), commitSha)
+      }
+      const { ProjectSlug } = await res.json()
+      console.log('\t', chalk.blue('Check status:'), `${options.host}/${ProjectSlug}/datasource`)
+    } else {
+      console.error(chalk.red('Upload Failed'))
+      console.error(chalk.red(await res.text()))
+
+      if (res.status === 404) {
+        const rl = readline.createInterface({
+          input: process.stdin,
+          output: process.stdout,
+        })
+
+        const prompt = async () => {
+          const answer: string = await new Promise((resolve) =>
+            rl.question(`Do you want to create it and continue the uploading process? (yes/no) `, resolve)
+          )
+          if (['y', 'yes'].includes(answer.toLowerCase())) {
+            await createProject(options, apiKey)
+            console.log(chalk.green('Project created'))
+            await upload()
+          } else if (['n', 'no'].includes(answer.toLowerCase())) {
+            process.exit()
+          } else {
+            await prompt()
+          }
+        }
+        await prompt()
+      }
     }
-    const { ProjectSlug } = await res.json()
-    console.log('\t', chalk.blue('Check status:'), `${options.host}/${ProjectSlug}/datasource`)
-  } else {
-    console.error(chalk.red('Upload Failed'))
-    console.error(chalk.red(await res.text()))
   }
+
+  await upload()
 }
