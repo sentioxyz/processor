@@ -31,7 +31,7 @@ export async function uploadFile(options: SentioProjectConfig, apiKeyOverride: s
 
   const PROCESSOR_FILE = path.join(process.cwd(), 'dist/lib.js')
 
-  const url = new URL(options.host)
+  const url = new URL('/api/v1/processors', options.host)
   const apiKey = apiKeyOverride || ReadKey(options.host)
 
   const isProd = options.host === 'https://app.sentio.xyz'
@@ -53,27 +53,24 @@ export async function uploadFile(options: SentioProjectConfig, apiKeyOverride: s
   hash.update(content)
   const digest = hash.digest('hex')
 
-  const data = new FormData()
-  data.append('attachment', fs.createReadStream(PROCESSOR_FILE))
-  data.append('sha256', digest)
-
-  let commitSha: string
-  try {
-    commitSha = execSync('git rev-parse HEAD').toString().trim()
-    data.append('commitSha', commitSha)
-  } catch (e) {
-    chalk.yellow(e)
-  }
-  try {
-    const gitUrl = execSync('git remote get-url origin').toString().trim()
-    data.append('gitUrl', gitUrl)
-  } catch (e) {
-    // skip errors
-  }
-
-  url.pathname = '/api/v1/processors'
-
   const upload = async () => {
+    const data = new FormData()
+    data.append('attachment', fs.createReadStream(PROCESSOR_FILE))
+    data.append('sha256', digest)
+
+    let commitSha = ''
+    try {
+      commitSha = execSync('git rev-parse HEAD').toString().trim()
+      data.append('commitSha', commitSha)
+    } catch (e) {
+      chalk.yellow(e)
+    }
+    try {
+      const gitUrl = execSync('git remote get-url origin').toString().trim()
+      data.append('gitUrl', gitUrl)
+    } catch (e) {
+      // skip errors
+    }
     console.log(chalk.blue('Uploading'))
     const res = await fetch(url, {
       method: 'POST',
@@ -108,11 +105,12 @@ export async function uploadFile(options: SentioProjectConfig, apiKeyOverride: s
             rl.question(`Do you want to create it and continue the uploading process? (yes/no) `, resolve)
           )
           if (['y', 'yes'].includes(answer.toLowerCase())) {
+            rl.close()
             await createProject(options, apiKey)
             console.log(chalk.green('Project created'))
             await upload()
           } else if (['n', 'no'].includes(answer.toLowerCase())) {
-            process.exit()
+            rl.close()
           } else {
             await prompt()
           }
