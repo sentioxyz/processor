@@ -202,7 +202,7 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
         processorType: 'user_processor',
         contract: {
           name: 'aptos processor',
-          chainId: 'aptos_devnet',
+          chainId: 'aptos_testnet',
           address: aptosProcessor.address,
           abi: '',
         },

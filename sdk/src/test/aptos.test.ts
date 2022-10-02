@@ -20,7 +20,7 @@ describe('Test Aptos Example', () => {
 
   test('Check souffl3 transaction dispatch', async () => {
     const request: ProcessTransactionsRequest = {
-      chainId: 'aptos_devnet',
+      chainId: 'aptos_testnet',
       transactions: [
         {
           raw: new TextEncoder().encode(JSON.stringify(testData)),
