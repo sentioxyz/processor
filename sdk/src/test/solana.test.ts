@@ -20,7 +20,7 @@ describe('Test Solana Example', () => {
 
   test('check configuration ', async () => {
     const config = await service.getConfig({})
-    expect(config.contractConfigs).length(3)
+    expect(config.contractConfigs).length(2)
   })
 
   test('Check wormhole token bridge instruction dispatch', async () => {
