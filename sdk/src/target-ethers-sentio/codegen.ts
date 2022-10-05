@@ -327,7 +327,7 @@ function generateMockEventLogFunction(event: EventDeclaration, contractName: str
     eventNameWithSignature = getFullSignatureForEvent(event)
   }
 
-  const eventArgs = event.inputs.map((input, i) => input.name ?? `arg${i.toString()}`).map((arg) => `event.${arg}`)
+  const eventArgs = event.inputs.map((input, i) => `event.${input.name ?? `arg${i.toString()}`}`)
 
   return `
     export function mock${eventName}Log(contractAddress: string, event: ${eventName}EventObject): Log {
