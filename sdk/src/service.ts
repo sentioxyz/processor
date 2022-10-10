@@ -26,13 +26,13 @@ import {
   TemplateInstance,
   TraceBinding,
   AptosEventHandlerConfig,
-  AptosFunctionHandlerConfig,
   EventBinding,
-  FunctionBinding,
   ProcessEventsRequest,
-  ProcessFunctionsRequest,
   ProcessEventsResponse,
-  ProcessFunctionsResponse,
+  CallBinding,
+  ProcessCallsRequest,
+  ProcessCallsResponse,
+  AptosCallHandlerConfig,
 } from './gen/processor/protos/processor'
 
 import { Empty } from './gen/google/protobuf/empty'
@@ -49,7 +49,7 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
   private traceHandlers: ((trace: Trace) => Promise<ProcessResult>)[] = []
   private blockHandlers: ((block: Block) => Promise<ProcessResult>)[] = []
   private aptosEventHandlers: ((event: any) => Promise<ProcessResult>)[] = []
-  private aptosFunctionHandlers: ((func: any) => Promise<ProcessResult>)[] = []
+  private aptosCallHandlers: ((func: any) => Promise<ProcessResult>)[] = []
 
   // map from chain id to list of processors
   // private blockHandlers = new Map<string, ((block: Block) => Promise<ProcessResult>)[]>()
@@ -109,7 +109,7 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
         endBlock: DEFAULT_MAX_BLOCK,
         instructionConfig: undefined,
         aptosEventConfigs: [],
-        aptosFunctionConfigs: [],
+        aptosCallConfigs: [],
       }
       if (processor.config.endBlock) {
         contractConfig.endBlock = processor.config.endBlock
@@ -188,7 +188,7 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
           rawDataInstruction: solanaProcessor.decodeInstruction !== null,
         },
         aptosEventConfigs: [],
-        aptosFunctionConfigs: [],
+        aptosCallConfigs: [],
       }
       this.contractConfigs.push(contractConfig)
     }
@@ -210,7 +210,7 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
         endBlock: DEFAULT_MAX_BLOCK,
         instructionConfig: undefined,
         aptosEventConfigs: [],
-        aptosFunctionConfigs: [],
+        aptosCallConfigs: [],
       }
       this.contractConfigs.push(contractConfig)
     }
@@ -232,7 +232,7 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
         endBlock: DEFAULT_MAX_BLOCK,
         instructionConfig: undefined,
         aptosEventConfigs: [],
-        aptosFunctionConfigs: [],
+        aptosCallConfigs: [],
       }
       // 1. Prepare event handlers
       for (const handler of aptosProcessor.eventHandlers) {
@@ -246,12 +246,12 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
 
       // 2. Prepare function handlers
       for (const handler of aptosProcessor.functionHandlers) {
-        const handlerId = this.aptosFunctionHandlers.push(handler.handler) - 1
-        const functionHandlerConfig: AptosFunctionHandlerConfig = {
+        const handlerId = this.aptosCallHandlers.push(handler.handler) - 1
+        const functionHandlerConfig: AptosCallHandlerConfig = {
           filters: handler.filters,
           handlerId,
         }
-        contractConfig.aptosFunctionConfigs.push(functionHandlerConfig)
+        contractConfig.aptosCallConfigs.push(functionHandlerConfig)
       }
       this.contractConfigs.push(contractConfig)
     }
@@ -548,15 +548,15 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
     }
   }
 
-  async processFunctions(request: ProcessFunctionsRequest, context: CallContext): Promise<ProcessFunctionsResponse> {
+  async processCalls(request: ProcessCallsRequest, context: CallContext): Promise<ProcessCallsResponse> {
     if (!this.started) {
       throw new ServerError(Status.UNAVAILABLE, 'Service Not started.')
     }
 
-    const promises = request.functionBindings.map((binding) => this.processFunction(binding))
+    const promises = request.callBindings.map((binding) => this.processCall(binding))
     const result = mergeProcessResults(await Promise.all(promises))
 
-    recordRuntimeInfo(result, HandlerType.FUNCTION)
+    recordRuntimeInfo(result, HandlerType.CALL)
     return {
       result,
     }
@@ -574,15 +574,15 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
     })
   }
 
-  async processFunction(binding: FunctionBinding): Promise<ProcessResult> {
-    if (!binding.function) {
+  async processCall(binding: CallBinding): Promise<ProcessResult> {
+    if (!binding.call) {
       throw new ServerError(Status.INVALID_ARGUMENT, "Event can't be empty")
     }
-    const jsonString = Utf8ArrayToStr(binding.function.raw)
-    const func = JSON.parse(jsonString)
-    // only support aptos function for now
-    return this.aptosFunctionHandlers[binding.handlerId](func).catch((e) => {
-      throw new ServerError(Status.INTERNAL, 'error processing function: ' + jsonString + '\n' + errorString(e))
+    const jsonString = Utf8ArrayToStr(binding.call.raw)
+    const call = JSON.parse(jsonString)
+    // only support aptos call for now
+    return this.aptosCallHandlers[binding.handlerId](call).catch((e) => {
+      throw new ServerError(Status.INTERNAL, 'error processing call: ' + jsonString + '\n' + errorString(e))
     })
   }
 }

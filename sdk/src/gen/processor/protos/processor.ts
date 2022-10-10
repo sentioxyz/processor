@@ -12,7 +12,7 @@ export enum HandlerType {
   INSTRUCTION = 4,
   TRACE = 5,
   EVENT = 6,
-  FUNCTION = 7,
+  CALL = 7,
   UNRECOGNIZED = -1,
 }
 
@@ -40,8 +40,8 @@ export function handlerTypeFromJSON(object: any): HandlerType {
     case "EVENT":
       return HandlerType.EVENT;
     case 7:
-    case "FUNCTION":
-      return HandlerType.FUNCTION;
+    case "CALL":
+      return HandlerType.CALL;
     case -1:
     case "UNRECOGNIZED":
     default:
@@ -65,8 +65,8 @@ export function handlerTypeToJSON(object: HandlerType): string {
       return "TRACE";
     case HandlerType.EVENT:
       return "EVENT";
-    case HandlerType.FUNCTION:
-      return "FUNCTION";
+    case HandlerType.CALL:
+      return "CALL";
     case HandlerType.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";
@@ -143,7 +143,7 @@ export interface ContractConfig {
   logConfigs: LogHandlerConfig[];
   traceConfigs: TraceHandlerConfig[];
   aptosEventConfigs: AptosEventHandlerConfig[];
-  aptosFunctionConfigs: AptosFunctionHandlerConfig[];
+  aptosCallConfigs: AptosCallHandlerConfig[];
   instructionConfig: InstructionHandlerConfig | undefined;
   startBlock: Long;
   endBlock: Long;
@@ -201,12 +201,12 @@ export interface AptosEventFilter {
   type: string;
 }
 
-export interface AptosFunctionHandlerConfig {
-  filters: AptosFunctionFilter[];
+export interface AptosCallHandlerConfig {
+  filters: AptosCallFilter[];
   handlerId: number;
 }
 
-export interface AptosFunctionFilter {
+export interface AptosCallFilter {
   function: string;
   typeArguments: string[];
 }
@@ -265,11 +265,11 @@ export interface ProcessEventsResponse {
   result: ProcessResult | undefined;
 }
 
-export interface ProcessFunctionsRequest {
-  functionBindings: FunctionBinding[];
+export interface ProcessCallsRequest {
+  callBindings: CallBinding[];
 }
 
-export interface ProcessFunctionsResponse {
+export interface ProcessCallsResponse {
   result: ProcessResult | undefined;
 }
 
@@ -322,12 +322,12 @@ export interface RawEvent {
   raw: Uint8Array;
 }
 
-export interface FunctionBinding {
-  function: RawFunction | undefined;
+export interface CallBinding {
+  call: RawCall | undefined;
   handlerId: number;
 }
 
-export interface RawFunction {
+export interface RawCall {
   raw: Uint8Array;
 }
 
@@ -614,7 +614,7 @@ function createBaseContractConfig(): ContractConfig {
     logConfigs: [],
     traceConfigs: [],
     aptosEventConfigs: [],
-    aptosFunctionConfigs: [],
+    aptosCallConfigs: [],
     instructionConfig: undefined,
     startBlock: Long.UZERO,
     endBlock: Long.UZERO,
@@ -642,8 +642,8 @@ export const ContractConfig = {
     for (const v of message.aptosEventConfigs) {
       AptosEventHandlerConfig.encode(v!, writer.uint32(74).fork()).ldelim();
     }
-    for (const v of message.aptosFunctionConfigs) {
-      AptosFunctionHandlerConfig.encode(v!, writer.uint32(82).fork()).ldelim();
+    for (const v of message.aptosCallConfigs) {
+      AptosCallHandlerConfig.encode(v!, writer.uint32(82).fork()).ldelim();
     }
     if (message.instructionConfig !== undefined) {
       InstructionHandlerConfig.encode(
@@ -694,8 +694,8 @@ export const ContractConfig = {
           );
           break;
         case 10:
-          message.aptosFunctionConfigs.push(
-            AptosFunctionHandlerConfig.decode(reader, reader.uint32())
+          message.aptosCallConfigs.push(
+            AptosCallHandlerConfig.decode(reader, reader.uint32())
           );
           break;
         case 6:
@@ -740,9 +740,9 @@ export const ContractConfig = {
             AptosEventHandlerConfig.fromJSON(e)
           )
         : [],
-      aptosFunctionConfigs: Array.isArray(object?.aptosFunctionConfigs)
-        ? object.aptosFunctionConfigs.map((e: any) =>
-            AptosFunctionHandlerConfig.fromJSON(e)
+      aptosCallConfigs: Array.isArray(object?.aptosCallConfigs)
+        ? object.aptosCallConfigs.map((e: any) =>
+            AptosCallHandlerConfig.fromJSON(e)
           )
         : [],
       instructionConfig: isSet(object.instructionConfig)
@@ -794,12 +794,12 @@ export const ContractConfig = {
     } else {
       obj.aptosEventConfigs = [];
     }
-    if (message.aptosFunctionConfigs) {
-      obj.aptosFunctionConfigs = message.aptosFunctionConfigs.map((e) =>
-        e ? AptosFunctionHandlerConfig.toJSON(e) : undefined
+    if (message.aptosCallConfigs) {
+      obj.aptosCallConfigs = message.aptosCallConfigs.map((e) =>
+        e ? AptosCallHandlerConfig.toJSON(e) : undefined
       );
     } else {
-      obj.aptosFunctionConfigs = [];
+      obj.aptosCallConfigs = [];
     }
     message.instructionConfig !== undefined &&
       (obj.instructionConfig = message.instructionConfig
@@ -830,9 +830,9 @@ export const ContractConfig = {
       object.aptosEventConfigs?.map((e) =>
         AptosEventHandlerConfig.fromPartial(e)
       ) || [];
-    message.aptosFunctionConfigs =
-      object.aptosFunctionConfigs?.map((e) =>
-        AptosFunctionHandlerConfig.fromPartial(e)
+    message.aptosCallConfigs =
+      object.aptosCallConfigs?.map((e) =>
+        AptosCallHandlerConfig.fromPartial(e)
       ) || [];
     message.instructionConfig =
       object.instructionConfig !== undefined &&
@@ -1562,17 +1562,17 @@ export const AptosEventFilter = {
   },
 };
 
-function createBaseAptosFunctionHandlerConfig(): AptosFunctionHandlerConfig {
+function createBaseAptosCallHandlerConfig(): AptosCallHandlerConfig {
   return { filters: [], handlerId: 0 };
 }
 
-export const AptosFunctionHandlerConfig = {
+export const AptosCallHandlerConfig = {
   encode(
-    message: AptosFunctionHandlerConfig,
+    message: AptosCallHandlerConfig,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
     for (const v of message.filters) {
-      AptosFunctionFilter.encode(v!, writer.uint32(10).fork()).ldelim();
+      AptosCallFilter.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     if (message.handlerId !== 0) {
       writer.uint32(16).int32(message.handlerId);
@@ -1583,17 +1583,15 @@ export const AptosFunctionHandlerConfig = {
   decode(
     input: _m0.Reader | Uint8Array,
     length?: number
-  ): AptosFunctionHandlerConfig {
+  ): AptosCallHandlerConfig {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseAptosFunctionHandlerConfig();
+    const message = createBaseAptosCallHandlerConfig();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.filters.push(
-            AptosFunctionFilter.decode(reader, reader.uint32())
-          );
+          message.filters.push(AptosCallFilter.decode(reader, reader.uint32()));
           break;
         case 2:
           message.handlerId = reader.int32();
@@ -1606,20 +1604,20 @@ export const AptosFunctionHandlerConfig = {
     return message;
   },
 
-  fromJSON(object: any): AptosFunctionHandlerConfig {
+  fromJSON(object: any): AptosCallHandlerConfig {
     return {
       filters: Array.isArray(object?.filters)
-        ? object.filters.map((e: any) => AptosFunctionFilter.fromJSON(e))
+        ? object.filters.map((e: any) => AptosCallFilter.fromJSON(e))
         : [],
       handlerId: isSet(object.handlerId) ? Number(object.handlerId) : 0,
     };
   },
 
-  toJSON(message: AptosFunctionHandlerConfig): unknown {
+  toJSON(message: AptosCallHandlerConfig): unknown {
     const obj: any = {};
     if (message.filters) {
       obj.filters = message.filters.map((e) =>
-        e ? AptosFunctionFilter.toJSON(e) : undefined
+        e ? AptosCallFilter.toJSON(e) : undefined
       );
     } else {
       obj.filters = [];
@@ -1630,23 +1628,23 @@ export const AptosFunctionHandlerConfig = {
   },
 
   fromPartial(
-    object: DeepPartial<AptosFunctionHandlerConfig>
-  ): AptosFunctionHandlerConfig {
-    const message = createBaseAptosFunctionHandlerConfig();
+    object: DeepPartial<AptosCallHandlerConfig>
+  ): AptosCallHandlerConfig {
+    const message = createBaseAptosCallHandlerConfig();
     message.filters =
-      object.filters?.map((e) => AptosFunctionFilter.fromPartial(e)) || [];
+      object.filters?.map((e) => AptosCallFilter.fromPartial(e)) || [];
     message.handlerId = object.handlerId ?? 0;
     return message;
   },
 };
 
-function createBaseAptosFunctionFilter(): AptosFunctionFilter {
+function createBaseAptosCallFilter(): AptosCallFilter {
   return { function: "", typeArguments: [] };
 }
 
-export const AptosFunctionFilter = {
+export const AptosCallFilter = {
   encode(
-    message: AptosFunctionFilter,
+    message: AptosCallFilter,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
     if (message.function !== "") {
@@ -1658,10 +1656,10 @@ export const AptosFunctionFilter = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): AptosFunctionFilter {
+  decode(input: _m0.Reader | Uint8Array, length?: number): AptosCallFilter {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseAptosFunctionFilter();
+    const message = createBaseAptosCallFilter();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -1679,7 +1677,7 @@ export const AptosFunctionFilter = {
     return message;
   },
 
-  fromJSON(object: any): AptosFunctionFilter {
+  fromJSON(object: any): AptosCallFilter {
     return {
       function: isSet(object.function) ? String(object.function) : "",
       typeArguments: Array.isArray(object?.typeArguments)
@@ -1688,7 +1686,7 @@ export const AptosFunctionFilter = {
     };
   },
 
-  toJSON(message: AptosFunctionFilter): unknown {
+  toJSON(message: AptosCallFilter): unknown {
     const obj: any = {};
     message.function !== undefined && (obj.function = message.function);
     if (message.typeArguments) {
@@ -1699,8 +1697,8 @@ export const AptosFunctionFilter = {
     return obj;
   },
 
-  fromPartial(object: DeepPartial<AptosFunctionFilter>): AptosFunctionFilter {
-    const message = createBaseAptosFunctionFilter();
+  fromPartial(object: DeepPartial<AptosCallFilter>): AptosCallFilter {
+    const message = createBaseAptosCallFilter();
     message.function = object.function ?? "";
     message.typeArguments = object.typeArguments?.map((e) => e) || [];
     return message;
@@ -2563,34 +2561,31 @@ export const ProcessEventsResponse = {
   },
 };
 
-function createBaseProcessFunctionsRequest(): ProcessFunctionsRequest {
-  return { functionBindings: [] };
+function createBaseProcessCallsRequest(): ProcessCallsRequest {
+  return { callBindings: [] };
 }
 
-export const ProcessFunctionsRequest = {
+export const ProcessCallsRequest = {
   encode(
-    message: ProcessFunctionsRequest,
+    message: ProcessCallsRequest,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
-    for (const v of message.functionBindings) {
-      FunctionBinding.encode(v!, writer.uint32(10).fork()).ldelim();
+    for (const v of message.callBindings) {
+      CallBinding.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): ProcessFunctionsRequest {
+  decode(input: _m0.Reader | Uint8Array, length?: number): ProcessCallsRequest {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseProcessFunctionsRequest();
+    const message = createBaseProcessCallsRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.functionBindings.push(
-            FunctionBinding.decode(reader, reader.uint32())
+          message.callBindings.push(
+            CallBinding.decode(reader, reader.uint32())
           );
           break;
         default:
@@ -2601,43 +2596,41 @@ export const ProcessFunctionsRequest = {
     return message;
   },
 
-  fromJSON(object: any): ProcessFunctionsRequest {
+  fromJSON(object: any): ProcessCallsRequest {
     return {
-      functionBindings: Array.isArray(object?.functionBindings)
-        ? object.functionBindings.map((e: any) => FunctionBinding.fromJSON(e))
+      callBindings: Array.isArray(object?.callBindings)
+        ? object.callBindings.map((e: any) => CallBinding.fromJSON(e))
         : [],
     };
   },
 
-  toJSON(message: ProcessFunctionsRequest): unknown {
+  toJSON(message: ProcessCallsRequest): unknown {
     const obj: any = {};
-    if (message.functionBindings) {
-      obj.functionBindings = message.functionBindings.map((e) =>
-        e ? FunctionBinding.toJSON(e) : undefined
+    if (message.callBindings) {
+      obj.callBindings = message.callBindings.map((e) =>
+        e ? CallBinding.toJSON(e) : undefined
       );
     } else {
-      obj.functionBindings = [];
+      obj.callBindings = [];
     }
     return obj;
   },
 
-  fromPartial(
-    object: DeepPartial<ProcessFunctionsRequest>
-  ): ProcessFunctionsRequest {
-    const message = createBaseProcessFunctionsRequest();
-    message.functionBindings =
-      object.functionBindings?.map((e) => FunctionBinding.fromPartial(e)) || [];
+  fromPartial(object: DeepPartial<ProcessCallsRequest>): ProcessCallsRequest {
+    const message = createBaseProcessCallsRequest();
+    message.callBindings =
+      object.callBindings?.map((e) => CallBinding.fromPartial(e)) || [];
     return message;
   },
 };
 
-function createBaseProcessFunctionsResponse(): ProcessFunctionsResponse {
+function createBaseProcessCallsResponse(): ProcessCallsResponse {
   return { result: undefined };
 }
 
-export const ProcessFunctionsResponse = {
+export const ProcessCallsResponse = {
   encode(
-    message: ProcessFunctionsResponse,
+    message: ProcessCallsResponse,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
     if (message.result !== undefined) {
@@ -2649,10 +2642,10 @@ export const ProcessFunctionsResponse = {
   decode(
     input: _m0.Reader | Uint8Array,
     length?: number
-  ): ProcessFunctionsResponse {
+  ): ProcessCallsResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseProcessFunctionsResponse();
+    const message = createBaseProcessCallsResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -2667,7 +2660,7 @@ export const ProcessFunctionsResponse = {
     return message;
   },
 
-  fromJSON(object: any): ProcessFunctionsResponse {
+  fromJSON(object: any): ProcessCallsResponse {
     return {
       result: isSet(object.result)
         ? ProcessResult.fromJSON(object.result)
@@ -2675,7 +2668,7 @@ export const ProcessFunctionsResponse = {
     };
   },
 
-  toJSON(message: ProcessFunctionsResponse): unknown {
+  toJSON(message: ProcessCallsResponse): unknown {
     const obj: any = {};
     message.result !== undefined &&
       (obj.result = message.result
@@ -2684,10 +2677,8 @@ export const ProcessFunctionsResponse = {
     return obj;
   },
 
-  fromPartial(
-    object: DeepPartial<ProcessFunctionsResponse>
-  ): ProcessFunctionsResponse {
-    const message = createBaseProcessFunctionsResponse();
+  fromPartial(object: DeepPartial<ProcessCallsResponse>): ProcessCallsResponse {
+    const message = createBaseProcessCallsResponse();
     message.result =
       object.result !== undefined && object.result !== null
         ? ProcessResult.fromPartial(object.result)
@@ -3376,17 +3367,17 @@ export const RawEvent = {
   },
 };
 
-function createBaseFunctionBinding(): FunctionBinding {
-  return { function: undefined, handlerId: 0 };
+function createBaseCallBinding(): CallBinding {
+  return { call: undefined, handlerId: 0 };
 }
 
-export const FunctionBinding = {
+export const CallBinding = {
   encode(
-    message: FunctionBinding,
+    message: CallBinding,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
-    if (message.function !== undefined) {
-      RawFunction.encode(message.function, writer.uint32(10).fork()).ldelim();
+    if (message.call !== undefined) {
+      RawCall.encode(message.call, writer.uint32(10).fork()).ldelim();
     }
     if (message.handlerId !== 0) {
       writer.uint32(16).int32(message.handlerId);
@@ -3394,15 +3385,15 @@ export const FunctionBinding = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): FunctionBinding {
+  decode(input: _m0.Reader | Uint8Array, length?: number): CallBinding {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseFunctionBinding();
+    const message = createBaseCallBinding();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.function = RawFunction.decode(reader, reader.uint32());
+          message.call = RawCall.decode(reader, reader.uint32());
           break;
         case 2:
           message.handlerId = reader.int32();
@@ -3415,44 +3406,40 @@ export const FunctionBinding = {
     return message;
   },
 
-  fromJSON(object: any): FunctionBinding {
+  fromJSON(object: any): CallBinding {
     return {
-      function: isSet(object.function)
-        ? RawFunction.fromJSON(object.function)
-        : undefined,
+      call: isSet(object.call) ? RawCall.fromJSON(object.call) : undefined,
       handlerId: isSet(object.handlerId) ? Number(object.handlerId) : 0,
     };
   },
 
-  toJSON(message: FunctionBinding): unknown {
+  toJSON(message: CallBinding): unknown {
     const obj: any = {};
-    message.function !== undefined &&
-      (obj.function = message.function
-        ? RawFunction.toJSON(message.function)
-        : undefined);
+    message.call !== undefined &&
+      (obj.call = message.call ? RawCall.toJSON(message.call) : undefined);
     message.handlerId !== undefined &&
       (obj.handlerId = Math.round(message.handlerId));
     return obj;
   },
 
-  fromPartial(object: DeepPartial<FunctionBinding>): FunctionBinding {
-    const message = createBaseFunctionBinding();
-    message.function =
-      object.function !== undefined && object.function !== null
-        ? RawFunction.fromPartial(object.function)
+  fromPartial(object: DeepPartial<CallBinding>): CallBinding {
+    const message = createBaseCallBinding();
+    message.call =
+      object.call !== undefined && object.call !== null
+        ? RawCall.fromPartial(object.call)
         : undefined;
     message.handlerId = object.handlerId ?? 0;
     return message;
   },
 };
 
-function createBaseRawFunction(): RawFunction {
+function createBaseRawCall(): RawCall {
   return { raw: new Uint8Array() };
 }
 
-export const RawFunction = {
+export const RawCall = {
   encode(
-    message: RawFunction,
+    message: RawCall,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
     if (message.raw.length !== 0) {
@@ -3461,10 +3448,10 @@ export const RawFunction = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): RawFunction {
+  decode(input: _m0.Reader | Uint8Array, length?: number): RawCall {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseRawFunction();
+    const message = createBaseRawCall();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -3479,13 +3466,13 @@ export const RawFunction = {
     return message;
   },
 
-  fromJSON(object: any): RawFunction {
+  fromJSON(object: any): RawCall {
     return {
       raw: isSet(object.raw) ? bytesFromBase64(object.raw) : new Uint8Array(),
     };
   },
 
-  toJSON(message: RawFunction): unknown {
+  toJSON(message: RawCall): unknown {
     const obj: any = {};
     message.raw !== undefined &&
       (obj.raw = base64FromBytes(
@@ -3494,8 +3481,8 @@ export const RawFunction = {
     return obj;
   },
 
-  fromPartial(object: DeepPartial<RawFunction>): RawFunction {
-    const message = createBaseRawFunction();
+  fromPartial(object: DeepPartial<RawCall>): RawCall {
+    const message = createBaseRawCall();
     message.raw = object.raw ?? new Uint8Array();
     return message;
   },

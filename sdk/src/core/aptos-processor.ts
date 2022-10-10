@@ -11,7 +11,7 @@ type IndexConfigure = {
 export interface AptosEventFilter {
   type: string
 }
-export interface AptosFunctionFilter {
+export interface AptosCallFilter {
   function: string
   typeArguments: string[]
 }
@@ -21,8 +21,8 @@ export class AptosEventHandler {
   handler: (event: any) => Promise<ProcessResult>
 }
 
-export class AptosFunctionHandler {
-  filters: AptosFunctionFilter[]
+export class AptosCallHandler {
+  filters: AptosCallFilter[]
   handler: (func: any) => Promise<ProcessResult>
 }
 
@@ -32,7 +32,7 @@ export class AptosBaseProcessor {
   name: string
   config: IndexConfigure = { startSeqNumber: new Long(0) }
   eventHandlers: AptosEventHandler[] = []
-  functionHandlers: AptosFunctionHandler[] = []
+  functionHandlers: AptosCallHandler[] = []
 
   constructor(options: AptosBindOptions) {
     if (options) {
@@ -87,11 +87,8 @@ export class AptosBaseProcessor {
     })
   }
 
-  public onFunction(
-    handler: (func: any, ctx: AptosContext) => void,
-    filter: AptosFunctionFilter | AptosFunctionFilter[]
-  ) {
-    let _filters: AptosFunctionFilter[] = []
+  public onCall(handler: (func: any, ctx: AptosContext) => void, filter: AptosCallFilter | AptosCallFilter[]) {
+    let _filters: AptosCallFilter[] = []
 
     if (Array.isArray(filter)) {
       _filters = filter
