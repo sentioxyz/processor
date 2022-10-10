@@ -25,8 +25,14 @@ import {
   StartRequest,
   TemplateInstance,
   TraceBinding,
-  EventHandlerConfig,
-  FunctionHandlerConfig,
+  AptosEventHandlerConfig,
+  AptosFunctionHandlerConfig,
+  EventBinding,
+  FunctionBinding,
+  ProcessEventsRequest,
+  ProcessFunctionsRequest,
+  ProcessEventsResponse,
+  ProcessFunctionsResponse,
 } from './gen/processor/protos/processor'
 
 import { Empty } from './gen/google/protobuf/empty'
@@ -231,7 +237,7 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
       // 1. Prepare event handlers
       aptosProcessor.eventHandlers.forEach((handler) => {
         const handlerId = this.aptosEventHandlers.push(handler.handler) - 1
-        const eventHandlerConfig: EventHandlerConfig = {
+        const eventHandlerConfig: AptosEventHandlerConfig = {
           filters: handler.filters,
           handlerId,
         }
@@ -240,7 +246,7 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
       // 2. Prepare function handlers
       aptosProcessor.functionHandlers.forEach((handler) => {
         const handlerId = this.aptosFunctionHandlers.push(handler.handler) - 1
-        const functionHandlerConfig: FunctionHandlerConfig = {
+        const functionHandlerConfig: AptosFunctionHandlerConfig = {
           filters: handler.filters,
           handlerId,
         }
@@ -524,6 +530,58 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
 
     return this.traceHandlers[binding.handlerId](trace).catch((e) => {
       throw new ServerError(Status.INTERNAL, 'error processing trace: ' + jsonString + '\n' + errorString(e))
+    })
+  }
+
+  async processEvents(request: ProcessEventsRequest, context: CallContext): Promise<ProcessEventsResponse> {
+    if (!this.started) {
+      throw new ServerError(Status.UNAVAILABLE, 'Service Not started.')
+    }
+
+    const promises = request.eventBindings.map((binding) => this.processEvent(binding))
+    const result = mergeProcessResults(await Promise.all(promises))
+
+    recordRuntimeInfo(result, HandlerType.EVENT)
+    return {
+      result,
+    }
+  }
+
+  async processFunctions(request: ProcessFunctionsRequest, context: CallContext): Promise<ProcessFunctionsResponse> {
+    if (!this.started) {
+      throw new ServerError(Status.UNAVAILABLE, 'Service Not started.')
+    }
+
+    const promises = request.functionBindings.map((binding) => this.processFunction(binding))
+    const result = mergeProcessResults(await Promise.all(promises))
+
+    recordRuntimeInfo(result, HandlerType.FUNCTION)
+    return {
+      result,
+    }
+  }
+
+  async processEvent(binding: EventBinding): Promise<ProcessResult> {
+    if (!binding.event) {
+      throw new ServerError(Status.INVALID_ARGUMENT, "Event can't be empty")
+    }
+    const jsonString = Utf8ArrayToStr(binding.event.raw)
+    const event = JSON.parse(jsonString)
+    // only support aptos event for now
+    return this.aptosEventHandlers[binding.handlerId](event).catch((e) => {
+      throw new ServerError(Status.INTERNAL, 'error processing event: ' + jsonString + '\n' + errorString(e))
+    })
+  }
+
+  async processFunction(binding: FunctionBinding): Promise<ProcessResult> {
+    if (!binding.function) {
+      throw new ServerError(Status.INVALID_ARGUMENT, "Event can't be empty")
+    }
+    const jsonString = Utf8ArrayToStr(binding.function.raw)
+    const func = JSON.parse(jsonString)
+    // only support aptos function for now
+    return this.aptosFunctionHandlers[binding.handlerId](func).catch((e) => {
+      throw new ServerError(Status.INTERNAL, 'error processing function: ' + jsonString + '\n' + errorString(e))
     })
   }
 }

@@ -52,8 +52,8 @@ message ContractConfig {
   repeated BlockHandlerConfig block_configs = 7;
   repeated LogHandlerConfig log_configs = 3;
   repeated TraceHandlerConfig trace_configs = 2;
-  repeated EventHandlerConfig event_configs = 9;
-  repeated FunctionHandlerConfig function_configs = 10;
+  repeated AptosEventHandlerConfig event_configs = 9;
+  repeated AptosFunctionHandlerConfig function_configs = 10;
   InstructionHandlerConfig instruction_config = 6;
   uint64 start_block = 4;
   uint64 end_block = 5;
@@ -103,21 +103,21 @@ message InstructionHandlerConfig {
   bool raw_data_instruction = 3;
 }
 
-message EventHandlerConfig {
-  repeated EventFilter filters = 1;
+message AptosEventHandlerConfig {
+  repeated AptosEventFilter filters = 1;
   int32 handler_id = 2;
 }
 
-message EventFilter {
+message AptosEventFilter {
   string type = 1;
 }
 
-message FunctionHandlerConfig {
-  repeated FunctionFilter filters = 1;
+message AptosFunctionHandlerConfig {
+  repeated AptosFunctionFilter filters = 1;
   int32 handler_id = 2;
 }
 
-message FunctionFilter {
+message AptosFunctionFilter {
   string function = 1;
   repeated string type_arguments = 2;
 }
@@ -235,7 +235,7 @@ message RawEvent {
 }
 
 message FunctionBinding {
-  FunctionBinding function = 1;
+  RawFunction function = 1;
   int32 handler_id = 2;
 }
 

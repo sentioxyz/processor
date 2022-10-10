@@ -8,10 +8,10 @@ type IndexConfigure = {
   endSeqNumber?: Long
 }
 
-interface EventFilter {
+export interface EventFilter {
   type: string
 }
-interface FunctionFilter {
+export interface FunctionFilter {
   function: string
   typeArguments: string[]
 }
@@ -60,6 +60,56 @@ export class AptosBaseProcessor {
     this.transactionHanlder = handler
 
     return this
+  }
+
+  public onEvent(handler: (event: any, ctx: AptosContext) => void, filter: EventFilter | EventFilter[]) {
+    let _filters: EventFilter[] = []
+
+    if (Array.isArray(filter)) {
+      _filters = filter
+    } else {
+      _filters.push(filter)
+    }
+
+    this.eventHandlers.push({
+      handler: async function (event) {
+        const ctx = new AptosContext(this.address, event.slot)
+        if (event) {
+          handler(event, ctx)
+        }
+        return {
+          gauges: ctx.gauges,
+          counters: ctx.counters,
+          logs: ctx.logs,
+        }
+      },
+      filters: _filters,
+    })
+  }
+
+  public onFunction(handler: (func: any, ctx: AptosContext) => void, filter: FunctionFilter | FunctionFilter[]) {
+    let _filters: FunctionFilter[] = []
+
+    if (Array.isArray(filter)) {
+      _filters = filter
+    } else {
+      _filters.push(filter)
+    }
+
+    this.functionHandlers.push({
+      handler: async function (func) {
+        const ctx = new AptosContext(this.address, func.slot)
+        if (func) {
+          handler(func, ctx)
+        }
+        return {
+          gauges: ctx.gauges,
+          counters: ctx.counters,
+          logs: ctx.logs,
+        }
+      },
+      filters: _filters,
+    })
   }
 
   public handleTransaction(txn: any, slot: Long): ProcessResult | null {

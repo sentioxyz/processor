@@ -142,8 +142,8 @@ export interface ContractConfig {
   blockConfigs: BlockHandlerConfig[];
   logConfigs: LogHandlerConfig[];
   traceConfigs: TraceHandlerConfig[];
-  eventConfigs: EventHandlerConfig[];
-  functionConfigs: FunctionHandlerConfig[];
+  eventConfigs: AptosEventHandlerConfig[];
+  functionConfigs: AptosFunctionHandlerConfig[];
   instructionConfig: InstructionHandlerConfig | undefined;
   startBlock: Long;
   endBlock: Long;
@@ -192,21 +192,21 @@ export interface InstructionHandlerConfig {
   rawDataInstruction: boolean;
 }
 
-export interface EventHandlerConfig {
-  filters: EventFilter[];
+export interface AptosEventHandlerConfig {
+  filters: AptosEventFilter[];
   handlerId: number;
 }
 
-export interface EventFilter {
+export interface AptosEventFilter {
   type: string;
 }
 
-export interface FunctionHandlerConfig {
-  filters: FunctionFilter[];
+export interface AptosFunctionHandlerConfig {
+  filters: AptosFunctionFilter[];
   handlerId: number;
 }
 
-export interface FunctionFilter {
+export interface AptosFunctionFilter {
   function: string;
   typeArguments: string[];
 }
@@ -323,7 +323,7 @@ export interface RawEvent {
 }
 
 export interface FunctionBinding {
-  function: FunctionBinding | undefined;
+  function: RawFunction | undefined;
   handlerId: number;
 }
 
@@ -640,10 +640,10 @@ export const ContractConfig = {
       TraceHandlerConfig.encode(v!, writer.uint32(18).fork()).ldelim();
     }
     for (const v of message.eventConfigs) {
-      EventHandlerConfig.encode(v!, writer.uint32(74).fork()).ldelim();
+      AptosEventHandlerConfig.encode(v!, writer.uint32(74).fork()).ldelim();
     }
     for (const v of message.functionConfigs) {
-      FunctionHandlerConfig.encode(v!, writer.uint32(82).fork()).ldelim();
+      AptosFunctionHandlerConfig.encode(v!, writer.uint32(82).fork()).ldelim();
     }
     if (message.instructionConfig !== undefined) {
       InstructionHandlerConfig.encode(
@@ -690,12 +690,12 @@ export const ContractConfig = {
           break;
         case 9:
           message.eventConfigs.push(
-            EventHandlerConfig.decode(reader, reader.uint32())
+            AptosEventHandlerConfig.decode(reader, reader.uint32())
           );
           break;
         case 10:
           message.functionConfigs.push(
-            FunctionHandlerConfig.decode(reader, reader.uint32())
+            AptosFunctionHandlerConfig.decode(reader, reader.uint32())
           );
           break;
         case 6:
@@ -736,11 +736,13 @@ export const ContractConfig = {
         ? object.traceConfigs.map((e: any) => TraceHandlerConfig.fromJSON(e))
         : [],
       eventConfigs: Array.isArray(object?.eventConfigs)
-        ? object.eventConfigs.map((e: any) => EventHandlerConfig.fromJSON(e))
+        ? object.eventConfigs.map((e: any) =>
+            AptosEventHandlerConfig.fromJSON(e)
+          )
         : [],
       functionConfigs: Array.isArray(object?.functionConfigs)
         ? object.functionConfigs.map((e: any) =>
-            FunctionHandlerConfig.fromJSON(e)
+            AptosFunctionHandlerConfig.fromJSON(e)
           )
         : [],
       instructionConfig: isSet(object.instructionConfig)
@@ -787,14 +789,14 @@ export const ContractConfig = {
     }
     if (message.eventConfigs) {
       obj.eventConfigs = message.eventConfigs.map((e) =>
-        e ? EventHandlerConfig.toJSON(e) : undefined
+        e ? AptosEventHandlerConfig.toJSON(e) : undefined
       );
     } else {
       obj.eventConfigs = [];
     }
     if (message.functionConfigs) {
       obj.functionConfigs = message.functionConfigs.map((e) =>
-        e ? FunctionHandlerConfig.toJSON(e) : undefined
+        e ? AptosFunctionHandlerConfig.toJSON(e) : undefined
       );
     } else {
       obj.functionConfigs = [];
@@ -825,10 +827,11 @@ export const ContractConfig = {
     message.traceConfigs =
       object.traceConfigs?.map((e) => TraceHandlerConfig.fromPartial(e)) || [];
     message.eventConfigs =
-      object.eventConfigs?.map((e) => EventHandlerConfig.fromPartial(e)) || [];
+      object.eventConfigs?.map((e) => AptosEventHandlerConfig.fromPartial(e)) ||
+      [];
     message.functionConfigs =
       object.functionConfigs?.map((e) =>
-        FunctionHandlerConfig.fromPartial(e)
+        AptosFunctionHandlerConfig.fromPartial(e)
       ) || [];
     message.instructionConfig =
       object.instructionConfig !== undefined &&
@@ -1428,17 +1431,17 @@ export const InstructionHandlerConfig = {
   },
 };
 
-function createBaseEventHandlerConfig(): EventHandlerConfig {
+function createBaseAptosEventHandlerConfig(): AptosEventHandlerConfig {
   return { filters: [], handlerId: 0 };
 }
 
-export const EventHandlerConfig = {
+export const AptosEventHandlerConfig = {
   encode(
-    message: EventHandlerConfig,
+    message: AptosEventHandlerConfig,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
     for (const v of message.filters) {
-      EventFilter.encode(v!, writer.uint32(10).fork()).ldelim();
+      AptosEventFilter.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     if (message.handlerId !== 0) {
       writer.uint32(16).int32(message.handlerId);
@@ -1446,15 +1449,20 @@ export const EventHandlerConfig = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): EventHandlerConfig {
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): AptosEventHandlerConfig {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseEventHandlerConfig();
+    const message = createBaseAptosEventHandlerConfig();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.filters.push(EventFilter.decode(reader, reader.uint32()));
+          message.filters.push(
+            AptosEventFilter.decode(reader, reader.uint32())
+          );
           break;
         case 2:
           message.handlerId = reader.int32();
@@ -1467,20 +1475,20 @@ export const EventHandlerConfig = {
     return message;
   },
 
-  fromJSON(object: any): EventHandlerConfig {
+  fromJSON(object: any): AptosEventHandlerConfig {
     return {
       filters: Array.isArray(object?.filters)
-        ? object.filters.map((e: any) => EventFilter.fromJSON(e))
+        ? object.filters.map((e: any) => AptosEventFilter.fromJSON(e))
         : [],
       handlerId: isSet(object.handlerId) ? Number(object.handlerId) : 0,
     };
   },
 
-  toJSON(message: EventHandlerConfig): unknown {
+  toJSON(message: AptosEventHandlerConfig): unknown {
     const obj: any = {};
     if (message.filters) {
       obj.filters = message.filters.map((e) =>
-        e ? EventFilter.toJSON(e) : undefined
+        e ? AptosEventFilter.toJSON(e) : undefined
       );
     } else {
       obj.filters = [];
@@ -1490,22 +1498,24 @@ export const EventHandlerConfig = {
     return obj;
   },
 
-  fromPartial(object: DeepPartial<EventHandlerConfig>): EventHandlerConfig {
-    const message = createBaseEventHandlerConfig();
+  fromPartial(
+    object: DeepPartial<AptosEventHandlerConfig>
+  ): AptosEventHandlerConfig {
+    const message = createBaseAptosEventHandlerConfig();
     message.filters =
-      object.filters?.map((e) => EventFilter.fromPartial(e)) || [];
+      object.filters?.map((e) => AptosEventFilter.fromPartial(e)) || [];
     message.handlerId = object.handlerId ?? 0;
     return message;
   },
 };
 
-function createBaseEventFilter(): EventFilter {
+function createBaseAptosEventFilter(): AptosEventFilter {
   return { type: "" };
 }
 
-export const EventFilter = {
+export const AptosEventFilter = {
   encode(
-    message: EventFilter,
+    message: AptosEventFilter,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
     if (message.type !== "") {
@@ -1514,10 +1524,10 @@ export const EventFilter = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): EventFilter {
+  decode(input: _m0.Reader | Uint8Array, length?: number): AptosEventFilter {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseEventFilter();
+    const message = createBaseAptosEventFilter();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -1532,36 +1542,36 @@ export const EventFilter = {
     return message;
   },
 
-  fromJSON(object: any): EventFilter {
+  fromJSON(object: any): AptosEventFilter {
     return {
       type: isSet(object.type) ? String(object.type) : "",
     };
   },
 
-  toJSON(message: EventFilter): unknown {
+  toJSON(message: AptosEventFilter): unknown {
     const obj: any = {};
     message.type !== undefined && (obj.type = message.type);
     return obj;
   },
 
-  fromPartial(object: DeepPartial<EventFilter>): EventFilter {
-    const message = createBaseEventFilter();
+  fromPartial(object: DeepPartial<AptosEventFilter>): AptosEventFilter {
+    const message = createBaseAptosEventFilter();
     message.type = object.type ?? "";
     return message;
   },
 };
 
-function createBaseFunctionHandlerConfig(): FunctionHandlerConfig {
+function createBaseAptosFunctionHandlerConfig(): AptosFunctionHandlerConfig {
   return { filters: [], handlerId: 0 };
 }
 
-export const FunctionHandlerConfig = {
+export const AptosFunctionHandlerConfig = {
   encode(
-    message: FunctionHandlerConfig,
+    message: AptosFunctionHandlerConfig,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
     for (const v of message.filters) {
-      FunctionFilter.encode(v!, writer.uint32(10).fork()).ldelim();
+      AptosFunctionFilter.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     if (message.handlerId !== 0) {
       writer.uint32(16).int32(message.handlerId);
@@ -1572,15 +1582,17 @@ export const FunctionHandlerConfig = {
   decode(
     input: _m0.Reader | Uint8Array,
     length?: number
-  ): FunctionHandlerConfig {
+  ): AptosFunctionHandlerConfig {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseFunctionHandlerConfig();
+    const message = createBaseAptosFunctionHandlerConfig();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.filters.push(FunctionFilter.decode(reader, reader.uint32()));
+          message.filters.push(
+            AptosFunctionFilter.decode(reader, reader.uint32())
+          );
           break;
         case 2:
           message.handlerId = reader.int32();
@@ -1593,20 +1605,20 @@ export const FunctionHandlerConfig = {
     return message;
   },
 
-  fromJSON(object: any): FunctionHandlerConfig {
+  fromJSON(object: any): AptosFunctionHandlerConfig {
     return {
       filters: Array.isArray(object?.filters)
-        ? object.filters.map((e: any) => FunctionFilter.fromJSON(e))
+        ? object.filters.map((e: any) => AptosFunctionFilter.fromJSON(e))
         : [],
       handlerId: isSet(object.handlerId) ? Number(object.handlerId) : 0,
     };
   },
 
-  toJSON(message: FunctionHandlerConfig): unknown {
+  toJSON(message: AptosFunctionHandlerConfig): unknown {
     const obj: any = {};
     if (message.filters) {
       obj.filters = message.filters.map((e) =>
-        e ? FunctionFilter.toJSON(e) : undefined
+        e ? AptosFunctionFilter.toJSON(e) : undefined
       );
     } else {
       obj.filters = [];
@@ -1617,23 +1629,23 @@ export const FunctionHandlerConfig = {
   },
 
   fromPartial(
-    object: DeepPartial<FunctionHandlerConfig>
-  ): FunctionHandlerConfig {
-    const message = createBaseFunctionHandlerConfig();
+    object: DeepPartial<AptosFunctionHandlerConfig>
+  ): AptosFunctionHandlerConfig {
+    const message = createBaseAptosFunctionHandlerConfig();
     message.filters =
-      object.filters?.map((e) => FunctionFilter.fromPartial(e)) || [];
+      object.filters?.map((e) => AptosFunctionFilter.fromPartial(e)) || [];
     message.handlerId = object.handlerId ?? 0;
     return message;
   },
 };
 
-function createBaseFunctionFilter(): FunctionFilter {
+function createBaseAptosFunctionFilter(): AptosFunctionFilter {
   return { function: "", typeArguments: [] };
 }
 
-export const FunctionFilter = {
+export const AptosFunctionFilter = {
   encode(
-    message: FunctionFilter,
+    message: AptosFunctionFilter,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
     if (message.function !== "") {
@@ -1645,10 +1657,10 @@ export const FunctionFilter = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): FunctionFilter {
+  decode(input: _m0.Reader | Uint8Array, length?: number): AptosFunctionFilter {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseFunctionFilter();
+    const message = createBaseAptosFunctionFilter();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -1666,7 +1678,7 @@ export const FunctionFilter = {
     return message;
   },
 
-  fromJSON(object: any): FunctionFilter {
+  fromJSON(object: any): AptosFunctionFilter {
     return {
       function: isSet(object.function) ? String(object.function) : "",
       typeArguments: Array.isArray(object?.typeArguments)
@@ -1675,7 +1687,7 @@ export const FunctionFilter = {
     };
   },
 
-  toJSON(message: FunctionFilter): unknown {
+  toJSON(message: AptosFunctionFilter): unknown {
     const obj: any = {};
     message.function !== undefined && (obj.function = message.function);
     if (message.typeArguments) {
@@ -1686,8 +1698,8 @@ export const FunctionFilter = {
     return obj;
   },
 
-  fromPartial(object: DeepPartial<FunctionFilter>): FunctionFilter {
-    const message = createBaseFunctionFilter();
+  fromPartial(object: DeepPartial<AptosFunctionFilter>): AptosFunctionFilter {
+    const message = createBaseAptosFunctionFilter();
     message.function = object.function ?? "";
     message.typeArguments = object.typeArguments?.map((e) => e) || [];
     return message;
@@ -3373,10 +3385,7 @@ export const FunctionBinding = {
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
     if (message.function !== undefined) {
-      FunctionBinding.encode(
-        message.function,
-        writer.uint32(10).fork()
-      ).ldelim();
+      RawFunction.encode(message.function, writer.uint32(10).fork()).ldelim();
     }
     if (message.handlerId !== 0) {
       writer.uint32(16).int32(message.handlerId);
@@ -3392,7 +3401,7 @@ export const FunctionBinding = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.function = FunctionBinding.decode(reader, reader.uint32());
+          message.function = RawFunction.decode(reader, reader.uint32());
           break;
         case 2:
           message.handlerId = reader.int32();
@@ -3408,7 +3417,7 @@ export const FunctionBinding = {
   fromJSON(object: any): FunctionBinding {
     return {
       function: isSet(object.function)
-        ? FunctionBinding.fromJSON(object.function)
+        ? RawFunction.fromJSON(object.function)
         : undefined,
       handlerId: isSet(object.handlerId) ? Number(object.handlerId) : 0,
     };
@@ -3418,7 +3427,7 @@ export const FunctionBinding = {
     const obj: any = {};
     message.function !== undefined &&
       (obj.function = message.function
-        ? FunctionBinding.toJSON(message.function)
+        ? RawFunction.toJSON(message.function)
         : undefined);
     message.handlerId !== undefined &&
       (obj.handlerId = Math.round(message.handlerId));
@@ -3429,7 +3438,7 @@ export const FunctionBinding = {
     const message = createBaseFunctionBinding();
     message.function =
       object.function !== undefined && object.function !== null
-        ? FunctionBinding.fromPartial(object.function)
+        ? RawFunction.fromPartial(object.function)
         : undefined;
     message.handlerId = object.handlerId ?? 0;
     return message;
