@@ -31,8 +31,8 @@ export class AptosBaseProcessor {
   address: string
   name: string
   config: IndexConfigure = { startSeqNumber: new Long(0) }
-  eventHandlers: EventHandler[]
-  functionHandlers: FunctionHandler[]
+  eventHandlers: EventHandler[] = []
+  functionHandlers: FunctionHandler[] = []
 
   constructor(options: AptosBindOptions) {
     if (options) {

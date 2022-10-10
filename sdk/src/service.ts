@@ -235,23 +235,24 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
         functionConfigs: [],
       }
       // 1. Prepare event handlers
-      aptosProcessor.eventHandlers.forEach((handler) => {
+      for (const handler of aptosProcessor.eventHandlers) {
         const handlerId = this.aptosEventHandlers.push(handler.handler) - 1
         const eventHandlerConfig: AptosEventHandlerConfig = {
           filters: handler.filters,
           handlerId,
         }
         contractConfig.eventConfigs.push(eventHandlerConfig)
-      })
+      }
+
       // 2. Prepare function handlers
-      aptosProcessor.functionHandlers.forEach((handler) => {
+      for (const handler of aptosProcessor.functionHandlers) {
         const handlerId = this.aptosFunctionHandlers.push(handler.handler) - 1
         const functionHandlerConfig: AptosFunctionHandlerConfig = {
           filters: handler.filters,
           handlerId,
         }
         contractConfig.functionConfigs.push(functionHandlerConfig)
-      })
+      }
       this.contractConfigs.push(contractConfig)
     }
   }
