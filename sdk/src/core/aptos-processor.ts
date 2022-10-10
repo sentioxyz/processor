@@ -8,11 +8,31 @@ type IndexConfigure = {
   endSeqNumber?: Long
 }
 
+interface EventFilter {
+  type: string
+}
+interface FunctionFilter {
+  function: string
+  typeArguments: string[]
+}
+
+export class EventHandler {
+  filters: EventFilter[]
+  handler: (event: any) => Promise<ProcessResult>
+}
+
+export class FunctionHandler {
+  filters: FunctionFilter[]
+  handler: (func: any) => Promise<ProcessResult>
+}
+
 export class AptosBaseProcessor {
   public transactionHanlder: (transaction: any, ctx: AptosContext) => void
   address: string
   name: string
   config: IndexConfigure = { startSeqNumber: new Long(0) }
+  eventHandlers: EventHandler[]
+  functionHandlers: FunctionHandler[]
 
   constructor(options: AptosBindOptions) {
     if (options) {

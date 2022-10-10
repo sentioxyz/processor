@@ -294,6 +294,8 @@ enum HandlerType {
   TRANSACTION = 3;
   INSTRUCTION = 4;
   TRACE = 5;
+  EVENT = 6;
+  FUNCTION = 7;
 }
 
 message RuntimeInfo {

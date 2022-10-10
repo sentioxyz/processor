@@ -11,6 +11,8 @@ export enum HandlerType {
   TRANSACTION = 3,
   INSTRUCTION = 4,
   TRACE = 5,
+  EVENT = 6,
+  FUNCTION = 7,
   UNRECOGNIZED = -1,
 }
 
@@ -34,6 +36,12 @@ export function handlerTypeFromJSON(object: any): HandlerType {
     case 5:
     case "TRACE":
       return HandlerType.TRACE;
+    case 6:
+    case "EVENT":
+      return HandlerType.EVENT;
+    case 7:
+    case "FUNCTION":
+      return HandlerType.FUNCTION;
     case -1:
     case "UNRECOGNIZED":
     default:
@@ -55,6 +63,10 @@ export function handlerTypeToJSON(object: HandlerType): string {
       return "INSTRUCTION";
     case HandlerType.TRACE:
       return "TRACE";
+    case HandlerType.EVENT:
+      return "EVENT";
+    case HandlerType.FUNCTION:
+      return "FUNCTION";
     case HandlerType.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";

@@ -25,6 +25,8 @@ import {
   StartRequest,
   TemplateInstance,
   TraceBinding,
+  EventHandlerConfig,
+  FunctionHandlerConfig,
 } from './gen/processor/protos/processor'
 
 import { Empty } from './gen/google/protobuf/empty'
@@ -40,6 +42,8 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
   private eventHandlers: ((event: Log) => Promise<ProcessResult>)[] = []
   private traceHandlers: ((trace: Trace) => Promise<ProcessResult>)[] = []
   private blockHandlers: ((block: Block) => Promise<ProcessResult>)[] = []
+  private aptosEventHandlers: ((event: any) => Promise<ProcessResult>)[] = []
+  private aptosFunctionHandlers: ((func: any) => Promise<ProcessResult>)[] = []
 
   // map from chain id to list of processors
   // private blockHandlers = new Map<string, ((block: Block) => Promise<ProcessResult>)[]>()
@@ -98,6 +102,8 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
         startBlock: processor.config.startBlock,
         endBlock: DEFAULT_MAX_BLOCK,
         instructionConfig: undefined,
+        eventConfigs: [],
+        functionConfigs: [],
       }
       if (processor.config.endBlock) {
         contractConfig.endBlock = processor.config.endBlock
@@ -161,7 +167,7 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
         processorType: USER_PROCESSOR,
         contract: {
           name: solanaProcessor.contractName,
-          chainId: SOL_MAINMET_ID, // TODO set in processor
+          chainId: SOL_MAINMET_ID,
           address: solanaProcessor.address,
           abi: '',
         },
@@ -175,6 +181,8 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
           parsedInstruction: solanaProcessor.fromParsedInstruction !== null,
           rawDataInstruction: solanaProcessor.decodeInstruction !== null,
         },
+        eventConfigs: [],
+        functionConfigs: [],
       }
       this.contractConfigs.push(contractConfig)
     }
@@ -195,6 +203,8 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
         startBlock: suiProcessor.config.startSeqNumber,
         endBlock: DEFAULT_MAX_BLOCK,
         instructionConfig: undefined,
+        eventConfigs: [],
+        functionConfigs: [],
       }
       this.contractConfigs.push(contractConfig)
     }
@@ -215,7 +225,27 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
         startBlock: aptosProcessor.config.startSeqNumber,
         endBlock: DEFAULT_MAX_BLOCK,
         instructionConfig: undefined,
+        eventConfigs: [],
+        functionConfigs: [],
       }
+      // 1. Prepare event handlers
+      aptosProcessor.eventHandlers.forEach((handler) => {
+        const handlerId = this.aptosEventHandlers.push(handler.handler) - 1
+        const eventHandlerConfig: EventHandlerConfig = {
+          filters: handler.filters,
+          handlerId,
+        }
+        contractConfig.eventConfigs.push(eventHandlerConfig)
+      })
+      // 2. Prepare function handlers
+      aptosProcessor.functionHandlers.forEach((handler) => {
+        const handlerId = this.aptosFunctionHandlers.push(handler.handler) - 1
+        const functionHandlerConfig: FunctionHandlerConfig = {
+          filters: handler.filters,
+          handlerId,
+        }
+        contractConfig.functionConfigs.push(functionHandlerConfig)
+      })
       this.contractConfigs.push(contractConfig)
     }
   }
