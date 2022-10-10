@@ -108,8 +108,8 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
         startBlock: processor.config.startBlock,
         endBlock: DEFAULT_MAX_BLOCK,
         instructionConfig: undefined,
-        eventConfigs: [],
-        functionConfigs: [],
+        aptosEventConfigs: [],
+        aptosFunctionConfigs: [],
       }
       if (processor.config.endBlock) {
         contractConfig.endBlock = processor.config.endBlock
@@ -187,8 +187,8 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
           parsedInstruction: solanaProcessor.fromParsedInstruction !== null,
           rawDataInstruction: solanaProcessor.decodeInstruction !== null,
         },
-        eventConfigs: [],
-        functionConfigs: [],
+        aptosEventConfigs: [],
+        aptosFunctionConfigs: [],
       }
       this.contractConfigs.push(contractConfig)
     }
@@ -209,8 +209,8 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
         startBlock: suiProcessor.config.startSeqNumber,
         endBlock: DEFAULT_MAX_BLOCK,
         instructionConfig: undefined,
-        eventConfigs: [],
-        functionConfigs: [],
+        aptosEventConfigs: [],
+        aptosFunctionConfigs: [],
       }
       this.contractConfigs.push(contractConfig)
     }
@@ -231,8 +231,8 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
         startBlock: aptosProcessor.config.startSeqNumber,
         endBlock: DEFAULT_MAX_BLOCK,
         instructionConfig: undefined,
-        eventConfigs: [],
-        functionConfigs: [],
+        aptosEventConfigs: [],
+        aptosFunctionConfigs: [],
       }
       // 1. Prepare event handlers
       for (const handler of aptosProcessor.eventHandlers) {
@@ -241,7 +241,7 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
           filters: handler.filters,
           handlerId,
         }
-        contractConfig.eventConfigs.push(eventHandlerConfig)
+        contractConfig.aptosEventConfigs.push(eventHandlerConfig)
       }
 
       // 2. Prepare function handlers
@@ -251,7 +251,7 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
           filters: handler.filters,
           handlerId,
         }
-        contractConfig.functionConfigs.push(functionHandlerConfig)
+        contractConfig.aptosFunctionConfigs.push(functionHandlerConfig)
       }
       this.contractConfigs.push(contractConfig)
     }

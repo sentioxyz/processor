@@ -142,8 +142,8 @@ export interface ContractConfig {
   blockConfigs: BlockHandlerConfig[];
   logConfigs: LogHandlerConfig[];
   traceConfigs: TraceHandlerConfig[];
-  eventConfigs: AptosEventHandlerConfig[];
-  functionConfigs: AptosFunctionHandlerConfig[];
+  aptosEventConfigs: AptosEventHandlerConfig[];
+  aptosFunctionConfigs: AptosFunctionHandlerConfig[];
   instructionConfig: InstructionHandlerConfig | undefined;
   startBlock: Long;
   endBlock: Long;
@@ -613,8 +613,8 @@ function createBaseContractConfig(): ContractConfig {
     blockConfigs: [],
     logConfigs: [],
     traceConfigs: [],
-    eventConfigs: [],
-    functionConfigs: [],
+    aptosEventConfigs: [],
+    aptosFunctionConfigs: [],
     instructionConfig: undefined,
     startBlock: Long.UZERO,
     endBlock: Long.UZERO,
@@ -639,10 +639,10 @@ export const ContractConfig = {
     for (const v of message.traceConfigs) {
       TraceHandlerConfig.encode(v!, writer.uint32(18).fork()).ldelim();
     }
-    for (const v of message.eventConfigs) {
+    for (const v of message.aptosEventConfigs) {
       AptosEventHandlerConfig.encode(v!, writer.uint32(74).fork()).ldelim();
     }
-    for (const v of message.functionConfigs) {
+    for (const v of message.aptosFunctionConfigs) {
       AptosFunctionHandlerConfig.encode(v!, writer.uint32(82).fork()).ldelim();
     }
     if (message.instructionConfig !== undefined) {
@@ -689,12 +689,12 @@ export const ContractConfig = {
           );
           break;
         case 9:
-          message.eventConfigs.push(
+          message.aptosEventConfigs.push(
             AptosEventHandlerConfig.decode(reader, reader.uint32())
           );
           break;
         case 10:
-          message.functionConfigs.push(
+          message.aptosFunctionConfigs.push(
             AptosFunctionHandlerConfig.decode(reader, reader.uint32())
           );
           break;
@@ -735,13 +735,13 @@ export const ContractConfig = {
       traceConfigs: Array.isArray(object?.traceConfigs)
         ? object.traceConfigs.map((e: any) => TraceHandlerConfig.fromJSON(e))
         : [],
-      eventConfigs: Array.isArray(object?.eventConfigs)
-        ? object.eventConfigs.map((e: any) =>
+      aptosEventConfigs: Array.isArray(object?.aptosEventConfigs)
+        ? object.aptosEventConfigs.map((e: any) =>
             AptosEventHandlerConfig.fromJSON(e)
           )
         : [],
-      functionConfigs: Array.isArray(object?.functionConfigs)
-        ? object.functionConfigs.map((e: any) =>
+      aptosFunctionConfigs: Array.isArray(object?.aptosFunctionConfigs)
+        ? object.aptosFunctionConfigs.map((e: any) =>
             AptosFunctionHandlerConfig.fromJSON(e)
           )
         : [],
@@ -787,19 +787,19 @@ export const ContractConfig = {
     } else {
       obj.traceConfigs = [];
     }
-    if (message.eventConfigs) {
-      obj.eventConfigs = message.eventConfigs.map((e) =>
+    if (message.aptosEventConfigs) {
+      obj.aptosEventConfigs = message.aptosEventConfigs.map((e) =>
         e ? AptosEventHandlerConfig.toJSON(e) : undefined
       );
     } else {
-      obj.eventConfigs = [];
+      obj.aptosEventConfigs = [];
     }
-    if (message.functionConfigs) {
-      obj.functionConfigs = message.functionConfigs.map((e) =>
+    if (message.aptosFunctionConfigs) {
+      obj.aptosFunctionConfigs = message.aptosFunctionConfigs.map((e) =>
         e ? AptosFunctionHandlerConfig.toJSON(e) : undefined
       );
     } else {
-      obj.functionConfigs = [];
+      obj.aptosFunctionConfigs = [];
     }
     message.instructionConfig !== undefined &&
       (obj.instructionConfig = message.instructionConfig
@@ -826,11 +826,12 @@ export const ContractConfig = {
       object.logConfigs?.map((e) => LogHandlerConfig.fromPartial(e)) || [];
     message.traceConfigs =
       object.traceConfigs?.map((e) => TraceHandlerConfig.fromPartial(e)) || [];
-    message.eventConfigs =
-      object.eventConfigs?.map((e) => AptosEventHandlerConfig.fromPartial(e)) ||
-      [];
-    message.functionConfigs =
-      object.functionConfigs?.map((e) =>
+    message.aptosEventConfigs =
+      object.aptosEventConfigs?.map((e) =>
+        AptosEventHandlerConfig.fromPartial(e)
+      ) || [];
+    message.aptosFunctionConfigs =
+      object.aptosFunctionConfigs?.map((e) =>
         AptosFunctionHandlerConfig.fromPartial(e)
       ) || [];
     message.instructionConfig =

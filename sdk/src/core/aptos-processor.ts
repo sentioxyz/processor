@@ -8,21 +8,21 @@ type IndexConfigure = {
   endSeqNumber?: Long
 }
 
-export interface EventFilter {
+export interface AptosEventFilter {
   type: string
 }
-export interface FunctionFilter {
+export interface AptosFunctionFilter {
   function: string
   typeArguments: string[]
 }
 
-export class EventHandler {
-  filters: EventFilter[]
+export class AptosEventHandler {
+  filters: AptosEventFilter[]
   handler: (event: any) => Promise<ProcessResult>
 }
 
-export class FunctionHandler {
-  filters: FunctionFilter[]
+export class AptosFunctionHandler {
+  filters: AptosFunctionFilter[]
   handler: (func: any) => Promise<ProcessResult>
 }
 
@@ -31,8 +31,8 @@ export class AptosBaseProcessor {
   address: string
   name: string
   config: IndexConfigure = { startSeqNumber: new Long(0) }
-  eventHandlers: EventHandler[] = []
-  functionHandlers: FunctionHandler[] = []
+  eventHandlers: AptosEventHandler[] = []
+  functionHandlers: AptosFunctionHandler[] = []
 
   constructor(options: AptosBindOptions) {
     if (options) {
@@ -62,8 +62,8 @@ export class AptosBaseProcessor {
     return this
   }
 
-  public onEvent(handler: (event: any, ctx: AptosContext) => void, filter: EventFilter | EventFilter[]) {
-    let _filters: EventFilter[] = []
+  public onEvent(handler: (event: any, ctx: AptosContext) => void, filter: AptosEventFilter | AptosEventFilter[]) {
+    let _filters: AptosEventFilter[] = []
 
     if (Array.isArray(filter)) {
       _filters = filter
@@ -87,8 +87,11 @@ export class AptosBaseProcessor {
     })
   }
 
-  public onFunction(handler: (func: any, ctx: AptosContext) => void, filter: FunctionFilter | FunctionFilter[]) {
-    let _filters: FunctionFilter[] = []
+  public onFunction(
+    handler: (func: any, ctx: AptosContext) => void,
+    filter: AptosFunctionFilter | AptosFunctionFilter[]
+  ) {
+    let _filters: AptosFunctionFilter[] = []
 
     if (Array.isArray(filter)) {
       _filters = filter
