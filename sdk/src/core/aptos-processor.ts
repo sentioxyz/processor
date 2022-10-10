@@ -32,7 +32,7 @@ export class AptosBaseProcessor {
   name: string
   config: IndexConfigure = { startSeqNumber: new Long(0) }
   eventHandlers: AptosEventHandler[] = []
-  functionHandlers: AptosCallHandler[] = []
+  callHandlers: AptosCallHandler[] = []
 
   constructor(options: AptosBindOptions) {
     if (options) {
@@ -96,11 +96,11 @@ export class AptosBaseProcessor {
       _filters.push(filter)
     }
 
-    this.functionHandlers.push({
-      handler: async function (func) {
-        const ctx = new AptosContext(this.address, func.slot)
-        if (func) {
-          handler(func, ctx)
+    this.callHandlers.push({
+      handler: async function (call) {
+        const ctx = new AptosContext(this.address, call.slot)
+        if (call) {
+          handler(call, ctx)
         }
         return {
           gauges: ctx.gauges,
