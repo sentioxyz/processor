@@ -130,9 +130,11 @@ export interface ContractConfig {
   blockConfigs: BlockHandlerConfig[];
   logConfigs: LogHandlerConfig[];
   traceConfigs: TraceHandlerConfig[];
+  eventConfigs: EventHandlerConfig[];
+  functionConfigs: FunctionHandlerConfig[];
+  instructionConfig: InstructionHandlerConfig | undefined;
   startBlock: Long;
   endBlock: Long;
-  instructionConfig: InstructionHandlerConfig | undefined;
   processorType: string;
 }
 
@@ -176,6 +178,25 @@ export interface InstructionHandlerConfig {
   innerInstruction: boolean;
   parsedInstruction: boolean;
   rawDataInstruction: boolean;
+}
+
+export interface EventHandlerConfig {
+  filters: EventFilter[];
+  handlerId: number;
+}
+
+export interface EventFilter {
+  type: string;
+}
+
+export interface FunctionHandlerConfig {
+  filters: FunctionFilter[];
+  handlerId: number;
+}
+
+export interface FunctionFilter {
+  function: string;
+  typeArguments: string[];
 }
 
 export interface Topic {
@@ -224,6 +245,22 @@ export interface ProcessBlocksResponse {
   result: ProcessResult | undefined;
 }
 
+export interface ProcessEventsRequest {
+  eventBindings: EventBinding[];
+}
+
+export interface ProcessEventsResponse {
+  result: ProcessResult | undefined;
+}
+
+export interface ProcessFunctionsRequest {
+  functionBindings: FunctionBinding[];
+}
+
+export interface ProcessFunctionsResponse {
+  result: ProcessResult | undefined;
+}
+
 export interface LogBinding {
   log: RawLog | undefined;
   handlerId: number;
@@ -261,6 +298,24 @@ export interface BlockBinding {
 }
 
 export interface RawBlock {
+  raw: Uint8Array;
+}
+
+export interface EventBinding {
+  event: RawEvent | undefined;
+  handlerId: number;
+}
+
+export interface RawEvent {
+  raw: Uint8Array;
+}
+
+export interface FunctionBinding {
+  function: FunctionBinding | undefined;
+  handlerId: number;
+}
+
+export interface RawFunction {
   raw: Uint8Array;
 }
 
@@ -546,9 +601,11 @@ function createBaseContractConfig(): ContractConfig {
     blockConfigs: [],
     logConfigs: [],
     traceConfigs: [],
+    eventConfigs: [],
+    functionConfigs: [],
+    instructionConfig: undefined,
     startBlock: Long.UZERO,
     endBlock: Long.UZERO,
-    instructionConfig: undefined,
     processorType: "",
   };
 }
@@ -570,17 +627,23 @@ export const ContractConfig = {
     for (const v of message.traceConfigs) {
       TraceHandlerConfig.encode(v!, writer.uint32(18).fork()).ldelim();
     }
-    if (!message.startBlock.isZero()) {
-      writer.uint32(32).uint64(message.startBlock);
+    for (const v of message.eventConfigs) {
+      EventHandlerConfig.encode(v!, writer.uint32(74).fork()).ldelim();
     }
-    if (!message.endBlock.isZero()) {
-      writer.uint32(40).uint64(message.endBlock);
+    for (const v of message.functionConfigs) {
+      FunctionHandlerConfig.encode(v!, writer.uint32(82).fork()).ldelim();
     }
     if (message.instructionConfig !== undefined) {
       InstructionHandlerConfig.encode(
         message.instructionConfig,
         writer.uint32(50).fork()
       ).ldelim();
+    }
+    if (!message.startBlock.isZero()) {
+      writer.uint32(32).uint64(message.startBlock);
+    }
+    if (!message.endBlock.isZero()) {
+      writer.uint32(40).uint64(message.endBlock);
     }
     if (message.processorType !== "") {
       writer.uint32(66).string(message.processorType);
@@ -613,17 +676,27 @@ export const ContractConfig = {
             TraceHandlerConfig.decode(reader, reader.uint32())
           );
           break;
-        case 4:
-          message.startBlock = reader.uint64() as Long;
+        case 9:
+          message.eventConfigs.push(
+            EventHandlerConfig.decode(reader, reader.uint32())
+          );
           break;
-        case 5:
-          message.endBlock = reader.uint64() as Long;
+        case 10:
+          message.functionConfigs.push(
+            FunctionHandlerConfig.decode(reader, reader.uint32())
+          );
           break;
         case 6:
           message.instructionConfig = InstructionHandlerConfig.decode(
             reader,
             reader.uint32()
           );
+          break;
+        case 4:
+          message.startBlock = reader.uint64() as Long;
+          break;
+        case 5:
+          message.endBlock = reader.uint64() as Long;
           break;
         case 8:
           message.processorType = reader.string();
@@ -650,15 +723,23 @@ export const ContractConfig = {
       traceConfigs: Array.isArray(object?.traceConfigs)
         ? object.traceConfigs.map((e: any) => TraceHandlerConfig.fromJSON(e))
         : [],
+      eventConfigs: Array.isArray(object?.eventConfigs)
+        ? object.eventConfigs.map((e: any) => EventHandlerConfig.fromJSON(e))
+        : [],
+      functionConfigs: Array.isArray(object?.functionConfigs)
+        ? object.functionConfigs.map((e: any) =>
+            FunctionHandlerConfig.fromJSON(e)
+          )
+        : [],
+      instructionConfig: isSet(object.instructionConfig)
+        ? InstructionHandlerConfig.fromJSON(object.instructionConfig)
+        : undefined,
       startBlock: isSet(object.startBlock)
         ? Long.fromValue(object.startBlock)
         : Long.UZERO,
       endBlock: isSet(object.endBlock)
         ? Long.fromValue(object.endBlock)
         : Long.UZERO,
-      instructionConfig: isSet(object.instructionConfig)
-        ? InstructionHandlerConfig.fromJSON(object.instructionConfig)
-        : undefined,
       processorType: isSet(object.processorType)
         ? String(object.processorType)
         : "",
@@ -692,14 +773,28 @@ export const ContractConfig = {
     } else {
       obj.traceConfigs = [];
     }
-    message.startBlock !== undefined &&
-      (obj.startBlock = (message.startBlock || Long.UZERO).toString());
-    message.endBlock !== undefined &&
-      (obj.endBlock = (message.endBlock || Long.UZERO).toString());
+    if (message.eventConfigs) {
+      obj.eventConfigs = message.eventConfigs.map((e) =>
+        e ? EventHandlerConfig.toJSON(e) : undefined
+      );
+    } else {
+      obj.eventConfigs = [];
+    }
+    if (message.functionConfigs) {
+      obj.functionConfigs = message.functionConfigs.map((e) =>
+        e ? FunctionHandlerConfig.toJSON(e) : undefined
+      );
+    } else {
+      obj.functionConfigs = [];
+    }
     message.instructionConfig !== undefined &&
       (obj.instructionConfig = message.instructionConfig
         ? InstructionHandlerConfig.toJSON(message.instructionConfig)
         : undefined);
+    message.startBlock !== undefined &&
+      (obj.startBlock = (message.startBlock || Long.UZERO).toString());
+    message.endBlock !== undefined &&
+      (obj.endBlock = (message.endBlock || Long.UZERO).toString());
     message.processorType !== undefined &&
       (obj.processorType = message.processorType);
     return obj;
@@ -717,6 +812,17 @@ export const ContractConfig = {
       object.logConfigs?.map((e) => LogHandlerConfig.fromPartial(e)) || [];
     message.traceConfigs =
       object.traceConfigs?.map((e) => TraceHandlerConfig.fromPartial(e)) || [];
+    message.eventConfigs =
+      object.eventConfigs?.map((e) => EventHandlerConfig.fromPartial(e)) || [];
+    message.functionConfigs =
+      object.functionConfigs?.map((e) =>
+        FunctionHandlerConfig.fromPartial(e)
+      ) || [];
+    message.instructionConfig =
+      object.instructionConfig !== undefined &&
+      object.instructionConfig !== null
+        ? InstructionHandlerConfig.fromPartial(object.instructionConfig)
+        : undefined;
     message.startBlock =
       object.startBlock !== undefined && object.startBlock !== null
         ? Long.fromValue(object.startBlock)
@@ -725,11 +831,6 @@ export const ContractConfig = {
       object.endBlock !== undefined && object.endBlock !== null
         ? Long.fromValue(object.endBlock)
         : Long.UZERO;
-    message.instructionConfig =
-      object.instructionConfig !== undefined &&
-      object.instructionConfig !== null
-        ? InstructionHandlerConfig.fromPartial(object.instructionConfig)
-        : undefined;
     message.processorType = object.processorType ?? "";
     return message;
   },
@@ -1311,6 +1412,272 @@ export const InstructionHandlerConfig = {
     message.innerInstruction = object.innerInstruction ?? false;
     message.parsedInstruction = object.parsedInstruction ?? false;
     message.rawDataInstruction = object.rawDataInstruction ?? false;
+    return message;
+  },
+};
+
+function createBaseEventHandlerConfig(): EventHandlerConfig {
+  return { filters: [], handlerId: 0 };
+}
+
+export const EventHandlerConfig = {
+  encode(
+    message: EventHandlerConfig,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    for (const v of message.filters) {
+      EventFilter.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.handlerId !== 0) {
+      writer.uint32(16).int32(message.handlerId);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): EventHandlerConfig {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseEventHandlerConfig();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.filters.push(EventFilter.decode(reader, reader.uint32()));
+          break;
+        case 2:
+          message.handlerId = reader.int32();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): EventHandlerConfig {
+    return {
+      filters: Array.isArray(object?.filters)
+        ? object.filters.map((e: any) => EventFilter.fromJSON(e))
+        : [],
+      handlerId: isSet(object.handlerId) ? Number(object.handlerId) : 0,
+    };
+  },
+
+  toJSON(message: EventHandlerConfig): unknown {
+    const obj: any = {};
+    if (message.filters) {
+      obj.filters = message.filters.map((e) =>
+        e ? EventFilter.toJSON(e) : undefined
+      );
+    } else {
+      obj.filters = [];
+    }
+    message.handlerId !== undefined &&
+      (obj.handlerId = Math.round(message.handlerId));
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<EventHandlerConfig>): EventHandlerConfig {
+    const message = createBaseEventHandlerConfig();
+    message.filters =
+      object.filters?.map((e) => EventFilter.fromPartial(e)) || [];
+    message.handlerId = object.handlerId ?? 0;
+    return message;
+  },
+};
+
+function createBaseEventFilter(): EventFilter {
+  return { type: "" };
+}
+
+export const EventFilter = {
+  encode(
+    message: EventFilter,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.type !== "") {
+      writer.uint32(10).string(message.type);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): EventFilter {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseEventFilter();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.type = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): EventFilter {
+    return {
+      type: isSet(object.type) ? String(object.type) : "",
+    };
+  },
+
+  toJSON(message: EventFilter): unknown {
+    const obj: any = {};
+    message.type !== undefined && (obj.type = message.type);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<EventFilter>): EventFilter {
+    const message = createBaseEventFilter();
+    message.type = object.type ?? "";
+    return message;
+  },
+};
+
+function createBaseFunctionHandlerConfig(): FunctionHandlerConfig {
+  return { filters: [], handlerId: 0 };
+}
+
+export const FunctionHandlerConfig = {
+  encode(
+    message: FunctionHandlerConfig,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    for (const v of message.filters) {
+      FunctionFilter.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.handlerId !== 0) {
+      writer.uint32(16).int32(message.handlerId);
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): FunctionHandlerConfig {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseFunctionHandlerConfig();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.filters.push(FunctionFilter.decode(reader, reader.uint32()));
+          break;
+        case 2:
+          message.handlerId = reader.int32();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): FunctionHandlerConfig {
+    return {
+      filters: Array.isArray(object?.filters)
+        ? object.filters.map((e: any) => FunctionFilter.fromJSON(e))
+        : [],
+      handlerId: isSet(object.handlerId) ? Number(object.handlerId) : 0,
+    };
+  },
+
+  toJSON(message: FunctionHandlerConfig): unknown {
+    const obj: any = {};
+    if (message.filters) {
+      obj.filters = message.filters.map((e) =>
+        e ? FunctionFilter.toJSON(e) : undefined
+      );
+    } else {
+      obj.filters = [];
+    }
+    message.handlerId !== undefined &&
+      (obj.handlerId = Math.round(message.handlerId));
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<FunctionHandlerConfig>
+  ): FunctionHandlerConfig {
+    const message = createBaseFunctionHandlerConfig();
+    message.filters =
+      object.filters?.map((e) => FunctionFilter.fromPartial(e)) || [];
+    message.handlerId = object.handlerId ?? 0;
+    return message;
+  },
+};
+
+function createBaseFunctionFilter(): FunctionFilter {
+  return { function: "", typeArguments: [] };
+}
+
+export const FunctionFilter = {
+  encode(
+    message: FunctionFilter,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.function !== "") {
+      writer.uint32(10).string(message.function);
+    }
+    for (const v of message.typeArguments) {
+      writer.uint32(18).string(v!);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): FunctionFilter {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseFunctionFilter();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.function = reader.string();
+          break;
+        case 2:
+          message.typeArguments.push(reader.string());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): FunctionFilter {
+    return {
+      function: isSet(object.function) ? String(object.function) : "",
+      typeArguments: Array.isArray(object?.typeArguments)
+        ? object.typeArguments.map((e: any) => String(e))
+        : [],
+    };
+  },
+
+  toJSON(message: FunctionFilter): unknown {
+    const obj: any = {};
+    message.function !== undefined && (obj.function = message.function);
+    if (message.typeArguments) {
+      obj.typeArguments = message.typeArguments.map((e) => e);
+    } else {
+      obj.typeArguments = [];
+    }
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<FunctionFilter>): FunctionFilter {
+    const message = createBaseFunctionFilter();
+    message.function = object.function ?? "";
+    message.typeArguments = object.typeArguments?.map((e) => e) || [];
     return message;
   },
 };
@@ -2040,6 +2407,270 @@ export const ProcessBlocksResponse = {
   },
 };
 
+function createBaseProcessEventsRequest(): ProcessEventsRequest {
+  return { eventBindings: [] };
+}
+
+export const ProcessEventsRequest = {
+  encode(
+    message: ProcessEventsRequest,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    for (const v of message.eventBindings) {
+      EventBinding.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): ProcessEventsRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseProcessEventsRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.eventBindings.push(
+            EventBinding.decode(reader, reader.uint32())
+          );
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ProcessEventsRequest {
+    return {
+      eventBindings: Array.isArray(object?.eventBindings)
+        ? object.eventBindings.map((e: any) => EventBinding.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: ProcessEventsRequest): unknown {
+    const obj: any = {};
+    if (message.eventBindings) {
+      obj.eventBindings = message.eventBindings.map((e) =>
+        e ? EventBinding.toJSON(e) : undefined
+      );
+    } else {
+      obj.eventBindings = [];
+    }
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<ProcessEventsRequest>): ProcessEventsRequest {
+    const message = createBaseProcessEventsRequest();
+    message.eventBindings =
+      object.eventBindings?.map((e) => EventBinding.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseProcessEventsResponse(): ProcessEventsResponse {
+  return { result: undefined };
+}
+
+export const ProcessEventsResponse = {
+  encode(
+    message: ProcessEventsResponse,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.result !== undefined) {
+      ProcessResult.encode(message.result, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): ProcessEventsResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseProcessEventsResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.result = ProcessResult.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ProcessEventsResponse {
+    return {
+      result: isSet(object.result)
+        ? ProcessResult.fromJSON(object.result)
+        : undefined,
+    };
+  },
+
+  toJSON(message: ProcessEventsResponse): unknown {
+    const obj: any = {};
+    message.result !== undefined &&
+      (obj.result = message.result
+        ? ProcessResult.toJSON(message.result)
+        : undefined);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<ProcessEventsResponse>
+  ): ProcessEventsResponse {
+    const message = createBaseProcessEventsResponse();
+    message.result =
+      object.result !== undefined && object.result !== null
+        ? ProcessResult.fromPartial(object.result)
+        : undefined;
+    return message;
+  },
+};
+
+function createBaseProcessFunctionsRequest(): ProcessFunctionsRequest {
+  return { functionBindings: [] };
+}
+
+export const ProcessFunctionsRequest = {
+  encode(
+    message: ProcessFunctionsRequest,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    for (const v of message.functionBindings) {
+      FunctionBinding.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): ProcessFunctionsRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseProcessFunctionsRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.functionBindings.push(
+            FunctionBinding.decode(reader, reader.uint32())
+          );
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ProcessFunctionsRequest {
+    return {
+      functionBindings: Array.isArray(object?.functionBindings)
+        ? object.functionBindings.map((e: any) => FunctionBinding.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: ProcessFunctionsRequest): unknown {
+    const obj: any = {};
+    if (message.functionBindings) {
+      obj.functionBindings = message.functionBindings.map((e) =>
+        e ? FunctionBinding.toJSON(e) : undefined
+      );
+    } else {
+      obj.functionBindings = [];
+    }
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<ProcessFunctionsRequest>
+  ): ProcessFunctionsRequest {
+    const message = createBaseProcessFunctionsRequest();
+    message.functionBindings =
+      object.functionBindings?.map((e) => FunctionBinding.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseProcessFunctionsResponse(): ProcessFunctionsResponse {
+  return { result: undefined };
+}
+
+export const ProcessFunctionsResponse = {
+  encode(
+    message: ProcessFunctionsResponse,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.result !== undefined) {
+      ProcessResult.encode(message.result, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): ProcessFunctionsResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseProcessFunctionsResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.result = ProcessResult.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ProcessFunctionsResponse {
+    return {
+      result: isSet(object.result)
+        ? ProcessResult.fromJSON(object.result)
+        : undefined,
+    };
+  },
+
+  toJSON(message: ProcessFunctionsResponse): unknown {
+    const obj: any = {};
+    message.result !== undefined &&
+      (obj.result = message.result
+        ? ProcessResult.toJSON(message.result)
+        : undefined);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<ProcessFunctionsResponse>
+  ): ProcessFunctionsResponse {
+    const message = createBaseProcessFunctionsResponse();
+    message.result =
+      object.result !== undefined && object.result !== null
+        ? ProcessResult.fromPartial(object.result)
+        : undefined;
+    return message;
+  },
+};
+
 function createBaseLogBinding(): LogBinding {
   return { log: undefined, handlerId: 0 };
 }
@@ -2594,6 +3225,255 @@ export const RawBlock = {
 
   fromPartial(object: DeepPartial<RawBlock>): RawBlock {
     const message = createBaseRawBlock();
+    message.raw = object.raw ?? new Uint8Array();
+    return message;
+  },
+};
+
+function createBaseEventBinding(): EventBinding {
+  return { event: undefined, handlerId: 0 };
+}
+
+export const EventBinding = {
+  encode(
+    message: EventBinding,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.event !== undefined) {
+      RawEvent.encode(message.event, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.handlerId !== 0) {
+      writer.uint32(16).int32(message.handlerId);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): EventBinding {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseEventBinding();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.event = RawEvent.decode(reader, reader.uint32());
+          break;
+        case 2:
+          message.handlerId = reader.int32();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): EventBinding {
+    return {
+      event: isSet(object.event) ? RawEvent.fromJSON(object.event) : undefined,
+      handlerId: isSet(object.handlerId) ? Number(object.handlerId) : 0,
+    };
+  },
+
+  toJSON(message: EventBinding): unknown {
+    const obj: any = {};
+    message.event !== undefined &&
+      (obj.event = message.event ? RawEvent.toJSON(message.event) : undefined);
+    message.handlerId !== undefined &&
+      (obj.handlerId = Math.round(message.handlerId));
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<EventBinding>): EventBinding {
+    const message = createBaseEventBinding();
+    message.event =
+      object.event !== undefined && object.event !== null
+        ? RawEvent.fromPartial(object.event)
+        : undefined;
+    message.handlerId = object.handlerId ?? 0;
+    return message;
+  },
+};
+
+function createBaseRawEvent(): RawEvent {
+  return { raw: new Uint8Array() };
+}
+
+export const RawEvent = {
+  encode(
+    message: RawEvent,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.raw.length !== 0) {
+      writer.uint32(10).bytes(message.raw);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): RawEvent {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseRawEvent();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.raw = reader.bytes();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): RawEvent {
+    return {
+      raw: isSet(object.raw) ? bytesFromBase64(object.raw) : new Uint8Array(),
+    };
+  },
+
+  toJSON(message: RawEvent): unknown {
+    const obj: any = {};
+    message.raw !== undefined &&
+      (obj.raw = base64FromBytes(
+        message.raw !== undefined ? message.raw : new Uint8Array()
+      ));
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<RawEvent>): RawEvent {
+    const message = createBaseRawEvent();
+    message.raw = object.raw ?? new Uint8Array();
+    return message;
+  },
+};
+
+function createBaseFunctionBinding(): FunctionBinding {
+  return { function: undefined, handlerId: 0 };
+}
+
+export const FunctionBinding = {
+  encode(
+    message: FunctionBinding,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.function !== undefined) {
+      FunctionBinding.encode(
+        message.function,
+        writer.uint32(10).fork()
+      ).ldelim();
+    }
+    if (message.handlerId !== 0) {
+      writer.uint32(16).int32(message.handlerId);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): FunctionBinding {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseFunctionBinding();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.function = FunctionBinding.decode(reader, reader.uint32());
+          break;
+        case 2:
+          message.handlerId = reader.int32();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): FunctionBinding {
+    return {
+      function: isSet(object.function)
+        ? FunctionBinding.fromJSON(object.function)
+        : undefined,
+      handlerId: isSet(object.handlerId) ? Number(object.handlerId) : 0,
+    };
+  },
+
+  toJSON(message: FunctionBinding): unknown {
+    const obj: any = {};
+    message.function !== undefined &&
+      (obj.function = message.function
+        ? FunctionBinding.toJSON(message.function)
+        : undefined);
+    message.handlerId !== undefined &&
+      (obj.handlerId = Math.round(message.handlerId));
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<FunctionBinding>): FunctionBinding {
+    const message = createBaseFunctionBinding();
+    message.function =
+      object.function !== undefined && object.function !== null
+        ? FunctionBinding.fromPartial(object.function)
+        : undefined;
+    message.handlerId = object.handlerId ?? 0;
+    return message;
+  },
+};
+
+function createBaseRawFunction(): RawFunction {
+  return { raw: new Uint8Array() };
+}
+
+export const RawFunction = {
+  encode(
+    message: RawFunction,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.raw.length !== 0) {
+      writer.uint32(10).bytes(message.raw);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): RawFunction {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseRawFunction();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.raw = reader.bytes();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): RawFunction {
+    return {
+      raw: isSet(object.raw) ? bytesFromBase64(object.raw) : new Uint8Array(),
+    };
+  },
+
+  toJSON(message: RawFunction): unknown {
+    const obj: any = {};
+    message.raw !== undefined &&
+      (obj.raw = base64FromBytes(
+        message.raw !== undefined ? message.raw : new Uint8Array()
+      ));
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<RawFunction>): RawFunction {
+    const message = createBaseRawFunction();
     message.raw = object.raw ?? new Uint8Array();
     return message;
   },
