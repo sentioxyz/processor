@@ -52,8 +52,8 @@ message ContractConfig {
   repeated BlockHandlerConfig block_configs = 7;
   repeated LogHandlerConfig log_configs = 3;
   repeated TraceHandlerConfig trace_configs = 2;
-  repeated AptosEventHandlerConfig event_configs = 9;
-  repeated AptosFunctionHandlerConfig function_configs = 10;
+  repeated AptosEventHandlerConfig aptos_event_configs = 9;
+  repeated AptosCallHandlerConfig aptos_call_configs = 10;
   InstructionHandlerConfig instruction_config = 6;
   uint64 start_block = 4;
   uint64 end_block = 5;
@@ -112,12 +112,12 @@ message AptosEventFilter {
   string type = 1;
 }
 
-message AptosFunctionHandlerConfig {
-  repeated AptosFunctionFilter filters = 1;
+message AptosCallHandlerConfig {
+  repeated AptosCallFilter filters = 1;
   int32 handler_id = 2;
 }
 
-message AptosFunctionFilter {
+message AptosCallFilter {
   string function = 1;
   repeated string type_arguments = 2;
 }
@@ -177,11 +177,11 @@ message ProcessEventsResponse {
   ProcessResult result = 1;
 }
 
-message ProcessFunctionsRequest {
-  repeated FunctionBinding function_bindings = 1;
+message ProcessCallsRequest {
+  repeated CallBinding call_bindings = 1;
 }
 
-message ProcessFunctionsResponse {
+message ProcessCallsResponse {
   ProcessResult result = 1;
 }
 
@@ -234,12 +234,12 @@ message RawEvent {
   bytes raw = 1;
 }
 
-message FunctionBinding {
-  RawFunction function = 1;
+message CallBinding {
+  RawCall call = 1;
   int32 handler_id = 2;
 }
 
-message RawFunction {
+message RawCall {
   bytes raw = 1;
 }
 
@@ -295,7 +295,7 @@ enum HandlerType {
   INSTRUCTION = 4;
   TRACE = 5;
   EVENT = 6;
-  FUNCTION = 7;
+  CALL = 7;
 }
 
 message RuntimeInfo {
