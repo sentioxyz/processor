@@ -31,3 +31,11 @@ Souffl3.bind({
       typeArguments: undefined,
     }
   )
+  .onEvent(
+    (event, ctx) => {
+      ctx.meter.Counter('evt_num').add(1)
+    },
+    {
+      type: '0x1::coin::DepositEvent',
+    }
+  )

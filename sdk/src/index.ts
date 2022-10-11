@@ -7,5 +7,6 @@ export { EthersError } from './error'
 
 export { getProcessor, addProcessor, getContractByABI, addContractByABI, getContractName } from './binds'
 
-export * from './gen/processor/protos/processor'
+export * from './gen'
+
 export * from './core'
