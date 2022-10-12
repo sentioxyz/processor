@@ -1,7 +1,7 @@
-import { AptosBindOptions, AptosBaseProcessor } from '@sentio/sdk'
+import { aptos } from '@sentio/sdk'
 
-class Souffl3 extends AptosBaseProcessor {
-  static bind(options: AptosBindOptions): Souffl3 {
+class Souffl3 extends aptos.AptosBaseProcessor {
+  static bind(options: aptos.AptosBindOptions): Souffl3 {
     if (options && !options.name) {
       options.name = 'souffl3'
     }
@@ -10,7 +10,7 @@ class Souffl3 extends AptosBaseProcessor {
 }
 
 Souffl3.bind({
-  startBlock: 6604913,
+  startVersion: 6604913,
   address: '0x4188c8694687e844677c2aa87171019e23d61cac60de5082a278a8aa47e9d807',
 })
   .onTransaction((txn, ctx) => {
@@ -22,8 +22,8 @@ Souffl3.bind({
       }
     }
   })
-  .onCall(
-    (call, ctx) => {
+  .onFunctionCall(
+    (call: aptos.FunctionPayload, ctx: aptos.AptosContext) => {
       ctx.meter.Counter('call_num').add(1)
     },
     {

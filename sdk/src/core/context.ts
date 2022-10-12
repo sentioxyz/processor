@@ -6,7 +6,7 @@ import Long from 'long'
 import { Trace } from './trace'
 import { Logger } from './logger'
 import { Labels } from './metadata'
-import { APTOS_TESTNET_ID, SOL_MAINMET_ID, SUI_DEVNET_ID } from '../utils/chain'
+import { SOL_MAINMET_ID, SUI_DEVNET_ID } from '../utils/chain'
 
 export abstract class BaseContext {
   gauges: GaugeResult[] = []
@@ -186,30 +186,6 @@ export class SuiContext extends BaseContext {
       transactionHash: '', // TODO
       logIndex: 0,
       chainId: SUI_DEVNET_ID, // TODO set in context
-      descriptor: descriptor,
-      labels: normalizeLabels(labels),
-    }
-  }
-}
-
-export class AptosContext extends BaseContext {
-  address: string
-  blockNumber: Long
-
-  constructor(address: string, slot: Long) {
-    super()
-    this.address = address
-    this.blockNumber = slot
-  }
-
-  getMetaData(descriptor: MetricDescriptor | undefined, labels: Labels): RecordMetaData {
-    return {
-      contractAddress: this.address,
-      blockNumber: this.blockNumber,
-      transactionIndex: 0,
-      transactionHash: '', // TODO
-      logIndex: 0,
-      chainId: APTOS_TESTNET_ID, // TODO set in context
       descriptor: descriptor,
       labels: normalizeLabels(labels),
     }

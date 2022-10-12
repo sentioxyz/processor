@@ -10,3 +10,5 @@ export { getProcessor, addProcessor, getContractByABI, addContractByABI, getCont
 export * from './gen'
 
 export * from './core'
+
+export * as aptos from './aptos'
