@@ -18,6 +18,11 @@ export class TypeDescriptor {
   }
 
   generateType(): string {
+    // TODO &signer is defintely an address, but what if &OTHER_TYPE?
+    if (this.symbol.startsWith('&')) {
+      return 'Address'
+    }
+
     switch (this.symbol) {
       case 'signer': // TODO check this
       case 'address':
@@ -55,6 +60,9 @@ export class TypeDescriptor {
 
   // all depended types including itself, not include system type
   dependedTypes(): string[] {
+    if (this.symbol.startsWith('&')) {
+      return []
+    }
     switch (this.symbol) {
       case 'signer':
       case 'address':
@@ -98,9 +106,13 @@ function generateSimpleType(type: string): string {
 }
 
 export function parseMoveType(type: string) {
-  type = type.replace('&', '')
+  // type = type.replace('&', '')
 
+  type = type.replace('&mut ', '&')
+
+  // TODO replace ' ' is not exactly safe, need to double check this
   type = type.replace(' ', '')
+
   const stack: TypeDescriptor[] = [new TypeDescriptor('')]
   let buffer = []
 

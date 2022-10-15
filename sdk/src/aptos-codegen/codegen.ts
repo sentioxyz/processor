@@ -190,7 +190,7 @@ function generateStructs(module: MoveModule, struct: MoveStruct) {
   let eventPayload = ''
   if (isEvent(struct)) {
     eventPayload = `
-    export type ${struct.name}Instance${genericString} = aptos.EventInstance & { data: ${struct.name}${genericString} }
+    export interface ${struct.name}Instance${genericString} extends aptos.EventInstance { data: ${struct.name}${genericString} }
     `
   }
 
@@ -243,13 +243,11 @@ function generateCallArgsStructs(module: MoveModule, func: MoveFunction) {
 
   const camelFuncName = capitalizeFirstChar(camelize(func.name))
 
-  // export type ${camelFuncName}Arguments = [${fields.join(",")}]
-
+  const genericString = generateFunctionTypeParameters(func)
   return `
- 
-  export type ${camelFuncName}Payload${generateFunctionTypeParameters(
-    func
-  )} = aptos.TransactionPayload_EntryFunctionPayload & { arguments: [${fields.join(',')}] }
+   export interface ${camelFuncName}Payload${genericString} extends aptos.TransactionPayload_EntryFunctionPayload { arguments: [${fields.join(
+    ','
+  )}] }
   `
 }
 

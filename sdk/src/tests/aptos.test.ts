@@ -15,7 +15,7 @@ describe('Test Aptos Example', () => {
 
   test('check configuration ', async () => {
     const config = await service.getConfig({})
-    expect(config.contractConfigs).length(2)
+    expect(config.contractConfigs).length(3)
   })
 
   test('Check souffl3 transaction dispatch', async () => {
