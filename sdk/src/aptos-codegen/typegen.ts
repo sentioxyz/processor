@@ -1,99 +1,54 @@
 import { MoveModule } from 'aptos/src/generated'
-import { moduleFqn, moduleFqnForType, SPLITTER } from './utils'
+import { TypeDescriptor } from '../aptos/types'
+import { moduleQname, moduleQnameForType, SPLITTER, VECTOR_STR } from '../aptos/utils'
 
-const VECTOR_STR = 'vector'
-
-export class TypeDescriptor {
-  // type: string
-
-  symbol: string
-  // account?: string
-  // module?: string
-
-  typeParams: TypeDescriptor[]
-
-  constructor(symbol: string, typeParams?: TypeDescriptor[]) {
-    this.symbol = symbol
-    this.typeParams = typeParams || []
+function generateTypeForDescriptor(type: TypeDescriptor): string {
+  // TODO &signer is defintely an address, but what if &OTHER_TYPE?
+  if (type.qname.startsWith('&')) {
+    return 'Address'
   }
 
-  generateType(): string {
-    // TODO &signer is defintely an address, but what if &OTHER_TYPE?
-    if (this.symbol.startsWith('&')) {
+  switch (type.qname) {
+    case 'signer': // TODO check this
+    case 'address':
       return 'Address'
-    }
-
-    switch (this.symbol) {
-      case 'signer': // TODO check this
-      case 'address':
-        return 'Address'
-      case '0x1::string::String':
-        return 'string'
-      case 'bool':
-        return 'Boolean'
-      case 'u8':
-      case 'u16':
-      case 'u32':
-        return 'number'
-      case 'u64':
-      case 'u128':
-        return 'string'
-    }
-
-    if (this.symbol === VECTOR_STR) {
-      return this.typeParams[0].generateType() + '[]'
-    }
-
-    const simpleName = generateSimpleType(this.symbol)
-    if (simpleName.length === 0) {
-      console.error('unexpected error')
-    }
-    if (simpleName.includes('vector')) {
-      console.error('unexpected error')
-    }
-    if (this.typeParams.length > 0) {
-      // return simpleName
-      return simpleName + '<' + this.typeParams.map((t) => t.generateType()).join(',') + '>'
-    }
-    return simpleName
+    case '0x1::string::String':
+      return 'string'
+    case 'bool':
+      return 'Boolean'
+    case 'u8':
+    case 'u16':
+    case 'u32':
+      return 'number'
+    case 'u64':
+    case 'u128':
+      return 'bigint'
   }
 
-  // all depended types including itself, not include system type
-  dependedTypes(): string[] {
-    if (this.symbol.startsWith('&')) {
-      return []
+  if (type.qname === VECTOR_STR) {
+    // vector<u8> as hex string
+    const elementTypeQname = type.typeArgs[0].qname
+    if (elementTypeQname === 'u8') {
+      return 'string'
     }
-    switch (this.symbol) {
-      case 'signer':
-      case 'address':
-      case '0x1::string::String':
-      case 'bool':
-      case 'u8':
-      case 'u16':
-      case 'u32':
-      case 'u64':
-      case 'u128':
-        return []
+    if (elementTypeQname.startsWith('T') && !elementTypeQname.includes(SPLITTER)) {
+      return `${elementTypeQname}[] | string`
     }
-
-    // Type parameters are not depended
-    if (this.symbol.indexOf(SPLITTER) == -1) {
-      if (this.symbol.startsWith('T')) {
-        return []
-      }
-    }
-
-    const types = new Set<string>()
-    for (const param of this.typeParams) {
-      param.dependedTypes().forEach((t) => types.add(t))
-    }
-
-    if (this.symbol !== VECTOR_STR) {
-      types.add(this.symbol)
-    }
-
-    return Array.from(types)
+    return generateTypeForDescriptor(type.typeArgs[0]) + '[]'
   }
+
+  const simpleName = generateSimpleType(type.qname)
+  if (simpleName.length === 0) {
+    console.error('unexpected error')
+  }
+  if (simpleName.includes('vector')) {
+    console.error('unexpected error')
+  }
+  if (type.typeArgs.length > 0) {
+    // return simpleName
+    return simpleName + '<' + type.typeArgs.map((t) => generateTypeForDescriptor(t)).join(',') + '>'
+  }
+  return simpleName
 }
 
 function generateSimpleType(type: string): string {
@@ -124,7 +79,7 @@ export function parseMoveType(type: string) {
       // symbolStart =
       const symbol = buffer.join('')
       buffer = []
-      stack[stack.length - 1].symbol = symbol
+      stack[stack.length - 1].qname = symbol
       stack.push(new TypeDescriptor(''))
       continue
     }
@@ -134,10 +89,10 @@ export function parseMoveType(type: string) {
         throw Error('Uxpectecd stack size')
       }
       if (buffer.length > 0) {
-        typeParam.symbol = buffer.join('')
+        typeParam.qname = buffer.join('')
         buffer = []
       }
-      stack[stack.length - 1].typeParams.push(typeParam)
+      stack[stack.length - 1].typeArgs.push(typeParam)
       continue
     }
     if (ch === ',') {
@@ -146,11 +101,11 @@ export function parseMoveType(type: string) {
         throw Error('Uxpectecd stack size')
       }
       if (buffer.length > 0) {
-        typeParam.symbol = buffer.join('')
+        typeParam.qname = buffer.join('')
         buffer = []
       }
 
-      stack[stack.length - 1].typeParams.push(typeParam)
+      stack[stack.length - 1].typeArgs.push(typeParam)
       // continue parse next param
       stack.push(new TypeDescriptor(''))
       continue
@@ -160,7 +115,7 @@ export function parseMoveType(type: string) {
   }
 
   if (buffer.length > 0) {
-    stack[stack.length - 1].symbol = buffer.join('')
+    stack[stack.length - 1].qname = buffer.join('')
   }
 
   const res = stack.pop()
@@ -172,7 +127,7 @@ export function parseMoveType(type: string) {
 
 // TODO ctx need to have type parameters
 export function generateType(type: string, ctx?: any): string {
-  return parseMoveType(type).generateType()
+  return generateTypeForDescriptor(parseMoveType(type))
 }
 
 export class AccountModulesImportInfo {
@@ -219,7 +174,7 @@ export class AccountRegister {
   }
 
   register(module: MoveModule, tsModuleName: string): AccountModulesImportInfo {
-    const currentModuleFqn = moduleFqn(module)
+    const currentModuleFqn = moduleQname(module)
 
     let accountModuleImports = this.accountImports.get(module.address)
     if (!accountModuleImports) {
@@ -232,7 +187,7 @@ export class AccountRegister {
     for (const struct of module.structs) {
       for (const field of struct.fields) {
         for (const type of this.loadTypeDescriptor(field.type).dependedTypes()) {
-          const [account, module] = moduleFqnForType(type)
+          const [account, module] = moduleQnameForType(type)
           accountModuleImports.addImport(account, module)
           if (!this.accountImports.has(account)) {
             this.pendingAccounts.add(account)
@@ -247,7 +202,7 @@ export class AccountRegister {
       }
       for (const param of func.params) {
         for (const type of this.loadTypeDescriptor(param).dependedTypes()) {
-          const [account, module] = moduleFqnForType(type)
+          const [account, module] = moduleQnameForType(type)
           accountModuleImports.addImport(account, module)
           if (!this.accountImports.has(account)) {
             this.pendingAccounts.add(account)

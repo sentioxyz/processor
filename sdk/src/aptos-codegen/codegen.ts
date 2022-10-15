@@ -3,7 +3,7 @@ import path from 'path'
 import prettier from 'prettier'
 import { MoveFunction, MoveModule, MoveStruct, MoveModuleBytecode } from 'aptos/src/generated'
 import { generateType, AccountRegister } from './typegen'
-import { isFrameworkAccount } from './utils'
+import { isFrameworkAccount } from '../aptos/utils'
 
 export function generate(srcDir: string, outputDir: string) {
   const files = fs.readdirSync(srcDir)
@@ -91,6 +91,8 @@ export class AccountCodegen {
     import { Address, MoveModule } from "aptos/src/generated"
     `
 
+    const dependedAccounts: string[] = []
+
     const moduleImports: string[] = []
 
     const info = this.loader.accountImports.get(address)
@@ -107,7 +109,12 @@ export class AccountCodegen {
           }
           tsAccountModule = `@sentio/sdk/${srcRoot}/builtin/aptos/${account}`
         }
-        moduleImports.push(`import { ${Array.from(moduleImported).join(',')} } from "${tsAccountModule}"`)
+        const items = Array.from(moduleImported)
+        moduleImports.push(`import { ${items.join(',')} } from "${tsAccountModule}"`)
+
+        // Ideally we should use per module's load types, but it doesn't matter since we are loading the entire
+        // account modules anyway
+        items.forEach((m) => dependedAccounts.push(m))
       }
     }
 
@@ -122,7 +129,17 @@ export class AccountCodegen {
     
     ${moduleImports.join('\n')}
     
-    ${this.modules.map((m) => generateModule(m)).join('\n')}
+    ${this.modules.map((m) => generateModule(m, dependedAccounts)).join('\n')}
+    
+    function loadAllTypes(registry: aptos.TypeRegistry) {
+      ${dependedAccounts.map((m) => `${m}.loadTypes(registry)`).join('\n')}
+
+      ${this.modules
+        .map((m) => {
+          return `registry.load(${m.abi?.name}.ABI)`
+        })
+        .join('\n')}
+    }
     ` // source
 
     source = prettier.format(source, { parser: 'typescript' })
@@ -130,7 +147,7 @@ export class AccountCodegen {
   }
 }
 
-function generateModule(moduleByteCode: MoveModuleBytecode) {
+function generateModule(moduleByteCode: MoveModuleBytecode, dependedModules: string[]) {
   if (!moduleByteCode.abi) {
     return ''
   }
@@ -144,11 +161,6 @@ function generateModule(moduleByteCode: MoveModuleBytecode) {
   let processor = ''
   if (functions.length > 0 || events.length > 0) {
     processor = `export class ${module.name} extends aptos.AptosBaseProcessor {
-    static ABI: MoveModule = JSON.parse('${JSON.stringify(module)}')
-
-    getABI(): MoveModule {
-      return ${module.name}.ABI
-    }
 
     constructor(options: aptos.AptosBindOptions) {
       super("${module.name}", options)
@@ -165,6 +177,10 @@ function generateModule(moduleByteCode: MoveModuleBytecode) {
     ${functions.join('\n')}
     
     ${events.join('\n')}
+    
+    loadTypesInternal(registry: aptos.TypeRegistry) {
+      loadAllTypes(registry)
+    }
   }
   `
   }
@@ -176,6 +192,11 @@ function generateModule(moduleByteCode: MoveModuleBytecode) {
     ${structs.join('\n')}
     
     ${callArgs.join('\n')}
+       
+    export function loadTypes(registry: aptos.TypeRegistry) {
+      loadAllTypes(registry)
+    }
+    export const ABI: MoveModule = JSON.parse('${JSON.stringify(module)}')
  }
   `
 }
@@ -190,7 +211,10 @@ function generateStructs(module: MoveModule, struct: MoveStruct) {
   let eventPayload = ''
   if (isEvent(struct)) {
     eventPayload = `
-    export interface ${struct.name}Instance${genericString} extends aptos.EventInstance { data: ${struct.name}${genericString} }
+    export interface ${struct.name}Instance${genericString} extends 
+        aptos.TypedEventInstance<${struct.name}${genericString}> {
+      data_typed: ${struct.name}${genericString}
+    }
     `
   }
 
@@ -245,9 +269,10 @@ function generateCallArgsStructs(module: MoveModule, func: MoveFunction) {
 
   const genericString = generateFunctionTypeParameters(func)
   return `
-   export interface ${camelFuncName}Payload${genericString} extends aptos.TransactionPayload_EntryFunctionPayload { arguments: [${fields.join(
-    ','
-  )}] }
+  export interface ${camelFuncName}Payload${genericString} 
+      extends aptos.TypedEntryFunctionPayload<[${fields.join(',')}]> {
+    arguments_typed: [${fields.join(',')}]
+  }
   `
 }
 
