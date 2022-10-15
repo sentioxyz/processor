@@ -1,11 +1,12 @@
 import { SouffleChefCampaign, CandyMachine } from './types/aptos/souffle'
 
 SouffleChefCampaign.bind({ startVersion: 3212312 })
-  .onEntryPullTokenV2((call, ctx) => {
+  .onEntryPullTokenV2((call: SouffleChefCampaign.PullTokenV2Payload<any>, ctx) => {
     ctx.meter.Counter('call_num').add(1)
     ctx.meter.Counter('pulled').add(parseInt(call.arguments[3]))
   })
-  .onEventBurnEnjoyEvent((evt, ctx) => {
+  .onEventPullTokenEvent((evt, ctx) => {
+    console.log(evt.data.receiver)
     ctx.meter.Counter('burned').add(1)
   })
   .onEvent(
@@ -26,6 +27,6 @@ SouffleChefCampaign.bind({ startVersion: 3212312 })
     }
   })
 
-CandyMachine.bind().onEntryPullToken((call, ctx) => {
-  ctx.meter.Counter('pulled').add(parseInt(call.arguments[3]))
+CandyMachine.bind().onEntryPullToken((call: CandyMachine.PullTokenPayload<any>, ctx) => {
+  ctx.meter.Counter('pulled').add(parseInt(call.arguments[2]))
 })

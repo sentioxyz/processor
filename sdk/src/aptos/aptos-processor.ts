@@ -6,12 +6,11 @@ import {
   Transaction_UserTransaction,
   TransactionPayload_EntryFunctionPayload,
 } from '.'
-import type { Event as OldEvent } from 'aptos/src/generated'
+import type { MoveModule } from 'aptos/src/generated'
 
 import Long from 'long'
 import { APTOS_MAINNET_ID, APTOS_TESTNET_ID } from '../utils/chain'
-
-export type Event = OldEvent & { version: string }
+import { EventInstance } from './types'
 
 type IndexConfigure = {
   address: string
@@ -38,7 +37,7 @@ export interface ArgumentsFilter {
 
 class EventHandler {
   filters: EventFilter[]
-  handler: (event: Event) => Promise<ProcessResult>
+  handler: (event: EventInstance) => Promise<ProcessResult>
 }
 
 class CallHandler {
@@ -51,11 +50,24 @@ export class AptosBaseProcessor {
   config: IndexConfigure
   eventHandlers: EventHandler[] = []
   callHandlers: CallHandler[] = []
+  // typeMapping = new Map<string, MoveStruct>()
 
   constructor(moduleName: string, options: AptosBindOptions) {
     this.moduleName = moduleName
     this.configure(options)
     global.PROCESSOR_STATE.aptosProcessors.push(this)
+
+    // const abi = this.getABI()
+    // if (abi) {
+    //   const prefix = [this.config.address.toLowerCase(), moduleName].join("::")
+    //   for (const struct of abi.structs) {
+    //     this.typeMapping.set([prefix, struct.name].join("::"), struct)
+    //   }
+    // }
+  }
+
+  getABI(): MoveModule | undefined {
+    return undefined
   }
 
   public onTransaction(
@@ -81,7 +93,7 @@ export class AptosBaseProcessor {
   }
 
   public onEvent(
-    handler: (event: Event, ctx: AptosContext) => void,
+    handler: (event: EventInstance, ctx: AptosContext) => void,
     filter: EventFilter | EventFilter[]
   ): AptosBaseProcessor {
     let _filters: EventFilter[] = []
@@ -92,14 +104,18 @@ export class AptosBaseProcessor {
       _filters.push(filter)
     }
 
-    const address = this.config.address
-    const moduleName = this.moduleName
+    // const address = this.config.address
+    // const moduleName = this.moduleName
+
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
+    const processor = this
 
     this.eventHandlers.push({
       handler: async function (event) {
-        const ctx = new AptosContext(moduleName, address, Long.fromString(event.version))
+        const ctx = new AptosContext(processor.moduleName, processor.config.address, Long.fromString(event.version))
         if (event) {
-          handler(event, ctx)
+          const decoded = processor.tryDecode(event)
+          handler(decoded, ctx)
         }
         return {
           gauges: ctx.gauges,
@@ -165,5 +181,20 @@ export class AptosBaseProcessor {
       case AptosNetwork.MAIN_NET:
         return APTOS_MAINNET_ID
     }
+  }
+
+  tryDecode(event: EventInstance): EventInstance {
+    return event
+    // const struct = this.typeMapping.get(event.type)
+    // if (!struct) {
+    //   return event
+    // }
+    // // const decodedData = decode(struct, event.data)
+    //
+    // const typedEvent: TypedEvent<any> = {
+    //   ...event
+    //   // typedArgs: decodedData
+    // }
+    // return typedEvent
   }
 }

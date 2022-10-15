@@ -59,7 +59,7 @@ describe('Test Aptos Example', () => {
       bindings: [
         {
           data: {
-            raw: new TextEncoder().encode(JSON.stringify(testData.events[1])),
+            raw: new TextEncoder().encode(JSON.stringify(testData.events[testData.events.length - 1])),
           },
           handlerId: 0,
           handlerType: HandlerType.APT_EVENT,
@@ -180,6 +180,18 @@ const testData = {
             name: 'Souffl3 BlueBerry #2',
           },
         },
+      },
+    },
+    {
+      version: '18483034',
+      guid: {
+        creation_number: '7',
+        account_address: '0x21d5fe032affa1c8b10d343e9ad5a5618bc13baf5ed4a674fafaa12c54f416cc',
+      },
+      sequence_number: '980533',
+      type: '0x4188c8694687e844677c2aa87171019e23d61cac60de5082a278a8aa47e9d807::SouffleChefCampaign::PullTokenEvent',
+      data: {
+        receiver: '0x3a80be5daa84f2da7e07b3ec9234da48a5647f757187879c97a1fa03f31f1195',
       },
     },
   ],
