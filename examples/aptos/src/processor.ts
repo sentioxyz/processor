@@ -4,6 +4,9 @@ import { token } from '@sentio/sdk/lib/builtin/aptos/0x3'
 
 SouffleChefCampaign.bind({ startVersion: 6604913 })
   .onEntryPullTokenV2((call, ctx) => {
+    if (!ctx.transaction.success) {
+      return
+    }
     ctx.meter.Counter('call_num').add(1)
     ctx.meter.Counter('pulled').add(call.arguments_typed[3])
   })
@@ -11,6 +14,9 @@ SouffleChefCampaign.bind({ startVersion: 6604913 })
     ctx.meter.Counter('burned').add(1)
   })
   .onTransaction((txn, ctx) => {
+    if (!txn.success) {
+      return
+    }
     if (txn.events) {
       for (const event of txn.events) {
         if (event && event.type === '0x3::token::DepositEvent') {
@@ -21,6 +27,9 @@ SouffleChefCampaign.bind({ startVersion: 6604913 })
   })
 
 CandyMachine.bind({ startVersion: 6604913 }).onEntryPullToken((call, ctx) => {
+  if (!ctx.transaction.success) {
+    return
+  }
   ctx.meter.Counter('pulled').add(call.arguments_typed[2])
 })
 
