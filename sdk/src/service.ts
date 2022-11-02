@@ -247,7 +247,7 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
         blockConfigs: [],
         logConfigs: [],
         traceConfigs: [],
-        startBlock: aptosProcessor.config.startVersion,
+        startBlock: Long.fromString(aptosProcessor.config.startVersion.toString()),
         endBlock: DEFAULT_MAX_BLOCK,
         instructionConfig: undefined,
         aptosEventConfigs: [],

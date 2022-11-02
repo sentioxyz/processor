@@ -8,14 +8,15 @@ import {
   TypeRegistry,
 } from '.'
 
-import Long from 'long'
 import { EventInstance, TYPE_REGISTRY } from './types'
 import { getChainId } from './network'
+import { MoveResource } from 'aptos-sdk/src/generated'
+import { AptosResourceContext } from './context'
 
 type IndexConfigure = {
   address: string
   network: AptosNetwork
-  startVersion: Long
+  startVersion: bigint
   // endSeqNumber?: Long
 }
 
@@ -79,7 +80,7 @@ export class AptosBaseProcessor {
           processor.moduleName,
           processor.config.network,
           processor.config.address,
-          Long.fromString(tx.version),
+          BigInt(tx.version),
           tx
         )
         if (tx) {
@@ -116,7 +117,7 @@ export class AptosBaseProcessor {
           processor.moduleName,
           processor.config.network,
           processor.config.address,
-          Long.fromString(txn.version),
+          BigInt(txn.version),
           txn
         )
         if (txn && txn.events) {
@@ -158,7 +159,7 @@ export class AptosBaseProcessor {
           processor.moduleName,
           processor.config.network,
           processor.config.address,
-          Long.fromString(tx.version),
+          BigInt(tx.version),
           tx
         )
         if (tx) {
@@ -174,9 +175,9 @@ export class AptosBaseProcessor {
   }
 
   private configure(options: AptosBindOptions) {
-    let startVersion = Long.ZERO
-    if (options.startVersion) {
-      startVersion = Long.fromValue(options.startVersion)
+    let startVersion = 0n
+    if (options.startVersion !== undefined) {
+      startVersion = options.startVersion
     }
 
     this.config = {
@@ -201,4 +202,10 @@ export class AptosBaseProcessor {
     // should be override by subclass
     console.log('')
   }
+}
+
+export class AptosAccountProcessor {
+  resourcesHandlersByTime: MoveResource[] = []
+
+  public onTimer(handler: (resources: MoveResource[], ctx: AptosResourceContext) => void, minutes: bigint) {}
 }

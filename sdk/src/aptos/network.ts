@@ -39,6 +39,6 @@ export function getRpcClient(network: AptosNetwork): AptosClient {
 export class AptosBindOptions {
   address: string
   network?: AptosNetwork = AptosNetwork.TEST_NET
-  startVersion?: Long | number
+  startVersion?: bigint
   // endBlock?: Long | number
 }
