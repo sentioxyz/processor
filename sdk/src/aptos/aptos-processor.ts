@@ -50,6 +50,18 @@ class CallHandler {
   handler: (call: Transaction_UserTransaction) => Promise<ProcessResult>
 }
 
+export class MoveResourcesWithVersionPayload {
+  resources: MoveResource[]
+  version: string
+}
+
+class ResourceHandlder {
+  type?: string
+  versionInterval?: number
+  timeIntervalInMinutes?: number
+  handler: (resource: MoveResourcesWithVersionPayload) => Promise<ProcessResult>
+}
+
 export class AptosBaseProcessor {
   readonly moduleName: string
   config: IndexConfigure
@@ -58,7 +70,7 @@ export class AptosBaseProcessor {
 
   constructor(moduleName: string, options: AptosBindOptions) {
     this.moduleName = moduleName
-    this.configure(options)
+    this.config = configure(options)
     global.PROCESSOR_STATE.aptosProcessors.push(this)
     this.loadTypes(TYPE_REGISTRY)
   }
@@ -174,19 +186,6 @@ export class AptosBaseProcessor {
     return this
   }
 
-  private configure(options: AptosBindOptions) {
-    let startVersion = 0n
-    if (options.startVersion !== undefined) {
-      startVersion = options.startVersion
-    }
-
-    this.config = {
-      startVersion: startVersion,
-      address: options.address,
-      network: options.network || AptosNetwork.MAIN_NET,
-    }
-  }
-
   getChainId(): string {
     return getChainId(this.config.network)
   }
@@ -205,7 +204,74 @@ export class AptosBaseProcessor {
 }
 
 export class AptosAccountProcessor {
-  resourcesHandlersByTime: MoveResource[] = []
+  config: IndexConfigure
 
-  public onTimer(handler: (resources: MoveResource[], ctx: AptosResourceContext) => void, minutes: bigint) {}
+  resourcesHandlers: ResourceHandlder[] = []
+
+  static bind(options: AptosBindOptions): AptosAccountProcessor {
+    return new AptosAccountProcessor(options)
+  }
+
+  protected constructor(options: AptosBindOptions) {
+    this.config = configure(options)
+    global.PROCESSOR_STATE.aptosAccountProcessors.push(this)
+  }
+
+  getChainId(): string {
+    return getChainId(this.config.network)
+  }
+
+  private onInterval(
+    handler: (resources: MoveResource[], ctx: AptosResourceContext) => void,
+    timeInterval: number | undefined,
+    versionInterval: number | undefined,
+    type: string | undefined
+  ) {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
+    const processor = this
+    this.resourcesHandlers.push({
+      handler: async function (arg) {
+        const ctx = new AptosResourceContext(processor.config.network, processor.config.address, BigInt(arg.version))
+        await handler(arg.resources, ctx)
+        return ctx.getProcessResult()
+      },
+      timeIntervalInMinutes: timeInterval,
+      versionInterval: versionInterval,
+      type: type,
+    })
+    return this
+  }
+
+  public onTimeInterval(
+    handler: (resources: MoveResource[], ctx: AptosResourceContext) => void,
+    timeIntervalInMinutes = 60,
+    typpe?: string
+  ) {
+    return this.onInterval(handler, timeIntervalInMinutes, undefined, typpe)
+  }
+
+  public onVersionInterval(
+    handler: (resources: MoveResource[], ctx: AptosResourceContext) => void,
+    versionInterval = 100000,
+    typePrefix?: string
+  ) {
+    return this.onInterval(handler, undefined, versionInterval, typePrefix)
+  }
+}
+
+function configure(options: AptosBindOptions): IndexConfigure {
+  let startVersion = 0n
+  if (options.startVersion !== undefined) {
+    if (typeof options.startVersion === 'number') {
+      startVersion = BigInt(options.startVersion)
+    } else {
+      startVersion = options.startVersion
+    }
+  }
+
+  return {
+    startVersion: startVersion,
+    address: options.address,
+    network: options.network || AptosNetwork.MAIN_NET,
+  }
 }
