@@ -6,7 +6,8 @@ import { getCliVersion } from '../utils'
 import { WriteKey } from '../key'
 import chalk from 'chalk'
 import http from 'http'
-import readline from 'readline'
+import os from 'os'
+import * as crypto from 'crypto'
 
 interface AuthParams {
   serverPort: number
@@ -41,32 +42,34 @@ app.get('/callback', async (req, res) => {
   const tokenRes = await tokenResRaw.json()
   const accessToken = tokenRes['access_token']
 
-  // create API key
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  })
-  const prompt = async () => {
-    const answer: string = await new Promise((resolve) => rl.question(`Enter the name of the new API key: `, resolve))
-    if (answer.length > 0) {
-      rl.close()
-      const realHost = getFinalizedHost(host)
-      const createApiKeyResRaw = await createApiKey(realHost, answer, accessToken)
-      if (!createApiKeyResRaw.ok) {
-        console.error(
-          chalk.red('create api key error, code:', createApiKeyResRaw.status, createApiKeyResRaw.statusText)
-        )
-        return
-      }
-      const createApiKeyRes = await createApiKeyResRaw.json()
-      const apiKey = createApiKeyRes['key']
-      WriteKey(realHost, apiKey)
-      console.log(chalk.green('login success, new API key: ' + apiKey))
+  // check if the account is ready
+  const realHost = getFinalizedHost(host)
+  const userResRaw = await getUser(realHost, accessToken)
+  if (!userResRaw.ok) {
+    if (userResRaw.status == 401) {
+      console.error(chalk.red('please sign up on sentio first'))
     } else {
-      await prompt()
+      console.error(chalk.red('get user error, code:', userResRaw.status, userResRaw.statusText))
     }
+    return
   }
-  await prompt()
+  const userRes = await userResRaw.json()
+  if (!userRes.emailVerified) {
+    console.error(chalk.red('please verify your email first'))
+    return
+  }
+
+  // create API key
+  const apiKeyName = `${os.hostname()}-${crypto.randomBytes(4).toString('hex')}`
+  const createApiKeyResRaw = await createApiKey(realHost, apiKeyName, 'sdk_generated', accessToken)
+  if (!createApiKeyResRaw.ok) {
+    console.error(chalk.red('create api key error, code:', createApiKeyResRaw.status, createApiKeyResRaw.statusText))
+    return
+  }
+  const createApiKeyRes = await createApiKeyResRaw.json()
+  const apiKey = createApiKeyRes['key']
+  WriteKey(realHost, apiKey)
+  console.log(chalk.green('login success, new API key: ' + apiKey))
 
   server.close()
 })
@@ -89,7 +92,7 @@ async function getToken(host: string, code: string) {
   })
 }
 
-async function createApiKey(host: string, name: string, accessToken: string) {
+async function createApiKey(host: string, name: string, source: string, accessToken: string) {
   const createApiKeyUrl = new URL('/api/v1/keys', host)
   return fetch(createApiKeyUrl, {
     method: 'POST',
@@ -100,6 +103,18 @@ async function createApiKey(host: string, name: string, accessToken: string) {
     body: JSON.stringify({
       name: name,
       scopes: ['write:project'],
+      source: source,
     }),
+  })
+}
+
+async function getUser(host: string, accessToken: string) {
+  const getUserUrl = new URL('/api/v1/users', host)
+  return fetch(getUserUrl, {
+    method: 'GET',
+    headers: {
+      Authorization: 'Bearer ' + accessToken,
+      version: getCliVersion(),
+    },
   })
 }

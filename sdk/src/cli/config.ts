@@ -36,13 +36,13 @@ export function getAuthConfig(host: string): { domain: string; clientId: string;
     case undefined:
     case 'prod':
       domain = 'https://auth.sentio.xyz'
-      clientId = '6lfIyoWjubvakqZcJgdlKdnCIda49bFd'
+      clientId = 'xd80PeuvuZVHpBFh7yEdlSZdtE5mTpGe'
       audience = 'https://app.sentio.xyz/api/v1'
       break
     case 'test':
     case 'staging':
       domain = 'https://auth.test.sentio.xyz'
-      clientId = 'PByx7MFGcZmtHqgYj282Qag34yqFyC0o'
+      clientId = 'qXVvovHaOE37SndxTZJxCKgZjw1axPax'
       audience = 'https://test.sentio.xyz/api/v1'
       break
     default:
