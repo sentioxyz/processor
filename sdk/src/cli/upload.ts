@@ -125,5 +125,24 @@ export async function uploadFile(options: SentioProjectConfig, apiKeyOverride: s
     }
   }
 
-  await upload()
+  const tryUploading = async () => {
+    try {
+      await upload()
+    } catch (e) {
+      console.log(e)
+      const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+      })
+      const answer: string = await new Promise((resolve) =>
+        rl.question(`Do you want to retry the uploading process? (yes/no) `, resolve)
+      )
+      rl.close()
+      if (['y', 'yes'].includes(answer.toLowerCase())) {
+        await tryUploading()
+      }
+    }
+  }
+
+  await tryUploading()
 }
