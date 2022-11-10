@@ -130,6 +130,10 @@ export async function uploadFile(options: SentioProjectConfig, apiKeyOverride: s
       await upload()
     } catch (e) {
       console.log(e)
+      if (e.constructor.name === 'FetchError' && e.type === 'system' && e.code === 'EPIPE') {
+        await tryUploading()
+        return
+      }
       const rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout,
