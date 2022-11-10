@@ -53,6 +53,7 @@ export async function uploadFile(options: SentioProjectConfig, apiKeyOverride: s
   hash.update(content)
   const digest = hash.digest('hex')
 
+  let triedCount = 0
   const upload = async () => {
     const data = new FormData()
     data.append('attachment', fs.createReadStream(PROCESSOR_FILE))
@@ -71,7 +72,7 @@ export async function uploadFile(options: SentioProjectConfig, apiKeyOverride: s
     } catch (e) {
       // skip errors
     }
-    console.log(chalk.blue('Uploading'))
+    console.log(chalk.blue(triedCount > 1 ? 'Retry uploading' : 'Uploading'))
     const res = await fetch(url, {
       method: 'POST',
       headers: {
@@ -126,23 +127,14 @@ export async function uploadFile(options: SentioProjectConfig, apiKeyOverride: s
   }
 
   const tryUploading = async () => {
+    if (triedCount++ >= 5) {
+      return
+    }
     try {
       await upload()
     } catch (e) {
       console.log(e)
       if (e.constructor.name === 'FetchError' && e.type === 'system' && e.code === 'EPIPE') {
-        await tryUploading()
-        return
-      }
-      const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-      })
-      const answer: string = await new Promise((resolve) =>
-        rl.question(`Do you want to retry the uploading process? (yes/no) `, resolve)
-      )
-      rl.close()
-      if (['y', 'yes'].includes(answer.toLowerCase())) {
         await tryUploading()
       }
     }
