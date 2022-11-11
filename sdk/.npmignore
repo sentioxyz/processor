@@ -1,6 +1,0 @@
-*
-
-!/{lib,src,templates}/**
-/{lib,src}/tests
-
-*.test.{js,ts}
