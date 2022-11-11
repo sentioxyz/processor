@@ -1,5 +1,6 @@
-lib/tests
-src/tests
+*
 
-*.test.ts
-*.test.js
+!/{lib,src,templates}/**
+/{lib,src}/tests
+
+*.test.{js,ts}

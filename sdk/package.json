@@ -76,11 +76,6 @@
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "module": "./lib/index.js",
-  "files": [
-    "lib/**/*",
-    "src/**/*",
-    "templates/**/*"
-  ],
   "engines": {
     "node": ">=16"
   }
