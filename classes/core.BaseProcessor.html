@@ -32,7 +32,7 @@
 <li><a href="builtin.erc20bytes.ERC20BytesProcessor.html" class="tsd-signature-type" data-tsd-kind="Class">ERC20BytesProcessor</a></li>
 <li><a href="builtin.weth9.WETH9Processor.html" class="tsd-signature-type" data-tsd-kind="Class">WETH9Processor</a></li></ul></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c080983/sdk/src/core/base-processor.ts#L23">sdk/src/core/base-processor.ts:23</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/f93a9b4/sdk/src/core/base-processor.ts#L32">sdk/src/core/base-processor.ts:32</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -55,7 +55,10 @@
 <a href="core.BaseProcessor.html#getChainId" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>get<wbr/>Chain<wbr/>Id</span></a>
 <a href="core.BaseProcessor.html#onAllEvents" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>on<wbr/>All<wbr/>Events</span></a>
 <a href="core.BaseProcessor.html#onBlock" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>on<wbr/>Block</span></a>
+<a href="core.BaseProcessor.html#onBlockInterval" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>on<wbr/>Block<wbr/>Interval</span></a>
 <a href="core.BaseProcessor.html#onEvent" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>on<wbr/>Event</span></a>
+<a href="core.BaseProcessor.html#onInterval" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>on<wbr/>Interval</span></a>
+<a href="core.BaseProcessor.html#onTimeInterval" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>on<wbr/>Time<wbr/>Interval</span></a>
 <a href="core.BaseProcessor.html#onTrace" class="tsd-index-link tsd-kind-method tsd-parent-kind-class tsd-is-protected"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>on<wbr/>Trace</span></a>
 </div></section></div></details></section></section>
 <section class="tsd-panel-group tsd-member-group">
@@ -79,29 +82,29 @@
 <h5>config: <a href="core.BindOptions.html" class="tsd-signature-type" data-tsd-kind="Class">BindOptions</a></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="core.BaseProcessor.html" class="tsd-signature-type" data-tsd-kind="Class">BaseProcessor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TBoundContractView</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c080983/sdk/src/core/base-processor.ts#L33">sdk/src/core/base-processor.ts:33</a></li></ul></aside></li></ul></section></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/f93a9b4/sdk/src/core/base-processor.ts#L42">sdk/src/core/base-processor.ts:42</a></li></ul></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Properties</h2>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="blockHandlers" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>block<wbr/>Handlers</span><a href="#blockHandlers" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
-<div class="tsd-signature">block<wbr/>Handlers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>block<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Block</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ProcessResult</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div><aside class="tsd-sources">
+<div class="tsd-signature">block<wbr/>Handlers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">BlockHandlder</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c080983/sdk/src/core/base-processor.ts#L27">sdk/src/core/base-processor.ts:27</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/f93a9b4/sdk/src/core/base-processor.ts#L36">sdk/src/core/base-processor.ts:36</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="config" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>config</span><a href="#config" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">BindInternalOptions</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c080983/sdk/src/core/base-processor.ts#L31">sdk/src/core/base-processor.ts:31</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/f93a9b4/sdk/src/core/base-processor.ts#L40">sdk/src/core/base-processor.ts:40</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="eventHandlers" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>event<wbr/>Handlers</span><a href="#eventHandlers" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">event<wbr/>Handlers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventsHandler</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c080983/sdk/src/core/base-processor.ts#L28">sdk/src/core/base-processor.ts:28</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/f93a9b4/sdk/src/core/base-processor.ts#L37">sdk/src/core/base-processor.ts:37</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="traceHandlers" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>trace<wbr/>Handlers</span><a href="#traceHandlers" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">trace<wbr/>Handlers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TraceHandler</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c080983/sdk/src/core/base-processor.ts#L29">sdk/src/core/base-processor.ts:29</a></li></ul></aside></section></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/f93a9b4/sdk/src/core/base-processor.ts#L38">sdk/src/core/base-processor.ts:38</a></li></ul></aside></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Methods</h2>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a id="CreateBoundContractView" class="tsd-anchor"></a>
@@ -111,7 +114,7 @@
 <li class="tsd-description">
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type" data-tsd-kind="Type parameter">TBoundContractView</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c080983/sdk/src/core/base-processor.ts#L56">sdk/src/core/base-processor.ts:56</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/f93a9b4/sdk/src/core/base-processor.ts#L65">sdk/src/core/base-processor.ts:65</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="getChainId" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>get<wbr/>Chain<wbr/>Id</span><a href="#getChainId" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -119,7 +122,7 @@
 <li class="tsd-description">
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c080983/sdk/src/core/base-processor.ts#L58">sdk/src/core/base-processor.ts:58</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/f93a9b4/sdk/src/core/base-processor.ts#L67">sdk/src/core/base-processor.ts:67</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="onAllEvents" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on<wbr/>All<wbr/>Events</span><a href="#onAllEvents" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -145,7 +148,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">PromiseOrVoid</span></h4></li></ul></li></ul></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="core.BaseProcessor.html" class="tsd-signature-type" data-tsd-kind="Class">BaseProcessor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TBoundContractView</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c080983/sdk/src/core/base-processor.ts#L128">sdk/src/core/base-processor.ts:128</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/f93a9b4/sdk/src/core/base-processor.ts#L163">sdk/src/core/base-processor.ts:163</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="onBlock" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on<wbr/>Block</span><a href="#onBlock" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -171,7 +174,35 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">PromiseOrVoid</span></h4></li></ul></li></ul></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="core.BaseProcessor.html" class="tsd-signature-type" data-tsd-kind="Class">BaseProcessor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TBoundContractView</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c080983/sdk/src/core/base-processor.ts#L109">sdk/src/core/base-processor.ts:109</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/f93a9b4/sdk/src/core/base-processor.ts#L118">sdk/src/core/base-processor.ts:118</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="onBlockInterval" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>on<wbr/>Block<wbr/>Interval</span><a href="#onBlockInterval" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="onBlockInterval.onBlockInterval-1">on<wbr/>Block<wbr/>Interval<span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>block<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Block</span>, ctx<span class="tsd-signature-symbol">: </span><a href="core.ContractContext.html" class="tsd-signature-type" data-tsd-kind="Class">ContractContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TBoundContractView</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">PromiseOrVoid</span><span class="tsd-signature-symbol">)</span>, blockInterval<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.BaseProcessor.html" class="tsd-signature-type" data-tsd-kind="Class">BaseProcessor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TBoundContractView</span><span class="tsd-signature-symbol">&gt;</span><a href="#onBlockInterval.onBlockInterval-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>handler: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>block<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Block</span>, ctx<span class="tsd-signature-symbol">: </span><a href="core.ContractContext.html" class="tsd-signature-type" data-tsd-kind="Class">ContractContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TBoundContractView</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">PromiseOrVoid</span><span class="tsd-signature-symbol">)</span></h5>
+<ul class="tsd-parameters">
+<li class="tsd-parameter-signature">
+<ul class="tsd-signatures tsd-kind-type-literal">
+<li class="tsd-signature"><span class="tsd-signature-symbol">(</span>block<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Block</span>, ctx<span class="tsd-signature-symbol">: </span><a href="core.ContractContext.html" class="tsd-signature-type" data-tsd-kind="Class">ContractContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TBoundContractView</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PromiseOrVoid</span></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>block: <span class="tsd-signature-type">Block</span></h5></li>
+<li>
+<h5>ctx: <a href="core.ContractContext.html" class="tsd-signature-type" data-tsd-kind="Class">ContractContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TBoundContractView</span><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">PromiseOrVoid</span></h4></li></ul></li></ul></li>
+<li>
+<h5>blockInterval: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 240</span></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="core.BaseProcessor.html" class="tsd-signature-type" data-tsd-kind="Class">BaseProcessor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TBoundContractView</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/f93a9b4/sdk/src/core/base-processor.ts#L122">sdk/src/core/base-processor.ts:122</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="onEvent" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on<wbr/>Event</span><a href="#onEvent" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -199,7 +230,65 @@
 <h5>filter: <span class="tsd-signature-type">EventFilter</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EventFilter</span><span class="tsd-signature-symbol">[]</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="core.BaseProcessor.html" class="tsd-signature-type" data-tsd-kind="Class">BaseProcessor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TBoundContractView</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c080983/sdk/src/core/base-processor.ts#L62">sdk/src/core/base-processor.ts:62</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/f93a9b4/sdk/src/core/base-processor.ts#L71">sdk/src/core/base-processor.ts:71</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="onInterval" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>on<wbr/>Interval</span><a href="#onInterval" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="onInterval.onInterval-1">on<wbr/>Interval<span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>block<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Block</span>, ctx<span class="tsd-signature-symbol">: </span><a href="core.ContractContext.html" class="tsd-signature-type" data-tsd-kind="Class">ContractContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TBoundContractView</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">PromiseOrVoid</span><span class="tsd-signature-symbol">)</span>, timeInterval<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, blockInterval<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.BaseProcessor.html" class="tsd-signature-type" data-tsd-kind="Class">BaseProcessor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TBoundContractView</span><span class="tsd-signature-symbol">&gt;</span><a href="#onInterval.onInterval-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>handler: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>block<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Block</span>, ctx<span class="tsd-signature-symbol">: </span><a href="core.ContractContext.html" class="tsd-signature-type" data-tsd-kind="Class">ContractContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TBoundContractView</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">PromiseOrVoid</span><span class="tsd-signature-symbol">)</span></h5>
+<ul class="tsd-parameters">
+<li class="tsd-parameter-signature">
+<ul class="tsd-signatures tsd-kind-type-literal">
+<li class="tsd-signature"><span class="tsd-signature-symbol">(</span>block<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Block</span>, ctx<span class="tsd-signature-symbol">: </span><a href="core.ContractContext.html" class="tsd-signature-type" data-tsd-kind="Class">ContractContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TBoundContractView</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PromiseOrVoid</span></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>block: <span class="tsd-signature-type">Block</span></h5></li>
+<li>
+<h5>ctx: <a href="core.ContractContext.html" class="tsd-signature-type" data-tsd-kind="Class">ContractContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TBoundContractView</span><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">PromiseOrVoid</span></h4></li></ul></li></ul></li>
+<li>
+<h5>timeInterval: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5></li>
+<li>
+<h5>blockInterval: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="core.BaseProcessor.html" class="tsd-signature-type" data-tsd-kind="Class">BaseProcessor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TBoundContractView</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/f93a9b4/sdk/src/core/base-processor.ts#L136">sdk/src/core/base-processor.ts:136</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="onTimeInterval" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>on<wbr/>Time<wbr/>Interval</span><a href="#onTimeInterval" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="onTimeInterval.onTimeInterval-1">on<wbr/>Time<wbr/>Interval<span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>block<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Block</span>, ctx<span class="tsd-signature-symbol">: </span><a href="core.ContractContext.html" class="tsd-signature-type" data-tsd-kind="Class">ContractContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TBoundContractView</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">PromiseOrVoid</span><span class="tsd-signature-symbol">)</span>, timeIntervalInMinutes<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.BaseProcessor.html" class="tsd-signature-type" data-tsd-kind="Class">BaseProcessor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TBoundContractView</span><span class="tsd-signature-symbol">&gt;</span><a href="#onTimeInterval.onTimeInterval-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>handler: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>block<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Block</span>, ctx<span class="tsd-signature-symbol">: </span><a href="core.ContractContext.html" class="tsd-signature-type" data-tsd-kind="Class">ContractContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TBoundContractView</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">PromiseOrVoid</span><span class="tsd-signature-symbol">)</span></h5>
+<ul class="tsd-parameters">
+<li class="tsd-parameter-signature">
+<ul class="tsd-signatures tsd-kind-type-literal">
+<li class="tsd-signature"><span class="tsd-signature-symbol">(</span>block<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Block</span>, ctx<span class="tsd-signature-symbol">: </span><a href="core.ContractContext.html" class="tsd-signature-type" data-tsd-kind="Class">ContractContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TBoundContractView</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PromiseOrVoid</span></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>block: <span class="tsd-signature-type">Block</span></h5></li>
+<li>
+<h5>ctx: <a href="core.ContractContext.html" class="tsd-signature-type" data-tsd-kind="Class">ContractContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TBoundContractView</span><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">PromiseOrVoid</span></h4></li></ul></li></ul></li>
+<li>
+<h5>timeIntervalInMinutes: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 60</span></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="core.BaseProcessor.html" class="tsd-signature-type" data-tsd-kind="Class">BaseProcessor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TBoundContractView</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/f93a9b4/sdk/src/core/base-processor.ts#L129">sdk/src/core/base-processor.ts:129</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a id="onTrace" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagProtected">Protected</code> <span>on<wbr/>Trace</span><a href="#onTrace" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
@@ -227,7 +316,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">PromiseOrVoid</span></h4></li></ul></li></ul></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="core.BaseProcessor.html" class="tsd-signature-type" data-tsd-kind="Class">BaseProcessor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TBoundContractView</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c080983/sdk/src/core/base-processor.ts#L140">sdk/src/core/base-processor.ts:140</a></li></ul></aside></li></ul></section></section></div>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/f93a9b4/sdk/src/core/base-processor.ts#L175">sdk/src/core/base-processor.ts:175</a></li></ul></aside></li></ul></section></section></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <div class="tsd-navigation settings">
 <details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
@@ -356,7 +445,10 @@
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="core.BaseProcessor.html#getChainId" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>get<wbr/>Chain<wbr/>Id</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="core.BaseProcessor.html#onAllEvents" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>on<wbr/>All<wbr/>Events</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="core.BaseProcessor.html#onBlock" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>on<wbr/>Block</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.BaseProcessor.html#onBlockInterval" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>on<wbr/>Block<wbr/>Interval</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="core.BaseProcessor.html#onEvent" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>on<wbr/>Event</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.BaseProcessor.html#onInterval" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>on<wbr/>Interval</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.BaseProcessor.html#onTimeInterval" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>on<wbr/>Time<wbr/>Interval</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="core.BaseProcessor.html#onTrace" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>on<wbr/>Trace</a></li></ul></li></ul></nav></div></div>
 <div class="container tsd-generator">
 <p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div>
