@@ -3,7 +3,8 @@
   "rules": {
     "@typescript-eslint/no-unused-vars": ["off"],
     "@typescript-eslint/no-explicit-any": ["off"],
-    "import/no-cycle": 2,
-    "import/no-self-import": 2
+    "import/no-unresolved": ["off"]
+//    "import/no-cycle": 2,
+//    "import/no-self-import": 2
   }
 }
