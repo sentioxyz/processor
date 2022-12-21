@@ -462,7 +462,40 @@ export interface RawTransaction {
   slot?: Long | undefined;
 }
 
-export interface Instruction {
+export interface Data {
+  raw: Uint8Array;
+  ethLog: Data_EthLog | undefined;
+  ethBlock: Data_EthBlock | undefined;
+  ethTransaction: Data_EthTransaction | undefined;
+  ethTrace: Data_EthTrace | undefined;
+  solInstruction: Data_SolInstruction | undefined;
+  aptEvent: Data_AptEvent | undefined;
+  aptCall: Data_AptCall | undefined;
+  aptResource: Data_AptResource | undefined;
+}
+
+export interface Data_EthLog {
+  data: Uint8Array;
+  transaction?: Uint8Array | undefined;
+}
+
+export interface Data_EthBlock {
+  data: Uint8Array;
+}
+
+export interface Data_EthTransaction {
+  data: Uint8Array;
+  transaction?: Uint8Array | undefined;
+  transactionReceipt?: Uint8Array | undefined;
+}
+
+export interface Data_EthTrace {
+  data: Uint8Array;
+  transaction?: Uint8Array | undefined;
+  transactionReceipt?: Uint8Array | undefined;
+}
+
+export interface Data_SolInstruction {
   instructionData: string;
   slot: Long;
   programAccountId: string;
@@ -470,18 +503,24 @@ export interface Instruction {
   parsed?: Uint8Array | undefined;
 }
 
-export interface Data {
-  raw: Uint8Array;
+export interface Data_AptEvent {
+  data: Uint8Array;
+}
+
+export interface Data_AptCall {
+  data: Uint8Array;
+}
+
+export interface Data_AptResource {
+  data: Uint8Array;
+  version: Long;
+  timestamp: string;
 }
 
 export interface DataBinding {
   data: Data | undefined;
   handlerType: HandlerType;
   handlerIds: number[];
-}
-
-export interface RawBlock {
-  raw: Uint8Array;
 }
 
 export interface ProcessResult {
@@ -3268,7 +3307,534 @@ export const RawTransaction = {
   },
 };
 
-function createBaseInstruction(): Instruction {
+function createBaseData(): Data {
+  return {
+    raw: new Uint8Array(),
+    ethLog: undefined,
+    ethBlock: undefined,
+    ethTransaction: undefined,
+    ethTrace: undefined,
+    solInstruction: undefined,
+    aptEvent: undefined,
+    aptCall: undefined,
+    aptResource: undefined,
+  };
+}
+
+export const Data = {
+  encode(message: Data, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.raw.length !== 0) {
+      writer.uint32(10).bytes(message.raw);
+    }
+    if (message.ethLog !== undefined) {
+      Data_EthLog.encode(message.ethLog, writer.uint32(18).fork()).ldelim();
+    }
+    if (message.ethBlock !== undefined) {
+      Data_EthBlock.encode(message.ethBlock, writer.uint32(26).fork()).ldelim();
+    }
+    if (message.ethTransaction !== undefined) {
+      Data_EthTransaction.encode(
+        message.ethTransaction,
+        writer.uint32(34).fork()
+      ).ldelim();
+    }
+    if (message.ethTrace !== undefined) {
+      Data_EthTrace.encode(message.ethTrace, writer.uint32(42).fork()).ldelim();
+    }
+    if (message.solInstruction !== undefined) {
+      Data_SolInstruction.encode(
+        message.solInstruction,
+        writer.uint32(50).fork()
+      ).ldelim();
+    }
+    if (message.aptEvent !== undefined) {
+      Data_AptEvent.encode(message.aptEvent, writer.uint32(58).fork()).ldelim();
+    }
+    if (message.aptCall !== undefined) {
+      Data_AptCall.encode(message.aptCall, writer.uint32(66).fork()).ldelim();
+    }
+    if (message.aptResource !== undefined) {
+      Data_AptResource.encode(
+        message.aptResource,
+        writer.uint32(74).fork()
+      ).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Data {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseData();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.raw = reader.bytes();
+          break;
+        case 2:
+          message.ethLog = Data_EthLog.decode(reader, reader.uint32());
+          break;
+        case 3:
+          message.ethBlock = Data_EthBlock.decode(reader, reader.uint32());
+          break;
+        case 4:
+          message.ethTransaction = Data_EthTransaction.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+        case 5:
+          message.ethTrace = Data_EthTrace.decode(reader, reader.uint32());
+          break;
+        case 6:
+          message.solInstruction = Data_SolInstruction.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+        case 7:
+          message.aptEvent = Data_AptEvent.decode(reader, reader.uint32());
+          break;
+        case 8:
+          message.aptCall = Data_AptCall.decode(reader, reader.uint32());
+          break;
+        case 9:
+          message.aptResource = Data_AptResource.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Data {
+    return {
+      raw: isSet(object.raw) ? bytesFromBase64(object.raw) : new Uint8Array(),
+      ethLog: isSet(object.ethLog)
+        ? Data_EthLog.fromJSON(object.ethLog)
+        : undefined,
+      ethBlock: isSet(object.ethBlock)
+        ? Data_EthBlock.fromJSON(object.ethBlock)
+        : undefined,
+      ethTransaction: isSet(object.ethTransaction)
+        ? Data_EthTransaction.fromJSON(object.ethTransaction)
+        : undefined,
+      ethTrace: isSet(object.ethTrace)
+        ? Data_EthTrace.fromJSON(object.ethTrace)
+        : undefined,
+      solInstruction: isSet(object.solInstruction)
+        ? Data_SolInstruction.fromJSON(object.solInstruction)
+        : undefined,
+      aptEvent: isSet(object.aptEvent)
+        ? Data_AptEvent.fromJSON(object.aptEvent)
+        : undefined,
+      aptCall: isSet(object.aptCall)
+        ? Data_AptCall.fromJSON(object.aptCall)
+        : undefined,
+      aptResource: isSet(object.aptResource)
+        ? Data_AptResource.fromJSON(object.aptResource)
+        : undefined,
+    };
+  },
+
+  toJSON(message: Data): unknown {
+    const obj: any = {};
+    message.raw !== undefined &&
+      (obj.raw = base64FromBytes(
+        message.raw !== undefined ? message.raw : new Uint8Array()
+      ));
+    message.ethLog !== undefined &&
+      (obj.ethLog = message.ethLog
+        ? Data_EthLog.toJSON(message.ethLog)
+        : undefined);
+    message.ethBlock !== undefined &&
+      (obj.ethBlock = message.ethBlock
+        ? Data_EthBlock.toJSON(message.ethBlock)
+        : undefined);
+    message.ethTransaction !== undefined &&
+      (obj.ethTransaction = message.ethTransaction
+        ? Data_EthTransaction.toJSON(message.ethTransaction)
+        : undefined);
+    message.ethTrace !== undefined &&
+      (obj.ethTrace = message.ethTrace
+        ? Data_EthTrace.toJSON(message.ethTrace)
+        : undefined);
+    message.solInstruction !== undefined &&
+      (obj.solInstruction = message.solInstruction
+        ? Data_SolInstruction.toJSON(message.solInstruction)
+        : undefined);
+    message.aptEvent !== undefined &&
+      (obj.aptEvent = message.aptEvent
+        ? Data_AptEvent.toJSON(message.aptEvent)
+        : undefined);
+    message.aptCall !== undefined &&
+      (obj.aptCall = message.aptCall
+        ? Data_AptCall.toJSON(message.aptCall)
+        : undefined);
+    message.aptResource !== undefined &&
+      (obj.aptResource = message.aptResource
+        ? Data_AptResource.toJSON(message.aptResource)
+        : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<Data>): Data {
+    const message = createBaseData();
+    message.raw = object.raw ?? new Uint8Array();
+    message.ethLog =
+      object.ethLog !== undefined && object.ethLog !== null
+        ? Data_EthLog.fromPartial(object.ethLog)
+        : undefined;
+    message.ethBlock =
+      object.ethBlock !== undefined && object.ethBlock !== null
+        ? Data_EthBlock.fromPartial(object.ethBlock)
+        : undefined;
+    message.ethTransaction =
+      object.ethTransaction !== undefined && object.ethTransaction !== null
+        ? Data_EthTransaction.fromPartial(object.ethTransaction)
+        : undefined;
+    message.ethTrace =
+      object.ethTrace !== undefined && object.ethTrace !== null
+        ? Data_EthTrace.fromPartial(object.ethTrace)
+        : undefined;
+    message.solInstruction =
+      object.solInstruction !== undefined && object.solInstruction !== null
+        ? Data_SolInstruction.fromPartial(object.solInstruction)
+        : undefined;
+    message.aptEvent =
+      object.aptEvent !== undefined && object.aptEvent !== null
+        ? Data_AptEvent.fromPartial(object.aptEvent)
+        : undefined;
+    message.aptCall =
+      object.aptCall !== undefined && object.aptCall !== null
+        ? Data_AptCall.fromPartial(object.aptCall)
+        : undefined;
+    message.aptResource =
+      object.aptResource !== undefined && object.aptResource !== null
+        ? Data_AptResource.fromPartial(object.aptResource)
+        : undefined;
+    return message;
+  },
+};
+
+function createBaseData_EthLog(): Data_EthLog {
+  return { data: new Uint8Array(), transaction: undefined };
+}
+
+export const Data_EthLog = {
+  encode(
+    message: Data_EthLog,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.data.length !== 0) {
+      writer.uint32(10).bytes(message.data);
+    }
+    if (message.transaction !== undefined) {
+      writer.uint32(18).bytes(message.transaction);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Data_EthLog {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseData_EthLog();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.data = reader.bytes();
+          break;
+        case 2:
+          message.transaction = reader.bytes();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Data_EthLog {
+    return {
+      data: isSet(object.data)
+        ? bytesFromBase64(object.data)
+        : new Uint8Array(),
+      transaction: isSet(object.transaction)
+        ? bytesFromBase64(object.transaction)
+        : undefined,
+    };
+  },
+
+  toJSON(message: Data_EthLog): unknown {
+    const obj: any = {};
+    message.data !== undefined &&
+      (obj.data = base64FromBytes(
+        message.data !== undefined ? message.data : new Uint8Array()
+      ));
+    message.transaction !== undefined &&
+      (obj.transaction =
+        message.transaction !== undefined
+          ? base64FromBytes(message.transaction)
+          : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<Data_EthLog>): Data_EthLog {
+    const message = createBaseData_EthLog();
+    message.data = object.data ?? new Uint8Array();
+    message.transaction = object.transaction ?? undefined;
+    return message;
+  },
+};
+
+function createBaseData_EthBlock(): Data_EthBlock {
+  return { data: new Uint8Array() };
+}
+
+export const Data_EthBlock = {
+  encode(
+    message: Data_EthBlock,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.data.length !== 0) {
+      writer.uint32(10).bytes(message.data);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Data_EthBlock {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseData_EthBlock();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.data = reader.bytes();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Data_EthBlock {
+    return {
+      data: isSet(object.data)
+        ? bytesFromBase64(object.data)
+        : new Uint8Array(),
+    };
+  },
+
+  toJSON(message: Data_EthBlock): unknown {
+    const obj: any = {};
+    message.data !== undefined &&
+      (obj.data = base64FromBytes(
+        message.data !== undefined ? message.data : new Uint8Array()
+      ));
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<Data_EthBlock>): Data_EthBlock {
+    const message = createBaseData_EthBlock();
+    message.data = object.data ?? new Uint8Array();
+    return message;
+  },
+};
+
+function createBaseData_EthTransaction(): Data_EthTransaction {
+  return {
+    data: new Uint8Array(),
+    transaction: undefined,
+    transactionReceipt: undefined,
+  };
+}
+
+export const Data_EthTransaction = {
+  encode(
+    message: Data_EthTransaction,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.data.length !== 0) {
+      writer.uint32(10).bytes(message.data);
+    }
+    if (message.transaction !== undefined) {
+      writer.uint32(18).bytes(message.transaction);
+    }
+    if (message.transactionReceipt !== undefined) {
+      writer.uint32(26).bytes(message.transactionReceipt);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Data_EthTransaction {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseData_EthTransaction();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.data = reader.bytes();
+          break;
+        case 2:
+          message.transaction = reader.bytes();
+          break;
+        case 3:
+          message.transactionReceipt = reader.bytes();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Data_EthTransaction {
+    return {
+      data: isSet(object.data)
+        ? bytesFromBase64(object.data)
+        : new Uint8Array(),
+      transaction: isSet(object.transaction)
+        ? bytesFromBase64(object.transaction)
+        : undefined,
+      transactionReceipt: isSet(object.transactionReceipt)
+        ? bytesFromBase64(object.transactionReceipt)
+        : undefined,
+    };
+  },
+
+  toJSON(message: Data_EthTransaction): unknown {
+    const obj: any = {};
+    message.data !== undefined &&
+      (obj.data = base64FromBytes(
+        message.data !== undefined ? message.data : new Uint8Array()
+      ));
+    message.transaction !== undefined &&
+      (obj.transaction =
+        message.transaction !== undefined
+          ? base64FromBytes(message.transaction)
+          : undefined);
+    message.transactionReceipt !== undefined &&
+      (obj.transactionReceipt =
+        message.transactionReceipt !== undefined
+          ? base64FromBytes(message.transactionReceipt)
+          : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<Data_EthTransaction>): Data_EthTransaction {
+    const message = createBaseData_EthTransaction();
+    message.data = object.data ?? new Uint8Array();
+    message.transaction = object.transaction ?? undefined;
+    message.transactionReceipt = object.transactionReceipt ?? undefined;
+    return message;
+  },
+};
+
+function createBaseData_EthTrace(): Data_EthTrace {
+  return {
+    data: new Uint8Array(),
+    transaction: undefined,
+    transactionReceipt: undefined,
+  };
+}
+
+export const Data_EthTrace = {
+  encode(
+    message: Data_EthTrace,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.data.length !== 0) {
+      writer.uint32(10).bytes(message.data);
+    }
+    if (message.transaction !== undefined) {
+      writer.uint32(18).bytes(message.transaction);
+    }
+    if (message.transactionReceipt !== undefined) {
+      writer.uint32(26).bytes(message.transactionReceipt);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Data_EthTrace {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseData_EthTrace();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.data = reader.bytes();
+          break;
+        case 2:
+          message.transaction = reader.bytes();
+          break;
+        case 3:
+          message.transactionReceipt = reader.bytes();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Data_EthTrace {
+    return {
+      data: isSet(object.data)
+        ? bytesFromBase64(object.data)
+        : new Uint8Array(),
+      transaction: isSet(object.transaction)
+        ? bytesFromBase64(object.transaction)
+        : undefined,
+      transactionReceipt: isSet(object.transactionReceipt)
+        ? bytesFromBase64(object.transactionReceipt)
+        : undefined,
+    };
+  },
+
+  toJSON(message: Data_EthTrace): unknown {
+    const obj: any = {};
+    message.data !== undefined &&
+      (obj.data = base64FromBytes(
+        message.data !== undefined ? message.data : new Uint8Array()
+      ));
+    message.transaction !== undefined &&
+      (obj.transaction =
+        message.transaction !== undefined
+          ? base64FromBytes(message.transaction)
+          : undefined);
+    message.transactionReceipt !== undefined &&
+      (obj.transactionReceipt =
+        message.transactionReceipt !== undefined
+          ? base64FromBytes(message.transactionReceipt)
+          : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<Data_EthTrace>): Data_EthTrace {
+    const message = createBaseData_EthTrace();
+    message.data = object.data ?? new Uint8Array();
+    message.transaction = object.transaction ?? undefined;
+    message.transactionReceipt = object.transactionReceipt ?? undefined;
+    return message;
+  },
+};
+
+function createBaseData_SolInstruction(): Data_SolInstruction {
   return {
     instructionData: "",
     slot: Long.UZERO,
@@ -3278,9 +3844,9 @@ function createBaseInstruction(): Instruction {
   };
 }
 
-export const Instruction = {
+export const Data_SolInstruction = {
   encode(
-    message: Instruction,
+    message: Data_SolInstruction,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
     if (message.instructionData !== "") {
@@ -3301,10 +3867,10 @@ export const Instruction = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Instruction {
+  decode(input: _m0.Reader | Uint8Array, length?: number): Data_SolInstruction {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseInstruction();
+    const message = createBaseData_SolInstruction();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -3331,7 +3897,7 @@ export const Instruction = {
     return message;
   },
 
-  fromJSON(object: any): Instruction {
+  fromJSON(object: any): Data_SolInstruction {
     return {
       instructionData: isSet(object.instructionData)
         ? String(object.instructionData)
@@ -3347,7 +3913,7 @@ export const Instruction = {
     };
   },
 
-  toJSON(message: Instruction): unknown {
+  toJSON(message: Data_SolInstruction): unknown {
     const obj: any = {};
     message.instructionData !== undefined &&
       (obj.instructionData = message.instructionData);
@@ -3368,8 +3934,8 @@ export const Instruction = {
     return obj;
   },
 
-  fromPartial(object: DeepPartial<Instruction>): Instruction {
-    const message = createBaseInstruction();
+  fromPartial(object: DeepPartial<Data_SolInstruction>): Data_SolInstruction {
+    const message = createBaseData_SolInstruction();
     message.instructionData = object.instructionData ?? "";
     message.slot =
       object.slot !== undefined && object.slot !== null
@@ -3382,27 +3948,30 @@ export const Instruction = {
   },
 };
 
-function createBaseData(): Data {
-  return { raw: new Uint8Array() };
+function createBaseData_AptEvent(): Data_AptEvent {
+  return { data: new Uint8Array() };
 }
 
-export const Data = {
-  encode(message: Data, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.raw.length !== 0) {
-      writer.uint32(10).bytes(message.raw);
+export const Data_AptEvent = {
+  encode(
+    message: Data_AptEvent,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.data.length !== 0) {
+      writer.uint32(10).bytes(message.data);
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Data {
+  decode(input: _m0.Reader | Uint8Array, length?: number): Data_AptEvent {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseData();
+    const message = createBaseData_AptEvent();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.raw = reader.bytes();
+          message.data = reader.bytes();
           break;
         default:
           reader.skipType(tag & 7);
@@ -3412,24 +3981,164 @@ export const Data = {
     return message;
   },
 
-  fromJSON(object: any): Data {
+  fromJSON(object: any): Data_AptEvent {
     return {
-      raw: isSet(object.raw) ? bytesFromBase64(object.raw) : new Uint8Array(),
+      data: isSet(object.data)
+        ? bytesFromBase64(object.data)
+        : new Uint8Array(),
     };
   },
 
-  toJSON(message: Data): unknown {
+  toJSON(message: Data_AptEvent): unknown {
     const obj: any = {};
-    message.raw !== undefined &&
-      (obj.raw = base64FromBytes(
-        message.raw !== undefined ? message.raw : new Uint8Array()
+    message.data !== undefined &&
+      (obj.data = base64FromBytes(
+        message.data !== undefined ? message.data : new Uint8Array()
       ));
     return obj;
   },
 
-  fromPartial(object: DeepPartial<Data>): Data {
-    const message = createBaseData();
-    message.raw = object.raw ?? new Uint8Array();
+  fromPartial(object: DeepPartial<Data_AptEvent>): Data_AptEvent {
+    const message = createBaseData_AptEvent();
+    message.data = object.data ?? new Uint8Array();
+    return message;
+  },
+};
+
+function createBaseData_AptCall(): Data_AptCall {
+  return { data: new Uint8Array() };
+}
+
+export const Data_AptCall = {
+  encode(
+    message: Data_AptCall,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.data.length !== 0) {
+      writer.uint32(10).bytes(message.data);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Data_AptCall {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseData_AptCall();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.data = reader.bytes();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Data_AptCall {
+    return {
+      data: isSet(object.data)
+        ? bytesFromBase64(object.data)
+        : new Uint8Array(),
+    };
+  },
+
+  toJSON(message: Data_AptCall): unknown {
+    const obj: any = {};
+    message.data !== undefined &&
+      (obj.data = base64FromBytes(
+        message.data !== undefined ? message.data : new Uint8Array()
+      ));
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<Data_AptCall>): Data_AptCall {
+    const message = createBaseData_AptCall();
+    message.data = object.data ?? new Uint8Array();
+    return message;
+  },
+};
+
+function createBaseData_AptResource(): Data_AptResource {
+  return { data: new Uint8Array(), version: Long.ZERO, timestamp: "" };
+}
+
+export const Data_AptResource = {
+  encode(
+    message: Data_AptResource,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.data.length !== 0) {
+      writer.uint32(10).bytes(message.data);
+    }
+    if (!message.version.isZero()) {
+      writer.uint32(16).int64(message.version);
+    }
+    if (message.timestamp !== "") {
+      writer.uint32(26).string(message.timestamp);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Data_AptResource {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseData_AptResource();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.data = reader.bytes();
+          break;
+        case 2:
+          message.version = reader.int64() as Long;
+          break;
+        case 3:
+          message.timestamp = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Data_AptResource {
+    return {
+      data: isSet(object.data)
+        ? bytesFromBase64(object.data)
+        : new Uint8Array(),
+      version: isSet(object.version)
+        ? Long.fromValue(object.version)
+        : Long.ZERO,
+      timestamp: isSet(object.timestamp) ? String(object.timestamp) : "",
+    };
+  },
+
+  toJSON(message: Data_AptResource): unknown {
+    const obj: any = {};
+    message.data !== undefined &&
+      (obj.data = base64FromBytes(
+        message.data !== undefined ? message.data : new Uint8Array()
+      ));
+    message.version !== undefined &&
+      (obj.version = (message.version || Long.ZERO).toString());
+    message.timestamp !== undefined && (obj.timestamp = message.timestamp);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<Data_AptResource>): Data_AptResource {
+    const message = createBaseData_AptResource();
+    message.data = object.data ?? new Uint8Array();
+    message.version =
+      object.version !== undefined && object.version !== null
+        ? Long.fromValue(object.version)
+        : Long.ZERO;
+    message.timestamp = object.timestamp ?? "";
     return message;
   },
 };
@@ -3522,61 +4231,6 @@ export const DataBinding = {
         : undefined;
     message.handlerType = object.handlerType ?? 0;
     message.handlerIds = object.handlerIds?.map((e) => e) || [];
-    return message;
-  },
-};
-
-function createBaseRawBlock(): RawBlock {
-  return { raw: new Uint8Array() };
-}
-
-export const RawBlock = {
-  encode(
-    message: RawBlock,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
-    if (message.raw.length !== 0) {
-      writer.uint32(10).bytes(message.raw);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): RawBlock {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseRawBlock();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.raw = reader.bytes();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-
-  fromJSON(object: any): RawBlock {
-    return {
-      raw: isSet(object.raw) ? bytesFromBase64(object.raw) : new Uint8Array(),
-    };
-  },
-
-  toJSON(message: RawBlock): unknown {
-    const obj: any = {};
-    message.raw !== undefined &&
-      (obj.raw = base64FromBytes(
-        message.raw !== undefined ? message.raw : new Uint8Array()
-      ));
-    return obj;
-  },
-
-  fromPartial(object: DeepPartial<RawBlock>): RawBlock {
-    const message = createBaseRawBlock();
-    message.raw = object.raw ?? new Uint8Array();
     return message;
   },
 };
