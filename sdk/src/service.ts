@@ -22,6 +22,7 @@ import {
   ProcessConfigResponse,
   ProcessorServiceImplementation,
   ProcessResult,
+  ServerStreamingMethodResult,
   StartRequest,
   TemplateInstance,
 } from './gen'
@@ -492,6 +493,24 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
     const result = await processBindingInternal(request)
     recordRuntimeInfo(result, request.handlerType)
     return result
+  }
+
+  async *processBindingsStream(requests: AsyncIterable<DataBinding>, context: CallContext) {
+    for await (const request of requests) {
+      const result = await this.processBinding(request)
+      let updated = false
+      if (
+        global.PROCESSOR_STATE.templatesInstances &&
+        this.templateInstances.length != global.PROCESSOR_STATE.templatesInstances.length
+      ) {
+        await this.configure()
+        updated = true
+      }
+      yield {
+        result,
+        configUpdated: updated,
+      }
+    }
   }
 
   async processLogs(request: ProcessBindingsRequest, context: CallContext): Promise<ProcessBindingResponse> {

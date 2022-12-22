@@ -17,6 +17,8 @@ service Processor {
 
   // Process data binding
   rpc ProcessBindings(ProcessBindingsRequest) returns (ProcessBindingResponse);
+
+  rpc ProcessBindingsStream(stream DataBinding) returns (stream ProcessBindingResponse);
 }
 
 message ProjectConfig {
