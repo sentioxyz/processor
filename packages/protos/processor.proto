@@ -296,10 +296,10 @@ message Data {
     optional google.protobuf.Struct parsed = 4;
   }
   message AptEvent {
-    google.protobuf.Struct event = 2;
+    google.protobuf.Struct transaction = 2;
   }
   message AptCall {
-    google.protobuf.Struct call = 2;
+    google.protobuf.Struct transaction = 2;
   }
   message AptResource {
     repeated google.protobuf.Struct resources = 4;

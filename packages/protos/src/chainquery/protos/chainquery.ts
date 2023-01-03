@@ -829,7 +829,7 @@ export const EvmGetHeaderRequest = {
     }
     writer.uint32(34).fork()
     for (const v of message.blockNumbers) {
-      writer.uint64(v)
+      writer.uint64(v.toString())
     }
     writer.ldelim()
     return writer
