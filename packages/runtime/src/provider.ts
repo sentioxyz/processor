@@ -52,8 +52,8 @@ export function setProvider(config: Record<string, ChainConfig>, concurrency = 4
     if (useChainServer && chainConfig.ChainServer) {
       rpcAddress = chainConfig.ChainServer
     } else {
-      const idx = Math.floor(Math.random() * chainConfig.Https.length)
-      rpcAddress = chainConfig.Https[idx]
+      const idx = Math.floor(Math.random() * chainConfig.HttpServers.length)
+      rpcAddress = chainConfig.HttpServers[idx]
     }
 
     const provider = new QueuedStaticJsonRpcProvider(rpcAddress, chainId, concurrency)

@@ -18,7 +18,7 @@ export function loadTestProvidersFromEnv(requiredChainIds: string[] | string): b
     found.push(k)
     dummyConfig[k] = {
       ChainID: k,
-      Https: [http],
+      HttpServers: [http],
     }
   }
 

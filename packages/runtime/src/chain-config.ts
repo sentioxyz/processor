@@ -1,6 +1,6 @@
 export interface ChainConfig {
   ChainID: string
-  Https: string[]
+  HttpServers: string[]
   WebSockets?: string[]
   ChainServer?: string
 }

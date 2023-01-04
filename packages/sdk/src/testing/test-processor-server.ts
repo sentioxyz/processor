@@ -41,7 +41,7 @@ export class TestProcessorServer implements ProcessorServiceImplementation {
       const http = httpEndpoints[k] || ''
       dummyConfig[k] = {
         ChainID: k,
-        Https: [http],
+        HttpServers: [http],
       }
     }
 
