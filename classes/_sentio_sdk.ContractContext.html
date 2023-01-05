@@ -30,7 +30,7 @@
 <ul class="tsd-hierarchy">
 <li><span class="target">ContractContext</span></li></ul></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/3eb53f4/packages/sdk/src/core/context.ts#L92">packages/sdk/src/core/context.ts:92</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/506e721/packages/sdk/src/core/context.ts#L94">packages/sdk/src/core/context.ts:94</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -52,6 +52,7 @@
 <a href="_sentio_sdk.ContractContext.html#logger" class="tsd-index-link tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>logger</span></a>
 <a href="_sentio_sdk.ContractContext.html#meter" class="tsd-index-link tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>meter</span></a>
 <a href="_sentio_sdk.ContractContext.html#res" class="tsd-index-link tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>res</span></a>
+<a href="_sentio_sdk.ContractContext.html#timestamp" class="tsd-index-link tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>timestamp</span></a>
 <a href="_sentio_sdk.ContractContext.html#trace" class="tsd-index-link tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>trace?</span></a>
 <a href="_sentio_sdk.ContractContext.html#transactionHash" class="tsd-index-link tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>transaction<wbr/>Hash?</span></a>
 </div></section>
@@ -66,7 +67,7 @@
 <section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class"><a id="constructor" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>constructor</span><a href="#constructor" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" id="icon-anchor-a"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" id="icon-anchor-b"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" id="icon-anchor-c"></path></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-<li class="tsd-signature tsd-anchor-link" id="constructor.new_ContractContext">new <wbr/>Contract<wbr/>Context<span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContractBoundView</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span>contractName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, view<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContractBoundView</span>, chainId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, block<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Block</span>, log<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Log</span>, trace<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_sentio_sdk.Trace.html" class="tsd-signature-type" data-tsd-kind="Interface">Trace</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_sentio_sdk.ContractContext.html" class="tsd-signature-type" data-tsd-kind="Class">ContractContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContractBoundView</span><span class="tsd-signature-symbol">&gt;</span><a href="#constructor.new_ContractContext" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="constructor.new_ContractContext">new <wbr/>Contract<wbr/>Context<span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContractBoundView</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span>contractName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, view<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContractBoundView</span>, chainId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, block<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Block</span>, log<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Log</span>, trace<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_sentio_sdk.Trace.html" class="tsd-signature-type" data-tsd-kind="Interface">Trace</a>, timestamp<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_sentio_sdk.ContractContext.html" class="tsd-signature-type" data-tsd-kind="Class">ContractContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContractBoundView</span><span class="tsd-signature-symbol">&gt;</span><a href="#constructor.new_ContractContext" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
 <section class="tsd-panel tsd-type-parameters">
 <h4>Type Parameters</h4>
@@ -89,11 +90,13 @@
 <li>
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> log: <span class="tsd-signature-type">Log</span></h5></li>
 <li>
-<h5><code class="tsd-tag ts-flagOptional">Optional</code> trace: <a href="../interfaces/_sentio_sdk.Trace.html" class="tsd-signature-type" data-tsd-kind="Interface">Trace</a></h5></li></ul></div>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> trace: <a href="../interfaces/_sentio_sdk.Trace.html" class="tsd-signature-type" data-tsd-kind="Interface">Trace</a></h5></li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> timestamp: <span class="tsd-signature-type">Date</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="_sentio_sdk.ContractContext.html" class="tsd-signature-type" data-tsd-kind="Class">ContractContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">TContractBoundView</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Overrides EthContext.constructor</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/3eb53f4/packages/sdk/src/core/context.ts#L99">packages/sdk/src/core/context.ts:99</a></li></ul></aside></li></ul></section></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/506e721/packages/sdk/src/core/context.ts#L101">packages/sdk/src/core/context.ts:101</a></li></ul></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Properties</h2>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a id="address" class="tsd-anchor"></a>
@@ -101,71 +104,77 @@
 <div class="tsd-signature">address<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div><aside class="tsd-sources">
 <p>Inherited from EthContext.address</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/3eb53f4/packages/sdk/src/core/context.ts#L12">packages/sdk/src/core/context.ts:12</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/506e721/packages/sdk/src/core/context.ts#L12">packages/sdk/src/core/context.ts:12</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a id="block" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>block</span><a href="#block" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">block<span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">Block</span></div><aside class="tsd-sources">
 <p>Inherited from EthContext.block</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/3eb53f4/packages/sdk/src/core/context.ts#L14">packages/sdk/src/core/context.ts:14</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/506e721/packages/sdk/src/core/context.ts#L14">packages/sdk/src/core/context.ts:14</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a id="blockNumber" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>block<wbr/>Number</span><a href="#blockNumber" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">block<wbr/>Number<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">bigint</span></div><aside class="tsd-sources">
 <p>Inherited from EthContext.blockNumber</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/3eb53f4/packages/sdk/src/core/context.ts#L16">packages/sdk/src/core/context.ts:16</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/506e721/packages/sdk/src/core/context.ts#L16">packages/sdk/src/core/context.ts:16</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a id="chainId" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>chain<wbr/>Id</span><a href="#chainId" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">chain<wbr/>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div><aside class="tsd-sources">
 <p>Inherited from EthContext.chainId</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/3eb53f4/packages/sdk/src/core/context.ts#L11">packages/sdk/src/core/context.ts:11</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/506e721/packages/sdk/src/core/context.ts#L11">packages/sdk/src/core/context.ts:11</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="contract" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>contract</span><a href="#contract" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">contract<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type" data-tsd-kind="Type parameter">TContractBoundView</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/3eb53f4/packages/sdk/src/core/context.ts#L96">packages/sdk/src/core/context.ts:96</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/506e721/packages/sdk/src/core/context.ts#L98">packages/sdk/src/core/context.ts:98</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="contractName" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>contract<wbr/>Name</span><a href="#contractName" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">contract<wbr/>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/3eb53f4/packages/sdk/src/core/context.ts#L97">packages/sdk/src/core/context.ts:97</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/506e721/packages/sdk/src/core/context.ts#L99">packages/sdk/src/core/context.ts:99</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a id="log" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>log</span><a href="#log" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">log<span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">Log</span></div><aside class="tsd-sources">
 <p>Inherited from EthContext.log</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/3eb53f4/packages/sdk/src/core/context.ts#L13">packages/sdk/src/core/context.ts:13</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/506e721/packages/sdk/src/core/context.ts#L13">packages/sdk/src/core/context.ts:13</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a id="logger" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>logger</span><a href="#logger" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">logger<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Logger</span></div><aside class="tsd-sources">
 <p>Inherited from EthContext.logger</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/3eb53f4/packages/sdk/src/core/base-context.ts#L8">packages/sdk/src/core/base-context.ts:8</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/506e721/packages/sdk/src/core/base-context.ts#L8">packages/sdk/src/core/base-context.ts:8</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a id="meter" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>meter</span><a href="#meter" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">meter<span class="tsd-signature-symbol">:</span> <a href="_sentio_sdk.Meter.html" class="tsd-signature-type" data-tsd-kind="Class">Meter</a></div><aside class="tsd-sources">
 <p>Inherited from EthContext.meter</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/3eb53f4/packages/sdk/src/core/base-context.ts#L7">packages/sdk/src/core/base-context.ts:7</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/506e721/packages/sdk/src/core/base-context.ts#L7">packages/sdk/src/core/base-context.ts:7</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a id="res" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>res</span><a href="#res" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">res<span class="tsd-signature-symbol">:</span> <a href="../variables/_sentio_sdk.ProcessResult-1.html" class="tsd-signature-type" data-tsd-kind="Variable">ProcessResult</a><span class="tsd-signature-symbol"> = ...</span></div><aside class="tsd-sources">
 <p>Inherited from EthContext.res</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/3eb53f4/packages/sdk/src/core/base-context.ts#L10">packages/sdk/src/core/base-context.ts:10</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/506e721/packages/sdk/src/core/base-context.ts#L10">packages/sdk/src/core/base-context.ts:10</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a id="timestamp" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>timestamp</span><a href="#timestamp" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<div class="tsd-signature">timestamp<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span></div><aside class="tsd-sources">
+<p>Inherited from EthContext.timestamp</p>
+<ul>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/506e721/packages/sdk/src/core/context.ts#L18">packages/sdk/src/core/context.ts:18</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a id="trace" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>trace</span><a href="#trace" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">trace<span class="tsd-signature-symbol">?:</span> <a href="../interfaces/_sentio_sdk.Trace.html" class="tsd-signature-type" data-tsd-kind="Interface">Trace</a></div><aside class="tsd-sources">
 <p>Inherited from EthContext.trace</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/3eb53f4/packages/sdk/src/core/context.ts#L15">packages/sdk/src/core/context.ts:15</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/506e721/packages/sdk/src/core/context.ts#L15">packages/sdk/src/core/context.ts:15</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a id="transactionHash" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>transaction<wbr/>Hash</span><a href="#transactionHash" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">transaction<wbr/>Hash<span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span></div><aside class="tsd-sources">
 <p>Inherited from EthContext.transactionHash</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/3eb53f4/packages/sdk/src/core/context.ts#L17">packages/sdk/src/core/context.ts:17</a></li></ul></aside></section></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/506e721/packages/sdk/src/core/context.ts#L17">packages/sdk/src/core/context.ts:17</a></li></ul></aside></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Methods</h2>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a id="getContractName" class="tsd-anchor"></a>
@@ -176,7 +185,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><aside class="tsd-sources">
 <p>Overrides EthContext.getContractName</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/3eb53f4/packages/sdk/src/core/context.ts#L113">packages/sdk/src/core/context.ts:113</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/506e721/packages/sdk/src/core/context.ts#L116">packages/sdk/src/core/context.ts:116</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a id="getMetaData" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>get<wbr/>Meta<wbr/>Data</span><a href="#getMetaData" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
@@ -192,7 +201,7 @@
 <h4 class="tsd-returns-title">Returns <a href="../variables/_sentio_sdk.RecordMetaData-1.html" class="tsd-signature-type" data-tsd-kind="Variable">RecordMetaData</a></h4><aside class="tsd-sources">
 <p>Inherited from EthContext.getMetaData</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/3eb53f4/packages/sdk/src/core/context.ts#L39">packages/sdk/src/core/context.ts:39</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/506e721/packages/sdk/src/core/context.ts#L41">packages/sdk/src/core/context.ts:41</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a id="getProcessResult" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>get<wbr/>Process<wbr/>Result</span><a href="#getProcessResult" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
@@ -201,7 +210,7 @@
 <h4 class="tsd-returns-title">Returns <a href="../variables/_sentio_sdk.ProcessResult-1.html" class="tsd-signature-type" data-tsd-kind="Variable">ProcessResult</a></h4><aside class="tsd-sources">
 <p>Inherited from EthContext.getProcessResult</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/3eb53f4/packages/sdk/src/core/base-context.ts#L23">packages/sdk/src/core/base-context.ts:23</a></li></ul></aside></li></ul></section></section></div>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/506e721/packages/sdk/src/core/base-context.ts#L23">packages/sdk/src/core/base-context.ts:23</a></li></ul></aside></li></ul></section></section></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <div class="tsd-navigation settings">
 <details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
@@ -245,6 +254,7 @@
 <li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_sentio_sdk.ContractContext.html#logger" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>logger</a></li>
 <li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_sentio_sdk.ContractContext.html#meter" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>meter</a></li>
 <li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_sentio_sdk.ContractContext.html#res" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>res</a></li>
+<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_sentio_sdk.ContractContext.html#timestamp" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>timestamp</a></li>
 <li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_sentio_sdk.ContractContext.html#trace" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>trace?</a></li>
 <li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_sentio_sdk.ContractContext.html#transactionHash" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>transaction<wbr/>Hash?</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="_sentio_sdk.ContractContext.html#getContractName" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>get<wbr/>Contract<wbr/>Name</a></li>
