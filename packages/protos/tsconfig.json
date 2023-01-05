@@ -1,6 +1,8 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "inlineSources": true,
     "rootDir": "./src",
     "baseUrl": "./src",
