@@ -1,6 +1,6 @@
 /* eslint-disable */
 import type { CallContext, CallOptions } from 'nice-grpc-common'
-import _m0 from 'protobufjs/minimal'
+import _m0 from 'protobufjs/minimal.js'
 import { Timestamp } from '../../../google/protobuf/timestamp.js'
 
 export interface CoinID {

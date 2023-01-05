@@ -1,7 +1,7 @@
 /* eslint-disable */
 import Long from 'long'
 import type { CallContext, CallOptions } from 'nice-grpc-common'
-import _m0 from 'protobufjs/minimal'
+import _m0 from 'protobufjs/minimal.js'
 
 export interface AptosGetTxnsByFunctionRequest {
   network: string
@@ -48,6 +48,8 @@ export interface QueryExecutionSummary {
   numPartitionsWithoutMaterializedView?: bigint | undefined
   numPartitions?: bigint | undefined
   phases: QueryPhaseSummary[]
+  qcacheSignature?: string | undefined
+  qcacheHit?: boolean | undefined
 }
 
 export interface AptosGetTxnsResponse {
@@ -494,6 +496,8 @@ function createBaseQueryExecutionSummary(): QueryExecutionSummary {
     numPartitionsWithoutMaterializedView: undefined,
     numPartitions: undefined,
     phases: [],
+    qcacheSignature: undefined,
+    qcacheHit: undefined,
   }
 }
 
@@ -519,6 +523,12 @@ export const QueryExecutionSummary = {
     }
     for (const v of message.phases) {
       QueryPhaseSummary.encode(v!, writer.uint32(58).fork()).ldelim()
+    }
+    if (message.qcacheSignature !== undefined) {
+      writer.uint32(66).string(message.qcacheSignature)
+    }
+    if (message.qcacheHit !== undefined) {
+      writer.uint32(72).bool(message.qcacheHit)
     }
     return writer
   },
@@ -551,6 +561,12 @@ export const QueryExecutionSummary = {
         case 7:
           message.phases.push(QueryPhaseSummary.decode(reader, reader.uint32()))
           break
+        case 8:
+          message.qcacheSignature = reader.string()
+          break
+        case 9:
+          message.qcacheHit = reader.bool()
+          break
         default:
           reader.skipType(tag & 7)
           break
@@ -572,6 +588,8 @@ export const QueryExecutionSummary = {
         : undefined,
       numPartitions: isSet(object.numPartitions) ? BigInt(object.numPartitions) : undefined,
       phases: Array.isArray(object?.phases) ? object.phases.map((e: any) => QueryPhaseSummary.fromJSON(e)) : [],
+      qcacheSignature: isSet(object.qcacheSignature) ? String(object.qcacheSignature) : undefined,
+      qcacheHit: isSet(object.qcacheHit) ? Boolean(object.qcacheHit) : undefined,
     }
   },
 
@@ -590,6 +608,8 @@ export const QueryExecutionSummary = {
     } else {
       obj.phases = []
     }
+    message.qcacheSignature !== undefined && (obj.qcacheSignature = message.qcacheSignature)
+    message.qcacheHit !== undefined && (obj.qcacheHit = message.qcacheHit)
     return obj
   },
 
@@ -602,6 +622,8 @@ export const QueryExecutionSummary = {
     message.numPartitionsWithoutMaterializedView = object.numPartitionsWithoutMaterializedView ?? undefined
     message.numPartitions = object.numPartitions ?? undefined
     message.phases = object.phases?.map((e) => QueryPhaseSummary.fromPartial(e)) || []
+    message.qcacheSignature = object.qcacheSignature ?? undefined
+    message.qcacheHit = object.qcacheHit ?? undefined
     return message
   },
 }
