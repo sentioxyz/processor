@@ -1,9 +1,9 @@
 import { assert, expect } from 'chai'
 
-import { TestProcessorServer } from '../testing'
+import { TestProcessorServer } from '../testing/index.js'
 import { BigNumber } from 'ethers'
-import { mockApprovalLog, mockTransferLog } from '../builtin/erc20/test-utils'
-import { ERC20Processor } from '../builtin/internal/erc20_processor'
+import { mockApprovalLog, mockTransferLog } from '../builtin/erc20/test-utils.js'
+import { ERC20Processor } from '../builtin/internal/erc20_processor.js'
 
 describe('Test Error Capture', () => {
   const service = new TestProcessorServer(() => {

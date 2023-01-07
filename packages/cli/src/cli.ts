@@ -6,13 +6,13 @@ import fs from 'fs'
 import path from 'path'
 
 import yaml from 'js-yaml'
-import { finalizeHost, FinalizeProjectName, SentioProjectConfig } from './config'
-import { uploadFile } from './upload'
+import { finalizeHost, FinalizeProjectName, SentioProjectConfig } from './config.js'
+import { uploadFile } from './upload.js'
 import chalk from 'chalk'
-import { buildProcessor } from './build'
-import { runCreate } from './commands/run-create'
-import { runVersion } from './commands/run-version'
-import { runLogin } from './commands/run-login'
+import { buildProcessor } from './build.js'
+import { runCreate } from './commands/run-create.js'
+import { runVersion } from './commands/run-version.js'
+import { runLogin } from './commands/run-login.js'
 
 const mainDefinitions = [{ name: 'command', defaultOption: true }]
 const mainOptions = commandLineArgs(mainDefinitions, {

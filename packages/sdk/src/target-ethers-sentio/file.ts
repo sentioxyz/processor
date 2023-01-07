@@ -5,14 +5,14 @@ import {
   getFullSignatureAsSymbolForEvent,
 } from 'typechain'
 
-import { reservedKeywords } from '@typechain/ethers-v5/dist/codegen/reserved-keywords'
-import { getFullSignatureForEvent } from 'typechain/dist/utils/signatures'
-import { codegenCallTraceTypes, generateCallHandlers } from './functions-handler'
-import { generateEventHandlers } from './event-handler'
-import { generateBoundViewFunctions, generateViewFunctions } from './view-function'
+import { reservedKeywords } from '@typechain/ethers-v5/dist/codegen/reserved-keywords.js'
+import { getFullSignatureForEvent } from 'typechain/dist/utils/signatures.js'
+import { codegenCallTraceTypes, generateCallHandlers } from './functions-handler.js'
+import { generateEventHandlers } from './event-handler.js'
+import { generateBoundViewFunctions, generateViewFunctions } from './view-function.js'
 
 export function codeGenIndex(contract: Contract): string {
-  return ` 
+  return `
   export * from '../internal/${contract.name.toLowerCase()}_processor'
   export * from '../internal/${contract.name}'
   `
@@ -34,7 +34,7 @@ export function codeGenSentioFile(contract: Contract): string {
       .map((fs) => generateViewFunctions(fs))
       .join('\n')}
   }
-  
+
   export class ${contract.name}BoundContractView extends BoundContractView<${contract.name}, ${
     contract.name
   }ContractView> {
@@ -68,7 +68,7 @@ export function codeGenSentioFile(contract: Contract): string {
     ${Object.values(contract.events)
       .map((events) => generateEventHandlers(events, contract.name))
       .join('\n')}
-    
+
     ${Object.values(contract.functions)
       .map((functions) => {
         generateCallHandlers(functions, contract.name)
@@ -86,7 +86,7 @@ export function codeGenSentioFile(contract: Contract): string {
         .join('\n')}
 
     public static filters = templateContract.filters
-    
+
     protected CreateBoundContractView(): ${contract.name}BoundContractView {
       const view = get${contract.name}Contract(this.config.address, this.config.network)
       return new ${contract.name}BoundContractView(view)
@@ -162,8 +162,8 @@ export function codeGenSentioFile(contract: Contract): string {
         'TypedCallTrace',
         'toBlockTag',
       ],
-      './common': ['PromiseOrValue'],
-      './index': [`${contract.name}`, `${contract.name}__factory`],
+      './common.js': ['PromiseOrValue'],
+      './index.js': [`${contract.name}`, `${contract.name}__factory`],
       [`./${contract.name}`]: eventsImports.concat(uniqueStructImports),
     },
     source
@@ -198,7 +198,7 @@ export function codeGenTestUtilsFile(contract: Contract): string {
   const imports = createImportsForUsedIdentifiers(
     {
       '@ethersproject/providers': ['Log'],
-      '.': [
+      './index.js': [
         `get${contract.name}Contract`,
         ...Object.values(contract.events).flatMap((events) => {
           if (events.length === 1) {

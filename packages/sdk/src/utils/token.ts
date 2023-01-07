@@ -1,10 +1,10 @@
 import { BigNumber } from '@ethersproject/bignumber'
 
-import { transformEtherError } from '../error'
-import { getERC20Contract } from '../builtin/erc20'
-import { getERC20BytesContract } from '../builtin/internal/erc20bytes_processor'
-import { BigDecimal } from '../core/big-decimal'
-import { toBigDecimal } from './conversion'
+import { transformEtherError } from '../error.js'
+import { getERC20Contract } from '../builtin/erc20/index.js'
+import { getERC20BytesContract } from '../builtin/internal/erc20bytes_processor.js'
+import { BigDecimal } from '../core/big-decimal.js'
+import { toBigDecimal } from './conversion.js'
 import { utils } from 'ethers'
 
 export interface TokenInfo {

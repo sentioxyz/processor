@@ -5,16 +5,16 @@ import {
   MoveResource,
   MoveStruct,
   TransactionPayload_EntryFunctionPayload,
-} from 'aptos-sdk/src/generated'
-import { getMeaningfulFunctionParams, moduleQname, SPLITTER, VECTOR_STR } from './utils'
-import { parseMoveType, TypeDescriptor } from './types'
+} from 'aptos-sdk/src/generated.js'
+import { getMeaningfulFunctionParams, moduleQname, SPLITTER, VECTOR_STR } from './utils.js'
+import { parseMoveType, TypeDescriptor } from './types.js'
 import {
   TypedEventInstance,
   TypedMoveResource,
   StructWithTag,
   StructWithType,
   TypedEntryFunctionPayload,
-} from './models'
+} from './models.js'
 
 export class TypeRegistry {
   moduleMapping = new Map<string, MoveModule>()

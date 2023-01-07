@@ -1,4 +1,4 @@
-import { PriceServiceClient, PriceServiceDefinition } from '@sentio/protos/lib/service/price/protos/price'
+import { PriceServiceClient, PriceServiceDefinition } from '@sentio/protos/lib/service/price/protos/price.js'
 import { createChannel, createClientFactory } from 'nice-grpc'
 import { retryMiddleware, RetryOptions } from 'nice-grpc-client-middleware-retry'
 import { Endpoints } from '@sentio/runtime'

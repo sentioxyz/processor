@@ -1,4 +1,4 @@
-import { normalizeName } from './meter'
+import { normalizeName } from './meter.js'
 
 export type Labels = { [key: string]: string }
 

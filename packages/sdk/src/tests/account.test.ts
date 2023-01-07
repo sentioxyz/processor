@@ -2,10 +2,10 @@
 
 import { assert, expect } from 'chai'
 
-import { firstCounterValue, TestProcessorServer } from '../testing'
+import { firstCounterValue, TestProcessorServer } from '../testing/index.js'
 import { BigNumber } from 'ethers'
-import { mockTransferLog } from '../builtin/erc20/test-utils'
-import { AccountProcessor } from '../core/account-processor'
+import { mockTransferLog } from '../builtin/erc20/test-utils.js'
+import { AccountProcessor } from '../core/account-processor.js'
 
 describe(' erc20 account transfer Examples', () => {
   const ADDRESS = '0x1000000000000000000000000000000000000000'

@@ -1,13 +1,13 @@
-import { BoundContractView, ContractContext, ContractView } from './context'
+import { BoundContractView, ContractContext, ContractView } from './context.js'
 import { Block } from '@ethersproject/abstract-provider'
 import { BaseContract, EventFilter } from 'ethers'
 import { Event } from '@ethersproject/contracts'
-import { BaseProcessor } from './base-processor'
-import { BindOptions, getOptionsSignature } from './bind-options'
+import { BaseProcessor } from './base-processor.js'
+import { BindOptions, getOptionsSignature } from './bind-options.js'
 import { HandleInterval, TemplateInstance } from '@sentio/protos'
 import { getNetwork } from '@ethersproject/providers'
-import { PromiseOrVoid } from '../promise-or-void'
-import { Trace } from './trace'
+import { PromiseOrVoid } from '../promise-or-void.js'
+import { Trace } from './trace.js'
 import { ListStateStorage } from '@sentio/runtime'
 
 export class ProcessorTemplateProcessorState extends ListStateStorage<

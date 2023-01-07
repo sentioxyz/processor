@@ -1,5 +1,5 @@
-import { TYPE_REGISTRY } from './type-registry'
-import { aptos_account } from './builtin/0x1'
+import { TYPE_REGISTRY } from './type-registry.js'
+import { aptos_account } from './builtin/0x1.js'
 
 describe('type decode', () => {
   aptos_account.loadTypes(TYPE_REGISTRY)

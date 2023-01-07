@@ -16,9 +16,9 @@ import {
 
 import { ServerError, Status } from 'nice-grpc'
 import { Block, Log } from '@ethersproject/abstract-provider'
-import { ProcessorState } from '../binds'
-import { AccountProcessorState } from './account-processor'
-import { ProcessorTemplateProcessorState, TemplateInstanceState } from './base-processor-template'
+import { ProcessorState } from '../binds.js'
+import { AccountProcessorState } from './account-processor.js'
+import { ProcessorTemplateProcessorState, TemplateInstanceState } from './base-processor-template.js'
 
 export class EthPlugin extends Plugin {
   name: string = 'EthPlugin'

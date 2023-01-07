@@ -12,10 +12,10 @@ import {
   StartRequest,
 } from '@sentio/protos'
 
-import { Empty } from '@sentio/protos/lib/google/protobuf/empty'
+import { Empty } from '@sentio/protos/lib/google/protobuf/empty.js'
 
-import { PluginManager } from './plugin'
-import { errorString, mergeProcessResults } from './utils'
+import { PluginManager } from './plugin.js'
+import { errorString, mergeProcessResults } from './utils.js'
 ;(BigInt.prototype as any).toJSON = function () {
   return this.toString()
 }

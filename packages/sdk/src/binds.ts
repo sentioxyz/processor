@@ -1,5 +1,5 @@
-import { BindOptions, getOptionsSignature } from './core/bind-options'
-import { BaseProcessor, ContractView } from './core'
+import { BindOptions, getOptionsSignature } from './core/bind-options.js'
+import { BaseProcessor, ContractView } from './core/index.js'
 import { Networkish } from '@ethersproject/networks'
 import { getNetwork } from '@ethersproject/providers'
 import { BaseContract } from 'ethers'

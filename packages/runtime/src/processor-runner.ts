@@ -7,16 +7,16 @@ import * as util from 'util'
 import commandLineArgs from 'command-line-args'
 import { createServer } from 'nice-grpc'
 import { createLogger, transports, format } from 'winston'
-import { CompressionAlgorithms } from '@grpc/grpc-js/build/src/compression-algorithms'
+import { CompressionAlgorithms } from '@grpc/grpc-js/build/src/compression-algorithms.js'
 
 import { ProcessorDefinition } from '@sentio/protos'
-import { ProcessorServiceImpl } from './service'
-import { setProvider } from './provider'
-import { State } from './state'
-import { Endpoints } from './endpoints'
+import { ProcessorServiceImpl } from './service.js'
+import { setProvider } from './provider.js'
+import { State } from './state.js'
+import { Endpoints } from './endpoints.js'
 
-import { load } from './loader'
-import { FullProcessorServiceImpl } from './full-service'
+import { load } from './loader.js'
+import { FullProcessorServiceImpl } from './full-service.js'
 
 State.reset()
 Endpoints.reset()

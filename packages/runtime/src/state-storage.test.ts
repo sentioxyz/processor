@@ -1,5 +1,5 @@
 import { assert } from 'chai'
-import { State, MapStateStorage } from './state'
+import { State, MapStateStorage } from './state.js'
 
 describe('state storage tests', () => {
   State.reset()

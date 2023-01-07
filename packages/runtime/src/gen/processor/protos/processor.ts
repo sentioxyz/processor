@@ -1,5 +1,5 @@
 /* eslint-disable */
-import Long from "long";
+import Long from "long/index.js";
 import type { CallContext, CallOptions } from "nice-grpc-common";
 import _m0 from "protobufjs/minimal.js";
 import { Empty } from "../../google/protobuf/empty.js";

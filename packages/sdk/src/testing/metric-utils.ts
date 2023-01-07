@@ -1,5 +1,5 @@
 import { MetricValue, ProcessResult } from '@sentio/protos'
-import { Numberish, BigDecimal } from '../core'
+import { Numberish, BigDecimal } from '../core/index.js'
 import { BigNumber } from 'ethers'
 
 export function MetricValueToNumber(v: Partial<MetricValue> | undefined): Numberish | undefined {

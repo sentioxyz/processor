@@ -1,4 +1,4 @@
-import { TokenBridgeProcessor, SPLTokenProcessor } from '../builtin'
+import { TokenBridgeProcessor, SPLTokenProcessor } from '../builtin/index.js'
 
 TokenBridgeProcessor.bind({
   address: 'wormDTUJ6AWPNvk59vGQbDvGJmqbDTdgWgAqcLBCgUb',

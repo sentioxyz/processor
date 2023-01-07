@@ -1,6 +1,6 @@
 import { BigNumber } from 'ethers'
-import { BigDecimal } from '../core/big-decimal'
-import { Numberish } from '../core'
+import { BigDecimal } from '../core/big-decimal.js'
+import { Numberish } from '../core/index.js'
 import { MetricValue } from '@sentio/protos'
 
 export function toBigDecimal(n: BigNumber | bigint) {

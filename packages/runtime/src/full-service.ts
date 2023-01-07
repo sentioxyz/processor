@@ -8,9 +8,9 @@ import {
   ProcessConfigRequest,
   ProcessorServiceImplementation,
   StartRequest,
-} from './gen/processor/protos/processor'
+} from './gen/processor/protos/processor.js'
 
-import { Empty } from '@sentio/protos/lib/google/protobuf/empty'
+import { Empty } from '@sentio/protos/lib/google/protobuf/empty.js'
 
 export class FullProcessorServiceImpl implements ProcessorServiceImplementation {
   constructor(instance: ProcessorServiceImplementation) {

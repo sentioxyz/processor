@@ -1,10 +1,10 @@
 import {
   generateOutputComplexTypeAsArray,
   generateOutputComplexTypesAsObject,
-} from '@typechain/ethers-v5/dist/codegen/types'
+} from '@typechain/ethers-v5/dist/codegen/types.js'
 import { FunctionDeclaration, getSignatureForFn } from 'typechain'
 import { utils } from 'ethers'
-import { getFullSignatureAsSymbolForFunction } from './types'
+import { getFullSignatureAsSymbolForFunction } from './types.js'
 
 export function generateCallHandlers(fns: FunctionDeclaration[], contractName: string): string {
   if (fns.length === 1) {
@@ -31,7 +31,7 @@ function codegenCallTraceType(fn: FunctionDeclaration, overloadedName?: string):
 
   return `
   export interface ${identifier}CallObject ${objectOutput}
-    
+
   export type ${identifier}CallTrace = TypedCallTrace<${arrayOutput}, ${identifier}CallObject>
   `
 }

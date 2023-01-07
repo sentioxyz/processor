@@ -1,6 +1,6 @@
-import { BaseContext } from './base-context'
-import { Numberish, toMetricValue } from './numberish'
-import { Labels, NamedResultDescriptor } from './metadata'
+import { BaseContext } from './base-context.js'
+import { Numberish, toMetricValue } from './numberish.js'
+import { Labels, NamedResultDescriptor } from './metadata.js'
 import { AggregationConfig, AggregationType, MetricConfig, MetricType } from '@sentio/protos'
 import { MapStateStorage } from '@sentio/runtime'
 

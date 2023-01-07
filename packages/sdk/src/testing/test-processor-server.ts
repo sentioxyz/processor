@@ -12,12 +12,12 @@ import {
   StartRequest,
 } from '@sentio/protos'
 import { CallContext } from 'nice-grpc-common'
-import { Empty } from '@sentio/protos/lib/google/protobuf/empty'
+import { Empty } from '@sentio/protos/lib/google/protobuf/empty.js'
 import { ChainConfig, ProcessorServiceImpl, setProvider, Endpoints, State } from '@sentio/runtime'
-import { CHAIN_MAP } from '../utils/chain'
+import { CHAIN_MAP } from '../utils/chain.js'
 import { Block, Log } from '@ethersproject/abstract-provider'
 import { getNetwork, Networkish } from '@ethersproject/providers'
-import { Trace } from '../core/trace'
+import { Trace } from '../core/trace.js'
 
 export const TEST_CONTEXT: CallContext = <CallContext>{}
 
@@ -77,7 +77,7 @@ export class TestProcessorServer implements ProcessorServiceImplementation {
   }
 
   testTraces(traces: Trace[], network: Networkish = 1): Promise<ProcessBindingResponse> {
-    const bindings = []
+    const bindings: DataBinding[] = []
     for (const trace of traces) {
       const binding = this.buildTraceBinding(trace, network)
       if (!binding) {
@@ -126,7 +126,7 @@ export class TestProcessorServer implements ProcessorServiceImplementation {
   }
 
   testLogs(logs: Log[], network: Networkish = 1): Promise<ProcessBindingResponse> {
-    const bindings = []
+    const bindings: DataBinding[] = []
     for (const log of logs) {
       const binding = this.buildLogBinding(log, network)
       if (!binding) {
@@ -187,7 +187,7 @@ export class TestProcessorServer implements ProcessorServiceImplementation {
   }
 
   testAccountLogs(address: string, logs: Log[], network: Networkish = 1): Promise<ProcessBindingResponse> {
-    const bindings = []
+    const bindings: DataBinding[] = []
     for (const log of logs) {
       const binding = this.buildAccountLogBinding(address, log, network)
       if (!binding) {
@@ -249,7 +249,7 @@ export class TestProcessorServer implements ProcessorServiceImplementation {
   }
 
   testBlocks(blocks: Partial<Block> & { number: number }[], network: Networkish = 1) {
-    const bindings = []
+    const bindings: DataBinding[] = []
     for (const block of blocks) {
       const binding = this.buildBlockBinding(block, network)
       if (!binding) {

@@ -2,11 +2,11 @@ import { BytesLike } from '@ethersproject/bytes'
 import { Block, Log, getNetwork } from '@ethersproject/providers'
 import { BaseContract, Event, EventFilter } from '@ethersproject/contracts'
 
-import { BoundContractView, ContractContext, ContractView } from './context'
+import { BoundContractView, ContractContext, ContractView } from './context.js'
 import { AddressType, Data_EthBlock, Data_EthLog, Data_EthTrace, HandleInterval, ProcessResult } from '@sentio/protos'
-import { BindInternalOptions, BindOptions } from './bind-options'
-import { PromiseOrVoid } from '../promise-or-void'
-import { Trace } from './trace'
+import { BindInternalOptions, BindOptions } from './bind-options.js'
+import { PromiseOrVoid } from '../promise-or-void.js'
+import { Trace } from './trace.js'
 import { ServerError, Status } from 'nice-grpc'
 
 export interface AddressOrTypeEventFilter extends EventFilter {

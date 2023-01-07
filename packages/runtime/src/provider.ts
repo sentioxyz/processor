@@ -2,8 +2,8 @@ import { getNetwork, Provider, StaticJsonRpcProvider } from '@ethersproject/prov
 import { Networkish } from '@ethersproject/networks'
 import PQueue from 'p-queue'
 import { ConnectionInfo } from '@ethersproject/web'
-import { ChainConfig } from './chain-config'
-import { Endpoints } from './endpoints'
+import { ChainConfig } from './chain-config.js'
+import { Endpoints } from './endpoints.js'
 
 export const DummyProvider = new StaticJsonRpcProvider(undefined, 1)
 

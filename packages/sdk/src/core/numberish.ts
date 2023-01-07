@@ -1,6 +1,6 @@
 import { BigNumber } from 'ethers'
 import { BigInteger, MetricValue } from '@sentio/protos'
-import { BigDecimal } from '.'
+import { BigDecimal } from './index.js'
 import { BlockTag } from '@ethersproject/providers'
 
 export type Numberish = number | BigNumber | bigint | BigDecimal | string

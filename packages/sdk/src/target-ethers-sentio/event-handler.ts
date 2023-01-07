@@ -1,5 +1,5 @@
 import { EventDeclaration, getFullSignatureAsSymbolForEvent } from 'typechain'
-import { getFullSignatureForEventPatched } from './types'
+import { getFullSignatureForEventPatched } from './types.js'
 
 export function generateEventHandler(event: EventDeclaration, contractName: string, includeArgTypes: boolean): string {
   const eventName = includeArgTypes ? getFullSignatureAsSymbolForEvent(event) : event.name

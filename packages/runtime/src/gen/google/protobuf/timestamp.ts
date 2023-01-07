@@ -1,5 +1,5 @@
 /* eslint-disable */
-import Long from "long";
+import Long from "long/index.js";
 import _m0 from "protobufjs/minimal.js";
 
 export interface Timestamp {

@@ -4,8 +4,8 @@ import { expect } from 'chai'
 
 import { HandlerType } from '@sentio/protos'
 
-import { GenericProcessor } from './generic-processor'
-import { TestProcessorServer, firstCounterValue } from '../testing'
+import { GenericProcessor } from './generic-processor.js'
+import { TestProcessorServer, firstCounterValue } from '../testing/index.js'
 
 describe('Test Generic Processor', () => {
   const service = new TestProcessorServer(() => {

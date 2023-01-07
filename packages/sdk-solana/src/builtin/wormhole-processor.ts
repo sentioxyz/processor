@@ -1,4 +1,4 @@
-import { SolanaBaseProcessor, SolanaContext, SolanaBindOptions } from '@sentio/sdk-solana'
+import { SolanaBaseProcessor, SolanaContext, SolanaBindOptions } from '../index.js'
 import { Instruction } from '@project-serum/anchor'
 import bs58 from 'bs58'
 

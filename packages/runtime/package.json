@@ -1,5 +1,6 @@
 {
   "name": "@sentio/runtime",
+  "type": "module",
   "license": "Apache-2.0",
   "version": "1.0.0",
   "scripts": {
@@ -20,7 +21,7 @@
     "nice-grpc": "^2.0.0",
     "nice-grpc-client-middleware-retry": "^2.0.1",
     "nice-grpc-error-details": "^0.1.4",
-    "p-queue": "^6.6.2",
+    "p-queue": "^7.3.0",
     "winston": "^3.8.2"
   },
   "resolutions": {

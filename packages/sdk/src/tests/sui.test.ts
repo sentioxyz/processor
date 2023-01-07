@@ -1,7 +1,7 @@
 import { expect } from 'chai'
-import { SuiBaseProcessor, SuiBindOptions } from '../core'
+import { SuiBaseProcessor, SuiBindOptions } from '../core/index.js'
 
-import { TestProcessorServer } from '../testing'
+import { TestProcessorServer } from '../testing/index.js'
 
 describe('Test Sui Example', () => {
   const service = new TestProcessorServer(() => {

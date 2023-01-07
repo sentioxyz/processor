@@ -2,12 +2,12 @@ import {
   MoveResource,
   Transaction_UserTransaction,
   TransactionPayload_EntryFunctionPayload,
-} from 'aptos-sdk/src/generated'
+} from 'aptos-sdk/src/generated.js'
 
-import { TYPE_REGISTRY, TypeRegistry } from './type-registry'
+import { TYPE_REGISTRY, TypeRegistry } from './type-registry.js'
 import { AptosBindOptions, AptosNetwork, getChainId } from './network'
 import { AptosContext, AptosResourceContext } from './context'
-import { EventInstance } from './models'
+import { EventInstance } from './models.js'
 import { ListStateStorage } from '@sentio/runtime'
 import { Data_AptCall, Data_AptEvent, Data_AptResource, HandleInterval, ProcessResult } from '@sentio/protos'
 import { ServerError, Status } from 'nice-grpc'

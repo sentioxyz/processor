@@ -1,15 +1,15 @@
 import { ListStateStorage } from '@sentio/runtime'
-import { ERC20__factory, ERC721__factory } from '../builtin/internal'
+import { ERC20__factory, ERC721__factory } from '../builtin/internal/index.js'
 import { AddressType, DummyProvider, ProcessResult } from '@sentio/sdk'
-import { AccountBindOptions } from './bind-options'
+import { AccountBindOptions } from './bind-options.js'
 import { getNetwork } from '@ethersproject/providers'
-import { TransferEvent as ERC20TransferEvent } from '../builtin/internal/ERC20'
-import { TransferEvent as ERC721TransferEvent } from '../builtin/internal/ERC721'
-import { AccountContext } from './context'
-import { PromiseOrVoid } from '../promise-or-void'
+import { TransferEvent as ERC20TransferEvent } from '../builtin/internal/ERC20.js'
+import { TransferEvent as ERC721TransferEvent } from '../builtin/internal/ERC721.js'
+import { AccountContext } from './context.js'
+import { PromiseOrVoid } from '../promise-or-void.js'
 import { Event } from '@ethersproject/contracts'
 import { BytesLike } from '@ethersproject/bytes'
-import { AddressOrTypeEventFilter, EventsHandler } from './base-processor'
+import { AddressOrTypeEventFilter, EventsHandler } from './base-processor.js'
 
 export class AccountProcessorState extends ListStateStorage<AccountProcessor> {
   static INSTANCE = new AccountProcessorState()
@@ -142,7 +142,7 @@ export class AccountProcessor {
     defaultFilter: (address: string) => AddressOrTypeEventFilter,
     addressType: AddressType
   ) {
-    const filters = []
+    const filters: AddressOrTypeEventFilter[] = []
     for (const token of contractAddresses) {
       const filter = defaultFilter(this.config.address)
       filter.address = token

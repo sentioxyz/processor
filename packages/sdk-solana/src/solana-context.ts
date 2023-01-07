@@ -1,7 +1,7 @@
-import { BaseContext } from '@sentio/sdk/lib/core/base-context'
-import { Labels } from '@sentio/sdk/lib/core/metadata'
+import { BaseContext } from '@sentio/sdk/lib/core/base-context.js'
+import { Labels } from '@sentio/sdk/lib/core/metadata.js'
 import { RecordMetaData, CHAIN_IDS } from '@sentio/sdk'
-import { normalizeLabels } from '@sentio/sdk/lib/core/meter'
+import { normalizeLabels } from '@sentio/sdk/lib/core/meter.js'
 
 export class SolanaContext extends BaseContext {
   network: string

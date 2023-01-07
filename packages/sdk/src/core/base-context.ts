@@ -1,7 +1,7 @@
 import { ProcessResult, RecordMetaData } from '@sentio/protos'
-import { Logger } from './logger'
-import { Labels } from './metadata'
-import { Meter } from './meter'
+import { Logger } from './logger.js'
+import { Labels } from './metadata.js'
+import { Meter } from './meter.js'
 
 export abstract class BaseContext {
   meter: Meter

@@ -1,10 +1,10 @@
 import { assert } from 'chai'
 
-import { TestProcessorServer } from '../testing'
+import { TestProcessorServer } from '../testing/index.js'
 import { BigNumber } from 'ethers'
-import { mockApprovalLog, mockOwnershipTransferredLog, mockTransferLog } from '../builtin/erc20/test-utils'
-import { ERC20Processor } from '../builtin/internal/erc20_processor'
-import { conversion } from '../utils'
+import { mockApprovalLog, mockOwnershipTransferredLog, mockTransferLog } from '../builtin/erc20/test-utils.js'
+import { ERC20Processor } from '../builtin/internal/erc20_processor.js'
+import { conversion } from '../utils/index.js'
 import { BigDecimal } from '@sentio/sdk'
 
 describe('Test Error Capture', () => {

@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import { format } from 'prettier'
-import { MoveFunction, MoveModule, MoveModuleBytecode, MoveStruct } from 'aptos-sdk/src/generated'
+import { MoveFunction, MoveModule, MoveModuleBytecode, MoveStruct } from 'aptos-sdk/src/generated.js'
 import { AccountModulesImportInfo, AccountRegister, generateType } from './typegen'
 import { getMeaningfulFunctionParams, isFrameworkAccount, moduleQname, SPLITTER } from '../utils'
 import chalk from 'chalk'

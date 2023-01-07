@@ -1,9 +1,9 @@
 import express from 'express'
-import { getAuthConfig, getFinalizedHost } from '../config'
+import { getAuthConfig, getFinalizedHost } from '../config.js'
 import url, { URL } from 'url'
 import fetch from 'node-fetch'
-import { getCliVersion } from '../utils'
-import { WriteKey } from '../key'
+import { getCliVersion } from '../utils.js'
+import { WriteKey } from '../key.js'
 import chalk from 'chalk'
 import http from 'http'
 import os from 'os'
@@ -39,8 +39,8 @@ app.get('/callback', async (req, res) => {
     console.error(chalk.red('request token error, code:', tokenResRaw.status, tokenResRaw.statusText))
     return
   }
-  const tokenRes = await tokenResRaw.json()
-  const accessToken = tokenRes['access_token']
+  const tokenRes = (await tokenResRaw.json()) as { access_token: string }
+  const accessToken = tokenRes.access_token
 
   // check if the account is ready
   const userResRaw = await getUser(host, accessToken)
@@ -52,7 +52,7 @@ app.get('/callback', async (req, res) => {
     }
     return
   }
-  const userRes = await userResRaw.json()
+  const userRes = (await userResRaw.json()) as { emailVerified: boolean }
   if (!userRes.emailVerified) {
     console.error(chalk.red('please verify your email first'))
     return
@@ -65,8 +65,8 @@ app.get('/callback', async (req, res) => {
     console.error(chalk.red('create api key error, code:', createApiKeyResRaw.status, createApiKeyResRaw.statusText))
     return
   }
-  const createApiKeyRes = await createApiKeyResRaw.json()
-  const apiKey = createApiKeyRes['key']
+  const createApiKeyRes = (await createApiKeyResRaw.json()) as { key: string }
+  const apiKey = createApiKeyRes.key
   WriteKey(host, apiKey)
   console.log(chalk.green('login success, new API key: ' + apiKey))
 
@@ -93,7 +93,7 @@ async function getToken(host: string, code: string) {
 
 async function createApiKey(host: string, name: string, source: string, accessToken: string) {
   const createApiKeyUrl = new URL('/api/v1/keys', host)
-  return fetch(createApiKeyUrl, {
+  return fetch(createApiKeyUrl.href, {
     method: 'POST',
     headers: {
       Authorization: 'Bearer ' + accessToken,
@@ -109,7 +109,7 @@ async function createApiKey(host: string, name: string, source: string, accessTo
 
 async function getUser(host: string, accessToken: string) {
   const getUserUrl = new URL('/api/v1/users', host)
-  return fetch(getUserUrl, {
+  return fetch(getUserUrl.href, {
     method: 'GET',
     headers: {
       Authorization: 'Bearer ' + accessToken,
