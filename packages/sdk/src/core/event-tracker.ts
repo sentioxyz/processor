@@ -50,6 +50,15 @@ export class EventTracker extends NamedResultDescriptor {
       noMetric: false,
     }
     ctx._res.events.push(res)
+
+    const dualRes: EventTrackingResult = {
+      metadata: ctx.getMetaData(this.name, {}),
+      distinctEntityId: distinctId,
+      attributes: payload,
+      runtimeInfo: undefined,
+      noMetric: true,
+    }
+    ctx._res.events.push(dualRes)
   }
 }
 
