@@ -2614,10 +2614,10 @@
   resolved "https://registry.yarnpkg.com/@sentio/bigdecimal/-/bigdecimal-9.1.1-patch.3.tgz#15e4f2ed6dd0446a97c5375d3931757a71df4287"
   integrity sha512-O5w8XdyeatUcwI+ZbpSw60/cXFPJk3NbpIupwMHfYmW8fpxpXyRbyGESNJNufWWrB6CadsWGh1R3rd7owvrmlw==
 
-"@sentio/ethers-v6@^1.0.22":
-  version "1.0.22"
-  resolved "https://registry.yarnpkg.com/@sentio/ethers-v6/-/ethers-v6-1.0.22.tgz#dc33a6b5824ed249a17887a6a1b1df91d552ac74"
-  integrity sha512-BEk8PlWv4maPM4Dyks3wlYxO30es+1lCxWCL3mlvTyYmCFQoqfyww15PEuTHS0/1hBasRxYUr6neHXK0myvEsQ==
+"@sentio/ethers-v6@^1.0.23":
+  version "1.0.23"
+  resolved "https://registry.yarnpkg.com/@sentio/ethers-v6/-/ethers-v6-1.0.23.tgz#a3dc0965420558bb29b043df1071f8f1f2dee0b6"
+  integrity sha512-RqsJn1DQIReHd0lh8H3I/+JAZPClE9RpNkCk8KdIzopudw/QwnpmGYVxYArNrXd4L5eXISkBUrB8BaDukpJJmw==
   dependencies:
     lodash "^4.17.15"
     ts-essentials "^7.0.1"
