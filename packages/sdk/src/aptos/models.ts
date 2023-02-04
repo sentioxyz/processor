@@ -22,7 +22,6 @@ export type TypedEntryFunctionPayload<T extends Array<any>> = TransactionPayload
 }
 
 export type TypedMoveResource<T> = MoveResource & {
-  data_typed: T
   type_arguments: string[]
 }
 
@@ -32,6 +31,5 @@ export interface StructWithTag {
 }
 
 export interface StructWithType<T> extends StructWithTag {
-  data_typed: T
   type_arguments: string[]
 }
