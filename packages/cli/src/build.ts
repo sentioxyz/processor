@@ -24,8 +24,9 @@ export async function buildProcessor(onlyGen: boolean) {
       process.exit(1)
     }
 
+    const tsup = path.resolve(getPackageRoot('tsup'), 'dist', 'cli-default.js')
     // await execStep('yarn tsc -p .', 'Compile')
-    await execStep('yarn tsup --config=' + WEBPACK_CONFIG, 'Packaging')
+    await execStep(`node ${tsup} --config=${WEBPACK_CONFIG}`, 'Packaging')
 
     const dir = fs.readdirSync(path.join(process.cwd(), 'dist'))
     const generated = dir.filter((d) => d.endsWith('.js')).length
@@ -93,9 +94,9 @@ export async function codeGenEthersProcessor(
 
   console.log(chalk.green('Generated Types for EVM'))
 
-  // TODO this will fail during postinstall, need to locate real typechain path
+  const typechain = path.resolve(getPackageRoot('typechain'), 'dist', 'cli', 'cli.js')
   await execStep(
-    'yarn typechain --target ' + ETHERS_TARGET + ` --out-dir ${outDir} ${path.join(abisDir, '*.json')}`,
+    `node ${typechain} --target ${ETHERS_TARGET} --out-dir ${outDir} ${path.join(abisDir, '*.json')}`,
     'Type definitions gen'
   )
 }
