@@ -56,13 +56,15 @@ export function finalizeHost(config: SentioProjectConfig) {
   config.host = getFinalizedHost(config.host)
 }
 
-export function FinalizeProjectName(config: SentioProjectConfig, owner: string | undefined) {
-  if (owner) {
+export function FinalizeProjectName(config: SentioProjectConfig, owner: string | undefined, slug: string | undefined) {
+  if (owner || slug) {
     let name = config.project
     if (name.includes('/')) {
+      owner = owner || config.project.split('/')[0]
       name = config.project.split('/')[1]
     }
-    config.project = [owner, name].join('/')
+    name = slug || name
+    config.project = owner ? [owner, name].join('/') : name
   }
 }
 
