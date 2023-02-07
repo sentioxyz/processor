@@ -21,7 +21,12 @@ export function getFinalizedHost(host: string): string {
   return HostMap[host] ?? host
 }
 
-export function getAuthConfig(host: string): { domain: string; clientId: string; audience: string, redirectUri: string } {
+export function getAuthConfig(host: string): {
+  domain: string
+  clientId: string
+  audience: string
+  redirectUri: string
+} {
   let domain = '',
     clientId = '',
     audience = '',
@@ -63,7 +68,14 @@ export function FinalizeProjectName(config: SentioProjectConfig, owner: string |
       owner = owner || config.project.split('/')[0]
       name = config.project.split('/')[1]
     }
-    name = slug || name
+    if (slug) {
+      if (slug.includes('/')) {
+        owner = slug.split('/')[0]
+        name = slug.split('/')[1]
+      } else {
+        name = slug
+      }
+    }
     config.project = owner ? [owner, name].join('/') : name
   }
 }
