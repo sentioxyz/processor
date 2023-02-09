@@ -26,8 +26,7 @@ export class AptosPlugin extends Plugin {
 
   async configure(config: ProcessConfigResponse) {
     for (const aptosProcessor of AptosProcessorState.INSTANCE.getValues()) {
-      const contractConfig: ContractConfig = {
-        transactionConfig: [],
+      const contractConfig = ContractConfig.fromPartial({
         processorType: USER_PROCESSOR,
         contract: {
           name: aptosProcessor.moduleName,
@@ -35,15 +34,8 @@ export class AptosPlugin extends Plugin {
           address: aptosProcessor.config.address,
           abi: '',
         },
-        intervalConfigs: [],
-        logConfigs: [],
-        traceConfigs: [],
         startBlock: aptosProcessor.config.startVersion,
-        endBlock: 0n,
-        instructionConfig: undefined,
-        aptosEventConfigs: [],
-        aptosCallConfigs: [],
-      }
+      })
       // 1. Prepare event handlers
       for (const handler of aptosProcessor.eventHandlers) {
         const handlerId = this.aptosEventHandlers.push(handler.handler) - 1

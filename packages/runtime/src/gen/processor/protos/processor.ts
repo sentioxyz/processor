@@ -132,7 +132,8 @@ export enum HandlerType {
   APT_EVENT = 6,
   APT_CALL = 7,
   APT_RESOURCE = 8,
-  SUI_TRANSACTION = 3,
+  SUI_EVENT = 3,
+  SUI_TRANSACTION = 9,
   UNRECOGNIZED = -1,
 }
 
@@ -163,6 +164,9 @@ export function handlerTypeFromJSON(object: any): HandlerType {
     case "APT_RESOURCE":
       return HandlerType.APT_RESOURCE;
     case 3:
+    case "SUI_EVENT":
+      return HandlerType.SUI_EVENT;
+    case 9:
     case "SUI_TRANSACTION":
       return HandlerType.SUI_TRANSACTION;
     case -1:
@@ -190,6 +194,8 @@ export function handlerTypeToJSON(object: HandlerType): string {
       return "APT_CALL";
     case HandlerType.APT_RESOURCE:
       return "APT_RESOURCE";
+    case HandlerType.SUI_EVENT:
+      return "SUI_EVENT";
     case HandlerType.SUI_TRANSACTION:
       return "SUI_TRANSACTION";
     case HandlerType.UNRECOGNIZED:
@@ -275,6 +281,7 @@ export interface ContractConfig {
   transactionConfig: TransactionHandlerConfig[];
   aptosEventConfigs: AptosEventHandlerConfig[];
   aptosCallConfigs: AptosCallHandlerConfig[];
+  suiEventConfigs: SuicEventHandlerConfig[];
   instructionConfig: InstructionHandlerConfig | undefined;
   startBlock: bigint;
   endBlock: bigint;
@@ -464,6 +471,21 @@ export interface AptosCallFilter {
   includeFailed: boolean;
 }
 
+export interface SuiFetchConfig {
+  transaction: boolean;
+}
+
+export interface SuiEventFilter {
+  type: string;
+  account: string;
+}
+
+export interface SuicEventHandlerConfig {
+  filters: SuiEventFilter[];
+  handlerId: number;
+  fetchConfig: SuiFetchConfig | undefined;
+}
+
 export interface Topic {
   hashes: string[];
 }
@@ -495,6 +517,7 @@ export interface Data {
   aptEvent?: Data_AptEvent | undefined;
   aptCall?: Data_AptCall | undefined;
   aptResource?: Data_AptResource | undefined;
+  suiEvent?: Data_SuiEvent | undefined;
 }
 
 export interface Data_EthLog {
@@ -544,6 +567,11 @@ export interface Data_AptResource {
   resources: { [key: string]: any }[];
   version: bigint;
   timestampMicros: bigint;
+}
+
+export interface Data_SuiEvent {
+  transaction: { [key: string]: any } | undefined;
+  eventIdx: number[];
 }
 
 export interface DataBinding {
@@ -886,6 +914,7 @@ function createBaseContractConfig(): ContractConfig {
     transactionConfig: [],
     aptosEventConfigs: [],
     aptosCallConfigs: [],
+    suiEventConfigs: [],
     instructionConfig: undefined,
     startBlock: BigInt("0"),
     endBlock: BigInt("0"),
@@ -915,6 +944,9 @@ export const ContractConfig = {
     }
     for (const v of message.aptosCallConfigs) {
       AptosCallHandlerConfig.encode(v!, writer.uint32(82).fork()).ldelim();
+    }
+    for (const v of message.suiEventConfigs) {
+      SuicEventHandlerConfig.encode(v!, writer.uint32(98).fork()).ldelim();
     }
     if (message.instructionConfig !== undefined) {
       InstructionHandlerConfig.encode(message.instructionConfig, writer.uint32(50).fork()).ldelim();
@@ -959,6 +991,9 @@ export const ContractConfig = {
         case 10:
           message.aptosCallConfigs.push(AptosCallHandlerConfig.decode(reader, reader.uint32()));
           break;
+        case 12:
+          message.suiEventConfigs.push(SuicEventHandlerConfig.decode(reader, reader.uint32()));
+          break;
         case 6:
           message.instructionConfig = InstructionHandlerConfig.decode(reader, reader.uint32());
           break;
@@ -999,6 +1034,9 @@ export const ContractConfig = {
         : [],
       aptosCallConfigs: Array.isArray(object?.aptosCallConfigs)
         ? object.aptosCallConfigs.map((e: any) => AptosCallHandlerConfig.fromJSON(e))
+        : [],
+      suiEventConfigs: Array.isArray(object?.suiEventConfigs)
+        ? object.suiEventConfigs.map((e: any) => SuicEventHandlerConfig.fromJSON(e))
         : [],
       instructionConfig: isSet(object.instructionConfig)
         ? InstructionHandlerConfig.fromJSON(object.instructionConfig)
@@ -1043,6 +1081,11 @@ export const ContractConfig = {
     } else {
       obj.aptosCallConfigs = [];
     }
+    if (message.suiEventConfigs) {
+      obj.suiEventConfigs = message.suiEventConfigs.map((e) => e ? SuicEventHandlerConfig.toJSON(e) : undefined);
+    } else {
+      obj.suiEventConfigs = [];
+    }
     message.instructionConfig !== undefined && (obj.instructionConfig = message.instructionConfig
       ? InstructionHandlerConfig.toJSON(message.instructionConfig)
       : undefined);
@@ -1063,6 +1106,7 @@ export const ContractConfig = {
     message.transactionConfig = object.transactionConfig?.map((e) => TransactionHandlerConfig.fromPartial(e)) || [];
     message.aptosEventConfigs = object.aptosEventConfigs?.map((e) => AptosEventHandlerConfig.fromPartial(e)) || [];
     message.aptosCallConfigs = object.aptosCallConfigs?.map((e) => AptosCallHandlerConfig.fromPartial(e)) || [];
+    message.suiEventConfigs = object.suiEventConfigs?.map((e) => SuicEventHandlerConfig.fromPartial(e)) || [];
     message.instructionConfig = (object.instructionConfig !== undefined && object.instructionConfig !== null)
       ? InstructionHandlerConfig.fromPartial(object.instructionConfig)
       : undefined;
@@ -2899,6 +2943,185 @@ export const AptosCallFilter = {
   },
 };
 
+function createBaseSuiFetchConfig(): SuiFetchConfig {
+  return { transaction: false };
+}
+
+export const SuiFetchConfig = {
+  encode(message: SuiFetchConfig, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.transaction === true) {
+      writer.uint32(8).bool(message.transaction);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SuiFetchConfig {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSuiFetchConfig();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.transaction = reader.bool();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SuiFetchConfig {
+    return { transaction: isSet(object.transaction) ? Boolean(object.transaction) : false };
+  },
+
+  toJSON(message: SuiFetchConfig): unknown {
+    const obj: any = {};
+    message.transaction !== undefined && (obj.transaction = message.transaction);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<SuiFetchConfig>): SuiFetchConfig {
+    const message = createBaseSuiFetchConfig();
+    message.transaction = object.transaction ?? false;
+    return message;
+  },
+};
+
+function createBaseSuiEventFilter(): SuiEventFilter {
+  return { type: "", account: "" };
+}
+
+export const SuiEventFilter = {
+  encode(message: SuiEventFilter, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.type !== "") {
+      writer.uint32(10).string(message.type);
+    }
+    if (message.account !== "") {
+      writer.uint32(18).string(message.account);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SuiEventFilter {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSuiEventFilter();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.type = reader.string();
+          break;
+        case 2:
+          message.account = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SuiEventFilter {
+    return {
+      type: isSet(object.type) ? String(object.type) : "",
+      account: isSet(object.account) ? String(object.account) : "",
+    };
+  },
+
+  toJSON(message: SuiEventFilter): unknown {
+    const obj: any = {};
+    message.type !== undefined && (obj.type = message.type);
+    message.account !== undefined && (obj.account = message.account);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<SuiEventFilter>): SuiEventFilter {
+    const message = createBaseSuiEventFilter();
+    message.type = object.type ?? "";
+    message.account = object.account ?? "";
+    return message;
+  },
+};
+
+function createBaseSuicEventHandlerConfig(): SuicEventHandlerConfig {
+  return { filters: [], handlerId: 0, fetchConfig: undefined };
+}
+
+export const SuicEventHandlerConfig = {
+  encode(message: SuicEventHandlerConfig, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.filters) {
+      SuiEventFilter.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.handlerId !== 0) {
+      writer.uint32(16).int32(message.handlerId);
+    }
+    if (message.fetchConfig !== undefined) {
+      SuiFetchConfig.encode(message.fetchConfig, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SuicEventHandlerConfig {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSuicEventHandlerConfig();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.filters.push(SuiEventFilter.decode(reader, reader.uint32()));
+          break;
+        case 2:
+          message.handlerId = reader.int32();
+          break;
+        case 3:
+          message.fetchConfig = SuiFetchConfig.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SuicEventHandlerConfig {
+    return {
+      filters: Array.isArray(object?.filters) ? object.filters.map((e: any) => SuiEventFilter.fromJSON(e)) : [],
+      handlerId: isSet(object.handlerId) ? Number(object.handlerId) : 0,
+      fetchConfig: isSet(object.fetchConfig) ? SuiFetchConfig.fromJSON(object.fetchConfig) : undefined,
+    };
+  },
+
+  toJSON(message: SuicEventHandlerConfig): unknown {
+    const obj: any = {};
+    if (message.filters) {
+      obj.filters = message.filters.map((e) => e ? SuiEventFilter.toJSON(e) : undefined);
+    } else {
+      obj.filters = [];
+    }
+    message.handlerId !== undefined && (obj.handlerId = Math.round(message.handlerId));
+    message.fetchConfig !== undefined &&
+      (obj.fetchConfig = message.fetchConfig ? SuiFetchConfig.toJSON(message.fetchConfig) : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<SuicEventHandlerConfig>): SuicEventHandlerConfig {
+    const message = createBaseSuicEventHandlerConfig();
+    message.filters = object.filters?.map((e) => SuiEventFilter.fromPartial(e)) || [];
+    message.handlerId = object.handlerId ?? 0;
+    message.fetchConfig = (object.fetchConfig !== undefined && object.fetchConfig !== null)
+      ? SuiFetchConfig.fromPartial(object.fetchConfig)
+      : undefined;
+    return message;
+  },
+};
+
 function createBaseTopic(): Topic {
   return { hashes: [] };
 }
@@ -3142,6 +3365,7 @@ function createBaseData(): Data {
     aptEvent: undefined,
     aptCall: undefined,
     aptResource: undefined,
+    suiEvent: undefined,
   };
 }
 
@@ -3173,6 +3397,9 @@ export const Data = {
     }
     if (message.aptResource !== undefined) {
       Data_AptResource.encode(message.aptResource, writer.uint32(74).fork()).ldelim();
+    }
+    if (message.suiEvent !== undefined) {
+      Data_SuiEvent.encode(message.suiEvent, writer.uint32(82).fork()).ldelim();
     }
     return writer;
   },
@@ -3211,6 +3438,9 @@ export const Data = {
         case 9:
           message.aptResource = Data_AptResource.decode(reader, reader.uint32());
           break;
+        case 10:
+          message.suiEvent = Data_SuiEvent.decode(reader, reader.uint32());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -3230,6 +3460,7 @@ export const Data = {
       aptEvent: isSet(object.aptEvent) ? Data_AptEvent.fromJSON(object.aptEvent) : undefined,
       aptCall: isSet(object.aptCall) ? Data_AptCall.fromJSON(object.aptCall) : undefined,
       aptResource: isSet(object.aptResource) ? Data_AptResource.fromJSON(object.aptResource) : undefined,
+      suiEvent: isSet(object.suiEvent) ? Data_SuiEvent.fromJSON(object.suiEvent) : undefined,
     };
   },
 
@@ -3251,6 +3482,8 @@ export const Data = {
     message.aptCall !== undefined && (obj.aptCall = message.aptCall ? Data_AptCall.toJSON(message.aptCall) : undefined);
     message.aptResource !== undefined &&
       (obj.aptResource = message.aptResource ? Data_AptResource.toJSON(message.aptResource) : undefined);
+    message.suiEvent !== undefined &&
+      (obj.suiEvent = message.suiEvent ? Data_SuiEvent.toJSON(message.suiEvent) : undefined);
     return obj;
   },
 
@@ -3280,6 +3513,9 @@ export const Data = {
       : undefined;
     message.aptResource = (object.aptResource !== undefined && object.aptResource !== null)
       ? Data_AptResource.fromPartial(object.aptResource)
+      : undefined;
+    message.suiEvent = (object.suiEvent !== undefined && object.suiEvent !== null)
+      ? Data_SuiEvent.fromPartial(object.suiEvent)
       : undefined;
     return message;
   },
@@ -3840,6 +4076,77 @@ export const Data_AptResource = {
     message.resources = object.resources?.map((e) => e) || [];
     message.version = object.version ?? BigInt("0");
     message.timestampMicros = object.timestampMicros ?? BigInt("0");
+    return message;
+  },
+};
+
+function createBaseData_SuiEvent(): Data_SuiEvent {
+  return { transaction: undefined, eventIdx: [] };
+}
+
+export const Data_SuiEvent = {
+  encode(message: Data_SuiEvent, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.transaction !== undefined) {
+      Struct.encode(Struct.wrap(message.transaction), writer.uint32(10).fork()).ldelim();
+    }
+    writer.uint32(18).fork();
+    for (const v of message.eventIdx) {
+      writer.int32(v);
+    }
+    writer.ldelim();
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Data_SuiEvent {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseData_SuiEvent();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.transaction = Struct.unwrap(Struct.decode(reader, reader.uint32()));
+          break;
+        case 2:
+          if ((tag & 7) === 2) {
+            const end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) {
+              message.eventIdx.push(reader.int32());
+            }
+          } else {
+            message.eventIdx.push(reader.int32());
+          }
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Data_SuiEvent {
+    return {
+      transaction: isObject(object.transaction) ? object.transaction : undefined,
+      eventIdx: Array.isArray(object?.eventIdx) ? object.eventIdx.map((e: any) => Number(e)) : [],
+    };
+  },
+
+  toJSON(message: Data_SuiEvent): unknown {
+    const obj: any = {};
+    message.transaction !== undefined && (obj.transaction = message.transaction);
+    if (message.eventIdx) {
+      obj.eventIdx = message.eventIdx.map((e) => Math.round(e));
+    } else {
+      obj.eventIdx = [];
+    }
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<Data_SuiEvent>): Data_SuiEvent {
+    const message = createBaseData_SuiEvent();
+    message.transaction = object.transaction ?? undefined;
+    message.eventIdx = object.eventIdx?.map((e) => e) || [];
     return message;
   },
 };

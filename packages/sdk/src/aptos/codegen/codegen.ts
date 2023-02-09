@@ -265,15 +265,15 @@ function generateModule(moduleByteCode: MoveModuleBytecode, network: AptosNetwor
   if (functions.length > 0 || events.length > 0) {
     processor = `export class ${moduleName} extends AptosBaseProcessor {
 
-    constructor(options: AptosBindOptions) {
+    constructor(options: SuiBindOptions) {
       super("${module.name}", options)
     }
-    static DEFAULT_OPTIONS: AptosBindOptions = {
+    static DEFAULT_OPTIONS: SuiBindOptions = {
       address: "${module.address}",
       network: AptosNetwork.${generateNetworkOption(network)}       
     }
 
-    static bind(options: Partial<AptosBindOptions> = {}): ${moduleName} {
+    static bind(options: Partial<SuiBindOptions> = {}): ${moduleName} {
       return new ${moduleName}({ ...${moduleName}.DEFAULT_OPTIONS, ...options })
     }
     
