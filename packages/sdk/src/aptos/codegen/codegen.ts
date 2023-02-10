@@ -169,12 +169,12 @@ export class AccountCodegen {
     }
 
     const imports = `
+    import { CallFilter } from "@sentio/sdk/move"
     import { 
       MoveCoder, AptosBindOptions, AptosBaseProcessor, 
       TypedEventInstance, AptosNetwork, TypedEntryFunctionPayload,
-      AptosContext, CallFilter
-    } from "@sentio/sdk/aptos"
-    import { AptosFetchConfig } from "@sentio/protos"
+      AptosContext } from "@sentio/sdk/aptos"
+    import { MoveFetchConfig } from "@sentio/protos"
     import { Address, MoveModule } from "@sentio/sdk/aptos"
     `
 
@@ -265,15 +265,15 @@ function generateModule(moduleByteCode: MoveModuleBytecode, network: AptosNetwor
   if (functions.length > 0 || events.length > 0) {
     processor = `export class ${moduleName} extends AptosBaseProcessor {
 
-    constructor(options: SuiBindOptions) {
+    constructor(options: AptosBindOptions) {
       super("${module.name}", options)
     }
-    static DEFAULT_OPTIONS: SuiBindOptions = {
+    static DEFAULT_OPTIONS: AptosBindOptions = {
       address: "${module.address}",
       network: AptosNetwork.${generateNetworkOption(network)}       
     }
 
-    static bind(options: Partial<SuiBindOptions> = {}): ${moduleName} {
+    static bind(options: Partial<AptosBindOptions> = {}): ${moduleName} {
       return new ${moduleName}({ ...${moduleName}.DEFAULT_OPTIONS, ...options })
     }
     
@@ -393,7 +393,7 @@ function generateOnEntryFunctions(module: MoveModule, func: MoveFunction) {
 
   const camelFuncName = capitalizeFirstChar(camelCase(func.name))
   const source = `
-  onEntry${camelFuncName}(func: (call: ${moduleName}.${camelFuncName}Payload, ctx: AptosContext) => void, filter?: CallFilter, fetchConfig?: AptosFetchConfig): ${moduleName} {
+  onEntry${camelFuncName}(func: (call: ${moduleName}.${camelFuncName}Payload, ctx: AptosContext) => void, filter?: CallFilter, fetchConfig?: MoveFetchConfig): ${moduleName} {
     this.onEntryFunctionCall(func, {
       ...filter,
       function: '${module.name}::${func.name}'
@@ -442,7 +442,7 @@ function generateOnEvents(module: MoveModule, struct: MoveStruct): string {
   const source = `
   onEvent${struct.name}(func: (event: ${moduleName}.${normalizeToJSName(
     struct.name
-  )}Instance, ctx: AptosContext) => void, fetchConfig?: AptosFetchConfig): ${moduleName} {
+  )}Instance, ctx: AptosContext) => void, fetchConfig?: MoveFetchConfig): ${moduleName} {
     this.onEvent(func, {
       type: '${module.name}::${struct.name}'
     },

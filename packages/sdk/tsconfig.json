@@ -6,6 +6,5 @@
     "outDir": "lib"
   },
   "exclude": ["lib", "jest.config.ts", "src/tsup.config.ts"],
-  "extends": "../../tsconfig.json",
-  "include": ["../../node_modules/@mysten/sui.js/dist/index.d.ts"]
+  "extends": "../../tsconfig.json"
 }

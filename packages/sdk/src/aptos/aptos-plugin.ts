@@ -1,8 +1,8 @@
 import { Plugin, PluginManager, errorString, mergeProcessResults, USER_PROCESSOR } from '@sentio/runtime'
 import {
   AccountConfig,
-  AptosCallHandlerConfig,
-  AptosEventHandlerConfig,
+  MoveCallHandlerConfig,
+  MoveEventHandlerConfig,
   ContractConfig,
   Data_AptCall,
   Data_AptEvent,
@@ -39,7 +39,7 @@ export class AptosPlugin extends Plugin {
       // 1. Prepare event handlers
       for (const handler of aptosProcessor.eventHandlers) {
         const handlerId = this.aptosEventHandlers.push(handler.handler) - 1
-        const eventHandlerConfig: AptosEventHandlerConfig = {
+        const eventHandlerConfig: MoveEventHandlerConfig = {
           filters: handler.filters.map((f) => {
             return {
               type: f.type,
@@ -49,13 +49,13 @@ export class AptosPlugin extends Plugin {
           fetchConfig: handler.fetchConfig,
           handlerId,
         }
-        contractConfig.aptosEventConfigs.push(eventHandlerConfig)
+        contractConfig.moveEventConfigs.push(eventHandlerConfig)
       }
 
       // 2. Prepare function handlers
       for (const handler of aptosProcessor.callHandlers) {
         const handlerId = this.aptosCallHandlers.push(handler.handler) - 1
-        const functionHandlerConfig: AptosCallHandlerConfig = {
+        const functionHandlerConfig: MoveCallHandlerConfig = {
           filters: handler.filters.map((filter) => {
             return {
               function: filter.function,
@@ -67,7 +67,7 @@ export class AptosPlugin extends Plugin {
           fetchConfig: handler.fetchConfig,
           handlerId,
         }
-        contractConfig.aptosCallConfigs.push(functionHandlerConfig)
+        contractConfig.moveCallConfigs.push(functionHandlerConfig)
       }
       config.contractConfigs.push(contractConfig)
     }
