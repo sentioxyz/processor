@@ -15,14 +15,32 @@
 <li><a href="../modules.html">Documentation</a></li>
 <li><a href="BigInteger-1.html">BigInteger</a></li></ul>
 <h1>Variable BigInteger</h1></div>
-<div class="tsd-signature">Big<wbr/>Integer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span><br/><span>    </span>decode<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Reader</span>, length<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="BigInteger-1.html" class="tsd-signature-type" data-tsd-kind="Variable">BigInteger</a><span class="tsd-signature-symbol">; </span><br/><span>    </span>encode<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><a href="BigInteger-1.html" class="tsd-signature-type" data-tsd-kind="Variable">BigInteger</a>, writer<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Writer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Writer</span><span class="tsd-signature-symbol">; </span><br/><span>    </span>fromJSON<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="BigInteger-1.html" class="tsd-signature-type" data-tsd-kind="Variable">BigInteger</a><span class="tsd-signature-symbol">; </span><br/><span>    </span>fromPartial<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span><br/><span>        </span>data<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol">; </span><br/><span>        </span>negative<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="BigInteger-1.html" class="tsd-signature-type" data-tsd-kind="Variable">BigInteger</a><span class="tsd-signature-symbol">; </span><br/><span>    </span>toJSON<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><a href="BigInteger-1.html" class="tsd-signature-type" data-tsd-kind="Variable">BigInteger</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></div>
+<div class="tsd-signature">Big<wbr/>Integer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span><br/><span>    </span>create<span class="tsd-signature-symbol">(</span>base<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span><br/><span>        </span>data<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol">; </span><br/><span>        </span>negative<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="BigInteger-1.html" class="tsd-signature-type" data-tsd-kind="Variable">BigInteger</a><span class="tsd-signature-symbol">; </span><br/><span>    </span>decode<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Reader</span>, length<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="BigInteger-1.html" class="tsd-signature-type" data-tsd-kind="Variable">BigInteger</a><span class="tsd-signature-symbol">; </span><br/><span>    </span>encode<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><a href="BigInteger-1.html" class="tsd-signature-type" data-tsd-kind="Variable">BigInteger</a>, writer<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Writer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Writer</span><span class="tsd-signature-symbol">; </span><br/><span>    </span>fromJSON<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="BigInteger-1.html" class="tsd-signature-type" data-tsd-kind="Variable">BigInteger</a><span class="tsd-signature-symbol">; </span><br/><span>    </span>fromPartial<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span><br/><span>        </span>data<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol">; </span><br/><span>        </span>negative<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="BigInteger-1.html" class="tsd-signature-type" data-tsd-kind="Variable">BigInteger</a><span class="tsd-signature-symbol">; </span><br/><span>    </span>toJSON<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><a href="BigInteger-1.html" class="tsd-signature-type" data-tsd-kind="Variable">BigInteger</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></div>
 <div class="tsd-type-declaration">
 <h4>Type declaration</h4>
 <ul class="tsd-parameters">
 <li class="tsd-parameter">
+<h5>create<span class="tsd-signature-symbol">:</span>function</h5>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
+<li class="tsd-signature tsd-anchor-link" id="__type.create.create-1">create<span class="tsd-signature-symbol">(</span>base<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span>data<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol">; </span><br/><span>    </span>negative<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="BigInteger-1.html" class="tsd-signature-type" data-tsd-kind="Variable">BigInteger</a><a href="#__type.create.create-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" id="icon-anchor-a"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" id="icon-anchor-b"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" id="icon-anchor-c"></path></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> base: <span class="tsd-signature-symbol">{ </span><br/><span>    </span>data<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol">; </span><br/><span>    </span>negative<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5>
+<ul class="tsd-parameters">
+<li class="tsd-parameter">
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> data<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Uint8Array</span></h5></li>
+<li class="tsd-parameter">
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> negative<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5></li></ul></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="BigInteger-1.html" class="tsd-signature-type" data-tsd-kind="Variable">BigInteger</a></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:774</li></ul></aside></li></ul></li>
+<li class="tsd-parameter">
 <h5>decode<span class="tsd-signature-symbol">:</span>function</h5>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
-<li class="tsd-signature tsd-anchor-link" id="__type.decode.decode-1">decode<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Reader</span>, length<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="BigInteger-1.html" class="tsd-signature-type" data-tsd-kind="Variable">BigInteger</a><a href="#__type.decode.decode-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" id="icon-anchor-a"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" id="icon-anchor-b"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" id="icon-anchor-c"></path></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="__type.decode.decode-1">decode<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Reader</span>, length<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="BigInteger-1.html" class="tsd-signature-type" data-tsd-kind="Variable">BigInteger</a><a href="#__type.decode.decode-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
@@ -33,7 +51,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> length: <span class="tsd-signature-type">number</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="BigInteger-1.html" class="tsd-signature-type" data-tsd-kind="Variable">BigInteger</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:733</li></ul></aside></li></ul></li>
+<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:771</li></ul></aside></li></ul></li>
 <li class="tsd-parameter">
 <h5>encode<span class="tsd-signature-symbol">:</span>function</h5>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
@@ -48,7 +66,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> writer: <span class="tsd-signature-type">Writer</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Writer</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:732</li></ul></aside></li></ul></li>
+<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:770</li></ul></aside></li></ul></li>
 <li class="tsd-parameter">
 <h5>fromJSON<span class="tsd-signature-symbol">:</span>function</h5>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
@@ -61,7 +79,7 @@
 <h5>object: <span class="tsd-signature-type">any</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="BigInteger-1.html" class="tsd-signature-type" data-tsd-kind="Variable">BigInteger</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:734</li></ul></aside></li></ul></li>
+<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:772</li></ul></aside></li></ul></li>
 <li class="tsd-parameter">
 <h5>from<wbr/>Partial<span class="tsd-signature-symbol">:</span>function</h5>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
@@ -79,7 +97,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> negative<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5></li></ul></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="BigInteger-1.html" class="tsd-signature-type" data-tsd-kind="Variable">BigInteger</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:736</li></ul></aside></li></ul></li>
+<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:775</li></ul></aside></li></ul></li>
 <li class="tsd-parameter">
 <h5>toJSON<span class="tsd-signature-symbol">:</span>function</h5>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
@@ -92,10 +110,10 @@
 <h5>message: <a href="BigInteger-1.html" class="tsd-signature-type" data-tsd-kind="Variable">BigInteger</a></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">unknown</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:735</li></ul></aside></li></ul></li></ul></div><aside class="tsd-sources">
+<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:773</li></ul></aside></li></ul></li></ul></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:352</li>
-<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:731</li></ul></aside></div>
+<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:351</li>
+<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:769</li></ul></aside></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <div class="tsd-navigation settings">
 <details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
@@ -169,7 +187,6 @@
 <li class="tsd-kind-interface"><a href="../interfaces/ListValue.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>List<wbr/>Value</a></li>
 <li class="tsd-kind-interface"><a href="../interfaces/LogFilter.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Log<wbr/>Filter</a></li>
 <li class="tsd-kind-interface"><a href="../interfaces/LogHandlerConfig.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Log<wbr/>Handler<wbr/>Config</a></li>
-<li class="tsd-kind-interface"><a href="../interfaces/LogResult.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Log<wbr/>Result</a></li>
 <li class="tsd-kind-interface"><a href="../interfaces/MetricConfig.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Metric<wbr/>Config</a></li>
 <li class="tsd-kind-interface"><a href="../interfaces/MetricValue.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Metric<wbr/>Value</a></li>
 <li class="tsd-kind-interface"><a href="../interfaces/MoveCallFilter.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Move<wbr/>Call<wbr/>Filter</a></li>
@@ -239,7 +256,6 @@
 <li class="tsd-kind-variable"><a href="ListValue-1.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg>List<wbr/>Value</a></li>
 <li class="tsd-kind-variable"><a href="LogFilter-1.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg>Log<wbr/>Filter</a></li>
 <li class="tsd-kind-variable"><a href="LogHandlerConfig-1.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg>Log<wbr/>Handler<wbr/>Config</a></li>
-<li class="tsd-kind-variable"><a href="LogResult-1.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg>Log<wbr/>Result</a></li>
 <li class="tsd-kind-variable"><a href="MetricConfig-1.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg>Metric<wbr/>Config</a></li>
 <li class="tsd-kind-variable"><a href="MetricValue-1.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg>Metric<wbr/>Value</a></li>
 <li class="tsd-kind-variable"><a href="MoveCallFilter-1.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg>Move<wbr/>Call<wbr/>Filter</a></li>
