@@ -1,4 +1,4 @@
-import {
+import type {
   SuiMoveNormalizedField,
   SuiMoveNormalizedFunction,
   SuiMoveNormalizedModule,
@@ -37,9 +37,11 @@ export function toInternalFunction(name: string, func: SuiMoveNormalizedFunction
     case 'Friend':
       visibility = InternalMoveFunctionVisibility.FRIEND
       break
+    default:
+      throw Error('No visibility for function' + name)
   }
   return {
-    typeParams: func.type_parameters.map((p) => {
+    typeParams: func.type_parameters.map((p: any) => {
       return { constraints: p.abilities }
     }),
     isEntry: func.is_entry,
@@ -54,7 +56,7 @@ export function toInternalStruct(name: string, struct: SuiMoveNormalizedStruct):
   return {
     abilities: struct.abilities.abilities,
     fields: struct.fields.map(toInternalField),
-    typeParams: struct.type_parameters.map((p) => {
+    typeParams: struct.type_parameters.map((p: any) => {
       return { constraints: p.constraints.abilities }
     }),
     isNative: false,
