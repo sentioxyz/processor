@@ -24,7 +24,6 @@ export class EventLogger {
 
   emit<T>(eventName: string, event: Event<T>) {
     const { distinctId, severity, message, ...payload } = event
-
     const res: EventTrackingResult = {
       metadata: this.ctx.getMetaData(eventName, {}),
       severity: severity || LogLevel.INFO,
