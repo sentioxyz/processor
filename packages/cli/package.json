@@ -28,7 +28,7 @@
     "js-yaml": "^4.1.0",
     "latest-version": "^7.0.0",
     "node-fetch": "^3.3.0",
-    "open": "^8.4.0",
+    "open": "^9.0.0",
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
     "tsup": "npm:@sentio/tsup@^6.6.3"
