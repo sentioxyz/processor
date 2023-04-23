@@ -38,9 +38,7 @@
     "@types/express": "^4.17.14",
     "@types/fs-extra": "^11.0.1"
   },
-  "peerDependencies": {
-    "@sentio/sdk": "workspace:^"
-  },
+  "peerDependencies": {},
   "bin": {
     "sentio": "./lib/cli.js"
   },
