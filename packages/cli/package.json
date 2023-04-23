@@ -7,7 +7,7 @@
     "compile": "tsc",
     "build": "pnpm compile",
     "postbuild": "pnpm install",
-    "cli": "ts-node-esm src/cli.ts",
+    "cli": "ts-node-esm src/index.ts",
     "test": "NODE_OPTIONS=--experimental-vm-modules pnpm jest"
   },
   "dependencies": {
@@ -38,9 +38,11 @@
     "@types/express": "^4.17.14",
     "@types/fs-extra": "^11.0.1"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@sentio/sdk": "workspace:^"
+  },
   "bin": {
-    "sentio": "./lib/cli.js"
+    "sentio": "./lib/index.js"
   },
   "types": "module",
   "exports": {
