@@ -23,7 +23,7 @@
 <ul class="tsd-hierarchy">
 <li><span class="target">EthPlugin</span></li></ul></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/eth/eth-plugin.ts#L25">packages/sdk/src/eth/eth-plugin.ts:25</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c29b16f/packages/sdk/src/eth/eth-plugin.ts#L34">packages/sdk/src/eth/eth-plugin.ts:34</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -35,12 +35,9 @@
 </div></section>
 <section class="tsd-index-section">
 <h3 class="tsd-index-heading">Properties</h3>
-<div class="tsd-index-list"><a href="eth.EthPlugin.html#blockHandlers" class="tsd-index-link tsd-kind-property tsd-parent-kind-class tsd-is-private"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="#FF984D" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12" id="icon-1024-path"></rect><path d="M9.354 16V7.24H12.174C12.99 7.24 13.638 7.476 14.118 7.948C14.606 8.412 14.85 9.036 14.85 9.82C14.85 10.604 14.606 11.232 14.118 11.704C13.638 12.168 12.99 12.4 12.174 12.4H10.434V16H9.354ZM10.434 11.428H12.174C12.646 11.428 13.022 11.284 13.302 10.996C13.59 10.7 13.734 10.308 13.734 9.82C13.734 9.324 13.59 8.932 13.302 8.644C13.022 8.356 12.646 8.212 12.174 8.212H10.434V11.428Z" fill="var(--color-text)" id="icon-1024-text"></path></svg><span>block<wbr/>Handlers</span></a>
-<a href="eth.EthPlugin.html#eventHandlers" class="tsd-index-link tsd-kind-property tsd-parent-kind-class tsd-is-private"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>event<wbr/>Handlers</span></a>
+<div class="tsd-index-list"><a href="eth.EthPlugin.html#handlers" class="tsd-index-link tsd-kind-property tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="#FF984D" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12" id="icon-1024-path"></rect><path d="M9.354 16V7.24H12.174C12.99 7.24 13.638 7.476 14.118 7.948C14.606 8.412 14.85 9.036 14.85 9.82C14.85 10.604 14.606 11.232 14.118 11.704C13.638 12.168 12.99 12.4 12.174 12.4H10.434V16H9.354ZM10.434 11.428H12.174C12.646 11.428 13.022 11.284 13.302 10.996C13.59 10.7 13.734 10.308 13.734 9.82C13.734 9.324 13.59 8.932 13.302 8.644C13.022 8.356 12.646 8.212 12.174 8.212H10.434V11.428Z" fill="var(--color-text)" id="icon-1024-text"></path></svg><span>handlers</span></a>
 <a href="eth.EthPlugin.html#name" class="tsd-index-link tsd-kind-property tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>name</span></a>
 <a href="eth.EthPlugin.html#supportedHandlers" class="tsd-index-link tsd-kind-property tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>supported<wbr/>Handlers</span></a>
-<a href="eth.EthPlugin.html#traceHandlers" class="tsd-index-link tsd-kind-property tsd-parent-kind-class tsd-is-private"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>trace<wbr/>Handlers</span></a>
-<a href="eth.EthPlugin.html#transactionHandlers" class="tsd-index-link tsd-kind-property tsd-parent-kind-class tsd-is-private"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>transaction<wbr/>Handlers</span></a>
 </div></section>
 <section class="tsd-index-section">
 <h3 class="tsd-index-heading">Methods</h3>
@@ -64,38 +61,23 @@
 <p>Inherited from Plugin.constructor</p></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Properties</h2>
-<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private"><a id="blockHandlers" class="tsd-anchor"></a>
-<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <span>block<wbr/>Handlers</span><a href="#blockHandlers" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
-<div class="tsd-signature">block<wbr/>Handlers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>block<span class="tsd-signature-symbol">: </span><a href="../variables/_.Data_EthBlock-1.html" class="tsd-signature-type" data-tsd-kind="Variable">Data_EthBlock</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.ProcessResult-1.html" class="tsd-signature-type" data-tsd-kind="Variable">ProcessResult</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div><aside class="tsd-sources">
+<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="handlers" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>handlers</span><a href="#handlers" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<div class="tsd-signature">handlers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Handlers</span><span class="tsd-signature-symbol"> = ...</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/eth/eth-plugin.ts#L30">packages/sdk/src/eth/eth-plugin.ts:30</a></li></ul></aside></section>
-<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private"><a id="eventHandlers" class="tsd-anchor"></a>
-<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <span>event<wbr/>Handlers</span><a href="#eventHandlers" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
-<div class="tsd-signature">event<wbr/>Handlers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="../variables/_.Data_EthLog-1.html" class="tsd-signature-type" data-tsd-kind="Variable">Data_EthLog</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.ProcessResult-1.html" class="tsd-signature-type" data-tsd-kind="Variable">ProcessResult</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div><aside class="tsd-sources">
-<ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/eth/eth-plugin.ts#L28">packages/sdk/src/eth/eth-plugin.ts:28</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c29b16f/packages/sdk/src/eth/eth-plugin.ts#L36">packages/sdk/src/eth/eth-plugin.ts:36</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="name" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>name</span><a href="#name" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &#39;EthPlugin&#39;</span></div><aside class="tsd-sources">
 <p>Overrides Plugin.name</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/eth/eth-plugin.ts#L26">packages/sdk/src/eth/eth-plugin.ts:26</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c29b16f/packages/sdk/src/eth/eth-plugin.ts#L35">packages/sdk/src/eth/eth-plugin.ts:35</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="supportedHandlers" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>supported<wbr/>Handlers</span><a href="#supportedHandlers" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">supported<wbr/>Handlers<span class="tsd-signature-symbol">:</span> <a href="../enums/_.HandlerType.html" class="tsd-signature-type" data-tsd-kind="Enumeration">HandlerType</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = ...</span></div><aside class="tsd-sources">
 <p>Overrides Plugin.supportedHandlers</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/eth/eth-plugin.ts#L209">packages/sdk/src/eth/eth-plugin.ts:209</a></li></ul></aside></section>
-<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private"><a id="traceHandlers" class="tsd-anchor"></a>
-<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <span>trace<wbr/>Handlers</span><a href="#traceHandlers" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
-<div class="tsd-signature">trace<wbr/>Handlers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>trace<span class="tsd-signature-symbol">: </span><a href="../variables/_.Data_EthTrace-1.html" class="tsd-signature-type" data-tsd-kind="Variable">Data_EthTrace</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.ProcessResult-1.html" class="tsd-signature-type" data-tsd-kind="Variable">ProcessResult</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div><aside class="tsd-sources">
-<ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/eth/eth-plugin.ts#L29">packages/sdk/src/eth/eth-plugin.ts:29</a></li></ul></aside></section>
-<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private"><a id="transactionHandlers" class="tsd-anchor"></a>
-<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <span>transaction<wbr/>Handlers</span><a href="#transactionHandlers" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
-<div class="tsd-signature">transaction<wbr/>Handlers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>trace<span class="tsd-signature-symbol">: </span><a href="../variables/_.Data_EthTransaction-1.html" class="tsd-signature-type" data-tsd-kind="Variable">Data_EthTransaction</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.ProcessResult-1.html" class="tsd-signature-type" data-tsd-kind="Variable">ProcessResult</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div><aside class="tsd-sources">
-<ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/eth/eth-plugin.ts#L31">packages/sdk/src/eth/eth-plugin.ts:31</a></li></ul></aside></section></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c29b16f/packages/sdk/src/eth/eth-plugin.ts#L227">packages/sdk/src/eth/eth-plugin.ts:227</a></li></ul></aside></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Methods</h2>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="configure" class="tsd-anchor"></a>
@@ -111,7 +93,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Overrides Plugin.configure</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/eth/eth-plugin.ts#L33">packages/sdk/src/eth/eth-plugin.ts:33</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c29b16f/packages/sdk/src/eth/eth-plugin.ts#L43">packages/sdk/src/eth/eth-plugin.ts:43</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="processBinding" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>process<wbr/>Binding</span><a href="#processBinding" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -125,7 +107,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.ProcessResult-1.html" class="tsd-signature-type" data-tsd-kind="Variable">ProcessResult</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Overrides Plugin.processBinding</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/eth/eth-plugin.ts#L211">packages/sdk/src/eth/eth-plugin.ts:211</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c29b16f/packages/sdk/src/eth/eth-plugin.ts#L229">packages/sdk/src/eth/eth-plugin.ts:229</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="processBlock" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>process<wbr/>Block</span><a href="#processBlock" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -138,7 +120,7 @@
 <h5>binding: <a href="../variables/_.DataBinding-1.html" class="tsd-signature-type" data-tsd-kind="Variable">DataBinding</a></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.ProcessResult-1.html" class="tsd-signature-type" data-tsd-kind="Variable">ProcessResult</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/eth/eth-plugin.ts#L292">packages/sdk/src/eth/eth-plugin.ts:292</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c29b16f/packages/sdk/src/eth/eth-plugin.ts#L314">packages/sdk/src/eth/eth-plugin.ts:314</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="processLog" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>process<wbr/>Log</span><a href="#processLog" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -151,7 +133,7 @@
 <h5>request: <a href="../variables/_.DataBinding-1.html" class="tsd-signature-type" data-tsd-kind="Variable">DataBinding</a></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.ProcessResult-1.html" class="tsd-signature-type" data-tsd-kind="Variable">ProcessResult</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/eth/eth-plugin.ts#L250">packages/sdk/src/eth/eth-plugin.ts:250</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c29b16f/packages/sdk/src/eth/eth-plugin.ts#L272">packages/sdk/src/eth/eth-plugin.ts:272</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="processTrace" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>process<wbr/>Trace</span><a href="#processTrace" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -164,7 +146,7 @@
 <h5>binding: <a href="../variables/_.DataBinding-1.html" class="tsd-signature-type" data-tsd-kind="Variable">DataBinding</a></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.ProcessResult-1.html" class="tsd-signature-type" data-tsd-kind="Variable">ProcessResult</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/eth/eth-plugin.ts#L271">packages/sdk/src/eth/eth-plugin.ts:271</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c29b16f/packages/sdk/src/eth/eth-plugin.ts#L293">packages/sdk/src/eth/eth-plugin.ts:293</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="processTransaction" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>process<wbr/>Transaction</span><a href="#processTransaction" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -177,7 +159,7 @@
 <h5>binding: <a href="../variables/_.DataBinding-1.html" class="tsd-signature-type" data-tsd-kind="Variable">DataBinding</a></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.ProcessResult-1.html" class="tsd-signature-type" data-tsd-kind="Variable">ProcessResult</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/eth/eth-plugin.ts#L312">packages/sdk/src/eth/eth-plugin.ts:312</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c29b16f/packages/sdk/src/eth/eth-plugin.ts#L334">packages/sdk/src/eth/eth-plugin.ts:334</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="start" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>start</span><a href="#start" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -191,7 +173,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Overrides Plugin.start</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/eth/eth-plugin.ts#L227">packages/sdk/src/eth/eth-plugin.ts:227</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c29b16f/packages/sdk/src/eth/eth-plugin.ts#L245">packages/sdk/src/eth/eth-plugin.ts:245</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="stateDiff" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>state<wbr/>Diff</span><a href="#stateDiff" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -205,7 +187,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
 <p>Overrides Plugin.stateDiff</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/eth/eth-plugin.ts#L246">packages/sdk/src/eth/eth-plugin.ts:246</a></li></ul></aside></li></ul></section></section></div>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c29b16f/packages/sdk/src/eth/eth-plugin.ts#L268">packages/sdk/src/eth/eth-plugin.ts:268</a></li></ul></aside></li></ul></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -226,12 +208,9 @@
 <div class="tsd-accordion-details">
 <ul>
 <li><a href="#constructor" class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-512-path"></use><use href="#icon-512-text"></use></svg><span>constructor</span></a></li>
-<li><a href="#blockHandlers" class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>block<wbr/>Handlers</span></a></li>
-<li><a href="#eventHandlers" class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>event<wbr/>Handlers</span></a></li>
+<li><a href="#handlers" class="tsd-kind-property tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>handlers</span></a></li>
 <li><a href="#name" class="tsd-kind-property tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>name</span></a></li>
 <li><a href="#supportedHandlers" class="tsd-kind-property tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>supported<wbr/>Handlers</span></a></li>
-<li><a href="#traceHandlers" class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>trace<wbr/>Handlers</span></a></li>
-<li><a href="#transactionHandlers" class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>transaction<wbr/>Handlers</span></a></li>
 <li><a href="#configure" class="tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>configure</span></a></li>
 <li><a href="#processBinding" class="tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>process<wbr/>Binding</span></a></li>
 <li><a href="#processBlock" class="tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>process<wbr/>Block</span></a></li>
@@ -337,6 +316,7 @@
 <li><a href="../interfaces/_.RetentionConfig.html" class="tsd-kind-interface tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Retention<wbr/>Config</span></a></li>
 <li><a href="../interfaces/_.RuntimeInfo.html" class="tsd-kind-interface tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Runtime<wbr/>Info</span></a></li>
 <li><a href="../interfaces/_.StartRequest.html" class="tsd-kind-interface tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Start<wbr/>Request</span></a></li>
+<li><a href="../interfaces/_.StateResult.html" class="tsd-kind-interface tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>State<wbr/>Result</span></a></li>
 <li><a href="../interfaces/_.Struct.html" class="tsd-kind-interface tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Struct</span></a></li>
 <li><a href="../interfaces/_.Struct_FieldsEntry.html" class="tsd-kind-interface tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Struct_<wbr/>Fields<wbr/>Entry</span></a></li>
 <li><a href="../interfaces/_.TemplateInstance.html" class="tsd-kind-interface tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Template<wbr/>Instance</span></a></li>
@@ -411,6 +391,7 @@
 <li><a href="../variables/_.RetentionConfig-1.html" class="tsd-kind-variable tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg><span>Retention<wbr/>Config</span></a></li>
 <li><a href="../variables/_.RuntimeInfo-1.html" class="tsd-kind-variable tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg><span>Runtime<wbr/>Info</span></a></li>
 <li><a href="../variables/_.StartRequest-1.html" class="tsd-kind-variable tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg><span>Start<wbr/>Request</span></a></li>
+<li><a href="../variables/_.StateResult-1.html" class="tsd-kind-variable tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg><span>State<wbr/>Result</span></a></li>
 <li><a href="../variables/_.Struct-1.html" class="tsd-kind-variable tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg><span>Struct</span></a></li>
 <li><a href="../variables/_.Struct_FieldsEntry-1.html" class="tsd-kind-variable tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg><span>Struct_<wbr/>Fields<wbr/>Entry</span></a></li>
 <li><a href="../variables/_.TemplateInstance-1.html" class="tsd-kind-variable tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg><span>Template<wbr/>Instance</span></a></li>

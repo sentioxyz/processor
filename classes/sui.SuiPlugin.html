@@ -23,7 +23,7 @@
 <ul class="tsd-hierarchy">
 <li><span class="target">SuiPlugin</span></li></ul></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/sui/sui-plugin.ts#L22">packages/sdk/src/sui/sui-plugin.ts:22</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c29b16f/packages/sdk/src/sui/sui-plugin.ts#L28">packages/sdk/src/sui/sui-plugin.ts:28</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -35,10 +35,8 @@
 </div></section>
 <section class="tsd-index-section">
 <h3 class="tsd-index-heading">Properties</h3>
-<div class="tsd-index-list"><a href="sui.SuiPlugin.html#name" class="tsd-index-link tsd-kind-property tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="#FF984D" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12" id="icon-1024-path"></rect><path d="M9.354 16V7.24H12.174C12.99 7.24 13.638 7.476 14.118 7.948C14.606 8.412 14.85 9.036 14.85 9.82C14.85 10.604 14.606 11.232 14.118 11.704C13.638 12.168 12.99 12.4 12.174 12.4H10.434V16H9.354ZM10.434 11.428H12.174C12.646 11.428 13.022 11.284 13.302 10.996C13.59 10.7 13.734 10.308 13.734 9.82C13.734 9.324 13.59 8.932 13.302 8.644C13.022 8.356 12.646 8.212 12.174 8.212H10.434V11.428Z" fill="var(--color-text)" id="icon-1024-text"></path></svg><span>name</span></a>
-<a href="sui.SuiPlugin.html#suiCallHandlers" class="tsd-index-link tsd-kind-property tsd-parent-kind-class tsd-is-private"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>sui<wbr/>Call<wbr/>Handlers</span></a>
-<a href="sui.SuiPlugin.html#suiEventHandlers" class="tsd-index-link tsd-kind-property tsd-parent-kind-class tsd-is-private"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>sui<wbr/>Event<wbr/>Handlers</span></a>
-<a href="sui.SuiPlugin.html#suiObjectHandlers" class="tsd-index-link tsd-kind-property tsd-parent-kind-class tsd-is-private"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>sui<wbr/>Object<wbr/>Handlers</span></a>
+<div class="tsd-index-list"><a href="sui.SuiPlugin.html#handlers" class="tsd-index-link tsd-kind-property tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="#FF984D" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12" id="icon-1024-path"></rect><path d="M9.354 16V7.24H12.174C12.99 7.24 13.638 7.476 14.118 7.948C14.606 8.412 14.85 9.036 14.85 9.82C14.85 10.604 14.606 11.232 14.118 11.704C13.638 12.168 12.99 12.4 12.174 12.4H10.434V16H9.354ZM10.434 11.428H12.174C12.646 11.428 13.022 11.284 13.302 10.996C13.59 10.7 13.734 10.308 13.734 9.82C13.734 9.324 13.59 8.932 13.302 8.644C13.022 8.356 12.646 8.212 12.174 8.212H10.434V11.428Z" fill="var(--color-text)" id="icon-1024-text"></path></svg><span>handlers</span></a>
+<a href="sui.SuiPlugin.html#name" class="tsd-index-link tsd-kind-property tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>name</span></a>
 <a href="sui.SuiPlugin.html#supportedHandlers" class="tsd-index-link tsd-kind-property tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>supported<wbr/>Handlers</span></a>
 </div></section>
 <section class="tsd-index-section">
@@ -62,33 +60,23 @@
 <p>Inherited from Plugin.constructor</p></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Properties</h2>
+<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="handlers" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>handlers</span><a href="#handlers" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<div class="tsd-signature">handlers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Handlers</span><span class="tsd-signature-symbol"> = ...</span></div><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c29b16f/packages/sdk/src/sui/sui-plugin.ts#L30">packages/sdk/src/sui/sui-plugin.ts:30</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="name" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>name</span><a href="#name" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &#39;SuiPlugin&#39;</span></div><aside class="tsd-sources">
 <p>Overrides Plugin.name</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/sui/sui-plugin.ts#L23">packages/sdk/src/sui/sui-plugin.ts:23</a></li></ul></aside></section>
-<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private"><a id="suiCallHandlers" class="tsd-anchor"></a>
-<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <span>sui<wbr/>Call<wbr/>Handlers</span><a href="#suiCallHandlers" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
-<div class="tsd-signature">sui<wbr/>Call<wbr/>Handlers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>func<span class="tsd-signature-symbol">: </span><a href="../variables/_.Data_SuiCall-1.html" class="tsd-signature-type" data-tsd-kind="Variable">Data_SuiCall</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.ProcessResult-1.html" class="tsd-signature-type" data-tsd-kind="Variable">ProcessResult</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div><aside class="tsd-sources">
-<ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/sui/sui-plugin.ts#L26">packages/sdk/src/sui/sui-plugin.ts:26</a></li></ul></aside></section>
-<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private"><a id="suiEventHandlers" class="tsd-anchor"></a>
-<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <span>sui<wbr/>Event<wbr/>Handlers</span><a href="#suiEventHandlers" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
-<div class="tsd-signature">sui<wbr/>Event<wbr/>Handlers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="../variables/_.Data_SuiEvent-1.html" class="tsd-signature-type" data-tsd-kind="Variable">Data_SuiEvent</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.ProcessResult-1.html" class="tsd-signature-type" data-tsd-kind="Variable">ProcessResult</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div><aside class="tsd-sources">
-<ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/sui/sui-plugin.ts#L25">packages/sdk/src/sui/sui-plugin.ts:25</a></li></ul></aside></section>
-<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private"><a id="suiObjectHandlers" class="tsd-anchor"></a>
-<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <span>sui<wbr/>Object<wbr/>Handlers</span><a href="#suiObjectHandlers" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
-<div class="tsd-signature">sui<wbr/>Object<wbr/>Handlers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><a href="../variables/_.Data_SuiObject-1.html" class="tsd-signature-type" data-tsd-kind="Variable">Data_SuiObject</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.ProcessResult-1.html" class="tsd-signature-type" data-tsd-kind="Variable">ProcessResult</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div><aside class="tsd-sources">
-<ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/sui/sui-plugin.ts#L27">packages/sdk/src/sui/sui-plugin.ts:27</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c29b16f/packages/sdk/src/sui/sui-plugin.ts#L29">packages/sdk/src/sui/sui-plugin.ts:29</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="supportedHandlers" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>supported<wbr/>Handlers</span><a href="#supportedHandlers" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">supported<wbr/>Handlers<span class="tsd-signature-symbol">:</span> <a href="../enums/_.HandlerType.html" class="tsd-signature-type" data-tsd-kind="Enumeration">HandlerType</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = ...</span></div><aside class="tsd-sources">
 <p>Overrides Plugin.supportedHandlers</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/sui/sui-plugin.ts#L100">packages/sdk/src/sui/sui-plugin.ts:100</a></li></ul></aside></section></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c29b16f/packages/sdk/src/sui/sui-plugin.ts#L113">packages/sdk/src/sui/sui-plugin.ts:113</a></li></ul></aside></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Methods</h2>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="configure" class="tsd-anchor"></a>
@@ -104,7 +92,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Overrides Plugin.configure</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/sui/sui-plugin.ts#L29">packages/sdk/src/sui/sui-plugin.ts:29</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c29b16f/packages/sdk/src/sui/sui-plugin.ts#L36">packages/sdk/src/sui/sui-plugin.ts:36</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="processBinding" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>process<wbr/>Binding</span><a href="#processBinding" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -118,7 +106,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.ProcessResult-1.html" class="tsd-signature-type" data-tsd-kind="Variable">ProcessResult</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Overrides Plugin.processBinding</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/sui/sui-plugin.ts#L158">packages/sdk/src/sui/sui-plugin.ts:158</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c29b16f/packages/sdk/src/sui/sui-plugin.ts#L171">packages/sdk/src/sui/sui-plugin.ts:171</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="processSuiEvent" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>process<wbr/>Sui<wbr/>Event</span><a href="#processSuiEvent" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -131,7 +119,7 @@
 <h5>binding: <a href="../variables/_.DataBinding-1.html" class="tsd-signature-type" data-tsd-kind="Variable">DataBinding</a></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.ProcessResult-1.html" class="tsd-signature-type" data-tsd-kind="Variable">ProcessResult</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/sui/sui-plugin.ts#L102">packages/sdk/src/sui/sui-plugin.ts:102</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c29b16f/packages/sdk/src/sui/sui-plugin.ts#L115">packages/sdk/src/sui/sui-plugin.ts:115</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="processSuiFunctionCall" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>process<wbr/>Sui<wbr/>Function<wbr/>Call</span><a href="#processSuiFunctionCall" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -144,7 +132,7 @@
 <h5>binding: <a href="../variables/_.DataBinding-1.html" class="tsd-signature-type" data-tsd-kind="Variable">DataBinding</a></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.ProcessResult-1.html" class="tsd-signature-type" data-tsd-kind="Variable">ProcessResult</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/sui/sui-plugin.ts#L122">packages/sdk/src/sui/sui-plugin.ts:122</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c29b16f/packages/sdk/src/sui/sui-plugin.ts#L135">packages/sdk/src/sui/sui-plugin.ts:135</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="processSuiObject" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>process<wbr/>Sui<wbr/>Object</span><a href="#processSuiObject" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -157,7 +145,7 @@
 <h5>binding: <a href="../variables/_.DataBinding-1.html" class="tsd-signature-type" data-tsd-kind="Variable">DataBinding</a></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.ProcessResult-1.html" class="tsd-signature-type" data-tsd-kind="Variable">ProcessResult</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/aaba0f0/packages/sdk/src/sui/sui-plugin.ts#L138">packages/sdk/src/sui/sui-plugin.ts:138</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c29b16f/packages/sdk/src/sui/sui-plugin.ts#L151">packages/sdk/src/sui/sui-plugin.ts:151</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a id="start" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>start</span><a href="#start" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
@@ -177,6 +165,9 @@
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 <li class="tsd-signature tsd-anchor-link" id="stateDiff.stateDiff-1">state<wbr/>Diff<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="../variables/_.ProcessConfigResponse-1.html" class="tsd-signature-type" data-tsd-kind="Variable">ProcessConfigResponse</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><a href="#stateDiff.stateDiff-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography">
+<h3>Deprecated</h3><p>The method should not be used, use ctx.states instead</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
@@ -185,7 +176,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
 <p>Inherited from Plugin.stateDiff</p>
 <ul>
-<li>Defined in packages/runtime/lib/plugin.d.ts:7</li></ul></aside></li></ul></section></section></div>
+<li>Defined in packages/runtime/lib/plugin.d.ts:10</li></ul></aside></li></ul></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -206,10 +197,8 @@
 <div class="tsd-accordion-details">
 <ul>
 <li><a href="#constructor" class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-512-path"></use><use href="#icon-512-text"></use></svg><span>constructor</span></a></li>
+<li><a href="#handlers" class="tsd-kind-property tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>handlers</span></a></li>
 <li><a href="#name" class="tsd-kind-property tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>name</span></a></li>
-<li><a href="#suiCallHandlers" class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>sui<wbr/>Call<wbr/>Handlers</span></a></li>
-<li><a href="#suiEventHandlers" class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>sui<wbr/>Event<wbr/>Handlers</span></a></li>
-<li><a href="#suiObjectHandlers" class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>sui<wbr/>Object<wbr/>Handlers</span></a></li>
 <li><a href="#supportedHandlers" class="tsd-kind-property tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>supported<wbr/>Handlers</span></a></li>
 <li><a href="#configure" class="tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>configure</span></a></li>
 <li><a href="#processBinding" class="tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>process<wbr/>Binding</span></a></li>
@@ -315,6 +304,7 @@
 <li><a href="../interfaces/_.RetentionConfig.html" class="tsd-kind-interface tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Retention<wbr/>Config</span></a></li>
 <li><a href="../interfaces/_.RuntimeInfo.html" class="tsd-kind-interface tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Runtime<wbr/>Info</span></a></li>
 <li><a href="../interfaces/_.StartRequest.html" class="tsd-kind-interface tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Start<wbr/>Request</span></a></li>
+<li><a href="../interfaces/_.StateResult.html" class="tsd-kind-interface tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>State<wbr/>Result</span></a></li>
 <li><a href="../interfaces/_.Struct.html" class="tsd-kind-interface tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Struct</span></a></li>
 <li><a href="../interfaces/_.Struct_FieldsEntry.html" class="tsd-kind-interface tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Struct_<wbr/>Fields<wbr/>Entry</span></a></li>
 <li><a href="../interfaces/_.TemplateInstance.html" class="tsd-kind-interface tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Template<wbr/>Instance</span></a></li>
@@ -389,6 +379,7 @@
 <li><a href="../variables/_.RetentionConfig-1.html" class="tsd-kind-variable tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg><span>Retention<wbr/>Config</span></a></li>
 <li><a href="../variables/_.RuntimeInfo-1.html" class="tsd-kind-variable tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg><span>Runtime<wbr/>Info</span></a></li>
 <li><a href="../variables/_.StartRequest-1.html" class="tsd-kind-variable tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg><span>Start<wbr/>Request</span></a></li>
+<li><a href="../variables/_.StateResult-1.html" class="tsd-kind-variable tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg><span>State<wbr/>Result</span></a></li>
 <li><a href="../variables/_.Struct-1.html" class="tsd-kind-variable tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg><span>Struct</span></a></li>
 <li><a href="../variables/_.Struct_FieldsEntry-1.html" class="tsd-kind-variable tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg><span>Struct_<wbr/>Fields<wbr/>Entry</span></a></li>
 <li><a href="../variables/_.TemplateInstance-1.html" class="tsd-kind-variable tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg><span>Template<wbr/>Instance</span></a></li>
