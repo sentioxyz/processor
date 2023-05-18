@@ -1,4 +1,4 @@
-import { Data_SuiObject, HandleInterval, MoveOnIntervalConfig_OwnerType, ProcessResult } from '@sentio/protos'
+import { Data_SuiObject, HandleInterval, MoveAccountFetchConfig, MoveOwnerType, ProcessResult } from '@sentio/protos'
 import { ListStateStorage } from '@sentio/runtime'
 import { SuiNetwork } from './network.js'
 import { SuiObjectsContext } from './context.js'
@@ -13,11 +13,16 @@ export interface SuiObjectBindOptions {
   baseLabels?: { [key: string]: string }
 }
 
-class ObjectHandler {
+interface ObjectHandler {
   type?: string
   versionInterval?: HandleInterval
   timeIntervalInMinutes?: HandleInterval
+  fetchConfig: MoveAccountFetchConfig
   handler: (resource: Data_SuiObject) => Promise<ProcessResult>
+}
+
+export const DEFAULT_FETCH_CONFIG: MoveAccountFetchConfig = {
+  owned: true,
 }
 
 export class SuiAccountProcessorState extends ListStateStorage<SuiBaseObjectsProcessor<any>> {
@@ -25,12 +30,12 @@ export class SuiAccountProcessorState extends ListStateStorage<SuiBaseObjectsPro
 }
 
 export interface SuiInternalObjectsBindOptions extends SuiBindOptions {
-  ownerType: MoveOnIntervalConfig_OwnerType
+  ownerType: MoveOwnerType
 }
 
-abstract class SuiBaseObjectsProcessor<HandlerType> {
+export abstract class SuiBaseObjectsProcessor<HandlerType> {
   config: IndexConfigure
-  ownerType: MoveOnIntervalConfig_OwnerType
+  ownerType: MoveOwnerType
 
   objectHandlers: ObjectHandler[] = []
 
@@ -52,11 +57,12 @@ abstract class SuiBaseObjectsProcessor<HandlerType> {
 
   protected abstract doHandle(handler: HandlerType, data: Data_SuiObject, ctx: SuiObjectsContext): PromiseOrVoid
 
-  protected onInterval(
+  public onInterval(
     handler: HandlerType, //(resources: SuiMoveObject[], ctx: SuiObjectsContext) => PromiseOrVoid,
     timeInterval: HandleInterval | undefined,
     versionInterval: HandleInterval | undefined,
-    type: string | undefined
+    type: string | undefined,
+    fetchConfig: Partial<MoveAccountFetchConfig> | undefined
   ): this {
     const processor = this
     this.objectHandlers.push({
@@ -74,6 +80,7 @@ abstract class SuiBaseObjectsProcessor<HandlerType> {
       timeIntervalInMinutes: timeInterval,
       versionInterval: versionInterval,
       type,
+      fetchConfig: { ...DEFAULT_FETCH_CONFIG, ...fetchConfig },
     })
     return this
   }
@@ -82,7 +89,8 @@ abstract class SuiBaseObjectsProcessor<HandlerType> {
     handler: HandlerType,
     timeIntervalInMinutes = 60,
     backfillTimeIntervalInMinutes = 240,
-    type?: string
+    type?: string,
+    fetchConfig?: Partial<MoveAccountFetchConfig>
   ): this {
     return this.onInterval(
       handler,
@@ -91,7 +99,8 @@ abstract class SuiBaseObjectsProcessor<HandlerType> {
         backfillInterval: backfillTimeIntervalInMinutes,
       },
       undefined,
-      type
+      type,
+      fetchConfig
     )
   }
 
@@ -99,13 +108,15 @@ abstract class SuiBaseObjectsProcessor<HandlerType> {
     handler: HandlerType,
     slotInterval = 100000,
     backfillSlotInterval = 400000,
-    type?: string
+    type?: string,
+    fetchConfig?: Partial<MoveAccountFetchConfig>
   ): this {
     return this.onInterval(
       handler,
       undefined,
       { recentInterval: slotInterval, backfillInterval: backfillSlotInterval },
-      type
+      type,
+      fetchConfig
     )
   }
 }
@@ -114,7 +125,7 @@ export class SuiAddressProcessor extends SuiBaseObjectsProcessor<
   (objects: SuiMoveObject[], ctx: SuiObjectsContext) => PromiseOrVoid
 > {
   static bind(options: SuiBindOptions): SuiAddressProcessor {
-    return new SuiAddressProcessor({ ...options, ownerType: MoveOnIntervalConfig_OwnerType.ADDRESS })
+    return new SuiAddressProcessor({ ...options, ownerType: MoveOwnerType.ADDRESS })
   }
 
   protected doHandle(
@@ -126,15 +137,15 @@ export class SuiAddressProcessor extends SuiBaseObjectsProcessor<
   }
 }
 
-export class SuiObjectsProcessor extends SuiBaseObjectsProcessor<
+export class SuiObjectProcessor extends SuiBaseObjectsProcessor<
   (self: SuiMoveObject, dynamicFieldObjects: SuiMoveObject[], ctx: SuiObjectsContext) => PromiseOrVoid
 > {
-  static bind(options: SuiObjectBindOptions): SuiObjectsProcessor {
-    return new SuiObjectsProcessor({
+  static bind(options: SuiObjectBindOptions): SuiObjectProcessor {
+    return new SuiObjectProcessor({
       address: options.objectId,
       network: options.network,
       startCheckpoint: options.startCheckpoint,
-      ownerType: MoveOnIntervalConfig_OwnerType.OBJECT,
+      ownerType: MoveOwnerType.OBJECT,
       baseLabels: options.baseLabels,
     })
   }
@@ -160,7 +171,7 @@ export class SuiWrappedObjectProcessor extends SuiBaseObjectsProcessor<
       address: options.objectId,
       network: options.network,
       startCheckpoint: options.startCheckpoint,
-      ownerType: MoveOnIntervalConfig_OwnerType.WRAPPED_OBJECT,
+      ownerType: MoveOwnerType.WRAPPED_OBJECT,
       baseLabels: options.baseLabels,
     })
   }
