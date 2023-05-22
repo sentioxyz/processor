@@ -339,15 +339,22 @@ async function uploadZip(host: string, auth: Auth, projectSlug: string, sdkVersi
   const uploadUrl = initUploadRes.url
 
   const zip = new JSZip()
-  ;['package.json', 'tsconfig.json'].forEach((p) => {
+  ;['package.json', 'tsconfig.json', 'sentio.yaml'].forEach((p) => {
     if (fs.existsSync(p)) {
       zip.file(p, fs.readFileSync(p))
     }
   })
   if (fs.existsSync('abis') && fs.lstatSync('abis').isDirectory()) {
     fs.readdirSync('abis').forEach((p) => {
-      if (p.endsWith('.json')) {
-        zip.file(p, fs.readFileSync(p))
+      const item = path.join('abis', p)
+      if (fs.lstatSync(item).isDirectory()) {
+        fs.readdirSync(item).forEach((p) => {
+          if (p.endsWith('.json')) {
+            zip.file(`${item}/${p}`, fs.readFileSync(path.join(item, p)))
+          }
+        })
+      } else if (p.endsWith('.json')) {
+        zip.file(`abis/${p}`, fs.readFileSync(item))
       }
     })
   }
