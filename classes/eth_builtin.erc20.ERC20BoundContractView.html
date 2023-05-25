@@ -24,7 +24,7 @@
 <ul class="tsd-hierarchy">
 <li><span class="target">ERC20BoundContractView</span></li></ul></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:248</li></ul></aside>
+<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:372</li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -37,8 +37,9 @@
 <section class="tsd-index-section">
 <h3 class="tsd-index-heading">Properties</h3>
 <div class="tsd-index-list"><a href="eth_builtin.erc20.ERC20BoundContractView.html#address" class="tsd-index-link tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="#FF984D" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12" id="icon-1024-path"></rect><path d="M9.354 16V7.24H12.174C12.99 7.24 13.638 7.476 14.118 7.948C14.606 8.412 14.85 9.036 14.85 9.82C14.85 10.604 14.606 11.232 14.118 11.704C13.638 12.168 12.99 12.4 12.174 12.4H10.434V16H9.354ZM10.434 11.428H12.174C12.646 11.428 13.022 11.284 13.302 10.996C13.59 10.7 13.734 10.308 13.734 9.82C13.734 9.324 13.59 8.932 13.302 8.644C13.022 8.356 12.646 8.212 12.174 8.212H10.434V11.428Z" fill="var(--color-text)" id="icon-1024-text"></path></svg><span>address</span></a>
-<a href="eth_builtin.erc20.ERC20BoundContractView.html#context" class="tsd-index-link tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>context</span></a>
-<a href="eth_builtin.erc20.ERC20BoundContractView.html#view" class="tsd-index-link tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>view</span></a>
+<a href="eth_builtin.erc20.ERC20BoundContractView.html#callStatic" class="tsd-index-link tsd-kind-property tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>call<wbr/>Static</span></a>
+<a href="eth_builtin.erc20.ERC20BoundContractView.html#context-1" class="tsd-index-link tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>context</span></a>
+<a href="eth_builtin.erc20.ERC20BoundContractView.html#view-1" class="tsd-index-link tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>view</span></a>
 </div></section>
 <section class="tsd-index-section">
 <h3 class="tsd-index-heading">Accessors</h3>
@@ -74,7 +75,7 @@
 <h4 class="tsd-returns-title">Returns <a href="eth_builtin.erc20.ERC20BoundContractView.html" class="tsd-signature-type" data-tsd-kind="Class">ERC20BoundContractView</a></h4><aside class="tsd-sources">
 <p>Inherited from <a href="eth.BoundContractView.html">BoundContractView</a>.<a href="eth.BoundContractView.html#constructor">constructor</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/637aadd/packages/sdk/src/eth/context.ts#L185">packages/sdk/src/eth/context.ts:185</a></li></ul></aside></li></ul></section></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/0a8c411/packages/sdk/src/eth/context.ts#L192">packages/sdk/src/eth/context.ts:192</a></li></ul></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Properties</h2>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a id="address" class="tsd-anchor"></a>
@@ -82,19 +83,194 @@
 <div class="tsd-signature">address<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div><aside class="tsd-sources">
 <p>Inherited from <a href="eth.BoundContractView.html">BoundContractView</a>.<a href="eth.BoundContractView.html#address">address</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/637aadd/packages/sdk/src/eth/context.ts#L180">packages/sdk/src/eth/context.ts:180</a></li></ul></aside></section>
-<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a id="context" class="tsd-anchor"></a>
-<h3 class="tsd-anchor-link"><span>context</span><a href="#context" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/0a8c411/packages/sdk/src/eth/context.ts#L183">packages/sdk/src/eth/context.ts:183</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="callStatic" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>call<wbr/>Static</span><a href="#callStatic" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<div class="tsd-signature">call<wbr/>Static<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span><br/><span>    </span>context<span class="tsd-signature-symbol">: </span><a href="eth.EthContext.html" class="tsd-signature-type" data-tsd-kind="Class">EthContext</a><span class="tsd-signature-symbol">; </span><br/><span>    </span>view<span class="tsd-signature-symbol">: </span><a href="eth_builtin.erc20.ERC20ContractView.html" class="tsd-signature-type" data-tsd-kind="Class">ERC20ContractView</a><span class="tsd-signature-symbol">; </span><br/><span>    </span>approve<span class="tsd-signature-symbol">(</span>spender<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, amount<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BigNumberish</span>, overrides<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Overrides</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span>burn<span class="tsd-signature-symbol">(</span>amount<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BigNumberish</span>, overrides<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Overrides</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span>burnFrom<span class="tsd-signature-symbol">(</span>account<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, amount<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BigNumberish</span>, overrides<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Overrides</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span>decreaseAllowance<span class="tsd-signature-symbol">(</span>spender<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, subtractedValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BigNumberish</span>, overrides<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Overrides</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span>increaseAllowance<span class="tsd-signature-symbol">(</span>spender<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, addedValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BigNumberish</span>, overrides<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Overrides</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span>renounceOwnership<span class="tsd-signature-symbol">(</span>overrides<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Overrides</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span>setLocker<span class="tsd-signature-symbol">(</span>_locker<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, overrides<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Overrides</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span>transfer<span class="tsd-signature-symbol">(</span>recipient<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, amount<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BigNumberish</span>, overrides<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Overrides</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span>transferFrom<span class="tsd-signature-symbol">(</span>sender<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipient<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, amount<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BigNumberish</span>, overrides<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Overrides</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span>transferOwnership<span class="tsd-signature-symbol">(</span>newOwner<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, overrides<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Overrides</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol"> = ...</span></div>
+<div class="tsd-type-declaration">
+<h4>Type declaration</h4>
+<ul class="tsd-parameters">
+<li class="tsd-parameter">
+<h5>context<span class="tsd-signature-symbol">: </span><a href="eth.EthContext.html" class="tsd-signature-type" data-tsd-kind="Class">EthContext</a></h5></li>
+<li class="tsd-parameter">
+<h5>view<span class="tsd-signature-symbol">: </span><a href="eth_builtin.erc20.ERC20ContractView.html" class="tsd-signature-type" data-tsd-kind="Class">ERC20ContractView</a></h5></li>
+<li class="tsd-parameter">
+<h5>approve<span class="tsd-signature-symbol">:</span>function</h5>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
+<li class="tsd-signature tsd-anchor-link" id="callStatic.__type.approve.approve-1">approve<span class="tsd-signature-symbol">(</span>spender<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, amount<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BigNumberish</span>, overrides<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Overrides</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><a href="#callStatic.__type.approve.approve-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>spender: <span class="tsd-signature-type">string</span></h5></li>
+<li>
+<h5>amount: <span class="tsd-signature-type">BigNumberish</span></h5></li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:440</li></ul></aside></li></ul></li>
+<li class="tsd-parameter">
+<h5>burn<span class="tsd-signature-symbol">:</span>function</h5>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
+<li class="tsd-signature tsd-anchor-link" id="callStatic.__type.burn.burn-1">burn<span class="tsd-signature-symbol">(</span>amount<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BigNumberish</span>, overrides<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Overrides</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#callStatic.__type.burn.burn-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>amount: <span class="tsd-signature-type">BigNumberish</span></h5></li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:450</li></ul></aside></li></ul></li>
+<li class="tsd-parameter">
+<h5>burn<wbr/>From<span class="tsd-signature-symbol">:</span>function</h5>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
+<li class="tsd-signature tsd-anchor-link" id="callStatic.__type.burnFrom.burnFrom-1">burn<wbr/>From<span class="tsd-signature-symbol">(</span>account<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, amount<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BigNumberish</span>, overrides<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Overrides</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#callStatic.__type.burnFrom.burnFrom-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>account: <span class="tsd-signature-type">string</span></h5></li>
+<li>
+<h5>amount: <span class="tsd-signature-type">BigNumberish</span></h5></li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:456</li></ul></aside></li></ul></li>
+<li class="tsd-parameter">
+<h5>decrease<wbr/>Allowance<span class="tsd-signature-symbol">:</span>function</h5>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
+<li class="tsd-signature tsd-anchor-link" id="callStatic.__type.decreaseAllowance.decreaseAllowance-1">decrease<wbr/>Allowance<span class="tsd-signature-symbol">(</span>spender<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, subtractedValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BigNumberish</span>, overrides<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Overrides</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><a href="#callStatic.__type.decreaseAllowance.decreaseAllowance-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>spender: <span class="tsd-signature-type">string</span></h5></li>
+<li>
+<h5>subtractedValue: <span class="tsd-signature-type">BigNumberish</span></h5></li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:466</li></ul></aside></li></ul></li>
+<li class="tsd-parameter">
+<h5>increase<wbr/>Allowance<span class="tsd-signature-symbol">:</span>function</h5>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
+<li class="tsd-signature tsd-anchor-link" id="callStatic.__type.increaseAllowance.increaseAllowance-1">increase<wbr/>Allowance<span class="tsd-signature-symbol">(</span>spender<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, addedValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BigNumberish</span>, overrides<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Overrides</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><a href="#callStatic.__type.increaseAllowance.increaseAllowance-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>spender: <span class="tsd-signature-type">string</span></h5></li>
+<li>
+<h5>addedValue: <span class="tsd-signature-type">BigNumberish</span></h5></li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:480</li></ul></aside></li></ul></li>
+<li class="tsd-parameter">
+<h5>renounce<wbr/>Ownership<span class="tsd-signature-symbol">:</span>function</h5>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
+<li class="tsd-signature tsd-anchor-link" id="callStatic.__type.renounceOwnership.renounceOwnership-1">renounce<wbr/>Ownership<span class="tsd-signature-symbol">(</span>overrides<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Overrides</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#callStatic.__type.renounceOwnership.renounceOwnership-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:490</li></ul></aside></li></ul></li>
+<li class="tsd-parameter">
+<h5>set<wbr/>Locker<span class="tsd-signature-symbol">:</span>function</h5>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
+<li class="tsd-signature tsd-anchor-link" id="callStatic.__type.setLocker.setLocker-1">set<wbr/>Locker<span class="tsd-signature-symbol">(</span>_locker<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, overrides<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Overrides</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#callStatic.__type.setLocker.setLocker-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>_locker: <span class="tsd-signature-type">string</span></h5></li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:496</li></ul></aside></li></ul></li>
+<li class="tsd-parameter">
+<h5>transfer<span class="tsd-signature-symbol">:</span>function</h5>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
+<li class="tsd-signature tsd-anchor-link" id="callStatic.__type.transfer.transfer-1">transfer<span class="tsd-signature-symbol">(</span>recipient<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, amount<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BigNumberish</span>, overrides<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Overrides</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><a href="#callStatic.__type.transfer.transfer-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>recipient: <span class="tsd-signature-type">string</span></h5></li>
+<li>
+<h5>amount: <span class="tsd-signature-type">BigNumberish</span></h5></li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:502</li></ul></aside></li></ul></li>
+<li class="tsd-parameter">
+<h5>transfer<wbr/>From<span class="tsd-signature-symbol">:</span>function</h5>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
+<li class="tsd-signature tsd-anchor-link" id="callStatic.__type.transferFrom.transferFrom-1">transfer<wbr/>From<span class="tsd-signature-symbol">(</span>sender<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recipient<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, amount<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BigNumberish</span>, overrides<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Overrides</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><a href="#callStatic.__type.transferFrom.transferFrom-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>sender: <span class="tsd-signature-type">string</span></h5></li>
+<li>
+<h5>recipient: <span class="tsd-signature-type">string</span></h5></li>
+<li>
+<h5>amount: <span class="tsd-signature-type">BigNumberish</span></h5></li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:512</li></ul></aside></li></ul></li>
+<li class="tsd-parameter">
+<h5>transfer<wbr/>Ownership<span class="tsd-signature-symbol">:</span>function</h5>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
+<li class="tsd-signature tsd-anchor-link" id="callStatic.__type.transferOwnership.transferOwnership-1">transfer<wbr/>Ownership<span class="tsd-signature-symbol">(</span>newOwner<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, overrides<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Overrides</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#callStatic.__type.transferOwnership.transferOwnership-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>newOwner: <span class="tsd-signature-type">string</span></h5></li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:528</li></ul></aside></li></ul></li></ul></div><aside class="tsd-sources">
+<p>Overrides <a href="eth.BoundContractView.html">BoundContractView</a>.<a href="eth.BoundContractView.html#callStatic">callStatic</a></p>
+<ul>
+<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:436</li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a id="context-1" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>context</span><a href="#context-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">context<span class="tsd-signature-symbol">:</span> <a href="eth.EthContext.html" class="tsd-signature-type" data-tsd-kind="Class">EthContext</a></div><aside class="tsd-sources">
-<p>Inherited from <a href="eth.BoundContractView.html">BoundContractView</a>.<a href="eth.BoundContractView.html#context">context</a></p>
+<p>Inherited from <a href="eth.BoundContractView.html">BoundContractView</a>.<a href="eth.BoundContractView.html#context-1">context</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/637aadd/packages/sdk/src/eth/context.ts#L183">packages/sdk/src/eth/context.ts:183</a></li></ul></aside></section>
-<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-inherited"><a id="view" class="tsd-anchor"></a>
-<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagProtected">Protected</code> <span>view</span><a href="#view" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/0a8c411/packages/sdk/src/eth/context.ts#L186">packages/sdk/src/eth/context.ts:186</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-inherited"><a id="view-1" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagProtected">Protected</code> <span>view</span><a href="#view-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">view<span class="tsd-signature-symbol">:</span> <a href="eth_builtin.erc20.ERC20ContractView.html" class="tsd-signature-type" data-tsd-kind="Class">ERC20ContractView</a></div><aside class="tsd-sources">
-<p>Inherited from <a href="eth.BoundContractView.html">BoundContractView</a>.<a href="eth.BoundContractView.html#view">view</a></p>
+<p>Inherited from <a href="eth.BoundContractView.html">BoundContractView</a>.<a href="eth.BoundContractView.html#view-1">view</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/637aadd/packages/sdk/src/eth/context.ts#L179">packages/sdk/src/eth/context.ts:179</a></li></ul></aside></section></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/0a8c411/packages/sdk/src/eth/context.ts#L182">packages/sdk/src/eth/context.ts:182</a></li></ul></aside></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Accessors</h2>
 <section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><a id="filters" class="tsd-anchor"></a>
@@ -105,7 +281,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">ContractEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Inherited from BoundContractView.filters</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/637aadd/packages/sdk/src/eth/context.ts#L198">packages/sdk/src/eth/context.ts:198</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/0a8c411/packages/sdk/src/eth/context.ts#L205">packages/sdk/src/eth/context.ts:205</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><a id="provider" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>provider</span><a href="#provider" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited">
@@ -114,7 +290,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Provider</span></h4><aside class="tsd-sources">
 <p>Inherited from BoundContractView.provider</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/637aadd/packages/sdk/src/eth/context.ts#L194">packages/sdk/src/eth/context.ts:194</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/0a8c411/packages/sdk/src/eth/context.ts#L201">packages/sdk/src/eth/context.ts:201</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><a id="rawContract" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>raw<wbr/>Contract</span><a href="#rawContract" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited">
@@ -123,7 +299,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TContract</span></h4><aside class="tsd-sources">
 <p>Inherited from BoundContractView.rawContract</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/637aadd/packages/sdk/src/eth/context.ts#L190">packages/sdk/src/eth/context.ts:190</a></li></ul></aside></li></ul></section></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/0a8c411/packages/sdk/src/eth/context.ts#L197">packages/sdk/src/eth/context.ts:197</a></li></ul></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Methods</h2>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="allowance" class="tsd-anchor"></a>
@@ -142,7 +318,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:252</li></ul></aside></li></ul></section>
+<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:376</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="balanceOf" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>balance<wbr/>Of</span><a href="#balanceOf" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -157,7 +333,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:263</li></ul></aside></li></ul></section>
+<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:387</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="decimals" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>decimals</span><a href="#decimals" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -170,7 +346,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:270</li></ul></aside></li></ul></section>
+<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:394</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="locker" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>locker</span><a href="#locker" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -183,7 +359,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:277</li></ul></aside></li></ul></section>
+<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:401</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="name" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>name</span><a href="#name" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -196,7 +372,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:284</li></ul></aside></li></ul></section>
+<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:408</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="owner" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>owner</span><a href="#owner" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -209,7 +385,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:291</li></ul></aside></li></ul></section>
+<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:415</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="symbol" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>symbol</span><a href="#symbol" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -222,7 +398,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:298</li></ul></aside></li></ul></section>
+<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:422</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="totalSupply" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>total<wbr/>Supply</span><a href="#totalSupply" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -235,7 +411,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:305</li></ul></aside></li></ul></section></section></div>
+<li>Defined in packages/sdk/src/eth/builtin/internal/erc20-processor.ts:429</li></ul></aside></li></ul></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -257,8 +433,9 @@
 <ul>
 <li><a href="#constructor" class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-512-path"></use><use href="#icon-512-text"></use></svg><span>constructor</span></a></li>
 <li><a href="#address" class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>address</span></a></li>
-<li><a href="#context" class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>context</span></a></li>
-<li><a href="#view" class="tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>view</span></a></li>
+<li><a href="#callStatic" class="tsd-kind-property tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>call<wbr/>Static</span></a></li>
+<li><a href="#context-1" class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>context</span></a></li>
+<li><a href="#view-1" class="tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>view</span></a></li>
 <li><a href="#filters" class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-262144-path"></use><use href="#icon-262144-text"></use></svg><span>filters</span></a></li>
 <li><a href="#provider" class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-262144-path"></use><use href="#icon-262144-text"></use></svg><span>provider</span></a></li>
 <li><a href="#rawContract" class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-262144-path"></use><use href="#icon-262144-text"></use></svg><span>raw<wbr/>Contract</span></a></li>
@@ -308,6 +485,8 @@
 <li><a href="_.Counter.html" class="tsd-kind-class tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg><span>Counter</span></a></li>
 <li><a href="_.CounterBinding.html" class="tsd-kind-class tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg><span>Counter<wbr/>Binding</span></a></li>
 <li><a href="_.EventLogger.html" class="tsd-kind-class tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg><span>Event<wbr/>Logger</span></a></li>
+<li><a href="_.EventLoggerBinding.html" class="tsd-kind-class tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg><span>Event<wbr/>Logger<wbr/>Binding</span></a></li>
+<li><a href="_.EventLoggerState.html" class="tsd-kind-class tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg><span>Event<wbr/>Logger<wbr/>State</span></a></li>
 <li><a href="_.EventTracker.html" class="deprecated tsd-kind-class tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg><span>Event<wbr/>Tracker</span></a></li>
 <li><a href="_.EventTrackerState.html" class="deprecated tsd-kind-class tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg><span>Event<wbr/>Tracker<wbr/>State</span></a></li>
 <li><a href="_.Exporter.html" class="tsd-kind-class tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg><span>Exporter</span></a></li>
@@ -2845,6 +3024,8 @@
 <li><a href="../modules/core.html#CounterBinding" class="tsd-kind-reference tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg><span>Counter<wbr/>Binding</span></a></li>
 <li><a href="../modules/core.html#Event" class="tsd-kind-reference tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg><span>Event</span></a></li>
 <li><a href="../modules/core.html#EventLogger" class="tsd-kind-reference tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg><span>Event<wbr/>Logger</span></a></li>
+<li><a href="../modules/core.html#EventLoggerBinding" class="tsd-kind-reference tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg><span>Event<wbr/>Logger<wbr/>Binding</span></a></li>
+<li><a href="../modules/core.html#EventLoggerState" class="tsd-kind-reference tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg><span>Event<wbr/>Logger<wbr/>State</span></a></li>
 <li><a href="../modules/core.html#EventTracker" class="tsd-kind-reference tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg><span>Event<wbr/>Tracker</span></a></li>
 <li><a href="../modules/core.html#EventTrackerState" class="tsd-kind-reference tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg><span>Event<wbr/>Tracker<wbr/>State</span></a></li>
 <li><a href="../modules/core.html#Exporter" class="tsd-kind-reference tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-8388608-path"></use><use href="#icon-8388608-text"></use></svg><span>Exporter</span></a></li>
