@@ -24,7 +24,7 @@
 <ul class="tsd-hierarchy">
 <li><span class="target">WETH9BoundContractView</span></li></ul></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:237</li></ul></aside>
+<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:248</li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -73,7 +73,7 @@
 <h4 class="tsd-returns-title">Returns <a href="eth_builtin.weth9.WETH9BoundContractView.html" class="tsd-signature-type" data-tsd-kind="Class">WETH9BoundContractView</a></h4><aside class="tsd-sources">
 <p>Inherited from <a href="eth.BoundContractView.html">BoundContractView</a>.<a href="eth.BoundContractView.html#constructor">constructor</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/0a8c411/packages/sdk/src/eth/context.ts#L192">packages/sdk/src/eth/context.ts:192</a></li></ul></aside></li></ul></section></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/b157e7e/packages/sdk/src/eth/context.ts#L192">packages/sdk/src/eth/context.ts:192</a></li></ul></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Properties</h2>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a id="address" class="tsd-anchor"></a>
@@ -81,7 +81,7 @@
 <div class="tsd-signature">address<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div><aside class="tsd-sources">
 <p>Inherited from <a href="eth.BoundContractView.html">BoundContractView</a>.<a href="eth.BoundContractView.html#address">address</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/0a8c411/packages/sdk/src/eth/context.ts#L183">packages/sdk/src/eth/context.ts:183</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/b157e7e/packages/sdk/src/eth/context.ts#L183">packages/sdk/src/eth/context.ts:183</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="callStatic" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>call<wbr/>Static</span><a href="#callStatic" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">call<wbr/>Static<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span><br/><span>    </span>context<span class="tsd-signature-symbol">: </span><a href="eth.EthContext.html" class="tsd-signature-type" data-tsd-kind="Class">EthContext</a><span class="tsd-signature-symbol">; </span><br/><span>    </span>view<span class="tsd-signature-symbol">: </span><a href="eth_builtin.weth9.WETH9ContractView.html" class="tsd-signature-type" data-tsd-kind="Class">WETH9ContractView</a><span class="tsd-signature-symbol">; </span><br/><span>    </span>approve<span class="tsd-signature-symbol">(</span>guy<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, wad<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BigNumberish</span>, overrides<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Overrides</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span>deposit<span class="tsd-signature-symbol">(</span>overrides<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Overrides</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span>transfer<span class="tsd-signature-symbol">(</span>dst<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, wad<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BigNumberish</span>, overrides<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Overrides</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span>transferFrom<span class="tsd-signature-symbol">(</span>src<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, dst<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, wad<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BigNumberish</span>, overrides<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Overrides</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span>withdraw<span class="tsd-signature-symbol">(</span>wad<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">BigNumberish</span>, overrides<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Overrides</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol"> = ...</span></div>
@@ -108,7 +108,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:291</li></ul></aside></li></ul></li>
+<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:302</li></ul></aside></li></ul></li>
 <li class="tsd-parameter">
 <h5>deposit<span class="tsd-signature-symbol">:</span>function</h5>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
@@ -121,7 +121,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:328</li></ul></aside></li></ul></li>
+<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:339</li></ul></aside></li></ul></li>
 <li class="tsd-parameter">
 <h5>transfer<span class="tsd-signature-symbol">:</span>function</h5>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
@@ -138,7 +138,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:318</li></ul></aside></li></ul></li>
+<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:329</li></ul></aside></li></ul></li>
 <li class="tsd-parameter">
 <h5>transfer<wbr/>From<span class="tsd-signature-symbol">:</span>function</h5>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
@@ -157,7 +157,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:301</li></ul></aside></li></ul></li>
+<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:312</li></ul></aside></li></ul></li>
 <li class="tsd-parameter">
 <h5>withdraw<span class="tsd-signature-symbol">:</span>function</h5>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
@@ -172,22 +172,22 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:312</li></ul></aside></li></ul></li></ul></div><aside class="tsd-sources">
+<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:323</li></ul></aside></li></ul></li></ul></div><aside class="tsd-sources">
 <p>Overrides <a href="eth.BoundContractView.html">BoundContractView</a>.<a href="eth.BoundContractView.html#callStatic">callStatic</a></p>
 <ul>
-<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:287</li></ul></aside></section>
+<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:298</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a id="context-1" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>context</span><a href="#context-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">context<span class="tsd-signature-symbol">:</span> <a href="eth.EthContext.html" class="tsd-signature-type" data-tsd-kind="Class">EthContext</a></div><aside class="tsd-sources">
 <p>Inherited from <a href="eth.BoundContractView.html">BoundContractView</a>.<a href="eth.BoundContractView.html#context-1">context</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/0a8c411/packages/sdk/src/eth/context.ts#L186">packages/sdk/src/eth/context.ts:186</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/b157e7e/packages/sdk/src/eth/context.ts#L186">packages/sdk/src/eth/context.ts:186</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-inherited"><a id="view-1" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagProtected">Protected</code> <span>view</span><a href="#view-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">view<span class="tsd-signature-symbol">:</span> <a href="eth_builtin.weth9.WETH9ContractView.html" class="tsd-signature-type" data-tsd-kind="Class">WETH9ContractView</a></div><aside class="tsd-sources">
 <p>Inherited from <a href="eth.BoundContractView.html">BoundContractView</a>.<a href="eth.BoundContractView.html#view-1">view</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/0a8c411/packages/sdk/src/eth/context.ts#L182">packages/sdk/src/eth/context.ts:182</a></li></ul></aside></section></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/b157e7e/packages/sdk/src/eth/context.ts#L182">packages/sdk/src/eth/context.ts:182</a></li></ul></aside></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Accessors</h2>
 <section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><a id="filters" class="tsd-anchor"></a>
@@ -198,7 +198,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">ContractEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Inherited from BoundContractView.filters</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/0a8c411/packages/sdk/src/eth/context.ts#L205">packages/sdk/src/eth/context.ts:205</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/b157e7e/packages/sdk/src/eth/context.ts#L205">packages/sdk/src/eth/context.ts:205</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><a id="provider" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>provider</span><a href="#provider" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited">
@@ -207,7 +207,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Provider</span></h4><aside class="tsd-sources">
 <p>Inherited from BoundContractView.provider</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/0a8c411/packages/sdk/src/eth/context.ts#L201">packages/sdk/src/eth/context.ts:201</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/b157e7e/packages/sdk/src/eth/context.ts#L201">packages/sdk/src/eth/context.ts:201</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><a id="rawContract" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>raw<wbr/>Contract</span><a href="#rawContract" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited">
@@ -216,7 +216,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TContract</span></h4><aside class="tsd-sources">
 <p>Inherited from BoundContractView.rawContract</p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/0a8c411/packages/sdk/src/eth/context.ts#L197">packages/sdk/src/eth/context.ts:197</a></li></ul></aside></li></ul></section></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/b157e7e/packages/sdk/src/eth/context.ts#L197">packages/sdk/src/eth/context.ts:197</a></li></ul></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Methods</h2>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="allowance" class="tsd-anchor"></a>
@@ -235,7 +235,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:276</li></ul></aside></li></ul></section>
+<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:287</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="balanceOf" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>balance<wbr/>Of</span><a href="#balanceOf" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -250,7 +250,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:262</li></ul></aside></li></ul></section>
+<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:273</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="decimals" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>decimals</span><a href="#decimals" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -263,7 +263,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:255</li></ul></aside></li></ul></section>
+<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:266</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="name" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>name</span><a href="#name" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -276,7 +276,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:241</li></ul></aside></li></ul></section>
+<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:252</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="symbol" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>symbol</span><a href="#symbol" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -289,7 +289,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:269</li></ul></aside></li></ul></section>
+<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:280</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="totalSupply" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>total<wbr/>Supply</span><a href="#totalSupply" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -302,7 +302,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> overrides: <span class="tsd-signature-type">Overrides</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:248</li></ul></aside></li></ul></section></section></div>
+<li>Defined in packages/sdk/src/eth/builtin/internal/weth9-processor.ts:259</li></ul></aside></li></ul></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -4407,7 +4407,8 @@
 <li><a href="../functions/utils.bytesToBigInt.html" class="tsd-kind-function tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>bytes<wbr/>To<wbr/>Big<wbr/>Int</span></a></li>
 <li><a href="../functions/utils.getPriceBySymbol.html" class="tsd-kind-function tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>get<wbr/>Price<wbr/>By<wbr/>Symbol</span></a></li>
 <li><a href="../functions/utils.getPriceByType.html" class="tsd-kind-function tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>get<wbr/>Price<wbr/>By<wbr/>Type</span></a></li>
-<li><a href="../functions/utils.getPriceClient.html" class="tsd-kind-function tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>get<wbr/>Price<wbr/>Client</span></a></li></ul></div></details></li></ul></nav></div></div></div>
+<li><a href="../functions/utils.getPriceClient.html" class="tsd-kind-function tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>get<wbr/>Price<wbr/>Client</span></a></li>
+<li><a href="../functions/utils.ignoreEthCallException.html" class="tsd-kind-function tsd-parent-kind-module"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>ignore<wbr/>Eth<wbr/>Call<wbr/>Exception</span></a></li></ul></div></details></li></ul></nav></div></div></div>
 <div class="tsd-generator">
 <p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div>
 <div class="overlay"></div></body></html>
