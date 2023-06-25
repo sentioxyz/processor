@@ -1,6 +1,6 @@
 import { TestProcessorServer } from './test-processor-server.js'
 import { DataBinding, HandlerType, ProcessBindingResponse } from '@sentio/protos'
-import { Trace } from '../eth/eth.js'
+import { CallTrace } from '../eth/eth.js'
 import { BlockParams, LogParams } from 'ethers/providers'
 import { Block } from 'ethers'
 import { ChainId, EthChainId } from '@sentio/chain'
@@ -12,11 +12,11 @@ export class EthFacet {
     this.server = server
   }
 
-  testTrace(trace: Trace, network: EthChainId = EthChainId.ETHEREUM): Promise<ProcessBindingResponse> {
+  testTrace(trace: CallTrace, network: EthChainId = EthChainId.ETHEREUM): Promise<ProcessBindingResponse> {
     return this.testTraces([trace], network)
   }
 
-  testTraces(traces: Trace[], network: EthChainId = EthChainId.ETHEREUM): Promise<ProcessBindingResponse> {
+  testTraces(traces: CallTrace[], network: EthChainId = EthChainId.ETHEREUM): Promise<ProcessBindingResponse> {
     const bindings = []
     for (const trace of traces) {
       const binding = this.buildTraceBinding(trace, network)
@@ -30,17 +30,17 @@ export class EthFacet {
     })
   }
 
-  buildTraceBinding(trace: Trace, network: ChainId = EthChainId.ETHEREUM): DataBinding | undefined {
-    if (trace.type !== 'call' || !trace.action.input) {
+  buildTraceBinding(trace: CallTrace, network: ChainId = EthChainId.ETHEREUM): DataBinding | undefined {
+    if (trace.type !== 'CALL' || !trace.input) {
       throw Error('Invalid test trace: ' + JSON.stringify(trace))
     }
-    const signature = trace.action.input.slice(0, 10)
+    const signature = trace.input.slice(0, 10)
 
     for (const contract of this.server.contractConfigs) {
       if (contract.contract?.chainId !== network) {
         continue
       }
-      if (trace.action.to?.toLowerCase() !== contract.contract?.address.toLowerCase()) {
+      if (trace.to?.toLowerCase() !== contract.contract?.address.toLowerCase()) {
         continue
       }
       for (const config of contract.traceConfigs) {

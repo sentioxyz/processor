@@ -35,7 +35,7 @@ export interface TypedEvent<TArgsArray extends Array<any> = any, TArgsObject = a
 export type TypedEventFilter<_TEvent extends TypedEvent> = DeferredTopicFilter
 
 export interface RichBlock extends BlockParams {
-  traces?: Trace[]
+  traces?: CallTrace[]
   transactionReceipts?: TransactionReceiptParams[]
 }
 
@@ -135,7 +135,8 @@ export function formatEthData(data: {
     data.block.transactions = []
   }
   const block = data.block ? formatRichBlock(data.block) : undefined
-  const trace = data.trace ? (data.trace as Trace) : undefined
+  // TODO add a call trace format method
+  const trace = data.trace ? (data.trace as CallTrace) : undefined
   const transaction = data.transaction ? formatTransactionResponse(data.transaction) : undefined
   const transactionReceipt = data.transactionReceipt ? formatTransactionReceipt(data.transactionReceipt) : undefined
   return {
@@ -155,47 +156,63 @@ export function formatRichBlock(block: RichBlock): RichBlock {
   return block
 }
 
-export interface TypedCallTrace<TArgsArray extends Array<any> = any, TArgsObject = any> extends Trace {
+export interface TypedCallTrace<TArgsArray extends Array<any> = any, TArgsObject = any> extends CallTrace {
   args: TArgsObject & IResult
   name: string
   functionSignature: string
 }
 
-export interface Trace {
-  action: TraceAction
-  blockHash: string
-  blockNumber: number
-  result: TraceResult
-  subtraces: number
-  traceAddress: number[]
-  transactionHash: string
-  transactionPosition: number
-  type: string
-  error?: string
-}
-// export type CallType = "call" | "callcode" |  "delegatecall" | "staticcall"
+export type CallType = 'CALL' | 'CALLCODE' | 'DELEGATECALL' | 'STATICCALL'
 
-export interface TraceAction {
+export interface CallTrace {
+  type: CallType
   from: string
-  to?: string
-  value: number
   gas: number
-  input?: string
-  callType?: string
-
-  init?: string
-  address?: string
-  balance?: string
-  refundAddress?: string
-}
-
-// TODO are more field missing for FailedCall, FailedCreate
-export interface TraceResult {
   gasUsed: number
+  to?: string
+  input: string
   output?: string
-  address?: string
-  code?: string
+  error?: string
+  revertReason?: string
+  value?: string
+  calls?: CallTrace[]
+  // logs?: LogParams[]
 }
+
+// export interface Trace {
+//   action: TraceAction
+//   blockHash: string
+//   blockNumber: number
+//   result: TraceResult
+//   subtraces: number
+//   traceAddress: number[]
+//   transactionHash: string
+//   transactionPosition: number
+//   type: string
+//   error?: string
+// }
+
+// export interface TraceAction {
+//   from: string
+//   to?: string
+//   value: number
+//   gas: number
+//   input?: string
+//   callType?: string
+//
+//   init?: string
+//   address?: string
+//   balance?: string
+//   refundAddress?: string
+// }
+
+// // TODO are more field missing for FailedCall, FailedCreate
+// export interface TraceResult {
+//   gasUsed: number
+//   output?: string
+//   address?: string
+//   code?: string
+// }
 
 // const TRACE: Trace = {
 //   action: {

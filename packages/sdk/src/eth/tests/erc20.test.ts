@@ -6,7 +6,7 @@ import { firstCounterValue, firstGaugeValue, TestProcessorServer } from '@sentio
 import { mockTransferLog } from '../builtin/erc20.js'
 import { HandlerType } from '@sentio/protos'
 import { SENTIO_BIGINT_STRING_SUFFIX } from '../../core/normalization.js'
-import { RichBlock } from '../eth.js'
+import { CallTrace, RichBlock } from '../eth.js'
 import { EthChainId } from '@sentio/chain'
 
 describe('Test Basic Examples', () => {
@@ -114,27 +114,29 @@ describe('Test Basic Examples', () => {
     expect(res?.counters).length(1)
   })
 
-  const traceData = {
-    action: {
-      from: '0x80009ff8154bd5653c6dda2fa5f5053e5a5c1a91',
-      callType: 'call',
-      gas: 0xbb0a,
-      input:
-        '0x095ea7b30000000000000000000000003eabf546fff0a41edaaf5b667333a846285713180000000000000000000000000000000000000000000000000000002a03956d85',
-      to: '0x1E4EDE388cbc9F4b5c79681B7f94d36a11ABEBC9',
-      value: 0x0,
-    },
-    blockHash: '0xb1fe1fefca4063ab9cc06a10356a6dd397b8c3dd38e21470e107a711ad559c13',
-    blockNumber: 15548801,
-    result: {
-      gasUsed: 0x95df,
-      output: '0x0000000000000000000000000000000000000000000000000000000000000001',
-    },
-    subtraces: 1,
-    traceAddress: [],
-    transactionHash: '0xc05c37b34e13380d0b7e0475b27a0c77fda826f82c603f9c45922e952d63b7a5',
-    transactionPosition: 69,
-    type: 'call',
+  const traceData: CallTrace = {
+    from: '0x80009ff8154bd5653c6dda2fa5f5053e5a5c1a91',
+    gas: 0xbb0a,
+    gasUsed: 0xea53,
+    to: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
+    input:
+      '0x095ea7b30000000000000000000000003eabf546fff0a41edaaf5b667333a846285713180000000000000000000000000000000000000000000000000000002a03956d85',
+    output: '0x0000000000000000000000000000000000000000000000000000000000000001',
+    calls: [
+      {
+        from: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
+        gas: 0x9c43,
+        gasUsed: 0x7966,
+        to: '0xa2327a938febf5fec13bacfb16ae10ecbc4cbdcf',
+        input:
+          '0x095ea7b30000000000000000000000003eabf546fff0a41edaaf5b667333a846285713180000000000000000000000000000000000000000000000000000002a03956d85',
+        output: '0x0000000000000000000000000000000000000000000000000000000000000001',
+        value: '0x0',
+        type: 'DELEGATECALL',
+      },
+    ],
+    value: '0x0',
+    type: 'CALL',
   }
 
   const blockData: RichBlock = {

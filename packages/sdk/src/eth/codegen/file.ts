@@ -182,7 +182,7 @@ export class ${contract.name}ProcessorTemplate extends BaseProcessorTemplate<${c
         'getProcessor',
         'getProvider',
         'transformEtherError',
-        'Trace',
+        'CallTrace',
         'BindOptions',
         'BaseProcessor',
         'BaseProcessorTemplate',

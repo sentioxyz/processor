@@ -24,7 +24,7 @@ describe('Test Generic Processor', () => {
       .onTrace(function (trace, ctx) {
         ctx.meter.Counter('trace_count').add(1, { name: trace.name })
         ctx.eventLogger.emit(trace.name, {
-          distinctId: trace.action.from,
+          distinctId: trace.from,
           ...trace.args.toObject(),
         })
       })

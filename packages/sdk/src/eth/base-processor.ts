@@ -371,7 +371,7 @@ export abstract class BaseProcessor<
         const contractView = processor.CreateBoundContractView()
         const contractInterface = contractView.rawContract.interface
         const { trace, block, transaction, transactionReceipt } = formatEthData(data)
-        const sighash = trace?.action.input?.slice(0, 10)
+        const sighash = trace?.input?.slice(0, 10)
         if (!sighash) {
           throw new ServerError(Status.INVALID_ARGUMENT, 'trace has no sighash')
         }
@@ -384,10 +384,10 @@ export abstract class BaseProcessor<
         typedTrace.name = fragment.name
         typedTrace.functionSignature = fragment.format()
         // const trace = data.trace as Trace
-        if (!trace?.action.input) {
+        if (!trace?.input) {
           return ProcessResult.fromPartial({})
         }
-        const traceData = '0x' + trace.action.input.slice(10)
+        const traceData = '0x' + trace.input.slice(10)
         try {
           typedTrace.args = contractInterface.getAbiCoder().decode(fragment.inputs, traceData, true)
         } catch (e) {

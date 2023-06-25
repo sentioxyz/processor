@@ -2,7 +2,7 @@ import { BaseContract } from 'ethers'
 import { LogParams, BlockParams, TransactionReceiptParams, TransactionResponseParams } from 'ethers/providers'
 
 import { RecordMetaData } from '@sentio/protos'
-import { Trace } from './eth.js'
+import { CallTrace } from './eth.js'
 import { Labels, normalizeLabels } from '../core/index.js'
 import { BaseContext } from '../core/base-context.js'
 import { EthChainId } from '@sentio/chain'
@@ -12,7 +12,7 @@ export abstract class EthContext extends BaseContext {
   readonly address: string
   private readonly log?: LogParams
   readonly block?: BlockParams
-  private readonly trace?: Trace
+  private readonly trace?: CallTrace
   readonly blockNumber: number
   readonly transactionHash?: string
   readonly transaction?: TransactionResponseParams
@@ -25,7 +25,7 @@ export abstract class EthContext extends BaseContext {
     timestamp?: Date,
     block?: BlockParams,
     log?: LogParams,
-    trace?: Trace,
+    trace?: CallTrace,
     transaction?: TransactionResponseParams,
     transactionReceipt?: TransactionReceiptParams,
     baseLabels?: Labels
@@ -45,8 +45,12 @@ export abstract class EthContext extends BaseContext {
     } else if (block) {
       this.blockNumber = block.number
     } else if (trace) {
-      this.blockNumber = trace.blockNumber
-      this.transactionHash = trace.transactionHash
+      if (transactionReceipt) {
+        this.blockNumber = transactionReceipt.blockNumber
+        this.transactionHash = transactionReceipt.hash
+      } else {
+        console.error('transaction receipt not correctly returned')
+      }
     }
   }
 
@@ -88,7 +92,7 @@ export abstract class EthContext extends BaseContext {
         address: this.address,
         contractName: this.getContractName(),
         blockNumber: BigInt(this.blockNumber),
-        transactionIndex: this.trace.transactionPosition,
+        transactionIndex: this.transactionReceipt?.index || -1,
         transactionHash: this.transactionHash || '',
         logIndex: -1,
         chainId: this.chainId.toString(),
@@ -115,7 +119,7 @@ export class GlobalContext extends EthContext {
     timestamp?: Date,
     block?: BlockParams,
     log?: LogParams,
-    trace?: Trace,
+    trace?: CallTrace,
     transaction?: TransactionResponseParams,
     transactionReceipt?: TransactionReceiptParams
   ) {
@@ -140,7 +144,7 @@ export class ContractContext<
     timestamp?: Date,
     block?: BlockParams,
     log?: LogParams,
-    trace?: Trace,
+    trace?: CallTrace,
     transaction?: TransactionResponseParams,
     transactionReceipt?: TransactionReceiptParams,
     baseLabels?: Labels
