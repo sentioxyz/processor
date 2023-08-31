@@ -3,6 +3,7 @@ import { JsonRpcProvider, Network, Provider } from 'ethers'
 import PQueue from 'p-queue'
 import { Endpoints } from '@sentio/runtime'
 import { EthChainId } from '@sentio/chain'
+import { LRUCache } from 'lru-cache'
 
 export const DummyProvider = new JsonRpcProvider('', Network.from(1))
 
@@ -82,7 +83,9 @@ function getTag(prefix: string, value: any): string {
 
 class QueuedStaticJsonRpcProvider extends JsonRpcProvider {
   executor: PQueue
-  #performCache = new Map<string, Promise<any>>()
+  #performCache = new LRUCache<string, Promise<any>>({
+    max: 10000
+  })
 
   constructor(url: string, network: Network, concurrency: number) {
     // TODO re-enable match when possible
@@ -99,30 +102,22 @@ class QueuedStaticJsonRpcProvider extends JsonRpcProvider {
     let perform = this.#performCache.get(tag)
     if (!perform) {
       perform = this.executor.add(() => super.send(method, params))
-      perform
-        .catch((e) => {
-          // if (e.code !== 'CALL_EXCEPTION' && e.code !== 'BAD_DATA') {
-          setTimeout(() => {
-            if (this.#performCache.get(tag) === perform) {
-              this.#performCache.delete(tag)
-            }
-          }, 1000)
-          // }
-          // if (e.code === 'CALL_EXCEPTION' && !e.data) {
-          //   setTimeout(() => {
-          //     if (this.#performCache.get(tag) === perform) {
-          //       this.#performCache.delete(tag)
-          //     }
-          //   }, 1000)
-          // }
-        })
-        .then((result) => {
-          setTimeout(() => {
-            if (this.#performCache.get(tag) === perform) {
-              this.#performCache.delete(tag)
-            }
-          }, 3600000)
-        })
+      perform.catch((e) => {
+        // if (e.code !== 'CALL_EXCEPTION' && e.code !== 'BAD_DATA') {
+        setTimeout(() => {
+          if (this.#performCache.get(tag) === perform) {
+            this.#performCache.delete(tag)
+          }
+        }, 1000)
+        // }
+        // if (e.code === 'CALL_EXCEPTION' && !e.data) {
+        //   setTimeout(() => {
+        //     if (this.#performCache.get(tag) === perform) {
+        //       this.#performCache.delete(tag)
+        //     }
+        //   }, 1000)
+        // }
+      })
       this.#performCache.set(tag, perform)
       // For non latest block call, we cache permanently, otherwise we cache for one minute
       if (block === 'latest') {

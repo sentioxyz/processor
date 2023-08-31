@@ -4,6 +4,7 @@ import { prometheusClientMiddleware } from 'nice-grpc-prometheus'
 import { retryMiddleware, RetryOptions } from 'nice-grpc-client-middleware-retry'
 import { Endpoints } from '@sentio/runtime'
 import { ChainId } from '@sentio/chain'
+import { LRUCache } from 'lru-cache'
 
 export function getPriceClient(address?: string) {
   if (!address) {
@@ -17,7 +18,9 @@ export function getPriceClient(address?: string) {
     .create(PriceServiceDefinition, channel)
 }
 
-const priceMap = new Map<string, Promise<number | undefined>>()
+const priceMap = new LRUCache<string, Promise<number | undefined>>({
+  max: 100000
+})
 let priceClient: PriceServiceClient<RetryOptions>
 
 interface PriceOptions {
@@ -62,10 +65,6 @@ export async function getPriceByTypeOrSymbolInternal(
   )
   price = response
     .then((res) => {
-      setTimeout(() => {
-        priceMap.delete(key)
-      }, 3600000)
-
       if (res.timestamp) {
         const responseDateString = dateString(res.timestamp)
         if (responseDateString === todayDateString) {
