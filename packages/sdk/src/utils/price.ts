@@ -34,7 +34,7 @@ export async function getPriceByTypeOrSymbolInternal(
   priceClient: PriceServiceClient<RetryOptions>,
   date: Date,
   coinId: CoinID,
-  options?: PriceOptions,
+  options?: PriceOptions
 ): Promise<number | undefined> {
   const dateStr = dateString(date)
   const todayDateString = dateString(new Date())
@@ -53,15 +53,19 @@ export async function getPriceByTypeOrSymbolInternal(
   const response = priceClient.getPrice(
     {
       timestamp: date,
-      coinId,
+      coinId
     },
     {
       retry: true,
-      retryMaxAttempts: 5,
-    },
+      retryMaxAttempts: 5
+    }
   )
   price = response
     .then((res) => {
+      setTimeout(() => {
+        priceMap.delete(key)
+      }, 3600000)
+
       if (res.timestamp) {
         const responseDateString = dateString(res.timestamp)
         if (responseDateString === todayDateString) {
@@ -107,17 +111,17 @@ export async function getPriceByType(
   chainId: ChainId,
   coinType: string,
   date: Date,
-  options?: PriceOptions,
+  options?: PriceOptions
 ): Promise<number | undefined> {
   return getPriceByTypeOrSymbol(
     date,
     {
       address: {
         chain: chainId,
-        address: coinType,
-      },
+        address: coinType
+      }
     },
-    options,
+    options
   )
 }
 
@@ -129,7 +133,7 @@ export async function getPriceByType(
 export async function getPriceBySymbol(
   symbol: string,
   date: Date,
-  options?: PriceOptions,
+  options?: PriceOptions
 ): Promise<number | undefined> {
   return getPriceByTypeOrSymbol(date, { symbol }, options)
 }
