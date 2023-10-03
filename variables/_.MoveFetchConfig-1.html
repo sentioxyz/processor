@@ -29,15 +29,17 @@
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">base</span>: <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">allEvents</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">resourceChanges</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> 
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">base</span>: <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">allEvents</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">resourceChanges</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">resourceConfig</span><span class="tsd-signature-symbol">?: </span>{ moveTypePrefix?: string | undefined; }<span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> 
 <ul class="tsd-parameters">
 <li class="tsd-parameter">
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">all<wbr/>Events</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5></li>
 <li class="tsd-parameter">
-<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">resource<wbr/>Changes</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5></li></ul></li></ul></div>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">resource<wbr/>Changes</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5></li>
+<li class="tsd-parameter">
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">resource<wbr/>Config</span><span class="tsd-signature-symbol">?: </span>{ moveTypePrefix?: string | undefined; }</h5></li></ul></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="_.MoveFetchConfig-1.html" class="tsd-signature-type tsd-kind-variable">MoveFetchConfig</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:641</li></ul></aside></li></ul></li>
+<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:657</li></ul></aside></li></ul></li>
 <li class="tsd-parameter">
 <h5><span class="tsd-kind-method">decode</span><span class="tsd-signature-symbol">:</span>function</h5>
 <ul class="tsd-signatures">
@@ -52,7 +54,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">length</span>: <span class="tsd-signature-type">number</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="_.MoveFetchConfig-1.html" class="tsd-signature-type tsd-kind-variable">MoveFetchConfig</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:638</li></ul></aside></li></ul></li>
+<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:654</li></ul></aside></li></ul></li>
 <li class="tsd-parameter">
 <h5><span class="tsd-kind-method">encode</span><span class="tsd-signature-symbol">:</span>function</h5>
 <ul class="tsd-signatures">
@@ -67,7 +69,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">writer</span>: <span class="tsd-signature-type ">Writer</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Writer</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:637</li></ul></aside></li></ul></li>
+<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:653</li></ul></aside></li></ul></li>
 <li class="tsd-parameter">
 <h5><span class="tsd-kind-method">fromJSON</span><span class="tsd-signature-symbol">:</span>function</h5>
 <ul class="tsd-signatures">
@@ -80,7 +82,7 @@
 <h5><span class="tsd-kind-parameter">object</span>: <span class="tsd-signature-type">any</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="_.MoveFetchConfig-1.html" class="tsd-signature-type tsd-kind-variable">MoveFetchConfig</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:639</li></ul></aside></li></ul></li>
+<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:655</li></ul></aside></li></ul></li>
 <li class="tsd-parameter">
 <h5><span class="tsd-kind-method">from<wbr/>Partial</span><span class="tsd-signature-symbol">:</span>function</h5>
 <ul class="tsd-signatures">
@@ -90,15 +92,17 @@
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5><span class="tsd-kind-parameter">object</span>: <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">allEvents</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">resourceChanges</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5>
+<h5><span class="tsd-kind-parameter">object</span>: <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">allEvents</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">resourceChanges</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">resourceConfig</span><span class="tsd-signature-symbol">?: </span>{ moveTypePrefix?: string | undefined; }<span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5>
 <ul class="tsd-parameters">
 <li class="tsd-parameter">
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">all<wbr/>Events</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5></li>
 <li class="tsd-parameter">
-<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">resource<wbr/>Changes</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5></li></ul></li></ul></div>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">resource<wbr/>Changes</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5></li>
+<li class="tsd-parameter">
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-property">resource<wbr/>Config</span><span class="tsd-signature-symbol">?: </span>{ moveTypePrefix?: string | undefined; }</h5></li></ul></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="_.MoveFetchConfig-1.html" class="tsd-signature-type tsd-kind-variable">MoveFetchConfig</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:642</li></ul></aside></li></ul></li>
+<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:658</li></ul></aside></li></ul></li>
 <li class="tsd-parameter">
 <h5><span class="tsd-kind-method">toJSON</span><span class="tsd-signature-symbol">:</span>function</h5>
 <ul class="tsd-signatures">
@@ -111,10 +115,10 @@
 <h5><span class="tsd-kind-parameter">message</span>: <a href="_.MoveFetchConfig-1.html" class="tsd-signature-type tsd-kind-variable">MoveFetchConfig</a></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">unknown</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:640</li></ul></aside></li></ul></li></ul></div><aside class="tsd-sources">
+<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:656</li></ul></aside></li></ul></li></ul></div><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:210</li>
-<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:636</li></ul></aside></div>
+<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:217</li>
+<li>Defined in packages/protos/lib/processor/protos/processor.d.ts:652</li></ul></aside></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -218,6 +222,7 @@
 <li><a href="../interfaces/_.ProjectConfig.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Project<wbr/>Config</span></a></li>
 <li><a href="../interfaces/_.RecordMetaData.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Record<wbr/>Meta<wbr/>Data</span></a></li>
 <li><a href="../interfaces/_.RecordMetaData_LabelsEntry.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Record<wbr/>Meta<wbr/>Data_<wbr/>Labels<wbr/>Entry</span></a></li>
+<li><a href="../interfaces/_.ResourceConfig.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Resource<wbr/>Config</span></a></li>
 <li><a href="../interfaces/_.RetentionConfig.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Retention<wbr/>Config</span></a></li>
 <li><a href="../interfaces/_.RuntimeInfo.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Runtime<wbr/>Info</span></a></li>
 <li><a href="../interfaces/_.StartRequest.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg><span>Start<wbr/>Request</span></a></li>
@@ -293,6 +298,7 @@
 <li><a href="_.ProjectConfig-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-32"></use></svg><span>Project<wbr/>Config</span></a></li>
 <li><a href="_.RecordMetaData-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-32"></use></svg><span>Record<wbr/>Meta<wbr/>Data</span></a></li>
 <li><a href="_.RecordMetaData_LabelsEntry-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-32"></use></svg><span>Record<wbr/>Meta<wbr/>Data_<wbr/>Labels<wbr/>Entry</span></a></li>
+<li><a href="_.ResourceConfig-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-32"></use></svg><span>Resource<wbr/>Config</span></a></li>
 <li><a href="_.RetentionConfig-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-32"></use></svg><span>Retention<wbr/>Config</span></a></li>
 <li><a href="_.RuntimeInfo-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-32"></use></svg><span>Runtime<wbr/>Info</span></a></li>
 <li><a href="_.StartRequest-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-32"></use></svg><span>Start<wbr/>Request</span></a></li>
