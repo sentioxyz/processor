@@ -42,6 +42,7 @@
 <a href="sui_builtin._0x3.validator-1.html#config" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>config</span></a>
 <a href="sui_builtin._0x3.validator-1.html#eventHandlers" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>event<wbr/>Handlers</span></a>
 <a href="sui_builtin._0x3.validator-1.html#moduleName" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>module<wbr/>Name</span></a>
+<a href="sui_builtin._0x3.validator-1.html#objectChangeHandlers" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>object<wbr/>Change<wbr/>Handlers</span></a>
 <a href="sui_builtin._0x3.validator-1.html#DEFAULT_OPTIONS" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>DEFAULT_<wbr/>OPTIONS</span></a>
 </div></section>
 <section class="tsd-index-section">
@@ -52,6 +53,7 @@
 <a href="sui_builtin._0x3.validator-1.html#onEventStakingRequestEvent" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Event<wbr/>Staking<wbr/>Request<wbr/>Event</span></a>
 <a href="sui_builtin._0x3.validator-1.html#onEventUnstakingRequestEvent" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Event<wbr/>Unstaking<wbr/>Request<wbr/>Event</span></a>
 <a href="sui_builtin._0x3.validator-1.html#onMoveEvent" class="tsd-index-link tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Move<wbr/>Event</span></a>
+<a href="sui_builtin._0x3.validator-1.html#onObjectChange" class="tsd-index-link tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Object<wbr/>Change</span></a>
 <a href="sui_builtin._0x3.validator-1.html#onTransactionBlock" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Transaction<wbr/>Block</span></a>
 <a href="sui_builtin._0x3.validator-1.html#bind" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>bind</span></a>
 </div></section></div></details></section></section>
@@ -78,31 +80,37 @@
 <div class="tsd-signature"><span class="tsd-kind-property">call<wbr/>Handlers</span><span class="tsd-signature-symbol">:</span> <a href="move.CallHandler.html" class="tsd-signature-type tsd-kind-class">CallHandler</a><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.Data_SuiCall-1.html" class="tsd-signature-type tsd-kind-variable">Data_SuiCall</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div><aside class="tsd-sources">
 <p>Inherited from <a href="sui.SuiBaseProcessor.html">SuiBaseProcessor</a>.<a href="sui.SuiBaseProcessor.html#callHandlers">callHandlers</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/e5ef437/packages/sdk/src/sui/sui-processor.ts#L55">packages/sdk/src/sui/sui-processor.ts:55</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/ba82b5c/packages/sdk/src/sui/sui-processor.ts#L56">packages/sdk/src/sui/sui-processor.ts:56</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="coder" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>coder</span><a href="#coder" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">coder</span><span class="tsd-signature-symbol">:</span> <a href="sui.MoveCoder.html" class="tsd-signature-type tsd-kind-class">MoveCoder</a></div><aside class="tsd-sources">
 <p>Inherited from <a href="sui.SuiBaseProcessor.html">SuiBaseProcessor</a>.<a href="sui.SuiBaseProcessor.html#coder">coder</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/e5ef437/packages/sdk/src/sui/sui-processor.ts#L56">packages/sdk/src/sui/sui-processor.ts:56</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/ba82b5c/packages/sdk/src/sui/sui-processor.ts#L59">packages/sdk/src/sui/sui-processor.ts:59</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="config" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>config</span><a href="#config" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">config</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type ">IndexConfigure</span></div><aside class="tsd-sources">
 <p>Inherited from <a href="sui.SuiBaseProcessor.html">SuiBaseProcessor</a>.<a href="sui.SuiBaseProcessor.html#config">config</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/e5ef437/packages/sdk/src/sui/sui-processor.ts#L52">packages/sdk/src/sui/sui-processor.ts:52</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/ba82b5c/packages/sdk/src/sui/sui-processor.ts#L53">packages/sdk/src/sui/sui-processor.ts:53</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="eventHandlers" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>event<wbr/>Handlers</span><a href="#eventHandlers" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">event<wbr/>Handlers</span><span class="tsd-signature-symbol">:</span> <a href="move.EventHandler.html" class="tsd-signature-type tsd-kind-class">EventHandler</a><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.Data_SuiEvent-1.html" class="tsd-signature-type tsd-kind-variable">Data_SuiEvent</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div><aside class="tsd-sources">
 <p>Inherited from <a href="sui.SuiBaseProcessor.html">SuiBaseProcessor</a>.<a href="sui.SuiBaseProcessor.html#eventHandlers">eventHandlers</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/e5ef437/packages/sdk/src/sui/sui-processor.ts#L54">packages/sdk/src/sui/sui-processor.ts:54</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/ba82b5c/packages/sdk/src/sui/sui-processor.ts#L55">packages/sdk/src/sui/sui-processor.ts:55</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="moduleName" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagReadonly">Readonly</code> <span>module<wbr/>Name</span><a href="#moduleName" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">module<wbr/>Name</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div><aside class="tsd-sources">
 <p>Inherited from <a href="sui.SuiBaseProcessor.html">SuiBaseProcessor</a>.<a href="sui.SuiBaseProcessor.html#moduleName">moduleName</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/e5ef437/packages/sdk/src/sui/sui-processor.ts#L51">packages/sdk/src/sui/sui-processor.ts:51</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/ba82b5c/packages/sdk/src/sui/sui-processor.ts#L52">packages/sdk/src/sui/sui-processor.ts:52</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-is-inherited"><a id="objectChangeHandlers" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>object<wbr/>Change<wbr/>Handlers</span><a href="#objectChangeHandlers" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">object<wbr/>Change<wbr/>Handlers</span><span class="tsd-signature-symbol">:</span> <a href="move.ObjectChangeHandler.html" class="tsd-signature-type tsd-kind-class">ObjectChangeHandler</a><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.Data_SuiObjectChange-1.html" class="tsd-signature-type tsd-kind-variable">Data_SuiObjectChange</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div><aside class="tsd-sources">
+<p>Inherited from <a href="sui.SuiBaseProcessor.html">SuiBaseProcessor</a>.<a href="sui.SuiBaseProcessor.html#objectChangeHandlers">objectChangeHandlers</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/ba82b5c/packages/sdk/src/sui/sui-processor.ts#L57">packages/sdk/src/sui/sui-processor.ts:57</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member"><a id="DEFAULT_OPTIONS" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>DEFAULT_<wbr/>OPTIONS</span><a href="#DEFAULT_OPTIONS" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">DEFAULT_<wbr/>OPTIONS</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/sui.SuiBindOptions.html" class="tsd-signature-type tsd-kind-interface">SuiBindOptions</a><span class="tsd-signature-symbol"> = ...</span></div><aside class="tsd-sources">
@@ -118,7 +126,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><aside class="tsd-sources">
 <p>Inherited from <a href="sui.SuiBaseProcessor.html">SuiBaseProcessor</a>.<a href="sui.SuiBaseProcessor.html#getChainId">getChainId</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/e5ef437/packages/sdk/src/sui/sui-processor.ts#L65">packages/sdk/src/sui/sui-processor.ts:65</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/ba82b5c/packages/sdk/src/sui/sui-processor.ts#L68">packages/sdk/src/sui/sui-processor.ts:68</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited"><a id="onEntryFunctionCall" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagProtected">Protected</code> <span>on<wbr/>Entry<wbr/>Function<wbr/>Call</span><a href="#onEntryFunctionCall" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-protected tsd-is-inherited">
@@ -149,7 +157,7 @@
 <h4 class="tsd-returns-title">Returns <a href="sui.SuiBaseProcessor.html" class="tsd-signature-type tsd-kind-class">SuiBaseProcessor</a></h4><aside class="tsd-sources">
 <p>Inherited from <a href="sui.SuiBaseProcessor.html">SuiBaseProcessor</a>.<a href="sui.SuiBaseProcessor.html#onEntryFunctionCall">onEntryFunctionCall</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/e5ef437/packages/sdk/src/sui/sui-processor.ts#L130">packages/sdk/src/sui/sui-processor.ts:130</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/ba82b5c/packages/sdk/src/sui/sui-processor.ts#L133">packages/sdk/src/sui/sui-processor.ts:133</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="onEvent" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on<wbr/>Event</span><a href="#onEvent" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited">
@@ -178,7 +186,7 @@
 <h4 class="tsd-returns-title">Returns <a href="sui_builtin._0x3.validator-1.html" class="tsd-signature-type tsd-kind-class">validator</a></h4><aside class="tsd-sources">
 <p>Inherited from <a href="sui.SuiBaseProcessor.html">SuiBaseProcessor</a>.<a href="sui.SuiBaseProcessor.html#onEvent">onEvent</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/e5ef437/packages/sdk/src/sui/sui-processor.ts#L196">packages/sdk/src/sui/sui-processor.ts:196</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/ba82b5c/packages/sdk/src/sui/sui-processor.ts#L199">packages/sdk/src/sui/sui-processor.ts:199</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="onEventStakingRequestEvent" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on<wbr/>Event<wbr/>Staking<wbr/>Request<wbr/>Event</span><a href="#onEventStakingRequestEvent" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -265,7 +273,36 @@
 <h4 class="tsd-returns-title">Returns <a href="sui.SuiBaseProcessor.html" class="tsd-signature-type tsd-kind-class">SuiBaseProcessor</a></h4><aside class="tsd-sources">
 <p>Inherited from <a href="sui.SuiBaseProcessor.html">SuiBaseProcessor</a>.<a href="sui.SuiBaseProcessor.html#onMoveEvent">onMoveEvent</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/e5ef437/packages/sdk/src/sui/sui-processor.ts#L69">packages/sdk/src/sui/sui-processor.ts:69</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/ba82b5c/packages/sdk/src/sui/sui-processor.ts#L72">packages/sdk/src/sui/sui-processor.ts:72</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited"><a id="onObjectChange" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagProtected">Protected</code> <span>on<wbr/>Object<wbr/>Change</span><a href="#onObjectChange" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-protected tsd-is-inherited">
+<li class="tsd-signature tsd-anchor-link" id="onObjectChange.onObjectChange-1"><span class="tsd-kind-call-signature">on<wbr/>Object<wbr/>Change</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">handler</span>, <span class="tsd-kind-parameter">type</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="sui_builtin._0x3.validator-1.html" class="tsd-signature-type tsd-kind-class">validator</a><a href="#onObjectChange.onObjectChange-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5><span class="tsd-kind-parameter">handler</span>: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">changes</span>, <span class="tsd-kind-parameter">ctx</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span></h5>
+<ul class="tsd-parameters">
+<li class="tsd-parameter-signature">
+<ul class="tsd-signatures">
+<li class="tsd-signature"><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">changes</span>, <span class="tsd-kind-parameter">ctx</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5><span class="tsd-kind-parameter">changes</span>: <span class="tsd-signature-type ">SuiObjectChange</span><span class="tsd-signature-symbol">[]</span></h5></li>
+<li>
+<h5><span class="tsd-kind-parameter">ctx</span>: <a href="sui.SuiObjectChangeContext.html" class="tsd-signature-type tsd-kind-class">SuiObjectChangeContext</a></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4></li></ul></li></ul></li>
+<li>
+<h5><span class="tsd-kind-parameter">type</span>: <span class="tsd-signature-type">string</span></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="sui_builtin._0x3.validator-1.html" class="tsd-signature-type tsd-kind-class">validator</a></h4><aside class="tsd-sources">
+<p>Inherited from <a href="sui.SuiBaseProcessor.html">SuiBaseProcessor</a>.<a href="sui.SuiBaseProcessor.html#onObjectChange">onObjectChange</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/ba82b5c/packages/sdk/src/sui/sui-processor.ts#L241">packages/sdk/src/sui/sui-processor.ts:241</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="onTransactionBlock" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on<wbr/>Transaction<wbr/>Block</span><a href="#onTransactionBlock" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited">
@@ -296,7 +333,7 @@
 <h4 class="tsd-returns-title">Returns <a href="sui_builtin._0x3.validator-1.html" class="tsd-signature-type tsd-kind-class">validator</a></h4><aside class="tsd-sources">
 <p>Inherited from <a href="sui.SuiBaseProcessor.html">SuiBaseProcessor</a>.<a href="sui.SuiBaseProcessor.html#onTransactionBlock">onTransactionBlock</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/e5ef437/packages/sdk/src/sui/sui-processor.ts#L201">packages/sdk/src/sui/sui-processor.ts:201</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/ba82b5c/packages/sdk/src/sui/sui-processor.ts#L204">packages/sdk/src/sui/sui-processor.ts:204</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="bind" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>bind</span><a href="#bind" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -335,6 +372,7 @@
 <li><a href="#config" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>config</span></a></li>
 <li><a href="#eventHandlers" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>event<wbr/>Handlers</span></a></li>
 <li><a href="#moduleName" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>module<wbr/>Name</span></a></li>
+<li><a href="#objectChangeHandlers" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>object<wbr/>Change<wbr/>Handlers</span></a></li>
 <li><a href="#DEFAULT_OPTIONS" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>DEFAULT_<wbr/>OPTIONS</span></a></li>
 <li><a href="#getChainId" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>get<wbr/>Chain<wbr/>Id</span></a></li>
 <li><a href="#onEntryFunctionCall" class="tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Entry<wbr/>Function<wbr/>Call</span></a></li>
@@ -342,6 +380,7 @@
 <li><a href="#onEventStakingRequestEvent" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Event<wbr/>Staking<wbr/>Request<wbr/>Event</span></a></li>
 <li><a href="#onEventUnstakingRequestEvent" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Event<wbr/>Unstaking<wbr/>Request<wbr/>Event</span></a></li>
 <li><a href="#onMoveEvent" class="tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Move<wbr/>Event</span></a></li>
+<li><a href="#onObjectChange" class="tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Object<wbr/>Change</span></a></li>
 <li><a href="#onTransactionBlock" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Transaction<wbr/>Block</span></a></li>
 <li><a href="#bind" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>bind</span></a></li></ul></div></details></div>
 <div class="site-menu">
