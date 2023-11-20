@@ -25,7 +25,7 @@
 <li><span class="target">object_</span></li></ul></li></ul></section><aside class="tsd-sources">
 <ul>
 <li>Defined in packages/sdk/src/aptos/builtin/0x1.ts:1840</li>
-<li>Defined in packages/sdk/src/aptos/builtin/0x1.ts:1950</li></ul></aside>
+<li>Defined in packages/sdk/src/aptos/builtin/0x1.ts:1982</li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -47,10 +47,12 @@
 <section class="tsd-index-section">
 <h3 class="tsd-index-heading">Methods</h3>
 <div class="tsd-index-list"><a href="aptos_builtin._0x1.object_-1.html#getChainId" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-2048"><rect fill="var(--color-icon-background)" stroke="#FF4DB8" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12"></rect><path d="M9.162 16V7.24H10.578L11.514 10.072C11.602 10.328 11.674 10.584 11.73 10.84C11.794 11.088 11.842 11.28 11.874 11.416C11.906 11.28 11.954 11.088 12.018 10.84C12.082 10.584 12.154 10.324 12.234 10.06L13.122 7.24H14.538V16H13.482V12.82C13.482 12.468 13.49 12.068 13.506 11.62C13.53 11.172 13.558 10.716 13.59 10.252C13.622 9.78 13.654 9.332 13.686 8.908C13.726 8.476 13.762 8.1 13.794 7.78L12.366 12.16H11.334L9.894 7.78C9.934 8.092 9.97 8.456 10.002 8.872C10.042 9.28 10.078 9.716 10.11 10.18C10.142 10.636 10.166 11.092 10.182 11.548C10.206 12.004 10.218 12.428 10.218 12.82V16H9.162Z" fill="var(--color-text)"></path></g></svg><span>get<wbr/>Chain<wbr/>Id</span></a>
+<a href="aptos_builtin._0x1.object_-1.html#onEntryBurn" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Entry<wbr/>Burn</span></a>
 <a href="aptos_builtin._0x1.object_-1.html#onEntryFunctionCall" class="tsd-index-link tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Entry<wbr/>Function<wbr/>Call</span></a>
 <a href="aptos_builtin._0x1.object_-1.html#onEntryTransfer" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Entry<wbr/>Transfer</span></a>
 <a href="aptos_builtin._0x1.object_-1.html#onEntryTransferCall" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Entry<wbr/>Transfer<wbr/>Call</span></a>
 <a href="aptos_builtin._0x1.object_-1.html#onEntryTransferToObject" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Entry<wbr/>Transfer<wbr/>To<wbr/>Object</span></a>
+<a href="aptos_builtin._0x1.object_-1.html#onEntryUnburn" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Entry<wbr/>Unburn</span></a>
 <a href="aptos_builtin._0x1.object_-1.html#onEvent" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Event</span></a>
 <a href="aptos_builtin._0x1.object_-1.html#onEventDeleteRef" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Event<wbr/>Delete<wbr/>Ref</span></a>
 <a href="aptos_builtin._0x1.object_-1.html#onEventDeriveRef" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Event<wbr/>Derive<wbr/>Ref</span></a>
@@ -85,31 +87,31 @@
 <div class="tsd-signature"><span class="tsd-kind-property">call<wbr/>Handlers</span><span class="tsd-signature-symbol">:</span> <a href="move.CallHandler.html" class="tsd-signature-type tsd-kind-class">CallHandler</a><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.Data_AptCall-1.html" class="tsd-signature-type tsd-kind-variable">Data_AptCall</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div><aside class="tsd-sources">
 <p>Inherited from <a href="aptos.AptosBaseProcessor.html">AptosBaseProcessor</a>.<a href="aptos.AptosBaseProcessor.html#callHandlers">callHandlers</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/402dd43/packages/sdk/src/aptos/aptos-processor.ts#L66">packages/sdk/src/aptos/aptos-processor.ts:66</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/67b288e/packages/sdk/src/aptos/aptos-processor.ts#L66">packages/sdk/src/aptos/aptos-processor.ts:66</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="coder" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>coder</span><a href="#coder" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">coder</span><span class="tsd-signature-symbol">:</span> <a href="aptos.MoveCoder.html" class="tsd-signature-type tsd-kind-class">MoveCoder</a></div><aside class="tsd-sources">
 <p>Inherited from <a href="aptos.AptosBaseProcessor.html">AptosBaseProcessor</a>.<a href="aptos.AptosBaseProcessor.html#coder">coder</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/402dd43/packages/sdk/src/aptos/aptos-processor.ts#L67">packages/sdk/src/aptos/aptos-processor.ts:67</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/67b288e/packages/sdk/src/aptos/aptos-processor.ts#L67">packages/sdk/src/aptos/aptos-processor.ts:67</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="config" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>config</span><a href="#config" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">config</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type ">IndexConfigure</span></div><aside class="tsd-sources">
 <p>Inherited from <a href="aptos.AptosBaseProcessor.html">AptosBaseProcessor</a>.<a href="aptos.AptosBaseProcessor.html#config">config</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/402dd43/packages/sdk/src/aptos/aptos-processor.ts#L64">packages/sdk/src/aptos/aptos-processor.ts:64</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/67b288e/packages/sdk/src/aptos/aptos-processor.ts#L64">packages/sdk/src/aptos/aptos-processor.ts:64</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="eventHandlers" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>event<wbr/>Handlers</span><a href="#eventHandlers" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">event<wbr/>Handlers</span><span class="tsd-signature-symbol">:</span> <a href="move.EventHandler.html" class="tsd-signature-type tsd-kind-class">EventHandler</a><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.Data_AptEvent-1.html" class="tsd-signature-type tsd-kind-variable">Data_AptEvent</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div><aside class="tsd-sources">
 <p>Inherited from <a href="aptos.AptosBaseProcessor.html">AptosBaseProcessor</a>.<a href="aptos.AptosBaseProcessor.html#eventHandlers">eventHandlers</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/402dd43/packages/sdk/src/aptos/aptos-processor.ts#L65">packages/sdk/src/aptos/aptos-processor.ts:65</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/67b288e/packages/sdk/src/aptos/aptos-processor.ts#L65">packages/sdk/src/aptos/aptos-processor.ts:65</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="moduleName" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagReadonly">Readonly</code> <span>module<wbr/>Name</span><a href="#moduleName" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">module<wbr/>Name</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div><aside class="tsd-sources">
 <p>Inherited from <a href="aptos.AptosBaseProcessor.html">AptosBaseProcessor</a>.<a href="aptos.AptosBaseProcessor.html#moduleName">moduleName</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/402dd43/packages/sdk/src/aptos/aptos-processor.ts#L63">packages/sdk/src/aptos/aptos-processor.ts:63</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/67b288e/packages/sdk/src/aptos/aptos-processor.ts#L63">packages/sdk/src/aptos/aptos-processor.ts:63</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member"><a id="DEFAULT_OPTIONS" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>DEFAULT_<wbr/>OPTIONS</span><a href="#DEFAULT_OPTIONS" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">DEFAULT_<wbr/>OPTIONS</span><span class="tsd-signature-symbol">:</span> <a href="aptos.AptosBindOptions.html" class="tsd-signature-type tsd-kind-class">AptosBindOptions</a><span class="tsd-signature-symbol"> = ...</span></div><aside class="tsd-sources">
@@ -125,7 +127,37 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><aside class="tsd-sources">
 <p>Inherited from <a href="aptos.AptosBaseProcessor.html">AptosBaseProcessor</a>.<a href="aptos.AptosBaseProcessor.html#getChainId">getChainId</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/402dd43/packages/sdk/src/aptos/aptos-processor.ts#L220">packages/sdk/src/aptos/aptos-processor.ts:220</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/67b288e/packages/sdk/src/aptos/aptos-processor.ts#L220">packages/sdk/src/aptos/aptos-processor.ts:220</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member"><a id="onEntryBurn" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>on<wbr/>Entry<wbr/>Burn</span><a href="#onEntryBurn" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="tsd-signature tsd-anchor-link" id="onEntryBurn.onEntryBurn-1"><span class="tsd-kind-call-signature">on<wbr/>Entry<wbr/>Burn</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">func</span>, <span class="tsd-kind-parameter">filter</span><span class="tsd-signature-symbol">?</span>, <span class="tsd-kind-parameter">fetchConfig</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="aptos_builtin._0x1.object_-1.html" class="tsd-signature-type tsd-kind-class">object_</a><a href="#onEntryBurn.onEntryBurn-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5><span class="tsd-kind-parameter">func</span>: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">call</span>, <span class="tsd-kind-parameter">ctx</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span></h5>
+<ul class="tsd-parameters">
+<li class="tsd-parameter-signature">
+<ul class="tsd-signatures">
+<li class="tsd-signature"><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">call</span>, <span class="tsd-kind-parameter">ctx</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5><span class="tsd-kind-parameter">call</span>: <a href="../modules/aptos_builtin._0x1.html" class="tsd-signature-type tsd-kind-namespace">_0x1</a><span class="tsd-signature-symbol">.</span><a href="../modules/aptos_builtin._0x1.object_.html" class="tsd-signature-type tsd-kind-namespace">object_</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/aptos_builtin._0x1.object_.BurnPayload.html" class="tsd-signature-type tsd-kind-interface">BurnPayload</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5></li>
+<li>
+<h5><span class="tsd-kind-parameter">ctx</span>: <a href="aptos.AptosContext.html" class="tsd-signature-type tsd-kind-class">AptosContext</a></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4></li></ul></li></ul></li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">filter</span>: <a href="../interfaces/move.CallFilter.html" class="tsd-signature-type tsd-kind-interface">CallFilter</a></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">fetchConfig</span>: <span class="tsd-signature-type ">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.MoveFetchConfig-1.html" class="tsd-signature-type tsd-kind-variable">MoveFetchConfig</a><span class="tsd-signature-symbol">&gt;</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="aptos_builtin._0x1.object_-1.html" class="tsd-signature-type tsd-kind-class">object_</a></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in packages/sdk/src/aptos/builtin/0x1.ts:1853</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited"><a id="onEntryFunctionCall" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagProtected">Protected</code> <span>on<wbr/>Entry<wbr/>Function<wbr/>Call</span><a href="#onEntryFunctionCall" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-protected tsd-is-inherited">
@@ -156,7 +188,7 @@
 <h4 class="tsd-returns-title">Returns <a href="aptos_builtin._0x1.object_-1.html" class="tsd-signature-type tsd-kind-class">object_</a></h4><aside class="tsd-sources">
 <p>Inherited from <a href="aptos.AptosBaseProcessor.html">AptosBaseProcessor</a>.<a href="aptos.AptosBaseProcessor.html#onEntryFunctionCall">onEntryFunctionCall</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/402dd43/packages/sdk/src/aptos/aptos-processor.ts#L136">packages/sdk/src/aptos/aptos-processor.ts:136</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/67b288e/packages/sdk/src/aptos/aptos-processor.ts#L136">packages/sdk/src/aptos/aptos-processor.ts:136</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="onEntryTransfer" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on<wbr/>Entry<wbr/>Transfer</span><a href="#onEntryTransfer" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -186,7 +218,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">fetchConfig</span>: <span class="tsd-signature-type ">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.MoveFetchConfig-1.html" class="tsd-signature-type tsd-kind-variable">MoveFetchConfig</a><span class="tsd-signature-symbol">&gt;</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="aptos_builtin._0x1.object_-1.html" class="tsd-signature-type tsd-kind-class">object_</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/aptos/builtin/0x1.ts:1853</li></ul></aside></li></ul></section>
+<li>Defined in packages/sdk/src/aptos/builtin/0x1.ts:1869</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="onEntryTransferCall" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on<wbr/>Entry<wbr/>Transfer<wbr/>Call</span><a href="#onEntryTransferCall" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -216,7 +248,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">fetchConfig</span>: <span class="tsd-signature-type ">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.MoveFetchConfig-1.html" class="tsd-signature-type tsd-kind-variable">MoveFetchConfig</a><span class="tsd-signature-symbol">&gt;</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="aptos_builtin._0x1.object_-1.html" class="tsd-signature-type tsd-kind-class">object_</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/aptos/builtin/0x1.ts:1869</li></ul></aside></li></ul></section>
+<li>Defined in packages/sdk/src/aptos/builtin/0x1.ts:1885</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="onEntryTransferToObject" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on<wbr/>Entry<wbr/>Transfer<wbr/>To<wbr/>Object</span><a href="#onEntryTransferToObject" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -246,7 +278,37 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">fetchConfig</span>: <span class="tsd-signature-type ">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.MoveFetchConfig-1.html" class="tsd-signature-type tsd-kind-variable">MoveFetchConfig</a><span class="tsd-signature-symbol">&gt;</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="aptos_builtin._0x1.object_-1.html" class="tsd-signature-type tsd-kind-class">object_</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/aptos/builtin/0x1.ts:1885</li></ul></aside></li></ul></section>
+<li>Defined in packages/sdk/src/aptos/builtin/0x1.ts:1901</li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member"><a id="onEntryUnburn" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>on<wbr/>Entry<wbr/>Unburn</span><a href="#onEntryUnburn" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="tsd-signature tsd-anchor-link" id="onEntryUnburn.onEntryUnburn-1"><span class="tsd-kind-call-signature">on<wbr/>Entry<wbr/>Unburn</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">func</span>, <span class="tsd-kind-parameter">filter</span><span class="tsd-signature-symbol">?</span>, <span class="tsd-kind-parameter">fetchConfig</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="aptos_builtin._0x1.object_-1.html" class="tsd-signature-type tsd-kind-class">object_</a><a href="#onEntryUnburn.onEntryUnburn-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5><span class="tsd-kind-parameter">func</span>: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">call</span>, <span class="tsd-kind-parameter">ctx</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span></h5>
+<ul class="tsd-parameters">
+<li class="tsd-parameter-signature">
+<ul class="tsd-signatures">
+<li class="tsd-signature"><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">call</span>, <span class="tsd-kind-parameter">ctx</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5><span class="tsd-kind-parameter">call</span>: <a href="../interfaces/aptos_builtin._0x1.object_.UnburnPayload.html" class="tsd-signature-type tsd-kind-interface">UnburnPayload</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5></li>
+<li>
+<h5><span class="tsd-kind-parameter">ctx</span>: <a href="aptos.AptosContext.html" class="tsd-signature-type tsd-kind-class">AptosContext</a></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4></li></ul></li></ul></li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">filter</span>: <a href="../interfaces/move.CallFilter.html" class="tsd-signature-type tsd-kind-interface">CallFilter</a></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">fetchConfig</span>: <span class="tsd-signature-type ">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.MoveFetchConfig-1.html" class="tsd-signature-type tsd-kind-variable">MoveFetchConfig</a><span class="tsd-signature-symbol">&gt;</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="aptos_builtin._0x1.object_-1.html" class="tsd-signature-type tsd-kind-class">object_</a></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in packages/sdk/src/aptos/builtin/0x1.ts:1917</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="onEvent" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on<wbr/>Event</span><a href="#onEvent" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited">
@@ -275,7 +337,7 @@
 <h4 class="tsd-returns-title">Returns <a href="aptos_builtin._0x1.object_-1.html" class="tsd-signature-type tsd-kind-class">object_</a></h4><aside class="tsd-sources">
 <p>Inherited from <a href="aptos.AptosBaseProcessor.html">AptosBaseProcessor</a>.<a href="aptos.AptosBaseProcessor.html#onEvent">onEvent</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/402dd43/packages/sdk/src/aptos/aptos-processor.ts#L215">packages/sdk/src/aptos/aptos-processor.ts:215</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/67b288e/packages/sdk/src/aptos/aptos-processor.ts#L215">packages/sdk/src/aptos/aptos-processor.ts:215</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="onEventDeleteRef" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on<wbr/>Event<wbr/>Delete<wbr/>Ref</span><a href="#onEventDeleteRef" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -303,7 +365,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">fetchConfig</span>: <span class="tsd-signature-type ">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.MoveFetchConfig-1.html" class="tsd-signature-type tsd-kind-variable">MoveFetchConfig</a><span class="tsd-signature-symbol">&gt;</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="aptos_builtin._0x1.object_-1.html" class="tsd-signature-type tsd-kind-class">object_</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/aptos/builtin/0x1.ts:1901</li></ul></aside></li></ul></section>
+<li>Defined in packages/sdk/src/aptos/builtin/0x1.ts:1933</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="onEventDeriveRef" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on<wbr/>Event<wbr/>Derive<wbr/>Ref</span><a href="#onEventDeriveRef" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -331,7 +393,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">fetchConfig</span>: <span class="tsd-signature-type ">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.MoveFetchConfig-1.html" class="tsd-signature-type tsd-kind-variable">MoveFetchConfig</a><span class="tsd-signature-symbol">&gt;</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="aptos_builtin._0x1.object_-1.html" class="tsd-signature-type tsd-kind-class">object_</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/aptos/builtin/0x1.ts:1909</li></ul></aside></li></ul></section>
+<li>Defined in packages/sdk/src/aptos/builtin/0x1.ts:1941</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="onEventExtendRef" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on<wbr/>Event<wbr/>Extend<wbr/>Ref</span><a href="#onEventExtendRef" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -359,7 +421,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">fetchConfig</span>: <span class="tsd-signature-type ">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.MoveFetchConfig-1.html" class="tsd-signature-type tsd-kind-variable">MoveFetchConfig</a><span class="tsd-signature-symbol">&gt;</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="aptos_builtin._0x1.object_-1.html" class="tsd-signature-type tsd-kind-class">object_</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/aptos/builtin/0x1.ts:1917</li></ul></aside></li></ul></section>
+<li>Defined in packages/sdk/src/aptos/builtin/0x1.ts:1949</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="onEventObject" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on<wbr/>Event<wbr/>Object</span><a href="#onEventObject" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -387,7 +449,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">fetchConfig</span>: <span class="tsd-signature-type ">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.MoveFetchConfig-1.html" class="tsd-signature-type tsd-kind-variable">MoveFetchConfig</a><span class="tsd-signature-symbol">&gt;</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="aptos_builtin._0x1.object_-1.html" class="tsd-signature-type tsd-kind-class">object_</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/aptos/builtin/0x1.ts:1925</li></ul></aside></li></ul></section>
+<li>Defined in packages/sdk/src/aptos/builtin/0x1.ts:1957</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="onEventTransferEvent" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on<wbr/>Event<wbr/>Transfer<wbr/>Event</span><a href="#onEventTransferEvent" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -415,7 +477,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">fetchConfig</span>: <span class="tsd-signature-type ">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.MoveFetchConfig-1.html" class="tsd-signature-type tsd-kind-variable">MoveFetchConfig</a><span class="tsd-signature-symbol">&gt;</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="aptos_builtin._0x1.object_-1.html" class="tsd-signature-type tsd-kind-class">object_</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/aptos/builtin/0x1.ts:1933</li></ul></aside></li></ul></section>
+<li>Defined in packages/sdk/src/aptos/builtin/0x1.ts:1965</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="onEventTransferRef" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on<wbr/>Event<wbr/>Transfer<wbr/>Ref</span><a href="#onEventTransferRef" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -443,7 +505,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">fetchConfig</span>: <span class="tsd-signature-type ">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.MoveFetchConfig-1.html" class="tsd-signature-type tsd-kind-variable">MoveFetchConfig</a><span class="tsd-signature-symbol">&gt;</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="aptos_builtin._0x1.object_-1.html" class="tsd-signature-type tsd-kind-class">object_</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in packages/sdk/src/aptos/builtin/0x1.ts:1941</li></ul></aside></li></ul></section>
+<li>Defined in packages/sdk/src/aptos/builtin/0x1.ts:1973</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited"><a id="onMoveEvent" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagProtected">Protected</code> <span>on<wbr/>Move<wbr/>Event</span><a href="#onMoveEvent" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-protected tsd-is-inherited">
@@ -474,7 +536,7 @@
 <h4 class="tsd-returns-title">Returns <a href="aptos_builtin._0x1.object_-1.html" class="tsd-signature-type tsd-kind-class">object_</a></h4><aside class="tsd-sources">
 <p>Inherited from <a href="aptos.AptosBaseProcessor.html">AptosBaseProcessor</a>.<a href="aptos.AptosBaseProcessor.html#onMoveEvent">onMoveEvent</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/402dd43/packages/sdk/src/aptos/aptos-processor.ts#L77">packages/sdk/src/aptos/aptos-processor.ts:77</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/67b288e/packages/sdk/src/aptos/aptos-processor.ts#L77">packages/sdk/src/aptos/aptos-processor.ts:77</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="onTransaction" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on<wbr/>Transaction</span><a href="#onTransaction" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited">
@@ -505,7 +567,7 @@
 <h4 class="tsd-returns-title">Returns <a href="aptos_builtin._0x1.object_-1.html" class="tsd-signature-type tsd-kind-class">object_</a></h4><aside class="tsd-sources">
 <p>Inherited from <a href="aptos.AptosBaseProcessor.html">AptosBaseProcessor</a>.<a href="aptos.AptosBaseProcessor.html#onTransaction">onTransaction</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/402dd43/packages/sdk/src/aptos/aptos-processor.ts#L183">packages/sdk/src/aptos/aptos-processor.ts:183</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/67b288e/packages/sdk/src/aptos/aptos-processor.ts#L183">packages/sdk/src/aptos/aptos-processor.ts:183</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="bind" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>bind</span><a href="#bind" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -546,10 +608,12 @@
 <li><a href="#moduleName" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>module<wbr/>Name</span></a></li>
 <li><a href="#DEFAULT_OPTIONS" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>DEFAULT_<wbr/>OPTIONS</span></a></li>
 <li><a href="#getChainId" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>get<wbr/>Chain<wbr/>Id</span></a></li>
+<li><a href="#onEntryBurn" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Entry<wbr/>Burn</span></a></li>
 <li><a href="#onEntryFunctionCall" class="tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Entry<wbr/>Function<wbr/>Call</span></a></li>
 <li><a href="#onEntryTransfer" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Entry<wbr/>Transfer</span></a></li>
 <li><a href="#onEntryTransferCall" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Entry<wbr/>Transfer<wbr/>Call</span></a></li>
 <li><a href="#onEntryTransferToObject" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Entry<wbr/>Transfer<wbr/>To<wbr/>Object</span></a></li>
+<li><a href="#onEntryUnburn" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Entry<wbr/>Unburn</span></a></li>
 <li><a href="#onEvent" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Event</span></a></li>
 <li><a href="#onEventDeleteRef" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Event<wbr/>Delete<wbr/>Ref</span></a></li>
 <li><a href="#onEventDeriveRef" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Event<wbr/>Derive<wbr/>Ref</span></a></li>
@@ -577,6 +641,7 @@
 <li><a href="../modules/aptos_builtin._0x1.acl.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>acl</span></a></li>
 <li><a href="../modules/aptos_builtin._0x1.aggregator.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>aggregator</span></a></li>
 <li><a href="../modules/aptos_builtin._0x1.aggregator_factory.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>aggregator_<wbr/>factory</span></a></li>
+<li><a href="../modules/aptos_builtin._0x1.aggregator_v2.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>aggregator_<wbr/>v2</span></a></li>
 <li><a href="../modules/aptos_builtin._0x1.any_.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>any_</span></a></li>
 <li><a href="../modules/aptos_builtin._0x1.aptos_account.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>aptos_<wbr/>account</span></a></li>
 <li><a href="../modules/aptos_builtin._0x1.aptos_coin.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>aptos_<wbr/>coin</span></a></li>
@@ -630,6 +695,9 @@
 <li><a href="../modules/aptos_builtin._0x1.reconfiguration.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>reconfiguration</span></a></li>
 <li><a href="../modules/aptos_builtin._0x1.resource_account.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>resource_<wbr/>account</span></a></li>
 <li><a href="../modules/aptos_builtin._0x1.ristretto255.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>ristretto255</span></a></li>
+<li><a href="../modules/aptos_builtin._0x1.ristretto255_bulletproofs.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>ristretto255_<wbr/>bulletproofs</span></a></li>
+<li><a href="../modules/aptos_builtin._0x1.ristretto255_elgamal.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>ristretto255_<wbr/>elgamal</span></a></li>
+<li><a href="../modules/aptos_builtin._0x1.ristretto255_pedersen.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>ristretto255_<wbr/>pedersen</span></a></li>
 <li><a href="../modules/aptos_builtin._0x1.secp256k1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>secp256k1</span></a></li>
 <li><a href="../modules/aptos_builtin._0x1.signer.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>signer</span></a></li>
 <li><a href="../modules/aptos_builtin._0x1.simple_map.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>simple_<wbr/>map</span></a></li>
@@ -658,6 +726,7 @@
 <li><a href="../modules/aptos_builtin._0x1.voting.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>voting</span></a></li>
 <li><a href="aptos_builtin._0x1.account-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-128"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-class)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M11.898 16.1201C11.098 16.1201 10.466 15.8961 10.002 15.4481C9.53803 15.0001 9.30603 14.3841 9.30603 13.6001V9.64012C9.30603 8.85612 9.53803 8.24012 10.002 7.79212C10.466 7.34412 11.098 7.12012 11.898 7.12012C12.682 7.12012 13.306 7.34812 13.77 7.80412C14.234 8.25212 14.466 8.86412 14.466 9.64012H13.386C13.386 9.14412 13.254 8.76412 12.99 8.50012C12.734 8.22812 12.37 8.09212 11.898 8.09212C11.426 8.09212 11.054 8.22412 10.782 8.48812C10.518 8.75212 10.386 9.13212 10.386 9.62812V13.6001C10.386 14.0961 10.518 14.4801 10.782 14.7521C11.054 15.0161 11.426 15.1481 11.898 15.1481C12.37 15.1481 12.734 15.0161 12.99 14.7521C13.254 14.4801 13.386 14.0961 13.386 13.6001H14.466C14.466 14.3761 14.234 14.9921 13.77 15.4481C13.306 15.8961 12.682 16.1201 11.898 16.1201Z" fill="var(--color-text)"></path></g></svg><span>account</span></a></li>
 <li><a href="aptos_builtin._0x1.acl-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>acl</span></a></li>
+<li><a href="aptos_builtin._0x1.aggregator_v2-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>aggregator_<wbr/>v2</span></a></li>
 <li><a href="aptos_builtin._0x1.any_-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>any_</span></a></li>
 <li><a href="aptos_builtin._0x1.aptos_account-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>aptos_<wbr/>account</span></a></li>
 <li><a href="aptos_builtin._0x1.aptos_coin-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>aptos_<wbr/>coin</span></a></li>
@@ -685,6 +754,8 @@
 <li><a href="aptos_builtin._0x1.reconfiguration-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>reconfiguration</span></a></li>
 <li><a href="aptos_builtin._0x1.resource_account-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>resource_<wbr/>account</span></a></li>
 <li><a href="aptos_builtin._0x1.ristretto255-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>ristretto255</span></a></li>
+<li><a href="aptos_builtin._0x1.ristretto255_bulletproofs-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>ristretto255_<wbr/>bulletproofs</span></a></li>
+<li><a href="aptos_builtin._0x1.ristretto255_elgamal-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>ristretto255_<wbr/>elgamal</span></a></li>
 <li><a href="aptos_builtin._0x1.secp256k1-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>secp256k1</span></a></li>
 <li><a href="aptos_builtin._0x1.simple_map-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>simple_<wbr/>map</span></a></li>
 <li><a href="aptos_builtin._0x1.smart_table-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>smart_<wbr/>table</span></a></li>
@@ -697,12 +768,14 @@
 <li><a href="aptos_builtin._0x1.string_utils-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>string_<wbr/>utils</span></a></li>
 <li><a href="aptos_builtin._0x1.table-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>table</span></a></li>
 <li><a href="aptos_builtin._0x1.transaction_context-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>transaction_<wbr/>context</span></a></li>
+<li><a href="aptos_builtin._0x1.transaction_fee-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>transaction_<wbr/>fee</span></a></li>
 <li><a href="aptos_builtin._0x1.type_info-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>type_<wbr/>info</span></a></li>
 <li><a href="aptos_builtin._0x1.version-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>version</span></a></li>
 <li><a href="aptos_builtin._0x1.vesting-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>vesting</span></a></li>
 <li><a href="aptos_builtin._0x1.voting-1.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>voting</span></a></li>
 <li><a href="../functions/aptos_builtin._0x1.loadAllTypes.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-64"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-function)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.39 16V7.24H14.55V8.224H10.446V11.128H14.238V12.112H10.47V16H9.39Z" fill="var(--color-text)"></path></g></svg><span>load<wbr/>All<wbr/>Types</span></a></li></ul></div></details></li>
-<li><a href="../modules/aptos_builtin._0x3.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>_0x3</span></a></li></ul></div></details></li>
+<li><a href="../modules/aptos_builtin._0x3.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>_0x3</span></a></li>
+<li><a href="../modules/aptos_builtin._0x4.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>_0x4</span></a></li></ul></div></details></li>
 <li><a href="../modules/core.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>core</span></a></li>
 <li><a href="../modules/eth.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>eth</span></a></li>
 <li><a href="../modules/eth_builtin.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4"></use></svg><span>eth/builtin</span></a></li>
