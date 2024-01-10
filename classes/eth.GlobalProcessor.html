@@ -21,7 +21,7 @@
 <ul class="tsd-hierarchy">
 <li><span class="target">GlobalProcessor</span></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/4618b5d/packages/sdk/src/eth/base-processor.ts#L64">packages/sdk/src/eth/base-processor.ts:64</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c524f4a/packages/sdk/src/eth/base-processor.ts#L64">packages/sdk/src/eth/base-processor.ts:64</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -35,6 +35,7 @@
 <h3 class="tsd-index-heading">Properties</h3>
 <div class="tsd-index-list"><a href="eth.GlobalProcessor.html#blockHandlers" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-1024"><rect fill="var(--color-icon-background)" stroke="#FF984D" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12"></rect><path d="M9.354 16V7.24H12.174C12.99 7.24 13.638 7.476 14.118 7.948C14.606 8.412 14.85 9.036 14.85 9.82C14.85 10.604 14.606 11.232 14.118 11.704C13.638 12.168 12.99 12.4 12.174 12.4H10.434V16H9.354ZM10.434 11.428H12.174C12.646 11.428 13.022 11.284 13.302 10.996C13.59 10.7 13.734 10.308 13.734 9.82C13.734 9.324 13.59 8.932 13.302 8.644C13.022 8.356 12.646 8.212 12.174 8.212H10.434V11.428Z" fill="var(--color-text)"></path></g></svg><span>block<wbr/>Handlers</span></a>
 <a href="eth.GlobalProcessor.html#config" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>config</span></a>
+<a href="eth.GlobalProcessor.html#traceHandlers" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>trace<wbr/>Handlers</span></a>
 <a href="eth.GlobalProcessor.html#transactionHandler" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>transaction<wbr/>Handler</span></a>
 </div></section>
 <section class="tsd-index-section">
@@ -43,6 +44,7 @@
 <a href="eth.GlobalProcessor.html#onBlockInterval" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Block<wbr/>Interval</span></a>
 <a href="eth.GlobalProcessor.html#onInterval" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Interval</span></a>
 <a href="eth.GlobalProcessor.html#onTimeInterval" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Time<wbr/>Interval</span></a>
+<a href="eth.GlobalProcessor.html#onTrace" class="tsd-index-link tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Trace</span></a>
 <a href="eth.GlobalProcessor.html#onTransaction" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Transaction</span></a>
 <a href="eth.GlobalProcessor.html#bind" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>bind</span></a>
 </div></section></div></details></section></section>
@@ -60,24 +62,29 @@
 <h5><span class="tsd-kind-parameter">config</span>: <span class="tsd-signature-type ">Omit</span><span class="tsd-signature-symbol">&lt;</span><a href="eth.BindOptions.html" class="tsd-signature-type tsd-kind-class">BindOptions</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;address&quot;</span><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="eth.GlobalProcessor.html" class="tsd-signature-type tsd-kind-class">GlobalProcessor</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/4618b5d/packages/sdk/src/eth/base-processor.ts#L75">packages/sdk/src/eth/base-processor.ts:75</a></li></ul></aside></li></ul></section></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c524f4a/packages/sdk/src/eth/base-processor.ts#L76">packages/sdk/src/eth/base-processor.ts:76</a></li></ul></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Properties</h2>
 <section class="tsd-panel tsd-member"><a id="blockHandlers" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>block<wbr/>Handlers</span><a href="#blockHandlers" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">block<wbr/>Handlers</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type ">BlockHandler</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/4618b5d/packages/sdk/src/eth/base-processor.ts#L66">packages/sdk/src/eth/base-processor.ts:66</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c524f4a/packages/sdk/src/eth/base-processor.ts#L66">packages/sdk/src/eth/base-processor.ts:66</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member"><a id="config" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>config</span><a href="#config" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">config</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type ">BindInternalOptions</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/4618b5d/packages/sdk/src/eth/base-processor.ts#L65">packages/sdk/src/eth/base-processor.ts:65</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c524f4a/packages/sdk/src/eth/base-processor.ts#L65">packages/sdk/src/eth/base-processor.ts:65</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member"><a id="traceHandlers" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>trace<wbr/>Handlers</span><a href="#traceHandlers" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">trace<wbr/>Handlers</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type ">TraceHandler</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c524f4a/packages/sdk/src/eth/base-processor.ts#L68">packages/sdk/src/eth/base-processor.ts:68</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member"><a id="transactionHandler" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>transaction<wbr/>Handler</span><a href="#transactionHandler" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">transaction<wbr/>Handler</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type ">TransactionHandler</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/4618b5d/packages/sdk/src/eth/base-processor.ts#L67">packages/sdk/src/eth/base-processor.ts:67</a></li></ul></aside></section></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c524f4a/packages/sdk/src/eth/base-processor.ts#L67">packages/sdk/src/eth/base-processor.ts:67</a></li></ul></aside></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Methods</h2>
 <section class="tsd-panel tsd-member"><a id="getChainId" class="tsd-anchor"></a>
@@ -87,7 +94,7 @@
 <li class="tsd-description">
 <h4 class="tsd-returns-title">Returns <a href="../enums/eth.EthChainId.html" class="tsd-signature-type tsd-kind-enum">EthChainId</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/4618b5d/packages/sdk/src/eth/base-processor.ts#L121">packages/sdk/src/eth/base-processor.ts:121</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c524f4a/packages/sdk/src/eth/base-processor.ts#L122">packages/sdk/src/eth/base-processor.ts:122</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="onBlockInterval" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on<wbr/>Block<wbr/>Interval</span><a href="#onBlockInterval" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -119,7 +126,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">fetchConfig</span>: <span class="tsd-signature-type ">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.EthFetchConfig-1.html" class="tsd-signature-type tsd-kind-variable">EthFetchConfig</a><span class="tsd-signature-symbol">&gt;</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="eth.GlobalProcessor.html" class="tsd-signature-type tsd-kind-class">GlobalProcessor</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/4618b5d/packages/sdk/src/eth/base-processor.ts#L90">packages/sdk/src/eth/base-processor.ts:90</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c524f4a/packages/sdk/src/eth/base-processor.ts#L91">packages/sdk/src/eth/base-processor.ts:91</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="onInterval" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on<wbr/>Interval</span><a href="#onInterval" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -151,7 +158,7 @@
 <h5><span class="tsd-kind-parameter">fetchConfig</span>: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.EthFetchConfig-1.html" class="tsd-signature-type tsd-kind-variable">EthFetchConfig</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="eth.GlobalProcessor.html" class="tsd-signature-type tsd-kind-class">GlobalProcessor</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/4618b5d/packages/sdk/src/eth/base-processor.ts#L125">packages/sdk/src/eth/base-processor.ts:125</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c524f4a/packages/sdk/src/eth/base-processor.ts#L126">packages/sdk/src/eth/base-processor.ts:126</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="onTimeInterval" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on<wbr/>Time<wbr/>Interval</span><a href="#onTimeInterval" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -183,7 +190,37 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">fetchConfig</span>: <span class="tsd-signature-type ">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.EthFetchConfig-1.html" class="tsd-signature-type tsd-kind-variable">EthFetchConfig</a><span class="tsd-signature-symbol">&gt;</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="eth.GlobalProcessor.html" class="tsd-signature-type tsd-kind-class">GlobalProcessor</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/4618b5d/packages/sdk/src/eth/base-processor.ts#L107">packages/sdk/src/eth/base-processor.ts:107</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c524f4a/packages/sdk/src/eth/base-processor.ts#L108">packages/sdk/src/eth/base-processor.ts:108</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-protected"><a id="onTrace" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagProtected">Protected</code> <span>on<wbr/>Trace</span><a href="#onTrace" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-protected">
+<li class="tsd-signature tsd-anchor-link" id="onTrace.onTrace-1"><span class="tsd-kind-call-signature">on<wbr/>Trace</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">signatures</span>, <span class="tsd-kind-parameter">handler</span>, <span class="tsd-kind-parameter">fetchConfig</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="eth.GlobalProcessor.html" class="tsd-signature-type tsd-kind-class">GlobalProcessor</a><a href="#onTrace.onTrace-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5><span class="tsd-kind-parameter">signatures</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5></li>
+<li>
+<h5><span class="tsd-kind-parameter">handler</span>: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">trace</span>, <span class="tsd-kind-parameter">ctx</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="../types/_.PromiseOrVoid.html" class="tsd-signature-type tsd-kind-type-alias">PromiseOrVoid</a><span class="tsd-signature-symbol">)</span></h5>
+<ul class="tsd-parameters">
+<li class="tsd-parameter-signature">
+<ul class="tsd-signatures">
+<li class="tsd-signature"><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">trace</span>, <span class="tsd-kind-parameter">ctx</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../types/_.PromiseOrVoid.html" class="tsd-signature-type tsd-kind-type-alias">PromiseOrVoid</a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5><span class="tsd-kind-parameter">trace</span>: <a href="../interfaces/eth.Trace.html" class="tsd-signature-type tsd-kind-interface">Trace</a></h5></li>
+<li>
+<h5><span class="tsd-kind-parameter">ctx</span>: <a href="eth.GlobalContext.html" class="tsd-signature-type tsd-kind-class">GlobalContext</a></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="../types/_.PromiseOrVoid.html" class="tsd-signature-type tsd-kind-type-alias">PromiseOrVoid</a></h4></li></ul></li></ul></li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">fetchConfig</span>: <span class="tsd-signature-type ">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.EthFetchConfig-1.html" class="tsd-signature-type tsd-kind-variable">EthFetchConfig</a><span class="tsd-signature-symbol">&gt;</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="eth.GlobalProcessor.html" class="tsd-signature-type tsd-kind-class">GlobalProcessor</a></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c524f4a/packages/sdk/src/eth/base-processor.ts#L188">packages/sdk/src/eth/base-processor.ts:188</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="onTransaction" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>on<wbr/>Transaction</span><a href="#onTransaction" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -211,7 +248,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">fetchConfig</span>: <span class="tsd-signature-type ">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../variables/_.EthFetchConfig-1.html" class="tsd-signature-type tsd-kind-variable">EthFetchConfig</a><span class="tsd-signature-symbol">&gt;</span></h5><code class="tsd-tag ts-flagOptional">Optional</code> </li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="eth.GlobalProcessor.html" class="tsd-signature-type tsd-kind-class">GlobalProcessor</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/4618b5d/packages/sdk/src/eth/base-processor.ts#L157">packages/sdk/src/eth/base-processor.ts:157</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c524f4a/packages/sdk/src/eth/base-processor.ts#L158">packages/sdk/src/eth/base-processor.ts:158</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="bind" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>bind</span><a href="#bind" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -224,7 +261,7 @@
 <h5><span class="tsd-kind-parameter">config</span>: <span class="tsd-signature-type ">Omit</span><span class="tsd-signature-symbol">&lt;</span><a href="eth.BindOptions.html" class="tsd-signature-type tsd-kind-class">BindOptions</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;address&quot;</span><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="eth.GlobalProcessor.html" class="tsd-signature-type tsd-kind-class">GlobalProcessor</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/4618b5d/packages/sdk/src/eth/base-processor.ts#L69">packages/sdk/src/eth/base-processor.ts:69</a></li></ul></aside></li></ul></section></section></div>
+<li>Defined in <a href="https://github.com/sentioxyz/sentio-sdk/blob/c524f4a/packages/sdk/src/eth/base-processor.ts#L70">packages/sdk/src/eth/base-processor.ts:70</a></li></ul></aside></li></ul></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -247,11 +284,13 @@
 <li><a href="#constructor" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-512"></use></svg><span>constructor</span></a></li>
 <li><a href="#blockHandlers" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>block<wbr/>Handlers</span></a></li>
 <li><a href="#config" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>config</span></a></li>
+<li><a href="#traceHandlers" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>trace<wbr/>Handlers</span></a></li>
 <li><a href="#transactionHandler" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>transaction<wbr/>Handler</span></a></li>
 <li><a href="#getChainId" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>get<wbr/>Chain<wbr/>Id</span></a></li>
 <li><a href="#onBlockInterval" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Block<wbr/>Interval</span></a></li>
 <li><a href="#onInterval" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Interval</span></a></li>
 <li><a href="#onTimeInterval" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Time<wbr/>Interval</span></a></li>
+<li><a href="#onTrace" class="tsd-is-protected"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Trace</span></a></li>
 <li><a href="#onTransaction" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>on<wbr/>Transaction</span></a></li>
 <li><a href="#bind" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>bind</span></a></li></ul></div></details></div>
 <div class="site-menu">
