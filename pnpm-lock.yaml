@@ -189,8 +189,8 @@ importers:
         specifier: '*'
         version: 0.50.1
       '@sentio/chain':
-        specifier: ^1.0.7
-        version: 1.0.7
+        specifier: ^1.0.8
+        version: 1.0.8
       '@sentio/sdk':
         specifier: workspace:^
         version: link:../sdk
@@ -2491,11 +2491,6 @@ packages:
 
   /@sentio/bigdecimal@9.1.1-patch.3:
     resolution: {integrity: sha512-O5w8XdyeatUcwI+ZbpSw60/cXFPJk3NbpIupwMHfYmW8fpxpXyRbyGESNJNufWWrB6CadsWGh1R3rd7owvrmlw==}
-    dev: false
-
-  /@sentio/chain@1.0.7:
-    resolution: {integrity: sha512-DC8o2YOm11XsearSwCar4pLPwwxoxScgj+xzDfveofxSrKTIovkzDIFTbhZLrrZjF2jKGV5bWmpIkDBa7pRj1w==}
-    requiresBuild: true
     dev: false
 
   /@sentio/chain@1.0.8:
@@ -5322,7 +5317,6 @@ packages:
       strip-hex-prefix: 1.0.0
     dev: true
     optional: true
-    bundledDependencies: false
 
   /eventemitter3@4.0.7:
     resolution: {integrity: sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==}
