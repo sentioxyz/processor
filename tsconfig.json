@@ -22,5 +22,8 @@
     // by pass issue: Could not find a declaration file for module 'buffer-layout' for now.
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
+  },
+  "ts-node": {
+    "transpileOnly": true
   }
 }
