@@ -33,7 +33,8 @@
     "./sui/builtin": "./lib/sui/builtin/index.js",
     "./sui/builtin/0x1": "./lib/sui/builtin/0x1.js",
     "./sui/builtin/0x2": "./lib/sui/builtin/0x2.js",
-    "./sui/builtin/0x3": "./lib/sui/builtin/0x3.js"
+    "./sui/builtin/0x3": "./lib/sui/builtin/0x3.js",
+    "./fuels": "./lib/fuels/index.js"
   },
   "files": [
     "{lib,src}",
@@ -61,7 +62,7 @@
     "@mysten/sui.js": "~0.51.0",
     "@project-serum/anchor": "^0.26.0",
     "@sentio/bigdecimal": "9.1.1-patch.3",
-    "@sentio/chain": "^1.0.16",
+    "@sentio/chain": "^1.0.21",
     "@sentio/ethers-v6": "^1.0.29",
     "@sentio/protos": "workspace:*",
     "@sentio/runtime": "workspace:^",
@@ -73,6 +74,7 @@
     "chalk": "^5.3.0",
     "csv-parse": "^5.5.3",
     "ethers": "npm:@sentio/ethers@6.7.1-patch.4",
+    "fuels": "^0.81.0",
     "js-sha3": "^0.9.3",
     "lru-cache": "^10.2.0",
     "mkdirp": "^1.0.4",
