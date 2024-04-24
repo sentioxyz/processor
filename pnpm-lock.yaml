@@ -128,6 +128,19 @@ importers:
         specifier: workspace:*
         version: link:../../packages/cli
 
+  examples/fuel-counter:
+    dependencies:
+      '@sentio/sdk':
+        specifier: workspace:*
+        version: link:../../packages/sdk
+      ethers:
+        specifier: npm:@sentio/ethers@6.7.1-patch.4
+        version: /@sentio/ethers@6.7.1-patch.4
+    devDependencies:
+      '@sentio/cli':
+        specifier: workspace:*
+        version: link:../../packages/cli
+
   examples/sui:
     dependencies:
       '@sentio/sdk':

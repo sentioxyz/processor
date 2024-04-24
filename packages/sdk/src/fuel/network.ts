@@ -4,7 +4,7 @@ import { FUEL_BETA_5_NETWORK_URL, FUEL_NETWORK_URL } from 'fuels'
 export type FuelNetwork = FuelChainId
 export const FuelNetwork = <const>{
   MAIN_NET: FuelChainId.FUEL_MAINNET,
-  TEST_NET: FuelChainId.FUEL_TESTNET_BETA_V4
+  TEST_NET: FuelChainId.FUEL_TESTNET_BETA_V5
 }
 
 export function getRpcEndpoint(network: FuelNetwork): string {

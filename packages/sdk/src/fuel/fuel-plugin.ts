@@ -11,7 +11,6 @@ import {
 
 import { ServerError, Status } from 'nice-grpc'
 import { GlobalProcessorState } from '../eth/base-processor.js'
-import { validateAndNormalizeAddress } from '../eth/eth.js'
 import { TemplateInstanceState } from '../core/template.js'
 import { FuelProcessorState } from './fuel-processor.js'
 
@@ -36,7 +35,7 @@ export class FuelPlugin extends Plugin {
         contract: {
           name: processor.config.name,
           chainId: processor.config.chainId.toString(),
-          address: validateAndNormalizeAddress(processor.config.address),
+          address: processor.config.address,
           abi: ''
         },
         startBlock: processor.config.startBlock,

@@ -42,6 +42,11 @@ export class FuelFacet {
         const filter = callConfig.filters[0]?.function
         if (filter) {
           // filter out by tx receipt
+          for (const receipt of transaction.receipts || []) {
+            if (receipt.receiptType == 'CALL' && receipt.param1 == filter) {
+              res.push(binding)
+            }
+          }
         } else {
           res.push(binding)
         }

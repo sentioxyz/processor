@@ -1,22 +1,10 @@
 import { BaseContext, Labels, normalizeLabels } from '../core/index.js'
 import { ChainId } from '@sentio/chain'
 import { RecordMetaData } from '@sentio/protos'
-import { arrayify, Transaction, TransactionCoder } from 'fuels'
+import { OperationFunctionCall } from 'fuels'
+import { FuelTransaction } from './transaction.js'
 
-export class FuelTransaction {
-  readonly transaction: Transaction
-
-  constructor(
-    readonly rawPayload: Uint8Array,
-    readonly id: string,
-    readonly gasPrice: string,
-    readonly status: string,
-    readonly blockId: string
-  ) {
-    this.transaction = new TransactionCoder().decode(arrayify(rawPayload), 0)?.[0] as Transaction
-    return this
-  }
-}
+export type FuelCall = OperationFunctionCall
 
 export class FuelContext extends BaseContext {
   constructor(
