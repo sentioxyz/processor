@@ -1,10 +1,10 @@
 import { BaseContext, Labels, normalizeLabels } from '../core/index.js'
 import { ChainId } from '@sentio/chain'
 import { RecordMetaData } from '@sentio/protos'
-import { OperationFunctionCall } from 'fuels'
+import { InvocationCallResult } from 'fuels'
 import { FuelTransaction } from './transaction.js'
 
-export type FuelCall = OperationFunctionCall
+export type FuelCall = InvocationCallResult
 
 export class FuelContext extends BaseContext {
   constructor(

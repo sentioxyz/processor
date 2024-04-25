@@ -2,18 +2,24 @@
   "types": [
     {
       "typeId": 0,
-      "type": "()",
-      "components": [],
+      "type": "b256",
+      "components": null,
       "typeParameters": null
     },
     {
       "typeId": 1,
-      "type": "u32",
+      "type": "str[25]",
       "components": null,
       "typeParameters": null
     },
     {
       "typeId": 2,
+      "type": "u32",
+      "components": null,
+      "typeParameters": null
+    },
+    {
+      "typeId": 3,
       "type": "u64",
       "components": null,
       "typeParameters": null
@@ -25,7 +31,7 @@
       "name": "count",
       "output": {
         "name": "",
-        "type": 2,
+        "type": 3,
         "typeArguments": null
       },
       "attributes": [
@@ -39,24 +45,24 @@
       "inputs": [
         {
           "name": "add",
-          "type": 1,
+          "type": 2,
           "typeArguments": null
         },
         {
           "name": "two",
-          "type": 2,
+          "type": 3,
           "typeArguments": null
         },
         {
           "name": "three",
-          "type": 2,
+          "type": 0,
           "typeArguments": null
         }
       ],
       "name": "increment",
       "output": {
         "name": "",
-        "type": 0,
+        "type": 3,
         "typeArguments": null
       },
       "attributes": [
@@ -88,7 +94,15 @@
       "logId": 2,
       "loggedType": {
         "name": "",
-        "type": 2,
+        "type": 3,
+        "typeArguments": null
+      }
+    },
+    {
+      "logId": 3,
+      "loggedType": {
+        "name": "",
+        "type": 0,
         "typeArguments": null
       }
     }

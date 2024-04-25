@@ -1,9 +1,9 @@
 import { ListStateStorage } from '@sentio/runtime'
 import { Data_FuelCall, FuelCallFilter, FuelCallHandlerConfig, ProcessResult } from '@sentio/protos'
 import { FuelCall, FuelContext } from './context.js'
-import { AbiMap, bn, BN, Interface, Provider } from 'fuels'
+import { bn, Contract, Interface, InvocationCallResult, JsonAbi, Provider } from 'fuels'
 import { FuelNetwork, getRpcEndpoint } from './network.js'
-import { FuelTransaction, FuelTransactionLite, FuelTransactionWithResult } from './transaction.js'
+import { decodeFuelTransaction, DEFAULT_FUEL_FETCH_CONFIG, FuelFetchConfig, FuelTransaction } from './transaction.js'
 
 export class FuelProcessorState extends ListStateStorage<FuelProcessor> {
   static INSTANCE = new FuelProcessorState()
@@ -12,12 +12,7 @@ export class FuelProcessorState extends ListStateStorage<FuelProcessor> {
 export class FuelProcessor {
   callHandlers: CallHandler<Data_FuelCall>[] = []
 
-  static networkConsts: {
-    gasPerByte: BN
-    gasPriceFactor: BN
-    maxInputs: BN
-    gasCosts: any
-  }
+  private provider: Provider
 
   static bind(config: FuelProcessorConfig): FuelProcessor {
     const processor = new FuelProcessor(config)
@@ -27,33 +22,31 @@ export class FuelProcessor {
 
   constructor(readonly config: FuelProcessorConfig) {}
 
-  private async getNetworkConsts() {
-    if (FuelProcessor.networkConsts) {
-      return FuelProcessor.networkConsts
-    }
-
+  async configure() {
     const url = getRpcEndpoint(this.config.chainId)
-    const provider = await Provider.create(url)
-    // get some consts from network
-    const {
-      consensusParameters: { gasPerByte, gasPriceFactor, maxInputs, gasCosts }
-    } = provider.getChain()
-    FuelProcessor.networkConsts = { gasPerByte, gasPriceFactor, maxInputs, gasCosts }
-    return FuelProcessor.networkConsts
+    this.provider = await Provider.create(url)
   }
 
-  public onTransaction(handler: (transaction: FuelTransaction, ctx: FuelContext) => void | Promise<void>) {
+  public onTransaction(
+    handler: (transaction: FuelTransaction, ctx: FuelContext) => void | Promise<void>,
+    config: FuelFetchConfig = DEFAULT_FUEL_FETCH_CONFIG
+  ) {
     const callHandler = {
       handler: async (call: Data_FuelCall) => {
-        const { rawPayload, id, gasPrice, status } = call.transaction as any
-        const tx = new FuelTransactionLite(rawPayload, id, gasPrice, status.type, status.block.id)
+        const abiMap = this.config.abi
+          ? {
+              [this.config.address]: this.config.abi
+            }
+          : {}
+        const tx = decodeFuelTransaction(call.transaction, abiMap, this.provider)
 
         const ctx = new FuelContext(tx, this.config.chainId)
         await handler(tx, ctx)
         return ctx.stopAndGetResult()
       },
       fetchConfig: {
-        filters: []
+        filters: [],
+        ...config
       }
     }
     this.callHandlers.push(callHandler)
@@ -62,36 +55,46 @@ export class FuelProcessor {
 
   public onCall(
     functionNameFilter: string | string[],
-    handler: (call: FuelCall, ctx: FuelContext) => void | Promise<void>
+    handler: (call: FuelCall, ctx: FuelContext) => void | Promise<void>,
+    config: FuelFetchConfig = DEFAULT_FUEL_FETCH_CONFIG
   ) {
     const names = new Set(Array.isArray(functionNameFilter) ? functionNameFilter : [functionNameFilter])
-    const abiMap = this.config.abiMap ?? {}
 
-    const filters: FuelCallFilter[] = []
-    const abiInterfaces = Object.values(abiMap).map((abi) => new Interface(abi))
-    for (const abiInterface of abiInterfaces) {
-      for (const name of names) {
+    if (!this.config.abi) {
+      throw new Error('ABI must be provided to use onCall')
+    }
+    const abi = this.config.abi
+
+    const filters: Record<string, FuelCallFilter> = {}
+    const abiInterface = new Interface(abi)
+    for (const name of names) {
+      try {
         const func = abiInterface.functions[name]
-        if (func) {
-          const filter = bn(func.selector, 'hex').toString()
-          filters.push({
-            function: filter,
-            includeFailed: true
-          })
+        const filter = bn(func.selector, 'hex').toString()
+        filters[func.name] = {
+          function: filter,
+          includeFailed: !!config.includeFailed
         }
+      } catch (e) {
+        console.error(e)
       }
     }
 
     const callHandler = {
       handler: async (call: Data_FuelCall) => {
-        const networkConsts = await this.getNetworkConsts()
+        const contract = new Contract(this.config.address, abi, this.provider)
         const gqlTransaction = call.transaction
-        const tx = new FuelTransactionWithResult(gqlTransaction, this.config.abiMap || {}, networkConsts)
+        const tx = decodeFuelTransaction(gqlTransaction, { [this.config.address]: abi }, this.provider)
+
         const ctx = new FuelContext(tx, this.config.chainId)
-        for (const op of tx.transactionResult.operations) {
+        for (const op of tx.operations) {
           for (const call of op.calls || []) {
             if (names.has(call.functionName)) {
-              await handler(call, ctx)
+              const fn = contract.functions[call.functionName]
+              const args = Object.values(call.argumentsProvided || {})
+              const scope = fn(...args)
+              const invocationResult = await InvocationCallResult.build(scope, tx, false)
+              await handler(invocationResult, ctx)
             }
           }
         }
@@ -99,7 +102,7 @@ export class FuelProcessor {
         return ctx.stopAndGetResult()
       },
       fetchConfig: {
-        filters
+        filters: Object.values(filters)
       }
     }
     this.callHandlers.push(callHandler)
@@ -118,5 +121,5 @@ type FuelProcessorConfig = {
   chainId: FuelNetwork
   startBlock?: bigint
   endBlock?: bigint
-  abiMap?: AbiMap
+  abi?: JsonAbi
 }

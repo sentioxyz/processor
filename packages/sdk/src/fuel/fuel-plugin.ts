@@ -30,6 +30,7 @@ export class FuelPlugin extends Plugin {
     }
 
     for (const processor of FuelProcessorState.INSTANCE.getValues()) {
+      await processor.configure()
       const contractConfig = ContractConfig.fromPartial({
         processorType: USER_PROCESSOR,
         contract: {

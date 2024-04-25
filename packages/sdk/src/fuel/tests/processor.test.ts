@@ -6,13 +6,13 @@ import abi from './counter-contract-abi.json'
 import testData from './test-data.json'
 
 describe('fuel network tests', () => {
-  const ADDRESS = '0xec9b5510ae3749c5a1150f68b049d1eb4db32ecfcbb05a15214e5eb26f85bcaa'
+  const ADDRESS = '0x730adcb9974977e0f4fd46488b6aac04dade7d846d15ca026bff61279e265813'
 
   const service = new TestProcessorServer(async () => {
     FuelProcessor.bind({
       address: ADDRESS,
       chainId: FuelChainId.FUEL_TESTNET_BETA_V5,
-      abiMap: { [ADDRESS]: abi }
+      abi
     })
       .onTransaction(async (tx, ctx) => {
         ctx.eventLogger.emit('tx', {
@@ -23,7 +23,7 @@ describe('fuel network tests', () => {
       .onCall('increment', async (call, ctx) => {
         ctx.eventLogger.emit('call', {
           distinctId: `${ctx.transaction?.id}_${ctx.transaction?.blockId}`,
-          message: 'increment call'
+          message: `increment call: (${call.functionScopes[0].getCallConfig().args}) -> (${call.value})`
         })
       })
   })
@@ -42,7 +42,7 @@ describe('fuel network tests', () => {
 
     const events = res.result?.events
     expect(events).length(2)
-    expect(events?.[0]?.message).to.equal('status is SuccessStatus')
+    expect(events?.[0]?.message).to.equal('status is success')
   })
 
   test('test onCall ', async () => {
@@ -50,6 +50,6 @@ describe('fuel network tests', () => {
 
     const events = res.result?.events
     expect(events).length(2)
-    expect(events?.[1]?.message).to.equal('increment call')
+    expect(events?.[1]?.message).contains('increment call')
   })
 })
