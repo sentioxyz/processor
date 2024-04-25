@@ -54,11 +54,11 @@ export class FuelProcessor {
   }
 
   public onCall(
-    functionNameFilter: string | string[],
+    nameOrSignatureFilter: string | string[],
     handler: (call: FuelCall, ctx: FuelContext) => void | Promise<void>,
     config: FuelFetchConfig = DEFAULT_FUEL_FETCH_CONFIG
   ) {
-    const names = new Set(Array.isArray(functionNameFilter) ? functionNameFilter : [functionNameFilter])
+    const names = new Set(Array.isArray(nameOrSignatureFilter) ? nameOrSignatureFilter : [nameOrSignatureFilter])
 
     if (!this.config.abi) {
       throw new Error('ABI must be provided to use onCall')

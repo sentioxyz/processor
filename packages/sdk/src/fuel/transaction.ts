@@ -11,7 +11,6 @@ import {
 
 export type FuelFetchConfig = {
   includeFailed?: boolean
-  includeReceipts?: boolean
 }
 
 export const DEFAULT_FUEL_FETCH_CONFIG: FuelFetchConfig = {

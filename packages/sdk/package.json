@@ -34,7 +34,7 @@
     "./sui/builtin/0x1": "./lib/sui/builtin/0x1.js",
     "./sui/builtin/0x2": "./lib/sui/builtin/0x2.js",
     "./sui/builtin/0x3": "./lib/sui/builtin/0x3.js",
-    "./fuels": "./lib/fuels/index.js"
+    "./fuel": "./lib/fuel/index.js"
   },
   "files": [
     "{lib,src}",
