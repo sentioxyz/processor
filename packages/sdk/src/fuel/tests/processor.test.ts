@@ -2,7 +2,7 @@ import { TestProcessorServer } from '../../testing/index.js'
 import { expect } from 'chai'
 import { FuelProcessor } from '../fuel-processor.js'
 import { FuelChainId } from '@sentio/chain'
-import abi from './counter-contract-abi.json'
+import abi from './abis/counter-contract-abi.json'
 import testData from './test-data.json'
 
 describe('fuel network tests', () => {
