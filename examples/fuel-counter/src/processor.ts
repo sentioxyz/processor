@@ -37,6 +37,7 @@ FuelProcessor.bind({
     })
   })
 
-CounterContractProcessor.bind().onCallComplext(async (call, ctx) => {
-  const test = call.returnValue.Ok
-}, {})
+CounterContractProcessor.bind({
+  address: '0xa14f85860d6ce99154ecbb13570ba5fba1d8dc16b290de13f036b016fd19a29c',
+  chainId: FuelNetwork.TEST_NET
+}).onCallComplext(async (call, ctx) => {}, {})
