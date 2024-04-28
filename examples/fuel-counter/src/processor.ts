@@ -2,6 +2,7 @@ import { LogLevel } from '@sentio/sdk'
 import { FuelProcessor, FuelNetwork } from '@sentio/sdk/fuel'
 
 import abi from '../abis/fuel/counter-contract-abi.json'
+import { CounterContractProcessor } from './types/fuel/CounterContractProcessor.js'
 
 FuelProcessor.bind({
   address: '0xa14f85860d6ce99154ecbb13570ba5fba1d8dc16b290de13f036b016fd19a29c',
@@ -35,3 +36,7 @@ FuelProcessor.bind({
       severity: ctx.transaction?.status === 'success' ? LogLevel.INFO : LogLevel.ERROR
     })
   })
+
+CounterContractProcessor.bind().onCallComplext(async (call, ctx) => {
+  const test = call.returnValue.Ok
+}, {})
