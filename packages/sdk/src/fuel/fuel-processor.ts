@@ -1,4 +1,4 @@
-import { Data_FuelCall, FuelCallFilter, FuelCallHandlerConfig, ProcessResult } from '@sentio/protos'
+import { Data_FuelCall, FuelCallFilter } from '@sentio/protos'
 import { FuelCall, FuelContext } from './context.js'
 import { bn, Contract, Interface, InvocationCallResult, JsonAbi, Provider } from 'fuels'
 import { FuelNetwork, getRpcEndpoint } from './network.js'

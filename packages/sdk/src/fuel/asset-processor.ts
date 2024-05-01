@@ -3,7 +3,7 @@ import { Data_FuelCall, FuelAssetHandlerConfig_AssetFilter } from '@sentio/proto
 import { FuelNetwork, getRpcEndpoint } from './network.js'
 import { FuelContext } from './context.js'
 import { decodeFuelTransaction } from './transaction.js'
-import { BigNumberish, InputType, OutputType, Provider } from 'fuels'
+import { InputType, OutputType, Provider } from 'fuels'
 
 export class FuelAssetProcessor implements FuelBaseProcessor<FuelAssetProcessorConfig> {
   callHandlers: CallHandler<Data_FuelCall>[] = []
