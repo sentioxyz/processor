@@ -751,13 +751,13 @@ export interface DBRequest_DBQuery {
 
 export interface DBRequest_DBUpsert {
   entity: string;
-  key: string[];
+  id: string[];
   data: { [key: string]: any }[];
 }
 
 export interface DBRequest_DBDelete {
   table: string;
-  key: string[];
+  id: string[];
 }
 
 export interface Data {
@@ -5875,7 +5875,7 @@ export const DBRequest_DBQuery = {
 };
 
 function createBaseDBRequest_DBUpsert(): DBRequest_DBUpsert {
-  return { entity: "", key: [], data: [] };
+  return { entity: "", id: [], data: [] };
 }
 
 export const DBRequest_DBUpsert = {
@@ -5883,7 +5883,7 @@ export const DBRequest_DBUpsert = {
     if (message.entity !== "") {
       writer.uint32(10).string(message.entity);
     }
-    for (const v of message.key) {
+    for (const v of message.id) {
       writer.uint32(18).string(v!);
     }
     for (const v of message.data) {
@@ -5911,7 +5911,7 @@ export const DBRequest_DBUpsert = {
             break;
           }
 
-          message.key.push(reader.string());
+          message.id.push(reader.string());
           continue;
         case 3:
           if (tag !== 26) {
@@ -5932,7 +5932,7 @@ export const DBRequest_DBUpsert = {
   fromJSON(object: any): DBRequest_DBUpsert {
     return {
       entity: isSet(object.entity) ? globalThis.String(object.entity) : "",
-      key: globalThis.Array.isArray(object?.key) ? object.key.map((e: any) => globalThis.String(e)) : [],
+      id: globalThis.Array.isArray(object?.id) ? object.id.map((e: any) => globalThis.String(e)) : [],
       data: globalThis.Array.isArray(object?.data) ? [...object.data] : [],
     };
   },
@@ -5942,8 +5942,8 @@ export const DBRequest_DBUpsert = {
     if (message.entity !== "") {
       obj.entity = message.entity;
     }
-    if (message.key?.length) {
-      obj.key = message.key;
+    if (message.id?.length) {
+      obj.id = message.id;
     }
     if (message.data?.length) {
       obj.data = message.data;
@@ -5957,14 +5957,14 @@ export const DBRequest_DBUpsert = {
   fromPartial(object: DeepPartial<DBRequest_DBUpsert>): DBRequest_DBUpsert {
     const message = createBaseDBRequest_DBUpsert();
     message.entity = object.entity ?? "";
-    message.key = object.key?.map((e) => e) || [];
+    message.id = object.id?.map((e) => e) || [];
     message.data = object.data?.map((e) => e) || [];
     return message;
   },
 };
 
 function createBaseDBRequest_DBDelete(): DBRequest_DBDelete {
-  return { table: "", key: [] };
+  return { table: "", id: [] };
 }
 
 export const DBRequest_DBDelete = {
@@ -5972,7 +5972,7 @@ export const DBRequest_DBDelete = {
     if (message.table !== "") {
       writer.uint32(10).string(message.table);
     }
-    for (const v of message.key) {
+    for (const v of message.id) {
       writer.uint32(18).string(v!);
     }
     return writer;
@@ -5997,7 +5997,7 @@ export const DBRequest_DBDelete = {
             break;
           }
 
-          message.key.push(reader.string());
+          message.id.push(reader.string());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -6011,7 +6011,7 @@ export const DBRequest_DBDelete = {
   fromJSON(object: any): DBRequest_DBDelete {
     return {
       table: isSet(object.table) ? globalThis.String(object.table) : "",
-      key: globalThis.Array.isArray(object?.key) ? object.key.map((e: any) => globalThis.String(e)) : [],
+      id: globalThis.Array.isArray(object?.id) ? object.id.map((e: any) => globalThis.String(e)) : [],
     };
   },
 
@@ -6020,8 +6020,8 @@ export const DBRequest_DBDelete = {
     if (message.table !== "") {
       obj.table = message.table;
     }
-    if (message.key?.length) {
-      obj.key = message.key;
+    if (message.id?.length) {
+      obj.id = message.id;
     }
     return obj;
   },
@@ -6032,7 +6032,7 @@ export const DBRequest_DBDelete = {
   fromPartial(object: DeepPartial<DBRequest_DBDelete>): DBRequest_DBDelete {
     const message = createBaseDBRequest_DBDelete();
     message.table = object.table ?? "";
-    message.key = object.key?.map((e) => e) || [];
+    message.id = object.id?.map((e) => e) || [];
     return message;
   },
 };
