@@ -436,12 +436,12 @@ message DBRequest {
   }
   message DBUpsert {
     string entity = 1;
-    repeated string key = 2;
+    repeated string id = 2;
     repeated google.protobuf.Struct data = 3;
   }
   message DBDelete {
     string table = 1;
-    repeated string key = 2;
+    repeated string id = 2;
   }
 }
 
