@@ -21,7 +21,7 @@ service Processor {
   // Process data binding
   rpc ProcessBindings(ProcessBindingsRequest) returns (ProcessBindingResponse);
 
-  rpc ProcessBindingsStream(stream DataBinding) returns (stream ProcessBindingResponse);
+  rpc ProcessBindingsStream(stream ProcessStreamRequest) returns (stream ProcessStreamResponse);
 }
 
 message ProjectConfig {
@@ -50,6 +50,8 @@ message ProcessConfigResponse {
   repeated EventTrackingConfig event_tracking_configs = 6;
   repeated ExportConfig export_configs = 7;
   repeated EventLogConfig event_log_configs = 8;
+
+  DataBaseSchema db_schema = 10;
 }
 
 message ContractConfig {
@@ -70,6 +72,10 @@ message ContractConfig {
   uint64 end_block = 5;
   string processor_type = 8;
 
+}
+
+message DataBaseSchema {
+  string gql_schema = 1;
 }
 
 message TotalPerEntityAggregation {
@@ -394,6 +400,51 @@ message ProcessBindingResponse {
 
   bool config_updated = 4 [deprecated = true];
 }
+
+message ProcessStreamRequest {
+  int32 process_id = 1;  // used to identify the processor run
+  oneof value {
+    DataBinding binding = 2; // start processor run
+    DBResponse db_result= 3; // send db response back during processor run
+  }
+}
+
+message ProcessStreamResponse {
+  int32 process_id = 1; // used to identify the processor run
+  oneof value {
+    DBRequest db_request = 2;  // processor send db request during processor run
+    ProcessResult result = 3;  // finish processor run
+  }
+}
+
+message DBResponse {
+  uint64 op_id = 1;
+  google.protobuf.Struct data = 2;
+}
+
+message DBRequest {
+  uint64 op_id = 1;
+  oneof op {
+    DBQuery query = 2;
+    DBUpsert upsert = 3;
+    DBDelete delete = 4;
+  }
+
+  message DBQuery {
+    string entity = 1;
+    string id = 2;
+  }
+  message DBUpsert {
+    string entity = 1;
+    repeated string key = 2;
+    repeated google.protobuf.Struct data = 3;
+  }
+  message DBDelete {
+    string table = 1;
+    repeated string key = 2;
+  }
+}
+
 
 message Data {
   // Every Handler type should have a data type
