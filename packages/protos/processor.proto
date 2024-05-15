@@ -419,38 +419,29 @@ message ProcessStreamResponse {
 
 message DBResponse {
   uint64 op_id = 1;
-  oneof value {
-    google.protobuf.Struct data = 2;
-    string error = 3;
-  }
+  google.protobuf.Struct data = 2;
 }
 
 message DBRequest {
   uint64 op_id = 1;
   oneof op {
-    DBGet get = 2;
+    DBQuery query = 2;
     DBUpsert upsert = 3;
     DBDelete delete = 4;
-    DBList list = 5;
   }
 
-  message DBGet {
+  message DBQuery {
     string entity = 1;
     string id = 2;
   }
-  message DBList {
-    string entity = 1;
-    uint32 limit = 2;
-    uint32 offset = 3;
-  }
   message DBUpsert {
     string entity = 1;
-    repeated string id = 2;
+    repeated string key = 2;
     repeated google.protobuf.Struct data = 3;
   }
   message DBDelete {
-    string entity = 1;
-    repeated string id = 2;
+    string table = 1;
+    repeated string key = 2;
   }
 }
 
