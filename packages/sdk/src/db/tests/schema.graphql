@@ -1,6 +1,6 @@
 type Transaction @entity {
   id: ID!
-  sender: User!
+  sender: Owner!
   gas: BigInt!
   gasPrice: BigDecimal!
   isSuccess: Boolean
@@ -13,14 +13,19 @@ type TransactionReceipt @entity {
   transaction: Transaction
 }
 
-type User @entity {
+interface Owner  {
+  id: ID!
+  name: String!
+}
+
+type User implements Owner @entity {
   id: ID!
   name: String!
   transactions: [Transaction!]! @derivedFrom(field: "sender")
   organizations: [Organization!]! @derivedFrom(field: "members")
 }
 
-type Organization @entity {
+type Organization implements Owner @entity {
   id: ID!
   name: String!
   members: [User!]!

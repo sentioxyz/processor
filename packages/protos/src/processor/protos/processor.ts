@@ -734,19 +734,27 @@ export interface ProcessStreamResponse {
 
 export interface DBResponse {
   opId: bigint;
-  data: { [key: string]: any } | undefined;
+  data?: { [key: string]: any } | undefined;
+  error?: string | undefined;
 }
 
 export interface DBRequest {
   opId: bigint;
-  query?: DBRequest_DBQuery | undefined;
+  get?: DBRequest_DBGet | undefined;
   upsert?: DBRequest_DBUpsert | undefined;
   delete?: DBRequest_DBDelete | undefined;
+  list?: DBRequest_DBList | undefined;
 }
 
-export interface DBRequest_DBQuery {
+export interface DBRequest_DBGet {
   entity: string;
   id: string;
+}
+
+export interface DBRequest_DBList {
+  entity: string;
+  limit: number;
+  offset: number;
 }
 
 export interface DBRequest_DBUpsert {
@@ -756,7 +764,7 @@ export interface DBRequest_DBUpsert {
 }
 
 export interface DBRequest_DBDelete {
-  table: string;
+  entity: string;
   id: string[];
 }
 
@@ -5611,7 +5619,7 @@ export const ProcessStreamResponse = {
 };
 
 function createBaseDBResponse(): DBResponse {
-  return { opId: BigInt("0"), data: undefined };
+  return { opId: BigInt("0"), data: undefined, error: undefined };
 }
 
 export const DBResponse = {
@@ -5624,6 +5632,9 @@ export const DBResponse = {
     }
     if (message.data !== undefined) {
       Struct.encode(Struct.wrap(message.data), writer.uint32(18).fork()).ldelim();
+    }
+    if (message.error !== undefined) {
+      writer.uint32(26).string(message.error);
     }
     return writer;
   },
@@ -5649,6 +5660,13 @@ export const DBResponse = {
 
           message.data = Struct.unwrap(Struct.decode(reader, reader.uint32()));
           continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.error = reader.string();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -5662,6 +5680,7 @@ export const DBResponse = {
     return {
       opId: isSet(object.opId) ? BigInt(object.opId) : BigInt("0"),
       data: isObject(object.data) ? object.data : undefined,
+      error: isSet(object.error) ? globalThis.String(object.error) : undefined,
     };
   },
 
@@ -5673,6 +5692,9 @@ export const DBResponse = {
     if (message.data !== undefined) {
       obj.data = message.data;
     }
+    if (message.error !== undefined) {
+      obj.error = message.error;
+    }
     return obj;
   },
 
@@ -5683,12 +5705,13 @@ export const DBResponse = {
     const message = createBaseDBResponse();
     message.opId = object.opId ?? BigInt("0");
     message.data = object.data ?? undefined;
+    message.error = object.error ?? undefined;
     return message;
   },
 };
 
 function createBaseDBRequest(): DBRequest {
-  return { opId: BigInt("0"), query: undefined, upsert: undefined, delete: undefined };
+  return { opId: BigInt("0"), get: undefined, upsert: undefined, delete: undefined, list: undefined };
 }
 
 export const DBRequest = {
@@ -5699,14 +5722,17 @@ export const DBRequest = {
       }
       writer.uint32(8).uint64(message.opId.toString());
     }
-    if (message.query !== undefined) {
-      DBRequest_DBQuery.encode(message.query, writer.uint32(18).fork()).ldelim();
+    if (message.get !== undefined) {
+      DBRequest_DBGet.encode(message.get, writer.uint32(18).fork()).ldelim();
     }
     if (message.upsert !== undefined) {
       DBRequest_DBUpsert.encode(message.upsert, writer.uint32(26).fork()).ldelim();
     }
     if (message.delete !== undefined) {
       DBRequest_DBDelete.encode(message.delete, writer.uint32(34).fork()).ldelim();
+    }
+    if (message.list !== undefined) {
+      DBRequest_DBList.encode(message.list, writer.uint32(42).fork()).ldelim();
     }
     return writer;
   },
@@ -5730,7 +5756,7 @@ export const DBRequest = {
             break;
           }
 
-          message.query = DBRequest_DBQuery.decode(reader, reader.uint32());
+          message.get = DBRequest_DBGet.decode(reader, reader.uint32());
           continue;
         case 3:
           if (tag !== 26) {
@@ -5746,6 +5772,13 @@ export const DBRequest = {
 
           message.delete = DBRequest_DBDelete.decode(reader, reader.uint32());
           continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.list = DBRequest_DBList.decode(reader, reader.uint32());
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -5758,9 +5791,10 @@ export const DBRequest = {
   fromJSON(object: any): DBRequest {
     return {
       opId: isSet(object.opId) ? BigInt(object.opId) : BigInt("0"),
-      query: isSet(object.query) ? DBRequest_DBQuery.fromJSON(object.query) : undefined,
+      get: isSet(object.get) ? DBRequest_DBGet.fromJSON(object.get) : undefined,
       upsert: isSet(object.upsert) ? DBRequest_DBUpsert.fromJSON(object.upsert) : undefined,
       delete: isSet(object.delete) ? DBRequest_DBDelete.fromJSON(object.delete) : undefined,
+      list: isSet(object.list) ? DBRequest_DBList.fromJSON(object.list) : undefined,
     };
   },
 
@@ -5769,14 +5803,17 @@ export const DBRequest = {
     if (message.opId !== BigInt("0")) {
       obj.opId = message.opId.toString();
     }
-    if (message.query !== undefined) {
-      obj.query = DBRequest_DBQuery.toJSON(message.query);
+    if (message.get !== undefined) {
+      obj.get = DBRequest_DBGet.toJSON(message.get);
     }
     if (message.upsert !== undefined) {
       obj.upsert = DBRequest_DBUpsert.toJSON(message.upsert);
     }
     if (message.delete !== undefined) {
       obj.delete = DBRequest_DBDelete.toJSON(message.delete);
+    }
+    if (message.list !== undefined) {
+      obj.list = DBRequest_DBList.toJSON(message.list);
     }
     return obj;
   },
@@ -5787,8 +5824,8 @@ export const DBRequest = {
   fromPartial(object: DeepPartial<DBRequest>): DBRequest {
     const message = createBaseDBRequest();
     message.opId = object.opId ?? BigInt("0");
-    message.query = (object.query !== undefined && object.query !== null)
-      ? DBRequest_DBQuery.fromPartial(object.query)
+    message.get = (object.get !== undefined && object.get !== null)
+      ? DBRequest_DBGet.fromPartial(object.get)
       : undefined;
     message.upsert = (object.upsert !== undefined && object.upsert !== null)
       ? DBRequest_DBUpsert.fromPartial(object.upsert)
@@ -5796,16 +5833,19 @@ export const DBRequest = {
     message.delete = (object.delete !== undefined && object.delete !== null)
       ? DBRequest_DBDelete.fromPartial(object.delete)
       : undefined;
+    message.list = (object.list !== undefined && object.list !== null)
+      ? DBRequest_DBList.fromPartial(object.list)
+      : undefined;
     return message;
   },
 };
 
-function createBaseDBRequest_DBQuery(): DBRequest_DBQuery {
+function createBaseDBRequest_DBGet(): DBRequest_DBGet {
   return { entity: "", id: "" };
 }
 
-export const DBRequest_DBQuery = {
-  encode(message: DBRequest_DBQuery, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const DBRequest_DBGet = {
+  encode(message: DBRequest_DBGet, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.entity !== "") {
       writer.uint32(10).string(message.entity);
     }
@@ -5815,10 +5855,10 @@ export const DBRequest_DBQuery = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): DBRequest_DBQuery {
+  decode(input: _m0.Reader | Uint8Array, length?: number): DBRequest_DBGet {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseDBRequest_DBQuery();
+    const message = createBaseDBRequest_DBGet();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -5845,14 +5885,14 @@ export const DBRequest_DBQuery = {
     return message;
   },
 
-  fromJSON(object: any): DBRequest_DBQuery {
+  fromJSON(object: any): DBRequest_DBGet {
     return {
       entity: isSet(object.entity) ? globalThis.String(object.entity) : "",
       id: isSet(object.id) ? globalThis.String(object.id) : "",
     };
   },
 
-  toJSON(message: DBRequest_DBQuery): unknown {
+  toJSON(message: DBRequest_DBGet): unknown {
     const obj: any = {};
     if (message.entity !== "") {
       obj.entity = message.entity;
@@ -5863,13 +5903,102 @@ export const DBRequest_DBQuery = {
     return obj;
   },
 
-  create(base?: DeepPartial<DBRequest_DBQuery>): DBRequest_DBQuery {
-    return DBRequest_DBQuery.fromPartial(base ?? {});
+  create(base?: DeepPartial<DBRequest_DBGet>): DBRequest_DBGet {
+    return DBRequest_DBGet.fromPartial(base ?? {});
   },
-  fromPartial(object: DeepPartial<DBRequest_DBQuery>): DBRequest_DBQuery {
-    const message = createBaseDBRequest_DBQuery();
+  fromPartial(object: DeepPartial<DBRequest_DBGet>): DBRequest_DBGet {
+    const message = createBaseDBRequest_DBGet();
     message.entity = object.entity ?? "";
     message.id = object.id ?? "";
+    return message;
+  },
+};
+
+function createBaseDBRequest_DBList(): DBRequest_DBList {
+  return { entity: "", limit: 0, offset: 0 };
+}
+
+export const DBRequest_DBList = {
+  encode(message: DBRequest_DBList, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.entity !== "") {
+      writer.uint32(10).string(message.entity);
+    }
+    if (message.limit !== 0) {
+      writer.uint32(16).uint32(message.limit);
+    }
+    if (message.offset !== 0) {
+      writer.uint32(24).uint32(message.offset);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): DBRequest_DBList {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseDBRequest_DBList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entity = reader.string();
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.limit = reader.uint32();
+          continue;
+        case 3:
+          if (tag !== 24) {
+            break;
+          }
+
+          message.offset = reader.uint32();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): DBRequest_DBList {
+    return {
+      entity: isSet(object.entity) ? globalThis.String(object.entity) : "",
+      limit: isSet(object.limit) ? globalThis.Number(object.limit) : 0,
+      offset: isSet(object.offset) ? globalThis.Number(object.offset) : 0,
+    };
+  },
+
+  toJSON(message: DBRequest_DBList): unknown {
+    const obj: any = {};
+    if (message.entity !== "") {
+      obj.entity = message.entity;
+    }
+    if (message.limit !== 0) {
+      obj.limit = Math.round(message.limit);
+    }
+    if (message.offset !== 0) {
+      obj.offset = Math.round(message.offset);
+    }
+    return obj;
+  },
+
+  create(base?: DeepPartial<DBRequest_DBList>): DBRequest_DBList {
+    return DBRequest_DBList.fromPartial(base ?? {});
+  },
+  fromPartial(object: DeepPartial<DBRequest_DBList>): DBRequest_DBList {
+    const message = createBaseDBRequest_DBList();
+    message.entity = object.entity ?? "";
+    message.limit = object.limit ?? 0;
+    message.offset = object.offset ?? 0;
     return message;
   },
 };
@@ -5964,13 +6093,13 @@ export const DBRequest_DBUpsert = {
 };
 
 function createBaseDBRequest_DBDelete(): DBRequest_DBDelete {
-  return { table: "", id: [] };
+  return { entity: "", id: [] };
 }
 
 export const DBRequest_DBDelete = {
   encode(message: DBRequest_DBDelete, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.table !== "") {
-      writer.uint32(10).string(message.table);
+    if (message.entity !== "") {
+      writer.uint32(10).string(message.entity);
     }
     for (const v of message.id) {
       writer.uint32(18).string(v!);
@@ -5990,7 +6119,7 @@ export const DBRequest_DBDelete = {
             break;
           }
 
-          message.table = reader.string();
+          message.entity = reader.string();
           continue;
         case 2:
           if (tag !== 18) {
@@ -6010,15 +6139,15 @@ export const DBRequest_DBDelete = {
 
   fromJSON(object: any): DBRequest_DBDelete {
     return {
-      table: isSet(object.table) ? globalThis.String(object.table) : "",
+      entity: isSet(object.entity) ? globalThis.String(object.entity) : "",
       id: globalThis.Array.isArray(object?.id) ? object.id.map((e: any) => globalThis.String(e)) : [],
     };
   },
 
   toJSON(message: DBRequest_DBDelete): unknown {
     const obj: any = {};
-    if (message.table !== "") {
-      obj.table = message.table;
+    if (message.entity !== "") {
+      obj.entity = message.entity;
     }
     if (message.id?.length) {
       obj.id = message.id;
@@ -6031,7 +6160,7 @@ export const DBRequest_DBDelete = {
   },
   fromPartial(object: DeepPartial<DBRequest_DBDelete>): DBRequest_DBDelete {
     const message = createBaseDBRequest_DBDelete();
-    message.table = object.table ?? "";
+    message.entity = object.entity ?? "";
     message.id = object.id?.map((e) => e) || [];
     return message;
   },
