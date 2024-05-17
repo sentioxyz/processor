@@ -3,21 +3,23 @@
   "version": "2.0.0-development",
   "license": "Apache-2.0",
   "type": "module",
+  "exports": {
+    ".": "./lib/index.js",
+    "./codegen": "./lib/codegen.js"
+  },
   "files": [
     "{lib,src}",
     "!**/*.test.{js,ts}",
     "!{lib,src}/*/tests"
   ],
-  "exports": {
-    ".": "./lib/index.js"
+  "scripts": {
+    "build": "pnpm compile",
+    "compile": "tsc"
   },
   "dependencies": {
-    "@apollo/subgraph": "^2.7.7",
-    "graphql": "^16.8.1"
-  },
-  "scripts": {
-    "build": "pnpm gen && pnpm compile",
-    "compile": "tsc",
-    "gen": "tsx src/run.ts src/tests/schema.graphql src/tests/generated"
+    "graphql": "^16.8.1",
+    "@sentio/protos": "workspace:*",
+    "ix": "^5.0.0",
+    "rxjs": "^7.8.1"
   }
 }
