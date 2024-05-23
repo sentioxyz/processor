@@ -177,7 +177,7 @@ function genDataType(t: GraphQLObjectType<any, any>) {
 }
 
 function genEntity(t: GraphQLObjectType<any, any>) {
-  const decorators = t.astNode?.directives?.map(directive2decorator) || []
+  const decorators = t.astNode?.directives?.filter((d) => d.name.value != 'entity').map(directive2decorator) || []
 
   let impls = ''
   if (t.getInterfaces().length > 0) {
@@ -192,6 +192,7 @@ function genEntity(t: GraphQLObjectType<any, any>) {
   return `
 ${genDataType(t)}
 ${decorators.join('\n')}
+@entity("${t.name}")
 export class ${t.name} extends Entity${impls} {
   constructor(data: Partial<${t.name}Data>) {
     super(data)
