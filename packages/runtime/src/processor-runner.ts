@@ -10,6 +10,7 @@ import { errorDetailsServerMiddleware } from 'nice-grpc-error-details'
 import { registry as niceGrpcRegistry, prometheusServerMiddleware } from 'nice-grpc-prometheus'
 import { register as globalRegistry, Registry } from 'prom-client'
 import http from 'http'
+// @ts-ignore inspector promises is not included in @type/node
 import { Session } from 'node:inspector/promises'
 
 import { ProcessorDefinition } from './gen/processor/protos/processor.js'
