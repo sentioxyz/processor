@@ -450,6 +450,8 @@ message DBRequest {
     string entity = 1;
     uint32 limit = 2;
     uint32 offset = 3;
+    repeated DBFilter filters = 4;
+    repeated DBOrderBy order_by = 5;
   }
   message DBUpsert {
     repeated string entity = 1;
@@ -459,6 +461,29 @@ message DBRequest {
   message DBDelete {
     repeated string entity = 1;
     repeated string id = 2;
+  }
+  message DBFilter {
+    string field = 1;
+    DBOperator op = 2;
+    google.protobuf.ListValue value = 3;
+  }
+  message DBOrderBy {
+    string field = 1;
+    bool desc = 2;
+  }
+  enum DBOperator {
+    EQ = 0;
+    NE = 1;
+    GT = 2;
+    GE = 3;
+    LT = 4;
+    LE = 5;
+    IN = 6;
+    NOT_IN = 7;
+//    LIKE = 8;
+//    NOT_LIKE = 9;
+//    IS_NULL = 10;
+//    IS_NOT_NULL = 11;
   }
 }
 

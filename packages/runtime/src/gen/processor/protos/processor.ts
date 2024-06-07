@@ -766,6 +766,75 @@ export interface DBRequest {
   list?: DBRequest_DBList | undefined;
 }
 
+export enum DBRequest_DBOperator {
+  EQ = 0,
+  NE = 1,
+  GT = 2,
+  GE = 3,
+  LT = 4,
+  LE = 5,
+  IN = 6,
+  NOT_IN = 7,
+  UNRECOGNIZED = -1,
+}
+
+export function dBRequest_DBOperatorFromJSON(object: any): DBRequest_DBOperator {
+  switch (object) {
+    case 0:
+    case "EQ":
+      return DBRequest_DBOperator.EQ;
+    case 1:
+    case "NE":
+      return DBRequest_DBOperator.NE;
+    case 2:
+    case "GT":
+      return DBRequest_DBOperator.GT;
+    case 3:
+    case "GE":
+      return DBRequest_DBOperator.GE;
+    case 4:
+    case "LT":
+      return DBRequest_DBOperator.LT;
+    case 5:
+    case "LE":
+      return DBRequest_DBOperator.LE;
+    case 6:
+    case "IN":
+      return DBRequest_DBOperator.IN;
+    case 7:
+    case "NOT_IN":
+      return DBRequest_DBOperator.NOT_IN;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return DBRequest_DBOperator.UNRECOGNIZED;
+  }
+}
+
+export function dBRequest_DBOperatorToJSON(object: DBRequest_DBOperator): string {
+  switch (object) {
+    case DBRequest_DBOperator.EQ:
+      return "EQ";
+    case DBRequest_DBOperator.NE:
+      return "NE";
+    case DBRequest_DBOperator.GT:
+      return "GT";
+    case DBRequest_DBOperator.GE:
+      return "GE";
+    case DBRequest_DBOperator.LT:
+      return "LT";
+    case DBRequest_DBOperator.LE:
+      return "LE";
+    case DBRequest_DBOperator.IN:
+      return "IN";
+    case DBRequest_DBOperator.NOT_IN:
+      return "NOT_IN";
+    case DBRequest_DBOperator.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+
 export interface DBRequest_DBGet {
   entity: string;
   id: string;
@@ -775,6 +844,8 @@ export interface DBRequest_DBList {
   entity: string;
   limit: number;
   offset: number;
+  filters: DBRequest_DBFilter[];
+  orderBy: DBRequest_DBOrderBy[];
 }
 
 export interface DBRequest_DBUpsert {
@@ -786,6 +857,17 @@ export interface DBRequest_DBUpsert {
 export interface DBRequest_DBDelete {
   entity: string[];
   id: string[];
+}
+
+export interface DBRequest_DBFilter {
+  field: string;
+  op: DBRequest_DBOperator;
+  value: Array<any> | undefined;
+}
+
+export interface DBRequest_DBOrderBy {
+  field: string;
+  desc: boolean;
 }
 
 export interface Data {
@@ -6116,7 +6198,7 @@ export const DBRequest_DBGet = {
 };
 
 function createBaseDBRequest_DBList(): DBRequest_DBList {
-  return { entity: "", limit: 0, offset: 0 };
+  return { entity: "", limit: 0, offset: 0, filters: [], orderBy: [] };
 }
 
 export const DBRequest_DBList = {
@@ -6129,6 +6211,12 @@ export const DBRequest_DBList = {
     }
     if (message.offset !== 0) {
       writer.uint32(24).uint32(message.offset);
+    }
+    for (const v of message.filters) {
+      DBRequest_DBFilter.encode(v!, writer.uint32(34).fork()).ldelim();
+    }
+    for (const v of message.orderBy) {
+      DBRequest_DBOrderBy.encode(v!, writer.uint32(42).fork()).ldelim();
     }
     return writer;
   },
@@ -6161,6 +6249,20 @@ export const DBRequest_DBList = {
 
           message.offset = reader.uint32();
           continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.filters.push(DBRequest_DBFilter.decode(reader, reader.uint32()));
+          continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.orderBy.push(DBRequest_DBOrderBy.decode(reader, reader.uint32()));
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -6175,6 +6277,12 @@ export const DBRequest_DBList = {
       entity: isSet(object.entity) ? globalThis.String(object.entity) : "",
       limit: isSet(object.limit) ? globalThis.Number(object.limit) : 0,
       offset: isSet(object.offset) ? globalThis.Number(object.offset) : 0,
+      filters: globalThis.Array.isArray(object?.filters)
+        ? object.filters.map((e: any) => DBRequest_DBFilter.fromJSON(e))
+        : [],
+      orderBy: globalThis.Array.isArray(object?.orderBy)
+        ? object.orderBy.map((e: any) => DBRequest_DBOrderBy.fromJSON(e))
+        : [],
     };
   },
 
@@ -6189,6 +6297,12 @@ export const DBRequest_DBList = {
     if (message.offset !== 0) {
       obj.offset = Math.round(message.offset);
     }
+    if (message.filters?.length) {
+      obj.filters = message.filters.map((e) => DBRequest_DBFilter.toJSON(e));
+    }
+    if (message.orderBy?.length) {
+      obj.orderBy = message.orderBy.map((e) => DBRequest_DBOrderBy.toJSON(e));
+    }
     return obj;
   },
 
@@ -6200,6 +6314,8 @@ export const DBRequest_DBList = {
     message.entity = object.entity ?? "";
     message.limit = object.limit ?? 0;
     message.offset = object.offset ?? 0;
+    message.filters = object.filters?.map((e) => DBRequest_DBFilter.fromPartial(e)) || [];
+    message.orderBy = object.orderBy?.map((e) => DBRequest_DBOrderBy.fromPartial(e)) || [];
     return message;
   },
 };
@@ -6363,6 +6479,169 @@ export const DBRequest_DBDelete = {
     const message = createBaseDBRequest_DBDelete();
     message.entity = object.entity?.map((e) => e) || [];
     message.id = object.id?.map((e) => e) || [];
+    return message;
+  },
+};
+
+function createBaseDBRequest_DBFilter(): DBRequest_DBFilter {
+  return { field: "", op: 0, value: undefined };
+}
+
+export const DBRequest_DBFilter = {
+  encode(message: DBRequest_DBFilter, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.field !== "") {
+      writer.uint32(10).string(message.field);
+    }
+    if (message.op !== 0) {
+      writer.uint32(16).int32(message.op);
+    }
+    if (message.value !== undefined) {
+      ListValue.encode(ListValue.wrap(message.value), writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): DBRequest_DBFilter {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseDBRequest_DBFilter();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.field = reader.string();
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.op = reader.int32() as any;
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.value = ListValue.unwrap(ListValue.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): DBRequest_DBFilter {
+    return {
+      field: isSet(object.field) ? globalThis.String(object.field) : "",
+      op: isSet(object.op) ? dBRequest_DBOperatorFromJSON(object.op) : 0,
+      value: globalThis.Array.isArray(object.value) ? [...object.value] : undefined,
+    };
+  },
+
+  toJSON(message: DBRequest_DBFilter): unknown {
+    const obj: any = {};
+    if (message.field !== "") {
+      obj.field = message.field;
+    }
+    if (message.op !== 0) {
+      obj.op = dBRequest_DBOperatorToJSON(message.op);
+    }
+    if (message.value !== undefined) {
+      obj.value = message.value;
+    }
+    return obj;
+  },
+
+  create(base?: DeepPartial<DBRequest_DBFilter>): DBRequest_DBFilter {
+    return DBRequest_DBFilter.fromPartial(base ?? {});
+  },
+  fromPartial(object: DeepPartial<DBRequest_DBFilter>): DBRequest_DBFilter {
+    const message = createBaseDBRequest_DBFilter();
+    message.field = object.field ?? "";
+    message.op = object.op ?? 0;
+    message.value = object.value ?? undefined;
+    return message;
+  },
+};
+
+function createBaseDBRequest_DBOrderBy(): DBRequest_DBOrderBy {
+  return { field: "", desc: false };
+}
+
+export const DBRequest_DBOrderBy = {
+  encode(message: DBRequest_DBOrderBy, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.field !== "") {
+      writer.uint32(10).string(message.field);
+    }
+    if (message.desc !== false) {
+      writer.uint32(16).bool(message.desc);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): DBRequest_DBOrderBy {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseDBRequest_DBOrderBy();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.field = reader.string();
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.desc = reader.bool();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): DBRequest_DBOrderBy {
+    return {
+      field: isSet(object.field) ? globalThis.String(object.field) : "",
+      desc: isSet(object.desc) ? globalThis.Boolean(object.desc) : false,
+    };
+  },
+
+  toJSON(message: DBRequest_DBOrderBy): unknown {
+    const obj: any = {};
+    if (message.field !== "") {
+      obj.field = message.field;
+    }
+    if (message.desc !== false) {
+      obj.desc = message.desc;
+    }
+    return obj;
+  },
+
+  create(base?: DeepPartial<DBRequest_DBOrderBy>): DBRequest_DBOrderBy {
+    return DBRequest_DBOrderBy.fromPartial(base ?? {});
+  },
+  fromPartial(object: DeepPartial<DBRequest_DBOrderBy>): DBRequest_DBOrderBy {
+    const message = createBaseDBRequest_DBOrderBy();
+    message.field = object.field ?? "";
+    message.desc = object.desc ?? false;
     return message;
   },
 };

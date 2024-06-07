@@ -54,7 +54,7 @@ describe('Test Database', () => {
 
     await store.upsert([user1, user2])
 
-    const list = await store.list(User, 2, 0)
+    const list = await store.list(User, [], { limit: 2, offset: 0 })
     expect(list).toEqual([user1, user2])
   })
 

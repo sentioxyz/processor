@@ -2,6 +2,8 @@ import { Entity, EntityClass } from './entity.js'
 import { StoreContext } from './context.js'
 import { DatabaseSchema } from '../core/index.js'
 import { BigDecimal } from '@sentio/bigdecimal'
+import { Value } from './types.js'
+import { DBRequest_DBOperator } from '@sentio/protos'
 
 export class Store {
   constructor(private readonly context: StoreContext) {}
@@ -51,12 +53,27 @@ export class Store {
     await promise
   }
 
-  async list<T extends Entity>(entity: EntityClass<T>, limit?: number, offset?: number): Promise<T[]> {
+  async list<T extends Entity>(
+    entity: EntityClass<T>,
+    filters?: ListFilter<T>[],
+    options?: ListOptions<T>
+  ): Promise<T[]> {
     const promise = this.context.sendRequest({
       list: {
         entity: entity.prototype.entityName,
-        limit,
-        offset
+        limit: options?.limit || 100,
+        offset: options?.offset || 0,
+        orderBy:
+          options?.orderBy?.map((o) => ({
+            field: o.field as string,
+            desc: o.direction == 'desc'
+          })) || [],
+        filters:
+          filters?.map((f) => ({
+            field: f.field as string,
+            op: ops[f.op],
+            value: Array.isArray(f.value) ? f.value.map((v) => serialize(v)) : [serialize(f.value)]
+          })) || []
       }
     })
 
@@ -104,4 +121,30 @@ function serialize(data: Record<string, any>) {
     }
   }
   return ret
+}
+
+export interface ListFilter<T extends Entity> {
+  field: keyof T
+  op: '=' | '!=' | 'lt' | 'le' | 'gt' | 'ge' | 'in' | 'not in'
+  value: Value | Value[] | null
+}
+
+export interface ListOptions<T extends Entity> {
+  offset?: number
+  limit?: number
+  orderBy?: {
+    field: keyof T
+    direction: 'asc' | 'desc'
+  }[]
+}
+
+const ops = {
+  '=': DBRequest_DBOperator.EQ,
+  '!=': DBRequest_DBOperator.NE,
+  lt: DBRequest_DBOperator.LT,
+  le: DBRequest_DBOperator.LE,
+  gt: DBRequest_DBOperator.GT,
+  ge: DBRequest_DBOperator.GE,
+  in: DBRequest_DBOperator.IN,
+  'not in': DBRequest_DBOperator.NOT_IN
 }
