@@ -37,7 +37,7 @@ export class StoreContext {
       if (dbResult.error) {
         defer.reject(new Error(dbResult.error))
       } else if (dbResult.list) {
-        defer.resolve(dbResult.list)
+        defer.resolve({ list: dbResult.list, cursor: dbResult.nextCursor })
       } else {
         defer.resolve(dbResult.data)
       }

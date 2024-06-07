@@ -47,12 +47,23 @@ export class MemoryDatabase {
         })
       }
       if (req.list) {
-        const { entity, limit, offset } = req.list
+        const { entity, cursor } = req.list
         const list = Array.from(this.db.values())
-        this.dbContext.result({
-          opId: req.opId,
-          list: list
-        })
+        if (cursor) {
+          const idx = parseInt(cursor)
+
+          this.dbContext.result({
+            opId: req.opId,
+            list: [list[idx]],
+            nextCursor: idx + 1 < list.length ? `${idx + 1}` : undefined
+          })
+        } else {
+          this.dbContext.result({
+            opId: req.opId,
+            list: [list[0]],
+            nextCursor: '1'
+          })
+        }
       }
     }
   }

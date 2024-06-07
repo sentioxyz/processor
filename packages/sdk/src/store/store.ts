@@ -53,34 +53,31 @@ export class Store {
     await promise
   }
 
-  async list<T extends Entity>(
-    entity: EntityClass<T>,
-    filters?: ListFilter<T>[],
-    options?: ListOptions<T>
-  ): Promise<T[]> {
-    const promise = this.context.sendRequest({
-      list: {
-        entity: entity.prototype.entityName,
-        limit: options?.limit || 100,
-        offset: options?.offset || 0,
-        orderBy:
-          options?.orderBy?.map((o) => ({
-            field: o.field as string,
-            desc: o.direction == 'desc'
-          })) || [],
-        filters:
-          filters?.map((f) => ({
-            field: f.field as string,
-            op: ops[f.op],
-            value: Array.isArray(f.value) ? f.value.map((v) => serialize(v)) : [serialize(f.value)]
-          })) || []
-      }
-    })
+  async *list<T extends Entity>(entity: EntityClass<T>, filters?: ListFilter<T>[]) {
+    let cursor: string | undefined = undefined
 
-    const list = (await promise) as any[]
-    return list.map((data) => {
-      return this.newEntity(entity, data)
-    })
+    while (true) {
+      const promise = this.context.sendRequest({
+        list: {
+          entity: entity.prototype.entityName,
+          cursor,
+          filters:
+            filters?.map((f) => ({
+              field: f.field as string,
+              op: ops[f.op],
+              value: Array.isArray(f.value) ? f.value.map((v) => serialize(v)) : [serialize(f.value)]
+            })) || []
+        }
+      })
+      const response = (await promise) as { list: any[]; cursor: string }
+      for (const data of response.list) {
+        yield this.newEntity(entity, data)
+      }
+      if (!response.cursor) {
+        break
+      }
+      cursor = response.cursor
+    }
   }
 
   private newEntity<T extends Entity>(entity: EntityClass<T> | string, data: any) {
@@ -130,12 +127,7 @@ export interface ListFilter<T extends Entity> {
 }
 
 export interface ListOptions<T extends Entity> {
-  offset?: number
-  limit?: number
-  orderBy?: {
-    field: keyof T
-    direction: 'asc' | 'desc'
-  }[]
+  cursor: string
 }
 
 const ops = {

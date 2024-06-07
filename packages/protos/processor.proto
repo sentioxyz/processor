@@ -431,6 +431,7 @@ message DBResponse {
     google.protobuf.ListValue list = 4;
     string error = 3;
   }
+  optional string next_cursor = 5;
 }
 
 message DBRequest {
@@ -448,10 +449,10 @@ message DBRequest {
   }
   message DBList {
     string entity = 1;
-    uint32 limit = 2;
-    uint32 offset = 3;
+//    uint32 limit = 2; deprecated
+//    uint32 offset = 3; deprecated
     repeated DBFilter filters = 4;
-    repeated DBOrderBy order_by = 5;
+    string cursor = 5;
   }
   message DBUpsert {
     repeated string entity = 1;
@@ -466,10 +467,6 @@ message DBRequest {
     string field = 1;
     DBOperator op = 2;
     google.protobuf.ListValue value = 3;
-  }
-  message DBOrderBy {
-    string field = 1;
-    bool desc = 2;
   }
   enum DBOperator {
     EQ = 0;
