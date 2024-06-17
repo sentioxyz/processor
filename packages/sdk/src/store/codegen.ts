@@ -39,7 +39,7 @@ async function codegenInternal(schema: GraphQLSchema, source: string, target: st
     '/* tslint:disable */',
     '/* eslint-disable */',
     "import { entity, derivedFrom, DateTime, Int, Float, String, Bytes, Boolean, ID, Entity, Store } from '@sentio/sdk/store'",
-    `import { BigDecimalConverter, BigIntConverter, IntConverter, StringConverter, IDConverter, BooleanConverter, BytesConverter, DateTimeConverter, FloatConverter, StructConverter, required, array, enumerate, objectId } from '@sentio/sdk/store'`,
+    `import { BigDecimalConverter, BigIntConverter, IntConverter, StringConverter, IDConverter, BooleanConverter, BytesConverter, DateTimeConverter, FloatConverter, StructConverter, required_, array_, enumerate_, objectId_ } from '@sentio/sdk/store'`,
     `import { DatabaseSchema, BigDecimal } from "@sentio/sdk"`,
     `type BigInt = bigint`
   ]
@@ -148,16 +148,16 @@ function getElementType(type: GraphQLOutputType) {
 
 const getConverter = (t: GraphQLOutputType): string => {
   if (t instanceof GraphQLNonNull) {
-    return `required(${getConverter(t.ofType)})`
+    return `required_(${getConverter(t.ofType)})`
   }
   if (t instanceof GraphQLList) {
-    return `array(${getConverter(t.ofType)})`
+    return `array_(${getConverter(t.ofType)})`
   }
   if (t instanceof GraphQLEnumType) {
-    return `enumerate<${t.name}>(${t.name})`
+    return `enumerate_<${t.name}>(${t.name})`
   }
   if (isObject(t)) {
-    return `objectId<${genType(getElementType(t))}>()`
+    return `objectId_<${genType(getElementType(t))}>()`
   }
   return `${t.name}Converter`
 }
@@ -175,7 +175,7 @@ function genField(field: GraphQLField<any, any>) {
 
     if (isList(field.type)) {
       const required = (field.type as GraphQLList<any>).ofType instanceof GraphQLNonNull
-      const converter = required ? `array(required(IDConverter))` : `array(IDConverter)`
+      const converter = required ? `array_(required_(IDConverter))` : `array_(IDConverter)`
       const returnType = required ? `ID[]` : `Array<ID | undefined>`
       return `${directives.join()}\tget ${field.name}(): Promise<${genType(t)}[]> { return this.getFieldObjectArray(${typeAsArg}, "${field.name}") as Promise<${genType(t)}[]> }
   set ${field.name}(value: ${type} | ID[]) { this.setObject("${field.name}", value) }
@@ -183,7 +183,7 @@ function genField(field: GraphQLField<any, any>) {
     }
 
     return `${directives.join()}\tget ${field.name}(): Promise<${genType(t)} | undefined> { return this.getObject(${typeAsArg},"${field.name}") as Promise<${genType(t)} | undefined> }
-  set ${field.name}(value: ${type} | ID) { this.set("${field.name}", value, objectId<${type}>()) }
+  set ${field.name}(value: ${type} | ID) { this.set("${field.name}", value, objectId_<${type}>()) }
   get ${field.name}Id(): ID | undefined { return this.get("${field.name}", IDConverter) }`
   }
 

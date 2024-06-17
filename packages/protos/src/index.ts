@@ -8,6 +8,4 @@ export * from './google/protobuf/timestamp.js'
 
 export * from './google/protobuf/struct.js'
 
-export { CoinID } from './service/common/protos/common.js'
-
-export { RichStruct, RichValue, RichStructList, BigDecimal as BigDecimalType, BigInteger, RichValue_NullValue } from "./service/common/protos/common.js"
+export { CoinID, RichStruct, RichValue, RichStructList, RichValue_NullValue, BigInteger } from "./service/common/protos/common.js"

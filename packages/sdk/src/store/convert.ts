@@ -1,5 +1,5 @@
 import { RichStruct, RichValue, RichValue_NullValue } from '@sentio/protos'
-import { String, Int, Float, ID, Bytes, DateTime, Boolean, BigInt } from './types.js'
+import { String, Int, Float, ID, Bytes, DateTime, Boolean } from './types.js'
 import { bytesToBigInt } from '../utils/index.js'
 import { toBigInteger } from '../core/index.js'
 import { Entity } from './entity.js'
@@ -10,7 +10,7 @@ export interface ValueConverter<T> {
   to: (value: RichValue) => T
 }
 
-export function required<T>(converter: ValueConverter<T | undefined>): ValueConverter<T> {
+export function required_<T>(converter: ValueConverter<T | undefined>): ValueConverter<T> {
   return {
     from: (value: T | undefined) => {
       if (value == null) {
@@ -27,7 +27,7 @@ export function required<T>(converter: ValueConverter<T | undefined>): ValueConv
   }
 }
 
-export function array<T>(converter: ValueConverter<T>): ValueConverter<T[]> {
+export function array_<T>(converter: ValueConverter<T>): ValueConverter<T[]> {
   return {
     from: (value: T[]) => {
       return {
@@ -42,7 +42,7 @@ export function array<T>(converter: ValueConverter<T>): ValueConverter<T[]> {
   }
 }
 
-export function enumerate<T extends string | number>(values: Record<T, string>): ValueConverter<T> {
+export function enumerate_<T extends string | number>(values: Record<T, string>): ValueConverter<T> {
   return {
     from: (value?: T) => {
       if (value == null) {
@@ -60,7 +60,7 @@ export function enumerate<T extends string | number>(values: Record<T, string>):
   }
 }
 
-export function objectId<T>(): ValueConverter<T | ID> {
+export function objectId_<T>(): ValueConverter<T | ID> {
   return {
     from: (value: T | ID) => {
       if (typeof value == 'string') {
@@ -208,8 +208,8 @@ export const BigDecimalConverter: ValueConverter<BigDecimal | undefined> = {
   }
 }
 
-export const BigIntConverter: ValueConverter<BigInt | undefined> = {
-  from: (value?: BigInt) => {
+export const BigIntConverter: ValueConverter<bigint | undefined> = {
+  from: (value?: bigint) => {
     if (value == null) {
       return {
         nullValue: RichValue_NullValue.NULL_VALUE

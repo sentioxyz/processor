@@ -3,7 +3,8 @@ import { StoreContext } from './context.js'
 import { DatabaseSchema, toBigInteger } from '../core/index.js'
 import { BigDecimal } from '@sentio/bigdecimal'
 import { Bytes, DateTime, Float, ID, Int } from './types.js'
-import { DBRequest_DBOperator, DBResponse, RichStruct, RichValue, RichValue_NullValue } from '@sentio/protos'
+import { DBRequest_DBOperator, DBResponse } from '@sentio/protos'
+import type { RichStruct, RichValue } from '@sentio/protos'
 
 type Value = ID | string | Int | Float | boolean | DateTime | Bytes | BigDecimal | bigint
 
@@ -124,7 +125,7 @@ const ops = {
 
 function serialize(v: any): RichValue {
   if (v == null) {
-    return { nullValue: RichValue_NullValue.NULL_VALUE }
+    return { nullValue: 0 }
   }
   if (typeof v == 'boolean') {
     return { boolValue: v }
@@ -162,7 +163,7 @@ function serialize(v: any): RichValue {
     }
   }
   return {
-    nullValue: RichValue_NullValue.NULL_VALUE
+    nullValue: 0
   }
 }
 

@@ -2,7 +2,7 @@ import { ID } from './types.js'
 import { PluginManager } from '@sentio/runtime'
 import { Store } from './store.js'
 import { RichStruct } from '@sentio/protos'
-import { array, IDConverter, required, ValueConverter } from './convert.js'
+import { array_, IDConverter, required_, ValueConverter } from './convert.js'
 
 export interface EntityClass<T extends Entity> {
   new (data: any): T
@@ -10,7 +10,7 @@ export interface EntityClass<T extends Entity> {
 
 export class Entity {
   get id(): ID {
-    return this.get('id', required(IDConverter))
+    return this.get('id', required_(IDConverter))
   }
 
   protected fromPojo(data: any, converters: Record<string, ValueConverter<any>>) {
@@ -67,7 +67,7 @@ export class Entity {
   }
 
   protected getFieldObjectArray<T extends Entity>(entity: EntityClass<T>, field: string): Promise<T[]> {
-    const ids = this.get(field, array(IDConverter))
+    const ids = this.get(field, array_(IDConverter))
     const promises = ids.map((id: string) => this.getStore()?.get(entity, id))
     return Promise.all(promises) as Promise<T[]>
   }
