@@ -187,12 +187,14 @@ export const BigDecimalConverter: ValueConverter<BigDecimal | undefined> = {
         nullValue: RichValue_NullValue.NULL_VALUE
       }
     }
-    const e = value.multipliedBy(new BigDecimal(10).pow(value.e ?? 0)).toString()
+
+    const exp = value.decimalPlaces() ?? 0
+    const s = value.multipliedBy(new BigDecimal(10).pow(exp)).toFixed()
 
     return {
       bigdecimalValue: {
-        value: toBigInteger(BigInt(e)),
-        exp: value.e ?? 0
+        value: toBigInteger(BigInt(s)),
+        exp: exp
       }
     }
   },
