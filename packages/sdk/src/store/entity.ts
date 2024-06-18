@@ -47,7 +47,7 @@ export class Entity {
     return converter.to(value)
   }
 
-  set<T>(field: string, value: T | T[], serializer: ValueConverter<T>): void {
+  set<T>(field: string, value: T, serializer: ValueConverter<T>): void {
     if (Array.isArray(value)) {
       this._data.fields[field] = {
         listValue: { values: value.map((v) => serializer.from(v)) }

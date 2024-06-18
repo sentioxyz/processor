@@ -103,9 +103,11 @@ export class Store {
   }
 }
 
+export type Operators = '=' | '!=' | '<' | '<=' | '>' | '>=' | 'in' | 'not in'
+
 export interface ListFilter<T extends Entity> {
   field: keyof T
-  op: '=' | '!=' | 'lt' | 'le' | 'gt' | 'ge' | 'in' | 'not in'
+  op: Operators
   value: Value | Value[] | null
 }
 
@@ -113,13 +115,13 @@ export interface ListOptions<T extends Entity> {
   cursor: string
 }
 
-const ops = {
+const ops: Record<Operators, DBRequest_DBOperator> = {
   '=': DBRequest_DBOperator.EQ,
   '!=': DBRequest_DBOperator.NE,
-  lt: DBRequest_DBOperator.LT,
-  le: DBRequest_DBOperator.LE,
-  gt: DBRequest_DBOperator.GT,
-  ge: DBRequest_DBOperator.GE,
+  '<': DBRequest_DBOperator.LT,
+  '<=': DBRequest_DBOperator.LE,
+  '>': DBRequest_DBOperator.GT,
+  '>=': DBRequest_DBOperator.GE,
   in: DBRequest_DBOperator.IN,
   'not in': DBRequest_DBOperator.NOT_IN
 }

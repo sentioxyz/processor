@@ -104,11 +104,11 @@ const graphqlTypes = Object.entries(JsTypes).reduce(
   {} as Record<string, string>
 )
 
-function genType(type: GraphQLOutputType): string {
+function genType(type: GraphQLOutputType, required?: boolean): string {
   if (type instanceof GraphQLNonNull) {
-    return genType(type.ofType)
+    return genType(type.ofType, true)
   } else if (type instanceof GraphQLScalarType) {
-    return type.name
+    return required ? type.name : `${type.name} | undefined`
   } else if (type instanceof GraphQLObjectType || type instanceof GraphQLInterfaceType) {
     return type.name
   } else if (type instanceof GraphQLList) {
@@ -167,7 +167,6 @@ function genField(field: GraphQLField<any, any>) {
   const directives = field.astNode?.directives?.map((d) => '\t' + directive2decorator(d) + '\n') || []
 
   const type = genType(field.type)
-  const returnType = isNonNull ? type : `${type} | undefined`
 
   if (isObject(field.type)) {
     const t = getElementType(field.type)
@@ -187,12 +186,7 @@ function genField(field: GraphQLField<any, any>) {
   get ${field.name}Id(): ID | undefined { return this.get("${field.name}", IDConverter) }`
   }
 
-  if (isList(field.type)) {
-    return `${directives.join()}\tget ${field.name}(): ${returnType}[] { return this.getArray("${field.name}", ${getConverter(field.type)}) }
-    set ${field.name}(value: ${type}[]) { this.set("${field.name}", value, ${getConverter(field.type)}) }
-    `
-  }
-  return `${directives.join()}\tget ${field.name}(): ${returnType} { return this.get("${field.name}", ${getConverter(field.type)}) }
+  return `${directives.join()}\tget ${field.name}(): ${type} { return this.get("${field.name}", ${getConverter(field.type)}) }
   set ${field.name}(value: ${type}) { this.set("${field.name}", value, ${getConverter(field.type)}) }`
 }
 

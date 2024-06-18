@@ -7,6 +7,8 @@ type Transaction @entity {
   raw: Bytes
   count: Int
   value: Float
+  arrayValue: [String]!
+  arrayValue2: [String!]
   receipts: [TransactionReceipt!]! @derivedFrom(field: "transaction")
 }
 
