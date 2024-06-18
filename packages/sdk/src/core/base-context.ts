@@ -5,7 +5,7 @@ import { ChainId } from '@sentio/chain'
 import { mergeProcessResults, PluginManager } from '@sentio/runtime'
 import { Required } from 'utility-types'
 import { ServerError, Status } from 'nice-grpc'
-import type { Store } from '../store/store.js'
+import { Store } from '../store/store.js'
 
 export abstract class BaseContext {
   meter: Meter
@@ -71,8 +71,7 @@ export abstract class BaseContext {
   initStore() {
     const dbContext = PluginManager.INSTANCE.dbContextLocalStorage.getStore()
     if (dbContext) {
-      const module = import('../store/store.js')
-      module.then((module) => (this._store = new module.Store(dbContext)))
+      this._store = new Store(dbContext)
     }
   }
 }

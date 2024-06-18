@@ -1,7 +1,5 @@
 import { RichStruct, RichValue, RichValue_NullValue } from '@sentio/protos'
 import { String, Int, Float, ID, Bytes, DateTime, Boolean } from './types.js'
-import { bytesToBigInt } from '../utils/index.js'
-import { toBigInteger } from '../core/index.js'
 import { Entity } from './entity.js'
 import { BigDecimal } from '@sentio/bigdecimal'
 
@@ -193,7 +191,7 @@ export const BigDecimalConverter: ValueConverter<BigDecimal | undefined> = {
 
     return {
       bigdecimalValue: {
-        value: toBigInteger(e),
+        value: toBigInteger(BigInt(e)),
         exp: value.e ?? 0
       }
     }
@@ -242,5 +240,30 @@ export class StructConverter<T extends Entity> {
       }
     }
     return { fields }
+  }
+}
+
+export function bytesToBigInt(bytes: Uint8Array) {
+  let intValue = BigInt(0)
+  for (let i = 0; i < bytes.length; i++) {
+    intValue = intValue * BigInt(256) + BigInt(bytes[i])
+  }
+  return intValue
+}
+
+export function toBigInteger(a: bigint) {
+  const negative = a < 0
+  if (negative) {
+    a = -a
+  }
+  let hex = a.toString(16)
+  if (hex.length % 2 === 1) {
+    hex = '0' + hex
+  }
+  const buffer = Buffer.from(hex, 'hex')
+
+  return {
+    negative: negative,
+    data: new Uint8Array(buffer)
   }
 }
