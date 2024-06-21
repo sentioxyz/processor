@@ -32,7 +32,7 @@ export function Entity(name: string) {
   return function <T extends Constructor>(BaseClass: T) {
     return class extends BaseClass {
       static entityName = name
-      readonly _data: RichStruct = { fields: {}, entityName: name }
+      readonly _data: RichStruct = { fields: {} }
 
       constructor(...args: any[]) {
         super()
@@ -89,11 +89,7 @@ export function Entity(name: string) {
           }
           const initData = args[0]
           if (initData) {
-            for (const [key, value] of Object.entries(initData)) {
-              if (this.hasOwnProperty(key)) {
-                this[key] = value
-              }
-            }
+            Object.assign(this, initData)
           }
         }
       }
