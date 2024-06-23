@@ -122,6 +122,19 @@ export class Store {
     }
   }
 
+  async listPromise<T extends Entity>(entity: EntityClass<T>, filters?: ListFilter<T>[]) {
+    // TODO Array.fromAsync when upgrade to node 22
+    return this.fromAsync(this.list(entity, filters))
+  }
+
+  private async fromAsync<T>(gen: AsyncIterable<T>): Promise<T[]> {
+    const out: T[] = []
+    for await (const x of gen) {
+      out.push(x)
+    }
+    return out
+  }
+
   private newEntity<T extends Entity>(entity: EntityClass<T> | string, data: EntityStruct) {
     if (typeof entity == 'string') {
       let en = DatabaseSchema.findEntity(entity)
