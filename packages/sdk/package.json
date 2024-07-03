@@ -60,7 +60,8 @@
     "gen:store": "tsx src/store/run.ts src/store/tests src/store/tests/generated",
     "gen:sui": "tsx src/sui/codegen/run.ts src/sui/abis src/sui/builtin && pnpm gen:sui_test",
     "gen:sui_test": "tsx src/sui/codegen/run.ts src/sui/tests/abis src/sui/tests/types",
-    "test": "glob -c 'tsx --test' '**/*.test.ts'"
+    "test": "glob -c 'tsx --test' '**/*.test.ts'",
+    "test:sparknet": "tsx --test src/starknet/tests/event.test.ts"
   },
   "resolutions": {
     "ethers": "npm:@sentio/ethers@6.13.1"
@@ -98,6 +99,7 @@
     "prettier2": "npm:prettier@2.8.8",
     "radash": "^12.0.0",
     "reflect-metadata": "^0.2.2",
+    "starknet": "^5.24.3",
     "superstruct_solana": "npm:superstruct@^0.14.2",
     "typechain": "^8.3.2",
     "utility-types": "^3.11.0",
