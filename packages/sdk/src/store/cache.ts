@@ -6,8 +6,7 @@ export interface Entity {
 }
 
 export class LocalCache {
-
-  private cache: Map<string,  EntityStruct>;
+  private cache: Map<string, EntityStruct> = new Map()
 
   getKey(entity: string, id: ID) {
     return `${entity}-${id}`
@@ -22,7 +21,7 @@ export class LocalCache {
   }
 
   set(entity: EntityStruct) {
-    const id = entity.data?.fields["id"].stringValue
+    const id = entity.data?.fields['id'].stringValue
     if (id) {
       const key = this.getKey(entity.entity, id)
       let fields = entity.data?.fields || {}
@@ -33,14 +32,14 @@ export class LocalCache {
       this.cache.set(key, {
         ...entity,
         data: {
-          fields,
+          fields
         }
       })
     }
   }
 
   delete(entityName: string, id: string | undefined) {
-    if(id) {
+    if (id) {
       this.cache.delete(this.getKey(entityName, id))
     }
   }
