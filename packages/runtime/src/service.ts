@@ -30,16 +30,13 @@ import { freezeGlobalConfig, GLOBAL_CONFIG } from './global-config.js'
 
 import { StoreContext } from './db-context.js'
 import { Subject } from 'rxjs'
-import { metrics } from '@opentelemetry/api'
 import { getProvider } from './provider.js'
 import { EthChainId } from '@sentio/chain'
 import { Provider } from 'ethers'
 import { decodeMulticallResult, encodeMulticallData, getMulticallAddress, Multicall3Call } from './multicall.js'
 
-const meter = metrics.getMeter('processor_service')
-const process_binding_count = meter.createCounter('process_binding_count')
-const process_binding_time = meter.createCounter('process_binding_time')
-const process_binding_error = meter.createCounter('process_binding_error')
+import { processMetrics, providerMetrics, dbMetrics } from './metrics.js'
+const { process_binding_count, process_binding_time, process_binding_error } = processMetrics
 
 ;(BigInt.prototype as any).toJSON = function () {
   return this.toString()
@@ -430,6 +427,8 @@ export class ProcessorServiceImpl implements ProcessorServiceImplementation {
               console.debug('processBinding', request.processId, ' took', cost, 'ms')
               process_binding_time.add(cost)
               contexts.delete(request.processId)
+              console.debug('db stats', JSON.stringify(dbMetrics.stats()))
+              console.debug('provider stats', JSON.stringify(providerMetrics.stats()))
             })
         }
         if (request.dbResult) {
