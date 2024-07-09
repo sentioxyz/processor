@@ -4,7 +4,7 @@ import assert from 'assert'
 
 import sierra from './testsierra.json'
 
-import test_events_data from './events.json'
+import test_events_data from './events-data.json'
 
 describe('Test Starknet event decode', () => {
   it('event name to keys', () => {
@@ -14,8 +14,8 @@ describe('Test Starknet event decode', () => {
 
     const parsedEvent = events.parseEvents(test_events_data.result.events, abiEvents, abiStructs, abiEnums)[0]
 
-    assert.ok(parsedEvent['VoteEvent'])
-    assert.equal(parsedEvent['VoteEvent'].vote, 1n)
+    assert.ok(parsedEvent['contracts::VotingContract::VoteEvent'])
+    assert.equal(parsedEvent['contracts::VotingContract::VoteEvent'].vote, 1n)
 
     assert.equal(
       hash.getSelectorFromName('VoteEvent'),
