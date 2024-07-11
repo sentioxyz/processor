@@ -71,11 +71,10 @@ async function codegenInternal(abisDir: string, outDir: string): Promise<number>
     content.push(
       `import { StarknetProcessorConfig, StarknetEvent, AbstractStarknetProcessor, StarknetTypedContext } from '@sentio/sdk/starknet'`
     )
-    content.push(`import { EventToPrimitiveType } from "@sentio/abi-wan-kanabi"`)
-    content.push(`import { TypedContractV2, Abi } from "starknet"`)
+    content.push(`import { EventToPrimitiveType, TypedContractView, Abi } from "@sentio/abi-wan-kanabi"`)
     content.push(`import { ABI_${name} } from "./tabi.js"\n`)
+    content.push(`export type ${name} = TypedContractView<typeof ABI_${name}>`)
 
-    content.push(`export type ${name} = TypedContractV2<typeof ABI_${name}>`)
     const eventMap: Record<string, string> = {}
     for (const e of Object.values(events.getAbiEvents(abi))) {
       const fullName = e.name as string

@@ -1,6 +1,6 @@
 import { Data_StarknetEvent, ProcessResult } from '@sentio/protos'
 import { StarknetChainId } from '@sentio/chain'
-import { Abi, CallData, constants, events, ParsedEvent, RpcProvider, TypedContractV2 } from 'starknet'
+import { CallData, constants, events, ParsedEvent, RpcProvider } from 'starknet'
 import { StarknetContext, StarknetTypedContext } from './context.js'
 import { StarknetEvent } from './event.js'
 import { ListStateStorage, mergeProcessResults } from '@sentio/runtime'
@@ -62,6 +62,7 @@ export class StarknetProcessor {
               this.config,
               this.provider,
               block_number,
+              block_hash,
               transaction_hash,
               i,
               this.classHash
@@ -119,10 +120,7 @@ export abstract class AbstractStarknetProcessor {
     StarknetProcessorState.INSTANCE.addValue(this.processor)
   }
 
-  onEvent<T, C extends TypedContractV2<Abi>>(
-    eventName: string,
-    handler: (event: StarknetEvent<T>, ctx: StarknetTypedContext<C>) => void
-  ) {
+  onEvent<T, C>(eventName: string, handler: (event: StarknetEvent<T>, ctx: StarknetTypedContext<C>) => void) {
     this.processor.onEvent(eventName, (events, ctx) => {
       const eventData = events.data[eventName] as T
       const e = new StarknetEvent<T>(events.caller, events.transactionHash, eventData)

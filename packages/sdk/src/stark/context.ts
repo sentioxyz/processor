@@ -1,8 +1,10 @@
 import { ChainId } from '@sentio/chain'
 import { RecordMetaData } from '@sentio/protos'
 import { BaseContext, Labels, normalizeLabels } from '../core/index.js'
-import { Provider, Contract, Abi, RpcProvider, TypedContractV2 } from 'starknet'
+import { Contract, Provider, RpcProvider } from 'starknet'
 import { StarknetProcessorConfig } from './types.js'
+import { Abi } from '@sentio/abi-wan-kanabi'
+import { StarknetContractView } from './contract.js'
 
 class AbstractContext extends BaseContext {
   constructor(
@@ -10,6 +12,7 @@ class AbstractContext extends BaseContext {
     readonly contractAddress: string,
     readonly chainId: ChainId | string,
     readonly blockNumber: number,
+    readonly blockHash: string,
     readonly transactionHash: string,
     readonly logIndex: number = -1,
     readonly contractName: string = '',
@@ -43,7 +46,8 @@ export class StarknetContext extends AbstractContext {
   constructor(
     private readonly config: StarknetProcessorConfig,
     provider: RpcProvider,
-    block_number: number,
+    blockNumber: number,
+    blockHash: string,
     transaction_hash: string,
     logIndex: number,
     private readonly classHash: string
@@ -52,7 +56,8 @@ export class StarknetContext extends AbstractContext {
       provider,
       config.address,
       config.chainId,
-      block_number,
+      blockNumber,
+      blockHash,
       transaction_hash,
       logIndex,
       config.name ?? classHash.slice(0, 8),
@@ -70,11 +75,12 @@ export class StarknetContext extends AbstractContext {
     return this._contract
   }
 
-  toTyped<CT extends TypedContractV2<Abi>>() {
+  toTyped<CT>() {
     return new StarknetTypedContext<CT>(
       this.config,
       this.provider,
       this.blockNumber,
+      this.blockHash,
       this.transactionHash,
       this.logIndex,
       this.classHash
@@ -82,13 +88,14 @@ export class StarknetContext extends AbstractContext {
   }
 }
 
-export class StarknetTypedContext<T extends TypedContractV2<Abi>> extends AbstractContext {
-  private _contract: Contract
+export class StarknetTypedContext<T> extends AbstractContext {
+  private _contract: StarknetContractView
 
   constructor(
     config: StarknetProcessorConfig,
     provider: RpcProvider,
-    block_number: number,
+    blockNumber: number,
+    blockHash: string,
     transaction_hash: string,
     logIndex: number,
     classHash: string
@@ -97,7 +104,8 @@ export class StarknetTypedContext<T extends TypedContractV2<Abi>> extends Abstra
       provider,
       config.address,
       config.chainId,
-      block_number,
+      blockNumber,
+      blockHash,
       transaction_hash,
       logIndex,
       config.name ?? classHash.slice(0, 8),
@@ -110,8 +118,8 @@ export class StarknetTypedContext<T extends TypedContractV2<Abi>> extends Abstra
       throw new Error('abi not found')
     }
     if (!this._contract) {
-      this._contract = new Contract(this.abi, this.contractAddress, this.provider)
+      this._contract = new StarknetContractView(this.abi, this.contractAddress, this.provider, this.blockNumber)
     }
-    return this._contract.typedv2(this.abi) as T
+    return this._contract as T
   }
 }
