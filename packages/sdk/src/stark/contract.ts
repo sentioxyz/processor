@@ -6,6 +6,7 @@ import {
   Contract,
   Result,
   RpcProvider,
+  CallData,
   splitArgsAndOptions
 } from 'starknet'
 import { Abi } from '@sentio/abi-wan-kanabi'
@@ -20,8 +21,9 @@ export class StarknetContractView {
     readonly blockNumber: number
   ) {
     this._contract = new Contract(abi, address, provider)
+    const callData = new CallData(abi)
 
-    for (const fn of abi) {
+    for (const fn of callData.abi) {
       if (fn.type == 'function' && fn.state_mutability == 'view') {
         const signature = fn.name
         Object.defineProperty(this, signature, {

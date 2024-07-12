@@ -1,10 +1,11 @@
 import { Data_StarknetEvent, ProcessResult } from '@sentio/protos'
 import { StarknetChainId } from '@sentio/chain'
 import { CallData, constants, events, ParsedEvent, RpcProvider } from 'starknet'
-import { StarknetContext, StarknetTypedContext } from './context.js'
+import { StarknetContext } from './context.js'
 import { StarknetEvent } from './event.js'
 import { ListStateStorage, mergeProcessResults } from '@sentio/runtime'
 import { StarknetProcessorConfig } from './types.js'
+import { StarknetContractView } from './contract.js'
 
 export class StarknetProcessor {
   callHandlers: CallHandler<Data_StarknetEvent>[] = []
@@ -38,7 +39,7 @@ export class StarknetProcessor {
 
   public onEvent(
     event: string | string[],
-    handler: (events: StarknetEvent<ParsedEvent>, ctx: StarknetContext) => void | Promise<void>
+    handler: (events: StarknetEvent<ParsedEvent>, ctx: StarknetContext<StarknetContractView>) => void | Promise<void>
   ) {
     const eventFilter = Array.isArray(event) ? event : [event]
     if (!this.config.abi) {
@@ -58,7 +59,7 @@ export class StarknetProcessor {
           const results: ProcessResult[] = []
           const { block_hash, block_number, transaction_hash, from_address } = call.result!
           for (let i = 0; i < parsedEvents.length; i++) {
-            const ctx = new StarknetContext(
+            const ctx = new StarknetContext<StarknetContractView>(
               this.config,
               this.provider,
               block_number,
@@ -68,7 +69,11 @@ export class StarknetProcessor {
               this.classHash
             )
             const e = new StarknetEvent(from_address, transaction_hash, parsedEvents[i])
-            await handler(e, ctx)
+            try {
+              await handler(e, ctx)
+            } catch (e) {
+              console.error(e)
+            }
             results.push(ctx.stopAndGetResult())
           }
           return mergeProcessResults(results)
@@ -120,11 +125,16 @@ export abstract class AbstractStarknetProcessor {
     StarknetProcessorState.INSTANCE.addValue(this.processor)
   }
 
-  onEvent<T, C>(eventName: string, handler: (event: StarknetEvent<T>, ctx: StarknetTypedContext<C>) => void) {
-    this.processor.onEvent(eventName, (events, ctx) => {
-      const eventData = events.data[eventName] as T
+  onEvent<T, C>(
+    eventName: string,
+    structName: string,
+    handler: (event: StarknetEvent<T>, ctx: StarknetContext<C>) => Promise<void>
+  ) {
+    this.processor.onEvent(eventName, async (events, ctx) => {
+      const eventData = events.data[structName] as T
       const e = new StarknetEvent<T>(events.caller, events.transactionHash, eventData)
-      handler(e, ctx.toTyped<C>())
+      await handler(e, ctx as StarknetContext<C>)
     })
+    return this
   }
 }

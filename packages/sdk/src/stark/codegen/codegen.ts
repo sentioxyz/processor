@@ -4,6 +4,7 @@ import path from 'path'
 import mkdirp from 'mkdirp'
 import { events } from 'starknet'
 import { StarknetChainId } from '@sentio/chain'
+import { Abi } from '@sentio/abi-wan-kanabi'
 
 export async function codegen(abisDir: string, outDir: string) {
   if (!fs.existsSync(abisDir)) {
@@ -19,6 +20,7 @@ async function codegenInternal(abisDir: string, outDir: string): Promise<number>
 
   const abis: Record<string, any> = {}
   let fileCount = 0
+
   function guessNameFromAbi(abi: any, address: string) {
     if (Array.isArray(abi)) {
       const arr = abi as any[]
@@ -66,20 +68,29 @@ async function codegenInternal(abisDir: string, outDir: string): Promise<number>
   mkdirp.sync(outDir)
   writeFileSync(path.join(outDir, 'tabi.ts'), tABIContents.join('\n'))
   fileCount++
-  for (const { name, address, chain, abi } of Object.values(abis)) {
+  for (const { name, address, chain, abi: jsonAbi } of Object.values(abis)) {
     const content: string[] = []
     content.push(
-      `import { StarknetProcessorConfig, StarknetEvent, AbstractStarknetProcessor, StarknetTypedContext } from '@sentio/sdk/starknet'`
+      `import { StarknetProcessorConfig, StarknetEvent, AbstractStarknetProcessor, StarknetContext } from '@sentio/sdk/starknet'`
     )
     content.push(`import { EventToPrimitiveType, TypedContractView, Abi } from "@sentio/abi-wan-kanabi"`)
     content.push(`import { ABI_${name} } from "./tabi.js"\n`)
     content.push(`export type ${name} = TypedContractView<typeof ABI_${name}>`)
-
+    const abi = jsonAbi as Abi
+    const abiEventsEnums = abi.filter((obj) => obj.type == 'event' && obj.kind === 'enum')
     const eventMap: Record<string, string> = {}
-    for (const e of Object.values(events.getAbiEvents(abi))) {
-      const fullName = e.name as string
-      const parts = fullName.split('::')
-      const eventName = parts[parts.length - 1]
+    for (const ev of Object.values(events.getAbiEvents(abi))) {
+      const fullName = ev.name as string
+      let eventName = fullName
+      for (const e of abiEventsEnums) {
+        for (const v of e.variants) {
+          if (v.type === fullName) {
+            eventName = v.name
+            break
+          }
+        }
+      }
+
       eventMap[eventName] = fullName
       content.push(`export type ${eventName} = EventToPrimitiveType<typeof ABI_${name}, "${fullName}">`)
     }
@@ -98,9 +109,9 @@ async function codegenInternal(abisDir: string, outDir: string): Promise<number>
       return new ${name}Processor(ABI_${name}, config)
   }`)
 
-    for (const [eventName, fullname] of Object.entries(eventMap)) {
-      content.push(`\ton${eventName}(handler: (event: StarknetEvent<${eventName}>, ctx: StarknetTypedContext<${name}>) => void) {
-    this.onEvent<${eventName}, ${name}>("${eventName}", handler)
+    for (const [eventName, structName] of Object.entries(eventMap)) {
+      content.push(`\ton${eventName}(handler: (event: StarknetEvent<${eventName}>, ctx: StarknetContext<${name}>) => Promise<void>) {
+    return this.onEvent<${eventName}, ${name}>("${eventName}", "${structName}", handler)
   }`)
     }
 

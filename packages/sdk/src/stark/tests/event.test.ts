@@ -21,5 +21,10 @@ describe('Test Starknet event decode', () => {
       hash.getSelectorFromName('VoteEvent'),
       '0x28d90b3294abf675757c5f5bbcdb07c80d54c4493bf7780c894065cd7ffd2ad'
     )
+
+    assert.equal(
+      hash.getSelectorFromName('VoteEvent2'),
+      '0x287049ef9132747da4b46b0611d0e98f9e41853662bb58086713cd1125c66b1'
+    )
   })
 })

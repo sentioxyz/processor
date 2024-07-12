@@ -1,3 +1,5 @@
+export { StarknetPlugin } from './starknet-plugin.js'
+
 export * from './starknet-processor.js'
 
 export { StarknetChainId } from '@sentio/chain'
