@@ -50,10 +50,10 @@ export function getFullSignatureForFunction(fn: FunctionDeclaration): string {
 }
 
 export function getFullSignatureWithOutputForFn(fn: FunctionDeclaration) {
-  return `${fn.name}(${fn.inputs.map((i) => getArgumentForSignature(i)).join(',')}) ${fn.stateMutability} returns (${fn.outputs
+  return `${fn.name}(${fn.inputs.map((i) => getArgumentForSignature(i)).join(', ')}) ${fn.stateMutability} returns (${fn.outputs
     .map((i) => getOutputArgumentForSignature(i))
     .filter((s) => s != '')
-    .join(',')})`
+    .join(', ')})`
 }
 
 function getOutputArgumentForSignature(argument: AbiOutputParameter) {
@@ -65,18 +65,21 @@ function getOutputArgumentForSignature(argument: AbiOutputParameter) {
 
 function getArgumentForSignature(argument: EventArgDeclaration | AbiParameter): string {
   if (argument.type.originalType === 'tuple') {
-    return `(${(argument.type as TupleType).components.map((i) => getArgumentForSignature(i) + ' ' + argument.name).join(',')})`
+    return `(${(argument.type as TupleType).components.map((i) => getTypeWithName(getArgumentForSignature(i), argument.name)).join(', ')})`
   } else if (argument.type.originalType.startsWith('tuple')) {
     const arr = argument.type as ArrayType
-    return (
+    return getTypeWithName(
       `${getArgumentForSignature({
         name: '',
         type: arr.itemType
-      })}[${arr.size?.toString() || ''}]` +
-      ' ' +
+      })}[${arr.size?.toString() || ''}]`,
       argument.name
     )
   } else {
-    return argument.type.originalType + ' ' + argument.name
+    return getTypeWithName(argument.type.originalType, argument.name)
   }
+}
+
+function getTypeWithName(type: string, name?: string) {
+  return (name ?? '').length > 0 ? `${type} ${name}` : type
 }
