@@ -134,44 +134,59 @@ async function codegenInternal(schema: GraphQLSchema, source: string, target: st
       })
     }
   }
+
   for (const t of Object.values(schema.getTypeMap())) {
     if (t.name.startsWith('__')) {
       continue
     }
 
     if (t instanceof GraphQLObjectType) {
-      const fields: Field[] = []
-      for (const f of Object.values(t.getFields())) {
-        const type = genType(f.type)
-        const annotations: string[] = []
-        addTypeAnnotations(f.type, annotations)
-        if (isRelationType(f.type)) {
-          fields.push({
-            name: f.name,
-            type: `Promise<${type}>`,
-            annotations
-          })
-          const isMany = type.startsWith('Array')
-          fields.push({
-            name: f.name + 'ID' + (isMany ? 's' : ''),
-            type: isMany ? `Array<ID | undefined>` : `ID`,
-            annotations: []
-          })
-        } else {
-          fields.push({
+      if (isEntity(t)) {
+        const fields: Field[] = []
+        for (const f of Object.values(t.getFields())) {
+          const type = genType(f.type)
+          const annotations: string[] = []
+          addTypeAnnotations(f.type, annotations)
+          if (isRelationType(f.type)) {
+            fields.push({
+              name: f.name,
+              type: `Promise<${type}>`,
+              annotations
+            })
+            const isMany = type.startsWith('Array')
+            fields.push({
+              name: f.name + 'ID' + (isMany ? 's' : ''),
+              type: isMany ? `Array<ID | undefined>` : `ID`,
+              annotations: []
+            })
+          } else {
+            fields.push({
+              name: f.name,
+              optional: !f.type.toString().endsWith('!'),
+              type: type.replace(' | undefined', ''),
+              annotations
+            })
+          }
+        }
+        classes.push({
+          name: t.name,
+          fields,
+          annotations: [`@Entity("${t.name}")`],
+          interfaces: t.getInterfaces().map((i) => i.name)
+        })
+      } else {
+        classes.push({
+          name: t.name,
+          fields: Object.values(t.getFields()).map((f) => ({
             name: f.name,
             optional: !f.type.toString().endsWith('!'),
-            type: type.replace(' | undefined', ''),
-            annotations
-          })
-        }
+            type: genType(f.type).replace(' | undefined', ''),
+            annotations: []
+          })),
+          annotations: [],
+          interfaces: t.getInterfaces().map((i) => i.name)
+        })
       }
-      classes.push({
-        name: t.name,
-        fields,
-        annotations: [`@Entity("${t.name}")`],
-        interfaces: t.getInterfaces().map((i) => i.name)
-      })
     }
   }
 
@@ -205,9 +220,7 @@ export class ${c.name} ${c.interfaces.length > 0 ? `implements ${c.interfaces.jo
 ${c.fields
   .map((f) => `${f.annotations.map((a) => `\n\t${a}`).join('')}\n\t${f.name}${f.optional ? '?' : ''}: ${f.type}`)
   .join('\n')}
-
-  constructor(data: Partial<${c.name}>) {}
-
+  ${c.annotations.some((a) => a.startsWith('@Entity')) ? `constructor(data: Partial<${c.name}>) {}` : ''}
 }`
   )
   .join('\n')}
@@ -255,4 +268,8 @@ function isRelationType(type: GraphQLOutputType): boolean {
   } else {
     return false
   }
+}
+
+function isEntity(t: GraphQLObjectType) {
+  return t.astNode?.directives?.some((d) => d.name.value == 'entity')
 }
