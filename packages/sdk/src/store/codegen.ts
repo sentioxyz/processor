@@ -34,6 +34,7 @@ interface Class {
   name: string
   fields: Field[]
   annotations: string[]
+  parent?: string
   interfaces: string[]
 }
 
@@ -98,7 +99,7 @@ async function codegenInternal(schema: GraphQLSchema, source: string, target: st
     },
     {
       module: '@sentio/sdk/store',
-      types: ['Entity', 'Required', 'One', 'Many', 'Column', 'ListColumn']
+      types: ['Entity', 'Required', 'One', 'Many', 'Column', 'ListColumn', 'AbstractEntity']
     },
     {
       module: '@sentio/bigdecimal',
@@ -172,6 +173,7 @@ async function codegenInternal(schema: GraphQLSchema, source: string, target: st
           name: t.name,
           fields,
           annotations: [`@Entity("${t.name}")`],
+          parent: 'AbstractEntity',
           interfaces: t.getInterfaces().map((i) => i.name)
         })
       } else {
@@ -216,11 +218,11 @@ ${classes
   .map(
     (c) => `
 ${c.annotations.join('\n')}
-export class ${c.name} ${c.interfaces.length > 0 ? `implements ${c.interfaces.join(', ')}` : ''} {
+export class ${c.name} ${c.parent ? `extends ${c.parent}` : ''} ${c.interfaces.length > 0 ? `implements ${c.interfaces.join(', ')}` : ''} {
 ${c.fields
   .map((f) => `${f.annotations.map((a) => `\n\t${a}`).join('')}\n\t${f.name}${f.optional ? '?' : ''}: ${f.type}`)
   .join('\n')}
-  ${c.annotations.some((a) => a.startsWith('@Entity')) ? `constructor(data: Partial<${c.name}>) {}` : ''}
+  ${c.annotations.some((a) => a.startsWith('@Entity')) ? `constructor(data: Partial<${c.name}>) {super()}` : ''}
 }`
   )
   .join('\n')}
