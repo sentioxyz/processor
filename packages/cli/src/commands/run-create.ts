@@ -8,6 +8,7 @@ import process from 'process'
 import { execYarn } from '../execution.js'
 import { getPackageRoot } from '../utils.js'
 import { EthChainInfo, EthChainId } from '@sentio/chain'
+import { Eta } from 'eta'
 
 export async function runCreate(argv: string[]) {
   const supportedChain: EthChainId[] = Object.values(EthChainInfo).map((chain) => chain.chainId)
@@ -83,6 +84,7 @@ export async function runCreate(argv: string[]) {
     console.log(usage)
   } else {
     const chainType: string = options['chain-type'].toLowerCase()
+    const chainId: string = options['chain-id']
     switch (chainType) {
       case 'eth':
         break
@@ -168,6 +170,20 @@ export async function runCreate(argv: string[]) {
 
       fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2))
     }
+    const eta = new Eta()
+    const chainInfo = EthChainInfo[chainId]
+    const data = {
+      address: chainInfo.wrappedTokenAddress
+    }
+    fs.readdirSync(dstFolder, { recursive: true }).forEach((p) => {
+      if (typeof p != 'string' || !p.endsWith('.ts')) {
+        return
+      }
+      const item = path.join(dstFolder, p)
+      const template = fs.readFileSync(item, 'utf8')
+      const content = eta.renderString(template, data)
+      fs.writeFileSync(item, content)
+    })
     console.log(chalk.green("successfully create project '" + projectFullName + "'"))
     if (!options.subproject) {
       console.log(chalk.green('running yarn install for initialization'))
