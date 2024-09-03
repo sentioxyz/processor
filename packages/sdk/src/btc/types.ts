@@ -93,32 +93,103 @@ export class BTCContext extends BaseContext {
   }
 }
 
-export type TransactionFilter = {
-  field:
-    | 'vin.txid'
-    | 'vin.vout'
-    | 'vin.is_coinbase'
-    | 'vin.scriptsig'
-    | 'vin.scriptsig_asm'
-    | 'vout.scriptpubkey'
-    | 'vout.scriptpubkey_asm'
-    | 'vout.scriptpubkey_type'
-    | 'vout.scriptpubkey_address'
-    | 'vout.value'
-    | 'status.block_height'
-    | 'status.block_hash'
-    | 'status.block_time'
-  prefix?: string
-  equals?: Comparable
+export type TransactionFields =
+  | 'block_hash'
+  | 'block_number'
+  | 'block_timestamp'
+  | 'transaction_hash'
+  | 'transaction_index'
+  | 'size'
+  | 'virtual_size'
+  | 'version'
+  | 'lock_time'
+  | 'input_count'
+  | 'output_count'
+
+export type VinFields =
+  | 'vin_index'
+  | 'coinbase'
+  | 'spent_transaction_hash'
+  | 'spent_output_index'
+  | 'sequence'
+  | 'witness'
+  | 'script_asm'
+  | 'script_hex'
+  | 'value'
+
+export type VOutFields =
+  | 'value'
+  | 'vout_index'
+  | 'script_asm'
+  | 'script_hex'
+  | 'script_type'
+  | 'script_address'
+  | 'script_reg_sigs'
+
+export type Filter<F extends string> = {
+  [K in F]?: Condition
+}
+
+export type Condition = {
+  eq?: Comparable
   gt?: Comparable
   gte?: Comparable
   lt?: Comparable
   lte?: Comparable
   ne?: Comparable
+  // string has the prefix
+  prefix?: string
+  // string contains
   contains?: string
   not_contains?: string
+  length_eq?: number
+  length_gt?: number
+  length_lt?: number
+  // array contains any of the values
+  has_any?: Array<string | Comparable>
+  // array contains all the values
+  has_all?: Array<string | Comparable>
+}
+
+export type Filters<T extends string> = Filter<T> | Filter<T>[]
+
+export type VinFilter = Filters<VinFields> & {
+  preVOut?: Filter<VOutFields>
+  preTransaction?: {
+    filter?: Array<Filter<TransactionFields>>
+    outputFilter?: Filters<VOutFields>
+    // can't have inputFilter here, we can only support one level of nesting
+  }
+}
+
+export type VOutFilter = Filters<VOutFields>
+
+export type TransactionFilter = {
+  inputFilter?: VinFilter
+  outputFilter?: VOutFilter
+  filter?: Array<Filter<TransactionFields>>
 }
 
 type Comparable = number | BigDecimal | bigint | Date
 
 export type TransactionFilters = TransactionFilter | TransactionFilter[]
+
+/*const stakingFilter: TransactionFilter = {
+  filter: [{ block_number: { gt: 800000 } }],
+  outputFilter: {
+    vout_index: { eq: 1 },
+    script_asm: { prefix: 'OP_RETURN 62626e31' }
+  }
+}
+
+const outboundFilter: TransactionFilter = {
+  filter: [{ block_number: { gt: 800000 } }],
+  inputFilter: {
+    preTransaction: {
+      outputFilter: {
+        vout_index: { eq: 1 },
+        script_asm: { prefix: 'OP_RETURN 62626e31' }
+      }
+    }
+  }
+}*/
