@@ -30,13 +30,13 @@ export type Condition = {
   // string contains
   contains?: string
   not_contains?: string
-  length_eq?: number
-  length_gt?: number
-  length_lt?: number
+  lengthEq?: number
+  lengthGt?: number
+  lengthLt?: number
   // array contains any of the values
-  has_any?: Array<Comparable>
+  hasAny?: Array<Comparable>
   // array contains all the values
-  has_all?: Array<Comparable>
+  hasAll?: Array<Comparable>
   in?: Array<Comparable>
 }
 
