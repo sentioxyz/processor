@@ -29,8 +29,8 @@ export type Condition = {
   prefix?: string
   // string contains
   contains?: string
-  not_contains?: string
-  lengthEq?: number
+  notContains?: string
+  length?: number
   lengthGt?: number
   lengthLt?: number
   // array contains any of the values
@@ -132,7 +132,9 @@ function toCondition(value: Condition | Comparable): BTCTransactionFilter_Condit
       case 'notContains':
         ret[k] = v.toString()
         break
-      case 'lengthEq':
+      case 'length':
+        ret['lengthEq'] = v
+        break
       case 'lengthGt':
       case 'lengthLt':
         ret[k] = v
