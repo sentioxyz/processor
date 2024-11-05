@@ -25,7 +25,7 @@ export interface YamlProjectConfig {
   contracts?: YamlContractConfig[]
   networkOverrides?: YamlNetworkOverride[]
   debug: boolean
-  type: string
+  type?: string
 }
 
 export function getFinalizedHost(host: string): string {
