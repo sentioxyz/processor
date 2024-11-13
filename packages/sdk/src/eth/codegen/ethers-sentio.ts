@@ -76,10 +76,7 @@ export default class EthersSentio extends Ethers.default {
         file.contents =
           `// @ts-nocheck
             import { newContract, newInterface } from '@sentio/sdk/eth'
-
-            ` +
-          file.contents.replaceAll('new Contract', 'newContract') +
-          file.contents.replaceAll('new Interface', 'newInterface') // those to reduce processor bundle code size
+            ` + file.contents.replaceAll('new Contract', 'newContract').replaceAll('new Interface', 'newInterface') // those to reduce processor bundle code size
       } else if (file.path.endsWith(join('factories', 'index.ts'))) {
         file.contents = file.contents.replaceAll("__factory'", "__factory.js'")
       } else if (file.path.endsWith('_processor.ts')) {
