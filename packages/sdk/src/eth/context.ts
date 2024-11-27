@@ -218,9 +218,7 @@ export class ContractContext<
 }
 
 export class ContractView<TContract extends BaseContract> {
-  protected contract: TContract
-
-  constructor(contract: TContract) {}
+  constructor(protected contract: TContract) {}
 
   get rawContract() {
     return this.contract

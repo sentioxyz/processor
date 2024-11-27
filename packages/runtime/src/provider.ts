@@ -6,7 +6,7 @@ import { EthChainId } from '@sentio/chain'
 import { LRUCache } from 'lru-cache'
 import { providerMetrics, processMetrics, metricsStorage } from './metrics.js'
 import { GLOBAL_CONFIG } from './global-config.js'
-const { miss_count, hit_count, total_duration, total_queued, queue_size } = providerMetrics
+const { miss_count, hit_count, queue_size } = providerMetrics
 
 export const DummyProvider = new JsonRpcProvider('', Network.from(1))
 
@@ -122,17 +122,30 @@ export class QueuedStaticJsonRpcProvider extends JsonRpcProvider {
     const tag = getTag(method, params)
     const block = params[params.length - 1]
     let perform = this.#performCache.get(tag)
-    let hitCache = false
     if (!perform) {
       miss_count.add(1)
       const queued: number = Date.now()
       perform = this.executor.add(() => {
         const started = Date.now()
-        total_queued.add(started - queued)
-
-        return super.send(method, params).finally(() => {
-          total_duration.add(Date.now() - started)
+        processMetrics.processor_rpc_queue_duration.record(started - queued, {
+          chain_id: this._network.chainId.toString(),
+          handler: metricsStorage.getStore()
         })
+
+        let success = true
+        return super
+          .send(method, params)
+          .catch((e) => {
+            success = false
+            throw e
+          })
+          .finally(() => {
+            processMetrics.processor_rpc_duration.record(Date.now() - started, {
+              chain_id: this._network.chainId.toString(),
+              handler: metricsStorage.getStore(),
+              success
+            })
+          })
       })
 
       queue_size.record(this.executor.size)
@@ -149,11 +162,9 @@ export class QueuedStaticJsonRpcProvider extends JsonRpcProvider {
         }, 60 * 1000)
       }
     } else {
-      hitCache = true
       hit_count.add(1)
     }
 
-    const startTs = Date.now()
     let result
     try {
       result = await perform
@@ -170,14 +181,6 @@ export class QueuedStaticJsonRpcProvider extends JsonRpcProvider {
         }
       }
       throw e
-    } finally {
-      if (!hitCache) {
-        processMetrics.processor_rpc_duration.record(Date.now() - startTs, {
-          handler: metricsStorage.getStore(),
-          chain_id: this._network.chainId.toString(),
-          success: this.#performCache.has(tag)
-        })
-      }
     }
     if (!result) {
       throw Error('Unexpected null response')

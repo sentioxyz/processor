@@ -143,17 +143,11 @@ export const providerMetrics = {
   hit_count: new C('provider_hit_count'),
   miss_count: new C('provider_miss_count'),
   queue_size: new G('provider_queue_size'),
-  total_duration: new C('provider_total_duration'),
-  total_queued: new C('provider_total_queued'),
   stats() {
     return {
       hit_count: this.hit_count.get(),
       miss_count: this.miss_count.get(),
-      queue_size: this.queue_size.get(),
-      total_duration: this.total_duration.get(),
-      total_queued: this.total_queued.get(),
-      average_queue_time: this.total_queued.get() / (this.hit_count.get() + this.miss_count.get()),
-      average_duration: this.total_duration.get() / (this.hit_count.get() + this.miss_count.get())
+      queue_size: this.queue_size.get()
     }
   }
 }
@@ -167,6 +161,7 @@ export const processMetrics = {
   process_pricecall_count: new C('process_pricecall_count'),
   processor_handler_duration: new H('processor_handler_duration'),
   processor_rpc_duration: new H('processor_rpc_duration'),
+  processor_rpc_queue_duration: new H('processor_rpc_queue_duration'),
   processor_template_instance_count: new C('process_template_instance_count'),
   stats() {
     return {
@@ -178,6 +173,7 @@ export const processMetrics = {
       process_pricecall_count: this.process_pricecall_count.get(),
       processor_handler_duration: this.processor_handler_duration.get(),
       processor_rpc_duration: this.processor_rpc_duration.get(),
+      processor_rpc_queue_duration: this.processor_rpc_queue_duration.get(),
       processor_template_instance_count: this.processor_template_instance_count.get()
     }
   }
