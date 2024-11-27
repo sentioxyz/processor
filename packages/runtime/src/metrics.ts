@@ -1,4 +1,4 @@
-import { Attributes, Counter, metrics, Gauge } from '@opentelemetry/api'
+import { Attributes, Counter, metrics, Gauge, Histogram } from '@opentelemetry/api'
 
 const getMeter = () => metrics.getMeter('processor')
 
@@ -40,6 +40,29 @@ class G {
 
   record(value: number, attributes?: Attributes) {
     this.gauge.record(value, attributes)
+    this.value = value
+  }
+
+  get() {
+    return this.value
+  }
+}
+
+class H {
+  private _histogram: Histogram<Attributes>
+  private value: number = 0
+
+  constructor(private name: string) {}
+
+  get histogram(): Histogram<Attributes> {
+    if (!this._histogram) {
+      this._histogram = getMeter().createHistogram(this.name)
+    }
+    return this._histogram
+  }
+
+  record(value: number, attributes?: Attributes) {
+    this.histogram.record(value, attributes)
     this.value = value
   }
 
@@ -143,7 +166,7 @@ export const processMetrics = {
   process_metricrecord_count: new C('process_metricrecord_count'),
   process_pricecall_count: new C('process_pricecall_count'),
   process_template_count: new C('process_template_count'),
-  process_handler_duration: new G('process_handler_duration'),
+  processor_handler_duration: new H('processor_handler_duration'),
   stats() {
     return {
       process_binding_count: this.process_binding_count.get(),
@@ -154,7 +177,7 @@ export const processMetrics = {
       process_metricrecord_count: this.process_metricrecord_count.get(),
       process_pricecall_count: this.process_pricecall_count.get(),
       process_template_count: this.process_template_count.get(),
-      process_handler_duration: this.process_handler_duration.get()
+      processor_handler_duration: this.processor_handler_duration.get()
     }
   }
 }
