@@ -234,8 +234,8 @@ importers:
         specifier: ~1.15.0
         version: 1.15.0(typescript@5.5.2)
       '@sentio/chain':
-        specifier: ^2.1.15
-        version: 2.1.15
+        specifier: ^2.2.0
+        version: 2.2.0
       '@sentio/graph-cli':
         specifier: ^0.80.0-patch.1
         version: 0.80.0-patch.1(@types/node@22.8.6)(bufferutil@4.0.8)(encoding@0.1.13)(node-fetch@3.3.2)(typescript@5.5.2)(utf-8-validate@5.0.10)
@@ -537,8 +537,8 @@ importers:
         specifier: 9.1.1-patch.3
         version: 9.1.1-patch.3
       '@sentio/chain':
-        specifier: ^2.1.15
-        version: 2.1.15
+        specifier: ^2.2.0
+        version: 2.2.0
       '@sentio/ethers-v6':
         specifier: ^1.0.29
         version: 1.0.29(@sentio/ethers@6.13.1-patch.1(bufferutil@4.0.8)(utf-8-validate@5.0.10))(typescript@5.5.2)
@@ -1738,8 +1738,8 @@ packages:
   '@sentio/bigdecimal@9.1.1-patch.3':
     resolution: {integrity: sha512-O5w8XdyeatUcwI+ZbpSw60/cXFPJk3NbpIupwMHfYmW8fpxpXyRbyGESNJNufWWrB6CadsWGh1R3rd7owvrmlw==}
 
-  '@sentio/chain@2.1.15':
-    resolution: {integrity: sha512-GJDh8bKKDVi62Qd8ef/hlcAutdnOy19pXoXQ0CmFBl8Dpncsf0L5QGxn9uY+HODVdLuIa5IYncoHVaVL+Kk6zg==}
+  '@sentio/chain@2.2.0':
+    resolution: {integrity: sha512-XvUNb93Eo1MsFZeyRIiD9ynj+Ud7ZF4W+XpZW4D+t06KeUghgKACZFv74m5dpz8cVwZgutZ4E53j07nK6Nrz7g==}
 
   '@sentio/ethers-v6@1.0.29':
     resolution: {integrity: sha512-/4jZZn+eM3EfI0bUMBAf5vu8muy8ABptu8ucFoMDTZLLTjxcSKRffLP3RL7w1JHGjyC2V6oEQfwS4cn9JEohHQ==}
@@ -7744,7 +7744,7 @@ snapshots:
 
   '@sentio/bigdecimal@9.1.1-patch.3': {}
 
-  '@sentio/chain@2.1.15': {}
+  '@sentio/chain@2.2.0': {}
 
   '@sentio/ethers-v6@1.0.29(@sentio/ethers@6.13.1-patch.1(bufferutil@4.0.8)(utf-8-validate@5.0.10))(typescript@5.5.2)':
     dependencies:
