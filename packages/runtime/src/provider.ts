@@ -4,7 +4,7 @@ import PQueue from 'p-queue'
 import { Endpoints } from './endpoints.js'
 import { EthChainId } from '@sentio/chain'
 import { LRUCache } from 'lru-cache'
-import { providerMetrics } from './metrics.js'
+import { providerMetrics, processMetrics, metricsStorage } from './metrics.js'
 import { GLOBAL_CONFIG } from './global-config.js'
 const { miss_count, hit_count, total_duration, total_queued, queue_size } = providerMetrics
 
@@ -122,6 +122,7 @@ export class QueuedStaticJsonRpcProvider extends JsonRpcProvider {
     const tag = getTag(method, params)
     const block = params[params.length - 1]
     let perform = this.#performCache.get(tag)
+    let hitCache = false
     if (!perform) {
       miss_count.add(1)
       const queued: number = Date.now()
@@ -148,9 +149,11 @@ export class QueuedStaticJsonRpcProvider extends JsonRpcProvider {
         }, 60 * 1000)
       }
     } else {
+      hitCache = true
       hit_count.add(1)
     }
 
+    const startTs = Date.now()
     let result
     try {
       result = await perform
@@ -167,6 +170,14 @@ export class QueuedStaticJsonRpcProvider extends JsonRpcProvider {
         }
       }
       throw e
+    } finally {
+      if (!hitCache) {
+        processMetrics.processor_rpc_duration.record(Date.now() - startTs, {
+          handler: metricsStorage.getStore(),
+          chain_id: this._network.chainId.toString(),
+          success: this.#performCache.has(tag)
+        })
+      }
     }
     if (!result) {
       throw Error('Unexpected null response')

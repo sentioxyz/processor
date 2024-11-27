@@ -1,3 +1,4 @@
+import { AsyncLocalStorage } from 'node:async_hooks'
 import { Attributes, Counter, metrics, Gauge, Histogram } from '@opentelemetry/api'
 
 const getMeter = () => metrics.getMeter('processor')
@@ -161,23 +162,25 @@ export const processMetrics = {
   process_binding_count: new C('process_binding_count'),
   process_binding_time: new C('process_binding_time'),
   process_binding_error: new C('process_binding_error'),
-  process_ethcall_count: new C('process_ethcall_count'),
   process_eventemit_count: new C('process_eventemit_count'),
   process_metricrecord_count: new C('process_metricrecord_count'),
   process_pricecall_count: new C('process_pricecall_count'),
-  process_template_count: new C('process_template_count'),
   processor_handler_duration: new H('processor_handler_duration'),
+  processor_rpc_duration: new H('processor_rpc_duration'),
+  processor_template_instance_count: new C('process_template_instance_count'),
   stats() {
     return {
       process_binding_count: this.process_binding_count.get(),
       process_binding_time: this.process_binding_time.get(),
       process_binding_error: this.process_binding_error.get(),
-      process_ethcall_count: this.process_ethcall_count.get(),
       process_eventemit_count: this.process_eventemit_count.get(),
       process_metricrecord_count: this.process_metricrecord_count.get(),
       process_pricecall_count: this.process_pricecall_count.get(),
-      process_template_count: this.process_template_count.get(),
-      processor_handler_duration: this.processor_handler_duration.get()
+      processor_handler_duration: this.processor_handler_duration.get(),
+      processor_rpc_duration: this.processor_rpc_duration.get(),
+      processor_template_instance_count: this.processor_template_instance_count.get()
     }
   }
 }
+
+export const metricsStorage = new AsyncLocalStorage<string>()
