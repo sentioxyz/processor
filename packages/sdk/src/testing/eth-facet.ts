@@ -3,7 +3,7 @@ import { DataBinding, HandlerType, ProcessBindingResponse } from '@sentio/protos
 import { Trace } from '../eth/eth.js'
 import { BlockParams, LogParams } from 'ethers/providers'
 import { ChainId, EthChainId } from '@sentio/chain'
-import { ALL_ADDRESS } from '@sentio/sdk'
+import { ALL_ADDRESS } from '../index.js'
 
 export class EthFacet {
   server: TestProcessorServer
