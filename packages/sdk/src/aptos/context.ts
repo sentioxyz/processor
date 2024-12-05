@@ -14,6 +14,7 @@ import { AptosNetwork } from './network.js'
 import { Endpoints } from '@sentio/runtime'
 import { ServerError, Status } from 'nice-grpc'
 import { MoveContext } from '../move/index.js'
+import { GeneralTransactionResponse } from './models.js'
 
 export abstract class AptosBaseContext extends MoveContext<AptosNetwork, MoveModuleBytecode, Event | MoveResource> {
   version: bigint
@@ -26,7 +27,7 @@ export abstract class AptosBaseContext extends MoveContext<AptosNetwork, MoveMod
     this.version = version
   }
 
-  getClient(): Aptos {
+  getClient(): RichAptosClientWithContext {
     let chainServer = Endpoints.INSTANCE.chainServer.get(this.network)
     if (!chainServer) {
       throw new ServerError(Status.INTERNAL, 'RPC endpoint not provided')
@@ -36,9 +37,9 @@ export abstract class AptosBaseContext extends MoveContext<AptosNetwork, MoveMod
   }
 }
 
-export class AptosContext extends AptosBaseContext {
+export class AptosTransactionContext<T extends GeneralTransactionResponse> extends AptosBaseContext {
   moduleName: string
-  transaction: UserTransactionResponse
+  transaction: T
   eventIndex: number
 
   constructor(
@@ -46,7 +47,7 @@ export class AptosContext extends AptosBaseContext {
     network: AptosNetwork,
     address: string,
     version: bigint,
-    transaction: UserTransactionResponse | null,
+    transaction: T | null,
     eventIndex: number,
     baseLabels: Labels | undefined
   ) {
@@ -80,16 +81,9 @@ export class AptosContext extends AptosBaseContext {
       labels: normalizeLabels(labels)
     }
   }
-
-  getClient(): Aptos {
-    let chainServer = Endpoints.INSTANCE.chainServer.get(this.network)
-    if (!chainServer) {
-      throw new ServerError(Status.INTERNAL, 'RPC endpoint not provided')
-    }
-    chainServer = chainServer + '/v1'
-    return new RichAptosClientWithContext(this, new AptosConfig({ fullnode: chainServer }))
-  }
 }
+
+export class AptosContext extends AptosTransactionContext<UserTransactionResponse> {}
 
 export class AptosResourcesContext extends AptosBaseContext {
   timestampInMicros: number
