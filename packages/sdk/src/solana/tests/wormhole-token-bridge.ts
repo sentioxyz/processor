@@ -7,9 +7,9 @@ import bs58 from 'bs58'
 import { camel } from 'radash'
 // @ts-ignore no type definition
 import { Layout } from 'buffer-layout'
-import { IdlField } from '@coral-xyz/anchor/dist/cjs/idl.js'
+import { IdlField } from '@coral-xyz/anchor/dist/esm/idl.js'
 import * as borsh from '@coral-xyz/borsh'
-import { IdlCoder } from '@coral-xyz/anchor/dist/cjs/coder/borsh/idl.js'
+import { IdlCoder } from '@coral-xyz/anchor/dist/esm/coder/borsh/idl.js'
 
 // TODO this could be more general
 class TokenBridgeDecoder {

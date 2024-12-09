@@ -8,6 +8,11 @@ overrides:
   '@grpc/grpc-js': ^1.12.2
   ethers: npm:@sentio/ethers@6.13.1-patch.1
 
+patchedDependencies:
+  '@coral-xyz/anchor@0.30.1':
+    hash: clsetxooki5gt3bqisxpc22mka
+    path: patches/@coral-xyz__anchor@0.30.1.patch
+
 importers:
 
   .:
@@ -108,16 +113,6 @@ importers:
         specifier: workspace:*
         version: link:../../packages/cli
 
-  examples/aurory:
-    dependencies:
-      '@sentio/sdk':
-        specifier: workspace:*
-        version: link:../../packages/sdk
-    devDependencies:
-      '@sentio/cli':
-        specifier: workspace:*
-        version: link:../../packages/cli
-
   examples/auto:
     dependencies:
       '@sentio/sdk':
@@ -160,6 +155,16 @@ importers:
       matchstick-as:
         specifier: 0.5.0
         version: 0.5.0
+
+  examples/pyth-staking:
+    dependencies:
+      '@sentio/sdk':
+        specifier: workspace:*
+        version: link:../../packages/sdk
+    devDependencies:
+      '@sentio/cli':
+        specifier: workspace:*
+        version: link:../../packages/cli
 
   examples/sui:
     dependencies:
@@ -522,7 +527,7 @@ importers:
         version: 1.33.0
       '@coral-xyz/anchor':
         specifier: ^0.30.1
-        version: 0.30.1(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+        version: 0.30.1(patch_hash=clsetxooki5gt3bqisxpc22mka)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       '@coral-xyz/borsh':
         specifier: ^0.30.1
         version: 0.30.1(@solana/web3.js@1.95.8(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10))
@@ -6518,7 +6523,7 @@ snapshots:
 
   '@coral-xyz/anchor-errors@0.30.1': {}
 
-  '@coral-xyz/anchor@0.30.1(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
+  '@coral-xyz/anchor@0.30.1(patch_hash=clsetxooki5gt3bqisxpc22mka)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
       '@coral-xyz/anchor-errors': 0.30.1
       '@coral-xyz/borsh': 0.30.1(@solana/web3.js@1.95.8(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10))

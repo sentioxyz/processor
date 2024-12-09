@@ -2,7 +2,7 @@ import path from 'path'
 import fs from 'fs'
 import chalk from 'chalk'
 import { Idl } from '@coral-xyz/anchor'
-import { IdlField, IdlInstruction, IdlType, IdlInstructionAccountItem } from '@coral-xyz/anchor/dist/cjs/idl.js'
+import { IdlField, IdlInstruction, IdlType, IdlInstructionAccountItem } from '@coral-xyz/anchor/dist/esm/idl.js'
 
 export function codegen(abisDir: string, targetPath = path.join('src', 'types', 'solana'), genExample = false) {
   if (!fs.existsSync(abisDir)) {
