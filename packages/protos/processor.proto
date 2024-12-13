@@ -657,10 +657,13 @@ message Data {
     uint64 slot = 3;
   }
   message SuiObject {
-    repeated google.protobuf.Struct objects = 1;
-    optional google.protobuf.Struct self = 4;
-    google.protobuf.Timestamp timestamp = 2;
-    uint64 slot = 3;
+    repeated google.protobuf.Struct objects = 1; // just details.content
+    optional google.protobuf.Struct self = 4;    // just details.content
+    string object_id = 5;      // self object property
+    uint64 object_version = 6; // self object property
+    string object_digest = 7;  // self object property
+    google.protobuf.Timestamp timestamp = 2; // checkpoint timestamp
+    uint64 slot = 3;                         // checkpoint number
   }
   message SuiObjectChange {
     repeated google.protobuf.Struct changes = 1;

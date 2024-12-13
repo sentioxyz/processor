@@ -1120,6 +1120,9 @@ export interface Data_SuiCall {
 export interface Data_SuiObject {
   objects: { [key: string]: any }[];
   self?: { [key: string]: any } | undefined;
+  objectId: string;
+  objectVersion: bigint;
+  objectDigest: string;
   timestamp: Date | undefined;
   slot: bigint;
 }
@@ -9827,7 +9830,15 @@ export const Data_SuiCall = {
 };
 
 function createBaseData_SuiObject(): Data_SuiObject {
-  return { objects: [], self: undefined, timestamp: undefined, slot: BigInt("0") };
+  return {
+    objects: [],
+    self: undefined,
+    objectId: "",
+    objectVersion: BigInt("0"),
+    objectDigest: "",
+    timestamp: undefined,
+    slot: BigInt("0"),
+  };
 }
 
 export const Data_SuiObject = {
@@ -9837,6 +9848,18 @@ export const Data_SuiObject = {
     }
     if (message.self !== undefined) {
       Struct.encode(Struct.wrap(message.self), writer.uint32(34).fork()).ldelim();
+    }
+    if (message.objectId !== "") {
+      writer.uint32(42).string(message.objectId);
+    }
+    if (message.objectVersion !== BigInt("0")) {
+      if (BigInt.asUintN(64, message.objectVersion) !== message.objectVersion) {
+        throw new globalThis.Error("value provided for field message.objectVersion of type uint64 too large");
+      }
+      writer.uint32(48).uint64(message.objectVersion.toString());
+    }
+    if (message.objectDigest !== "") {
+      writer.uint32(58).string(message.objectDigest);
     }
     if (message.timestamp !== undefined) {
       Timestamp.encode(toTimestamp(message.timestamp), writer.uint32(18).fork()).ldelim();
@@ -9871,6 +9894,27 @@ export const Data_SuiObject = {
 
           message.self = Struct.unwrap(Struct.decode(reader, reader.uint32()));
           continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.objectId = reader.string();
+          continue;
+        case 6:
+          if (tag !== 48) {
+            break;
+          }
+
+          message.objectVersion = longToBigint(reader.uint64() as Long);
+          continue;
+        case 7:
+          if (tag !== 58) {
+            break;
+          }
+
+          message.objectDigest = reader.string();
+          continue;
         case 2:
           if (tag !== 18) {
             break;
@@ -9898,6 +9942,9 @@ export const Data_SuiObject = {
     return {
       objects: globalThis.Array.isArray(object?.objects) ? [...object.objects] : [],
       self: isObject(object.self) ? object.self : undefined,
+      objectId: isSet(object.objectId) ? globalThis.String(object.objectId) : "",
+      objectVersion: isSet(object.objectVersion) ? BigInt(object.objectVersion) : BigInt("0"),
+      objectDigest: isSet(object.objectDigest) ? globalThis.String(object.objectDigest) : "",
       timestamp: isSet(object.timestamp) ? fromJsonTimestamp(object.timestamp) : undefined,
       slot: isSet(object.slot) ? BigInt(object.slot) : BigInt("0"),
     };
@@ -9910,6 +9957,15 @@ export const Data_SuiObject = {
     }
     if (message.self !== undefined) {
       obj.self = message.self;
+    }
+    if (message.objectId !== "") {
+      obj.objectId = message.objectId;
+    }
+    if (message.objectVersion !== BigInt("0")) {
+      obj.objectVersion = message.objectVersion.toString();
+    }
+    if (message.objectDigest !== "") {
+      obj.objectDigest = message.objectDigest;
     }
     if (message.timestamp !== undefined) {
       obj.timestamp = message.timestamp.toISOString();
@@ -9927,6 +9983,9 @@ export const Data_SuiObject = {
     const message = createBaseData_SuiObject();
     message.objects = object.objects?.map((e) => e) || [];
     message.self = object.self ?? undefined;
+    message.objectId = object.objectId ?? "";
+    message.objectVersion = object.objectVersion ?? BigInt("0");
+    message.objectDigest = object.objectDigest ?? "";
     message.timestamp = object.timestamp ?? undefined;
     message.slot = object.slot ?? BigInt("0");
     return message;
