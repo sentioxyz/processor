@@ -1,14 +1,7 @@
 import { RecordMetaData } from '@sentio/protos'
 import { type Labels, normalizeLabels } from '../index.js'
 import { MoveCoder, RichAptosClientWithContext } from './index.js'
-import {
-  Aptos,
-  Event,
-  MoveResource,
-  UserTransactionResponse,
-  MoveModuleBytecode,
-  AptosConfig
-} from '@aptos-labs/ts-sdk'
+import { Event, MoveResource, UserTransactionResponse, MoveModuleBytecode, AptosConfig } from '@aptos-labs/ts-sdk'
 import { defaultMoveCoder } from './move-coder.js'
 import { AptosNetwork } from './network.js'
 import { Endpoints } from '@sentio/runtime'

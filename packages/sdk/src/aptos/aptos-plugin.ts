@@ -137,9 +137,8 @@ export class AptosPlugin extends Plugin {
           resourceFetchConfig: undefined,
           type: ''
         })
-
-        config.contractConfigs.push(contractConfig)
       }
+      config.contractConfigs.push(contractConfig)
     }
 
     // Prepare resource handlers
