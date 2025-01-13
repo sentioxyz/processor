@@ -103,13 +103,13 @@ export class Store {
 
     return promise.then((_data) => {
       request.upsert?.entity.forEach((entity, i) => {
-        this.cache.set({
-          entity: entity,
-          data: request.upsert?.entityData[i],
-          genBlockChain: '',
-          genBlockTime: undefined,
-          genBlockNumber: 0n
-        })
+        // this.cache.set({
+        //   entity: entity,
+        //   data: request.upsert?.entityData[i],
+        //   genBlockChain: '',
+        //   genBlockTime: undefined,
+        //   genBlockNumber: 0n
+        // })
       })
     })
   }
