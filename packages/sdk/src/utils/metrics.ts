@@ -18,3 +18,16 @@ export function proxyProcessor(cls: any) {
     }
   })
 }
+
+export function proxyHandlers(arr: any[]) {
+  return new Proxy(arr, {
+    set: (target, prop, value, receiver) => {
+      const handlerName = metricsStorage.getStore()
+      if (value.handler && typeof value.handler == 'function' && handlerName) {
+        const fn = value.handler
+        value.handler = AsyncLocalStorage.bind((...args: any) => fn.apply(receiver, args))
+      }
+      return Reflect.set(target, prop, value, receiver)
+    }
+  })
+}
