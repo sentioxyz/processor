@@ -25,7 +25,7 @@ export function proxyHandlers(arr: any[]) {
       const handlerName = metricsStorage.getStore()
       if (value.handler && typeof value.handler == 'function' && handlerName) {
         const fn = value.handler
-        value.handler = AsyncLocalStorage.bind((...args: any) => fn.apply(receiver, args))
+        value.handler = (...args: any) => metricsStorage.run(handlerName, () => fn.apply(receiver, args))
       }
       return Reflect.set(target, prop, value, receiver)
     }
